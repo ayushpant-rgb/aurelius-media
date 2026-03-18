@@ -470,7 +470,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-lg">
+                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
                             Book a Strategy Call
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>
@@ -553,7 +553,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <div className="max-w-5xl mx-auto px-4 sm:px-6">
                     <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">What We Deliver</p>
                     <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-12">
-                        Services under <span className="font-display italic font-normal">{cat.title.toLowerCase()}.</span>
+                        Services under <span className="gradient-text font-display">{cat.title.toLowerCase()}.</span>
                     </h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -600,7 +600,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <div className="max-w-3xl mx-auto px-4 sm:px-6">
                     <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 text-center font-mono">FAQ</p>
                     <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-10 text-center">
-                        Frequently asked <span className="font-display italic font-normal">questions.</span>
+                        Frequently asked <span className="gradient-text font-display">questions.</span>
                     </h2>
                     <div className="space-y-3">
                         {cat.faqs.map((faq, i) => (
@@ -625,7 +625,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">{cat.ctaHeadline}</h2>
                     <p className="text-brand-gray text-sm sm:text-base mb-8 max-w-lg mx-auto leading-relaxed">{cat.ctaDescription}</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 cta-primary text-white font-semibold rounded-lg">
+                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
                             Book a Strategy Call →
                         </a>
                         <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover text-brand-white rounded-lg font-semibold transition-all duration-200">

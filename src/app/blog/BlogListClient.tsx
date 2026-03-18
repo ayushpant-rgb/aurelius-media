@@ -45,7 +45,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
 
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">
                         The Aurelius{' '}
-                        <span className="font-display italic font-normal">Blog.</span>
+                        <span className="gradient-text font-display">Blog.</span>
                     </h1>
 
                     <p className="text-base sm:text-lg text-brand-gray max-w-xl mx-auto leading-relaxed">
@@ -141,7 +141,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
             <section className="py-16 sm:py-20 bg-brand-darker">
                 <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
                     <h2 className="text-xl sm:text-2xl font-bold mb-3">
-                        Stay <span className="font-display italic font-normal">informed.</span>
+                        Stay <span className="gradient-text font-display">informed.</span>
                     </h2>
                     <p className="text-sm text-brand-gray max-w-md mx-auto mb-6 leading-relaxed">
                         Get the latest AI marketing insights, campaign strategies, and growth
@@ -155,7 +155,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
                         />
                         <button
                             type="submit"
-                            className="px-6 py-3 cta-primary text-white font-semibold rounded-lg text-sm whitespace-nowrap"
+                            className="px-6 py-3 cta-primary text-white font-semibold rounded-[20px] text-sm whitespace-nowrap"
                         >
                             Subscribe
                         </button>

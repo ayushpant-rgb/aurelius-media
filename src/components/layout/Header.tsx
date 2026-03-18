@@ -33,7 +33,7 @@ export default function Header() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-3' : 'bg-transparent py-5'
+            className={`fixed left-4 right-4 z-50 transition-all duration-300 ${scrolled ? 'glass py-3 top-4' : 'bg-transparent py-5 top-0'
                 }`}
         >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
@@ -100,7 +100,7 @@ export default function Header() {
 
             {/* Mobile Drawer */}
             <div
-                className={`lg:hidden fixed inset-0 top-0 bg-[#0A0A0F]/95 backdrop-blur-xl z-40 transition-all duration-300 ${mobileOpen
+                className={`lg:hidden fixed inset-0 top-0 bg-[#0B0B0D]/95 backdrop-blur-xl z-40 transition-all duration-300 ${mobileOpen
                     ? 'opacity-100 pointer-events-auto'
                     : 'opacity-0 pointer-events-none'
                     }`}
@@ -132,7 +132,7 @@ export default function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setMobileOpen(false)}
-                        className="mt-4 px-8 py-3 cta-primary text-white font-semibold rounded-lg"
+                        className="mt-4 px-8 py-3 cta-primary text-white font-semibold rounded-[20px]"
                     >
                         Book a Call →
                     </a>

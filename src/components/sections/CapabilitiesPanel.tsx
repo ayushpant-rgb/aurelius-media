@@ -203,7 +203,7 @@ export default function CapabilitiesPanel() {
                     <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Your Digital CMO</p>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
                         Everything a growth team needs —{' '}
-                        <span className="font-display italic font-normal">in one agency.</span>
+                        <span className="gradient-text font-display">in one agency.</span>
                     </h2>
                     <p className="text-brand-gray text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
                         28 specialized capabilities across paid media, creative, AI, and growth. Click any to learn more.
@@ -212,7 +212,7 @@ export default function CapabilitiesPanel() {
 
                 {/* Responsive Grid */}
                 <div className={`${inView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
-                    <div className="rounded-2xl border border-brand-border-subtle overflow-hidden bg-brand-card/20">
+                    <div className="rounded-[20px] border border-brand-border-subtle overflow-hidden bg-brand-card/20">
                         <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7">
                             {capabilities.map((cap) => {
                                 const isActive = activeId === cap.id;

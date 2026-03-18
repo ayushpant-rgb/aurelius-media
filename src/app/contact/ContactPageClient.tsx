@@ -59,7 +59,7 @@ export default function ContactPageClient() {
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                         Let&apos;s Build Something{' '}
                         <br />
-                        <span className="font-display italic font-normal">Extraordinary</span>
+                        <span className="gradient-text font-display">Extraordinary</span>
                     </h1>
                     <p className="text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed">
                         Book a free 15-minute strategy call or send us a message. We will analyze your
@@ -75,7 +75,7 @@ export default function ContactPageClient() {
                         {/* Left Column: Cal.com Booking */}
                         <div>
                             <h2 className="text-2xl font-bold mb-2">
-                                Book a Strategy <span className="font-display italic font-normal">Call</span>
+                                Book a Strategy <span className="gradient-text font-display">Call</span>
                             </h2>
                             <p className="text-brand-gray mb-6 leading-relaxed">
                                 Choose a time that works for you. This is a free, no-obligation 15-minute call where
@@ -94,7 +94,7 @@ export default function ContactPageClient() {
                                     href="https://cal.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-6 py-3 cta-primary text-white font-semibold rounded-lg"
+                                    className="px-6 py-3 cta-primary text-white font-semibold rounded-[20px]"
                                 >
                                     Open Calendar →
                                 </a>
@@ -104,7 +104,7 @@ export default function ContactPageClient() {
                         {/* Right Column: Contact Form */}
                         <div>
                             <h2 className="text-2xl font-bold mb-2">
-                                Send a <span className="font-display italic font-normal">Message</span>
+                                Send a <span className="gradient-text font-display">Message</span>
                             </h2>
                             <p className="text-brand-gray mb-6 leading-relaxed">
                                 Not ready for a call? No problem. Fill out the form below and we will get back to you
@@ -227,7 +227,7 @@ export default function ContactPageClient() {
 
                                     <button
                                         type="submit"
-                                        className="w-full px-6 py-3.5 cta-primary text-white font-semibold rounded-lg"
+                                        className="w-full px-6 py-3.5 cta-primary text-white font-semibold rounded-[20px]"
                                     >
                                         Send Message →
                                     </button>

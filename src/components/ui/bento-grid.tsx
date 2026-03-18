@@ -68,9 +68,9 @@ function BentoGrid({ items, className }: BentoGridProps) {
                 );
 
                 const cardClasses = cn(
-                    "group relative p-6 rounded-xl overflow-hidden transition-all duration-300",
+                    "group relative p-7 rounded-[20px] overflow-hidden transition-all duration-300",
                     "bg-brand-card border border-brand-border-subtle",
-                    "hover:border-brand-border-hover hover:-translate-y-0.5",
+                    "hover:border-[rgba(232,85,15,0.30)] hover:-translate-y-0.5",
                 );
 
                 if (item.href) {

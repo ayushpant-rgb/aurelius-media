@@ -37,10 +37,10 @@ export default function Hero() {
 
             {/* Grid Pattern overlay for texture */}
             <div
-                className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none"
+                className="absolute inset-0 z-0 pointer-events-none"
                 style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                    backgroundSize: '60px 60px',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+                    backgroundSize: '64px 64px',
                 }}
             />
 
@@ -89,7 +89,7 @@ export default function Hero() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-6 animate-fade-in-up">
                     AI-Powered Marketing.{' '}
                     <br />
-                    <span className="font-display italic font-normal">Real Results.</span>
+                    <span className="gradient-text font-display">Real Results.</span>
                 </h1>
 
                 {/* Sub-headline */}

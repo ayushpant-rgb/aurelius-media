@@ -1,9 +1,9 @@
 {
   "last_updated": "2026-03-18",
-  "total_pages": 24,
+  "total_pages": 40,
   "session_changes": {
     "date": "2026-03-18",
-    "summary": "Service pages V2: 15-task improvement list + 10-item V2 audit executed. Hero form, expanded FAQs, JSON-LD schemas, WhatsApp CTA, testimonial carousel, comparison redesign, H3 keyword optimization, section cleanup.",
+    "summary": "Design token migration + service expansion. 28 service pages (up from 12). Complete visual reskin: 3-tier dark surfaces, orange accent palette, Inter/Plus Jakarta Sans fonts, gradient-text replacing Playfair italic, 20px pill radius, floating navbar, atmospheric effects. Bento grid service cards. Comparison heading contrast.",
     "changes": [
       "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
       "ServicePageClient.tsx rewritten from 9 sections to V2 blueprint with inline lead capture forms, expanded FAQs, testimonial carousel, and WhatsApp floating CTA",
@@ -21,7 +21,12 @@
       "WhatsApp floating CTA added: green button (#25D366), appears after 30% scroll, hides at final CTA, dynamic pre-filled message",
       "H3 keyword optimization for benefits + sub-services in no-code-development, ai-workshops, and real-estate-marketing",
       "Related articles filtered by category per service page via serviceBlogCategoryMap",
-      "Project uploaded to GitHub: github.com/ayushpant-rgb/aurelius-media"
+      "Project uploaded to GitHub: github.com/ayushpant-rgb/aurelius-media",
+      "Expanded from 12 to 28 service pages — 16 new services added (linkedin-ads, youtube-ads, tiktok-ads, retargeting, lead-generation, funnel-building, cro, programmatic-seo, analytics-reporting, email-lifecycle, brand-videos, ugc-ads, landing-pages, content-strategy, pitch-decks, ai-agents)",
+      "Bento grid layout (bento-grid.tsx) for service cards on homepage and /services hub",
+      "Lucide icon support added to ServicePersona interface and persona cards",
+      "Complete design token migration: 3-tier dark surfaces, new orange accent palette, Inter body + Plus Jakarta Sans headings, gradient-text class, 20px pill radius, floating pill navbar, updated CTA buttons, atmospheric effects",
+      "Comparison heading contrast: 'Aurelius Media' rendered in gradient-text on all service pages"
     ]
   },
   "design_system_updates": {
@@ -109,7 +114,7 @@
       "route": "/services",
       "title": "All Services | Aurelius Media",
       "h1": "Services Hub",
-      "meta_description": "Explore our 12 core capabilities across performance marketing, B2B demand gen, marketing collaterals, and more.",
+      "meta_description": "Explore our 28 core capabilities across performance marketing, creative production, growth engineering, and industry verticals.",
       "primary_keyword": "Aurelius Media Services",
       "topic_cluster": "Core Operations",
       "page_type": "static",
@@ -126,7 +131,23 @@
         "/services/ai-automation",
         "/services/no-code-development",
         "/services/ai-workshops",
-        "/services/real-estate-marketing"
+        "/services/real-estate-marketing",
+        "/services/linkedin-ads",
+        "/services/youtube-ads",
+        "/services/tiktok-ads",
+        "/services/retargeting",
+        "/services/lead-generation",
+        "/services/funnel-building",
+        "/services/cro",
+        "/services/programmatic-seo",
+        "/services/analytics-reporting",
+        "/services/email-lifecycle",
+        "/services/brand-videos",
+        "/services/ugc-ads",
+        "/services/landing-pages",
+        "/services/content-strategy",
+        "/services/pitch-decks",
+        "/services/ai-agents"
       ],
       "internal_links_from": ["/", "Header", "Footer"]
     },
@@ -392,6 +413,166 @@
       "internal_links_from": ["/services"]
     },
     {
+      "route": "/services/linkedin-ads",
+      "title": "LinkedIn Ads | Aurelius Media",
+      "h1": "Reach Decision-Makers on the World's Largest Professional Network.",
+      "primary_keyword": "linkedin ads agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/youtube-ads",
+      "title": "YouTube Ads | Aurelius Media",
+      "h1": "Video Ads That Drive Real Business Results.",
+      "primary_keyword": "youtube ads agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/tiktok-ads",
+      "title": "TikTok Ads | Aurelius Media",
+      "h1": "Reach the Next Generation of Buyers.",
+      "primary_keyword": "tiktok ads agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/retargeting",
+      "title": "Retargeting & Remarketing | Aurelius Media",
+      "h1": "Turn Visitors Into Customers.",
+      "primary_keyword": "retargeting agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/lead-generation",
+      "title": "Lead Generation | Aurelius Media",
+      "h1": "Build a Predictable Pipeline of Qualified Leads.",
+      "primary_keyword": "lead generation agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/funnel-building",
+      "title": "Funnel Building | Aurelius Media",
+      "h1": "Design Funnels That Convert at Every Stage.",
+      "primary_keyword": "funnel building agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/cro",
+      "title": "Conversion Rate Optimization | Aurelius Media",
+      "h1": "Get More Revenue From Your Existing Traffic.",
+      "primary_keyword": "cro agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/programmatic-seo",
+      "title": "Programmatic SEO | Aurelius Media",
+      "h1": "Scale Organic Traffic With Programmatic Content.",
+      "primary_keyword": "programmatic seo agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/analytics-reporting",
+      "title": "Analytics & Reporting | Aurelius Media",
+      "h1": "Make Data-Driven Decisions With Clarity.",
+      "primary_keyword": "marketing analytics agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/email-lifecycle",
+      "title": "Email & Lifecycle Marketing | Aurelius Media",
+      "h1": "Turn Subscribers Into Loyal Customers.",
+      "primary_keyword": "email marketing agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/brand-videos",
+      "title": "Brand Videos | Aurelius Media",
+      "h1": "Tell Your Brand Story Through Cinematic Video.",
+      "primary_keyword": "brand video production",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/ugc-ads",
+      "title": "UGC Ads | Aurelius Media",
+      "h1": "Authentic User-Generated Content That Converts.",
+      "primary_keyword": "ugc ads agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/landing-pages",
+      "title": "Landing Pages | Aurelius Media",
+      "h1": "High-Converting Pages Built for Results.",
+      "primary_keyword": "landing page agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/content-strategy",
+      "title": "Content Strategy | Aurelius Media",
+      "h1": "Strategic Content That Fuels Growth.",
+      "primary_keyword": "content strategy agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/pitch-decks",
+      "title": "Pitch Decks | Aurelius Media",
+      "h1": "Pitch Decks That Close Deals and Raise Capital.",
+      "primary_keyword": "pitch deck design agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/ai-agents",
+      "title": "AI Agents | Aurelius Media",
+      "h1": "Custom AI Agents That Work 24/7.",
+      "primary_keyword": "ai agents agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_from": ["/services"]
+    },
+    {
       "route": "/blog/meta-ads-vs-google-ads-budget-2026",
       "title": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
       "h1": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
@@ -518,7 +699,7 @@
       "template_name": "Service Hub Dynamic Router",
       "route_pattern": "/services/[slug]",
       "data_source": "src/data/servicePages.ts",
-      "total_pages_generated": 12,
+      "total_pages_generated": 28,
       "sample_urls": [
         "/services/google-ads",
         "/services/meta-ads"

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-display",
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -107,7 +108,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${jakarta.variable} ${playfair.variable} ${jetbrains.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${jakarta.variable} ${jetbrains.variable} font-sans antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />

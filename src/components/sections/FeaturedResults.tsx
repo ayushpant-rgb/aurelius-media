@@ -31,7 +31,7 @@ const caseStudies = [
 
 function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
     return (
-        <div className="group relative rounded-2xl overflow-hidden w-[240px] sm:w-[280px] h-[320px] sm:h-[370px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 shrink-0">
+        <div className="group relative rounded-[20px] overflow-hidden w-[240px] sm:w-[280px] h-[320px] sm:h-[370px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 shrink-0">
             <Image
                 src={study.image}
                 alt={study.title.replace('\n', ' ')}
@@ -43,7 +43,7 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
 
             <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-end items-center text-center">
                 {study.hasDot && (
-                    <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse shadow-[0_0_12px_rgba(220,70,50,0.8)]" />
+                    <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse shadow-[0_0_12px_rgba(232,85,15,0.8)]" />
                 )}
                 <h3 className="text-lg sm:text-xl font-medium text-white mb-1 leading-tight whitespace-pre-line">
                     {study.title}
@@ -120,7 +120,7 @@ export default function FeaturedResults() {
                 <div className="text-center mb-10 sm:mb-12">
                     <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Results</p>
                     <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3">
-                        Results speak for <span className="font-display italic font-normal">themselves.</span>
+                        Results speak for <span className="gradient-text font-display">themselves.</span>
                     </h2>
                     <p className="text-brand-gray text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
                         We&apos;ve worked across a number of industries and have achieved some

@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, About, Services Hub, Service Sub-pages, Categories, Blog, Contact). 12 specific service pages built with programmatic routing. 4 blog posts live. All core homepage sections complete with scroll animations and marquee testimonials.
+- **Current Status:** Main pages built (Home, About, Services Hub, Service Sub-pages, Categories, Blog, Contact). 28 specific service pages built with programmatic routing. 5 blog posts live. All core homepage sections complete with scroll animations and marquee testimonials.
 - **Live URL:** `http://localhost:3000` (Currently in local development)
 
 ## 2. Tech Stack
@@ -80,18 +80,24 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 ## 6. Design System
 We employ a sleek, dark-mode-first luxury aesthetic. 
 
-**Colors (Tailwind `@theme` in `globals.css`):**
-- System Dark: `var(--color-brand-dark)` `#0A0A0F`
-- Off-Dark: `var(--color-brand-darker)` `#111118`
-- Cards: `var(--color-brand-card)` `#16161E`
-- Primary Accent (Red/Orange): `var(--color-brand-accent)` `#DC4632`
+**Colors (Tailwind `@theme` in `globals.css`) — 3-tier depth system:**
+- Page Background: `var(--color-brand-dark)` `#0B0B0D`
+- Card/Panel Surface: `var(--color-brand-card)` `#131316`
+- Nested/Elevated: `var(--color-brand-nested)` `#1C1C20`
+- Input/Deep Nested: `var(--color-brand-input)` `#252529`
+- Primary Accent (Orange): `var(--color-brand-accent)` `#E8550F`
+- Accent Text (on dark): `var(--color-brand-accent-text)` `#FF7A3D`
+- Accent Hover: `var(--color-brand-accent-hover)` `#FF6B2B`
 - Secondary Accent (Gold): `var(--color-brand-gold)` `#C8A951`
-- Text (White & Gray): `#FFFFFF` and `#A0A0B0`
+- Text Primary: `#FFFFFF`, Secondary: `rgba(255,255,255,0.65)`, Muted: `rgba(255,255,255,0.38)`
+- Borders: `rgba(255,255,255,0.08)` (standard), `rgba(255,255,255,0.04)` (subtle)
 
 **Typography:**
-- Headers: `Playfair Display` (often italicized for style: `font-display italic font-normal`)
-- Body/UI: `Plus Jakarta Sans` (`font-sans`)
+- Headers: `Plus Jakarta Sans` weight 800, letter-spacing -0.03em (`font-display`)
+- Body/UI: `Inter` (`font-sans`)
+- Accent words: `.gradient-text` class (orange gradient, replaces Playfair italic)
 - Eyebrows/Tech specs: `JetBrains Mono` (`font-mono`)
+- Section labels: `.section-label` class (10px, 700 weight, 0.2em spacing, dashed prefix)
 
 **Spacing & Layout:**
 - **Max Width:** Most content is contained within `max-w-7xl` (1280px) or `max-w-6xl` containers to ensure readability on ultrawide monitors.
@@ -109,9 +115,15 @@ We employ a sleek, dark-mode-first luxury aesthetic.
 - **Rule:** All animations must be defined as named CSS classes in `globals.css`. Never use inline `style={{ animation: '...' }}` for scroll/marquee effects.
 
 **Card Patterns:**
-- Backgrounds usually `bg-brand-card` with `border border-brand-border-subtle`.
-- Hover states include `hover:border-brand-border-hover transition-colors duration-300` and often a slight `hover:-translate-y-0.5` lift.
-- Sharp corners are forbidden; always use `rounded-xl` or `rounded-2xl`.
+- Backgrounds: `bg-brand-card` (#131316) with `border border-brand-border-subtle`.
+- Hover states: orange border glow `hover:border-[rgba(232,85,15,0.30)]` + slight `hover:-translate-y-0.5` lift.
+- Card radius: `rounded-[20px]` (pill-like corners). Inner cards/inputs: `rounded-[12px]`.
+- CTA buttons: `rounded-[20px]` pill shape with gradient fill + inset highlight + glow shadow.
+
+**Button Patterns:**
+- Primary: `.cta-primary` — gradient `#FF6B2B → #E8550F`, inset highlight, 20px pill radius, orange glow shadow.
+- Ghost: `.btn-ghost` — transparent bg, white/08 border, 20px radius.
+- Orange outline: `.btn-outline-or` — orange text/border, transparent bg.
 
 ## 7. CMS / Content Schema
 
@@ -209,7 +221,7 @@ To add new content, simply drop markdown files in `content/blog/` or append an o
 - **Schema:** We inject standard JSON-LD Schema (Organization) globally in `layout.tsx`. Service pages also inject FAQPage, Service, and BreadcrumbList JSON-LD schema.
 
 **Internal Linking Strategy:**
-- **Header Navigation:** The mega-menu routes primarily to Category Pillar Pages (`/categories/performance-marketing`), not directly to the 12 deep service pages.
+- **Header Navigation:** The mega-menu routes primarily to Category Pillar Pages (`/categories/performance-marketing`), not directly to the 28 deep service pages.
 - **Homepage Linking:** The `ServicesOverview` module links to 6 category cards (Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing) which each link to a representative service page.
 - **Service Pages Linking:** Every service page concludes with a "Related Services" block cross-linking siblings (`relatedSlugs` in schema), pushing link equity laterally across hubs.
 - **Blog Cross-Linking:** **(TODO)** Blog posts currently do not auto-embed or cross-link explicitly back to conversion/service pages. Future agents should introduce inline CTA links inside `.mdx` parsing.
@@ -265,6 +277,22 @@ Every active route in the codebase and its status:
 | `/services/no-code-development` | No-Code Development | Complete |
 | `/services/ai-workshops` | AI Workshops | Complete |
 | `/services/real-estate-marketing` | Real Estate Marketing | Complete |
+| `/services/linkedin-ads` | LinkedIn Ads | Complete |
+| `/services/youtube-ads` | YouTube Ads | Complete |
+| `/services/tiktok-ads` | TikTok Ads | Complete |
+| `/services/retargeting` | Retargeting & Remarketing | Complete |
+| `/services/lead-generation` | Lead Generation | Complete |
+| `/services/funnel-building` | Funnel Building | Complete |
+| `/services/cro` | Conversion Rate Optimization | Complete |
+| `/services/programmatic-seo` | Programmatic SEO | Complete |
+| `/services/analytics-reporting` | Analytics & Reporting | Complete |
+| `/services/email-lifecycle` | Email & Lifecycle Marketing | Complete |
+| `/services/brand-videos` | Brand Videos | Complete |
+| `/services/ugc-ads` | UGC Ads | Complete |
+| `/services/landing-pages` | Landing Pages | Complete |
+| `/services/content-strategy` | Content Strategy | Complete |
+| `/services/pitch-decks` | Pitch Decks | Complete |
+| `/services/ai-agents` | AI Agents | Complete |
 | `/categories/[slug]` | Category Pages Template | Complete |
 | `/blog` | Blog Hub | Complete |
 | `/blog/[slug]` | Blog Post Template | Complete |
@@ -343,3 +371,16 @@ If you are modifying this codebase:
   - H3 keyword optimization for benefits + sub-services in no-code-development, ai-workshops, and real-estate-marketing
   - Implemented category-based blog article filtering per service page via `serviceBlogCategoryMap`
   - Verified internal linking in sub-services grid and aligned related articles with service keywords
+- **March 18, 2026:** Expanded service pages from 12 to 28. Added 16 new services: linkedin-ads, youtube-ads, tiktok-ads, retargeting, lead-generation, funnel-building, cro, programmatic-seo, analytics-reporting, email-lifecycle, brand-videos, ugc-ads, landing-pages, content-strategy, pitch-decks, ai-agents. All populated with full V2 blueprint content.
+- **March 18, 2026:** Added bento grid layout (`src/components/ui/bento-grid.tsx`) for service cards on homepage `ServicesOverview` and `/services` hub. Cards use `rounded-[20px]`, orange hover border glow.
+- **March 18, 2026:** Added Lucide icon support to `ServicePersona` interface and persona cards on service pages.
+- **March 18, 2026:** Complete design token migration per `Aurelius-Design-Token-Migration.pdf`:
+  - **Colors:** 3-tier dark surface system (`#0B0B0D` → `#131316` → `#1C1C20` → `#252529`). New orange accent palette (`#E8550F` fill, `#FF7A3D` text, `#FF6B2B` hover, `#C0420A` pressed).
+  - **Typography:** Body font swapped from Plus Jakarta Sans → Inter. Heading font swapped from Playfair Display → Plus Jakarta Sans (weight 800, letter-spacing -0.03em). All `font-display italic` patterns replaced with `.gradient-text` (orange gradient).
+  - **Borders/Radius:** Cards `rounded-[20px]`, CTA buttons `rounded-[20px]`, floating pill navbar `rounded-[20px]`.
+  - **Buttons:** `.cta-primary` gradient fill (`#FF6B2B → #E8550F`) with inset highlight + orange glow shadow. Added `.btn-ghost`, `.btn-outline-or`.
+  - **Navbar:** Floating pill style — `fixed left-4 right-4 top-4` on scroll, `backdrop-filter: blur(16px)`.
+  - **Atmospheric:** Stronger hero radial glow, CTA section warm gradient bg + orange border card, grid texture (64px, 2.5% white lines).
+  - **Section labels:** `.section-label` class with dashed prefix (20px × 2px orange line).
+  - **Scope:** 21 files modified. Visual-only change — no structure, content, or functionality modifications.
+- **March 18, 2026:** Comparison section heading contrast: "Aurelius Media" rendered in `.gradient-text` on service pages.

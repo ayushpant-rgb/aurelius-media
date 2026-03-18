@@ -56,7 +56,7 @@ const mdxComponents = {
         <code className="px-1.5 py-0.5 bg-brand-card rounded text-[15px] font-mono text-brand-accent" {...props} />
     ),
     pre: (props: JSX.IntrinsicElements['pre']) => (
-        <pre className="bg-[#111] rounded-xl p-5 mb-8 overflow-x-auto border border-brand-border-subtle text-sm leading-relaxed" {...props} />
+        <pre className="bg-brand-card rounded-xl p-5 mb-8 overflow-x-auto border border-brand-border-subtle text-sm leading-relaxed" {...props} />
     ),
     img: (props: JSX.IntrinsicElements['img']) => (
         // eslint-disable-next-line @next/next/no-img-element
@@ -173,7 +173,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                                         <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-brand-accent mb-3 opacity-70">
                                             {post.category}
                                         </p>
-                                        <p className="text-2xl sm:text-3xl font-display italic font-normal text-brand-white/20 leading-tight max-w-lg">
+                                        <p className="text-2xl sm:text-3xl gradient-text font-display text-brand-white/20 leading-tight max-w-lg">
                                             {post.title}
                                         </p>
                                     </div>
@@ -225,7 +225,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
             <section className="py-16 bg-brand-darker">
                 <div className="max-w-[720px] mx-auto px-5 sm:px-6 text-center">
                     <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                        Ready to <span className="font-display italic font-normal">grow?</span>
+                        Ready to <span className="gradient-text font-display">grow?</span>
                     </h2>
                     <p className="text-base text-brand-gray max-w-md mx-auto mb-7 leading-relaxed">
                         Book a 15-minute strategy call to discuss how we can scale your marketing.
@@ -234,7 +234,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                         href="https://cal.com/aureliusmedia/15min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex px-7 py-3.5 cta-primary text-white font-semibold rounded-lg text-sm"
+                        className="inline-flex px-7 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm"
                     >
                         Book a Strategy Call
                     </a>

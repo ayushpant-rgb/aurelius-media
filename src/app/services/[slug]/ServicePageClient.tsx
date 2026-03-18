@@ -120,7 +120,7 @@ function getStatIcon(metric: string): { Icon: LucideIcon; color: string } {
     if (lower.includes('↑') || lower.includes('up') || lower.includes('increase') || lower.includes('higher') || lower.includes('roas') || lower.includes('growth') || lower.includes('+') || lower.includes('%') || lower.includes('x')) {
         return { Icon: ArrowUpRight, color: '#059669' };
     }
-    return { Icon: Banknote, color: '#E8613A' };
+    return { Icon: Banknote, color: '#E8550F' };
 }
 
 /** Related services master icon map — by slug */
@@ -417,7 +417,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                     href="https://cal.com/aureliusmedia/15min"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-6 py-3 cta-primary text-white font-semibold rounded-lg text-sm"
+                                    className="px-6 py-3 cta-primary text-white font-semibold rounded-[20px] text-sm"
                                 >
                                     Book a Strategy Call
                                 </a>
@@ -432,7 +432,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
 
                         {/* Right: Lead capture form card */}
                         <div className={`${heroInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
-                            <div className="bg-white rounded-xl p-6 sm:p-8" style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+                            <div className="bg-white rounded-[20px] p-6 sm:p-8" style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
                                 {formSubmitted ? (
                                     <div className="text-center py-8">
                                         <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -446,7 +446,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 ) : (
                                     <>
                                         <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
-                                            We use <span className="text-[#E8613A]">AI-Driven</span> {service.title} Strategies
+                                            We use <span className="text-[#E8550F]">AI-Driven</span> {service.title} Strategies
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-6">
                                             Get your free strategy call and discover how to scale your growth.
@@ -460,7 +460,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                     placeholder="Your Name *"
                                                     value={formData.name}
                                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8613A]/30 focus:border-[#E8613A] transition-all"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8550F]/30 focus:border-[#E8550F] transition-all"
                                                 />
                                             </div>
                                             <div>
@@ -470,7 +470,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                     placeholder="Work Email *"
                                                     value={formData.email}
                                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8613A]/30 focus:border-[#E8613A] transition-all"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8550F]/30 focus:border-[#E8550F] transition-all"
                                                 />
                                             </div>
                                             <div>
@@ -480,7 +480,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                     placeholder="Phone (+91) *"
                                                     value={formData.phone}
                                                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8613A]/30 focus:border-[#E8613A] transition-all"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E8550F]/30 focus:border-[#E8550F] transition-all"
                                                 />
                                             </div>
                                             <div>
@@ -488,7 +488,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                     required
                                                     value={formData.industry}
                                                     onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#E8613A]/30 focus:border-[#E8613A] transition-all appearance-none bg-white"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#E8550F]/30 focus:border-[#E8550F] transition-all appearance-none bg-white"
                                                 >
                                                     <option value="" disabled>Industry *</option>
                                                     {industryOptions.map((opt) => (
@@ -500,7 +500,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                 <select
                                                     value={formData.budget}
                                                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#E8613A]/30 focus:border-[#E8613A] transition-all appearance-none bg-white"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#E8550F]/30 focus:border-[#E8550F] transition-all appearance-none bg-white"
                                                 >
                                                     <option value="">Budget Range (optional)</option>
                                                     {budgetOptions.map((opt) => (
@@ -511,7 +511,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
 
                                             <button
                                                 type="submit"
-                                                className="w-full py-3.5 bg-[#E8613A] hover:bg-[#d4552f] text-white font-semibold rounded-lg text-sm transition-colors duration-200 cursor-pointer"
+                                                className="w-full py-3.5 bg-[#E8550F] hover:bg-[#C0420A] text-white font-semibold rounded-lg text-sm transition-colors duration-200 cursor-pointer"
                                                 style={{ height: '48px' }}
                                             >
                                                 Get My Free Audit
@@ -554,7 +554,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={whatIsInView ? 'animate-fade-in-up' : 'opacity-0'}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Overview</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6">
-                                What is <span className="font-display italic font-normal">{service.title}?</span>
+                                What is <span className="gradient-text font-display">{service.title}?</span>
                             </h2>
                             <p className="text-sm sm:text-base text-brand-gray leading-[1.8] max-w-3xl">
                                 {service.whatIs}
@@ -571,7 +571,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={`mb-10 ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Who This Is For</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                                Built for teams that are <span className="font-display italic font-normal">ready to grow.</span>
+                                Built for teams that are <span className="gradient-text font-display">ready to grow.</span>
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -580,21 +580,21 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 return (
                                     <div
                                         key={i}
-                                        className={`p-6 rounded-xl bg-white/[0.02] border border-white/10 hover:border-brand-border-hover transition-all duration-300 ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        className={`p-6 rounded-[20px] bg-white/[0.02] border border-white/10 hover:border-brand-border-hover transition-all duration-300 ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                         style={{ animationDelay: `${i * 0.08}s` }}
                                     >
-                                        <div className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-4" style={{ background: 'rgba(232,99,58,0.12)' }}>
+                                        <div className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-4" style={{ background: 'rgba(232,85,15,0.10)' }}>
                                             <PersonaIcon className="w-[22px] h-[22px] text-brand-accent" strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-[15px] font-medium text-[#f1f1ef] mb-2">{persona.title}</h3>
-                                        <p className="text-[13px] text-[#9ca3af] leading-[1.55] line-clamp-2">{persona.description}</p>
+                                        <p className="text-[13px] text-brand-gray leading-[1.55] line-clamp-2">{persona.description}</p>
                                     </div>
                                 );
                             })}
                         </div>
                         {service.catchAllText && (
                             <p className={`mt-6 text-[13px] leading-[1.6] text-center max-w-[600px] mx-auto ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.35s' }}>
-                                <span className="text-[#6b7280]">{service.catchAllText}</span>
+                                <span className="text-brand-gray-dark">{service.catchAllText}</span>
                             </p>
                         )}
                     </div>
@@ -610,7 +610,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={approachInView ? 'animate-fade-in-up' : 'opacity-0'}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Our Process</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
-                                How we <span className="font-display italic font-normal">deliver.</span>
+                                How we <span className="gradient-text font-display">deliver.</span>
                             </h2>
                             <p className="text-base text-brand-gray leading-relaxed">
                                 {service.approach}
@@ -649,7 +649,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={`mb-10 ${benefitsInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Benefits</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                                Why it <span className="font-display italic font-normal">matters.</span>
+                                Why it <span className="gradient-text font-display">matters.</span>
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -658,7 +658,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 return (
                                     <div
                                         key={i}
-                                        className={`p-6 rounded-xl bg-brand-card/50 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${benefitsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        className={`p-6 rounded-[20px] bg-brand-card/50 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${benefitsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                         style={{ animationDelay: `${i * 0.06}s` }}
                                     >
                                         <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-4">
@@ -681,7 +681,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={`mb-10 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Services Included</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                                What&apos;s <span className="font-display italic font-normal">included.</span>
+                                What&apos;s <span className="gradient-text font-display">included.</span>
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -690,7 +690,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 return (
                                     <div
                                         key={i}
-                                        className={`group p-6 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        className={`group p-6 rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                         style={{ animationDelay: `${i * 0.05}s` }}
                                     >
                                         <div className="flex items-start gap-3 mb-3">
@@ -732,7 +732,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className="mt-8 text-center">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 cta-primary text-white font-semibold rounded-lg text-sm"
+                                className="inline-flex items-center gap-2 px-6 py-3 cta-primary text-white font-semibold rounded-[20px] text-sm"
                             >
                                 Get a Custom Proposal
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -748,14 +748,14 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className={`mb-10 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                             <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Deliverables</p>
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                                What&apos;s <span className="font-display italic font-normal">included.</span>
+                                What&apos;s <span className="gradient-text font-display">included.</span>
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                             {service.deliverables.map((item, i) => (
                                 <div
                                     key={i}
-                                    className={`flex items-center gap-3 p-4 rounded-xl bg-brand-card/50 border border-brand-border-subtle ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                    className={`flex items-center gap-3 p-4 rounded-[20px] bg-brand-card/50 border border-brand-border-subtle ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.04}s` }}
                                 >
                                     <svg className="w-4 h-4 text-brand-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -768,7 +768,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         <div className="mt-8 text-center">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 cta-primary text-white font-semibold rounded-lg text-sm"
+                                className="inline-flex items-center gap-2 px-6 py-3 cta-primary text-white font-semibold rounded-[20px] text-sm"
                             >
                                 Get a Custom Proposal
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -788,8 +788,8 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             <span className="inline-block px-4 py-1.5 rounded-full border border-brand-border-subtle text-xs font-medium text-brand-gray mb-6">
                                 Comparison
                             </span>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display italic font-normal leading-tight">
-                                What sets <span className="font-display italic">Aurelius Media</span><br />apart?
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display leading-tight text-brand-white">
+                                What sets <span className="gradient-text">Aurelius Media</span><br />apart?
                             </h2>
                         </div>
 
@@ -797,7 +797,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             {/* Left column — Other Agencies */}
                             <div>
                                 <h3 className="text-lg sm:text-xl font-medium text-brand-gray-dark mb-4 sm:mb-5">Other Agencies</h3>
-                                <div className="rounded-2xl border border-brand-border-subtle bg-brand-card/40 p-6 sm:p-8">
+                                <div className="rounded-[20px] border border-brand-border-subtle bg-brand-card/40 p-6 sm:p-8">
                                     <div className="space-y-5 sm:space-y-6">
                                         {comparisonRowsWithAI.map((row, i) => (
                                             <div key={i} className="flex items-start gap-3">
@@ -814,11 +814,11 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             {/* Right column — Aurelius Media */}
                             <div>
                                 <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
-                                    <span className="w-2.5 h-2.5 bg-brand-accent rounded-full animate-pulse shadow-[0_0_10px_rgba(220,70,50,0.6)]" />
+                                    <span className="w-2.5 h-2.5 bg-brand-accent rounded-full animate-pulse shadow-[0_0_10px_rgba(232,85,15,0.6)]" />
                                     <Image src="/logo.png" alt="Aurelius Media" width={36} height={36} className="rounded-md" />
                                     <span className="text-lg sm:text-xl font-extrabold tracking-wider uppercase text-brand-white">Aurelius Media</span>
                                 </div>
-                                <div className="relative rounded-2xl border border-brand-border-subtle bg-brand-card/40 p-6 sm:p-8 overflow-hidden">
+                                <div className="relative rounded-[20px] border border-brand-border-subtle bg-brand-card/40 p-6 sm:p-8 overflow-hidden">
                                     <div
                                         className="absolute top-0 right-0 w-2/3 h-full pointer-events-none"
                                         style={{
@@ -848,7 +848,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     <div className={`text-center mb-10 ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                         <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Results</p>
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
-                            Proven <span className="font-display italic font-normal">results.</span>
+                            Proven <span className="gradient-text font-display">results.</span>
                         </h2>
                     </div>
                     {service.resultHighlights && service.resultHighlights.length > 0 ? (
@@ -858,7 +858,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 return (
                                     <div
                                         key={i}
-                                        className={`p-8 rounded-xl bg-brand-card border border-brand-border-subtle text-center ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        className={`p-8 rounded-[20px] bg-brand-card border border-brand-border-subtle text-center ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                         style={{ animationDelay: `${i * 0.08}s` }}
                                     >
                                         <StatIcon className="w-6 h-6 mx-auto mb-3" strokeWidth={1.5} style={{ color }} />
@@ -882,7 +882,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     <div className={`text-center mb-10 ${testimonialInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                         <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Client Testimonials</p>
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                            What our clients <span className="font-display italic font-normal">say.</span>
+                            What our clients <span className="gradient-text font-display">say.</span>
                         </h2>
                     </div>
 
@@ -891,7 +891,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         {testimonials.map((t, i) => (
                             <div
                                 key={i}
-                                className={`min-w-[85vw] sm:min-w-[60vw] md:min-w-0 snap-center p-6 sm:p-7 rounded-2xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${testimonialInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                className={`min-w-[85vw] sm:min-w-[60vw] md:min-w-0 snap-center p-6 sm:p-7 rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${testimonialInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                 style={{ animationDelay: `${i * 0.1}s` }}
                             >
                                 <svg className="w-7 h-7 text-brand-accent/30 mb-4" viewBox="0 0 24 24" fill="currentColor">
@@ -934,7 +934,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     <div className="max-w-5xl mx-auto px-4 sm:px-6">
                         <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Explore More</p>
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-8">
-                            Related <span className="font-display italic font-normal">services.</span>
+                            Related <span className="gradient-text font-display">services.</span>
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -944,7 +944,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                     <Link
                                         key={rel.slug}
                                         href={`/services/${rel.slug}`}
-                                        className="group p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200"
+                                        className="group p-5 rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200"
                                     >
                                         <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-4">
                                             <RelIcon className="w-6 h-6 text-brand-accent" strokeWidth={1.5} />
@@ -978,7 +978,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     <div className="max-w-5xl mx-auto px-4 sm:px-6">
                         <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">From the Blog</p>
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-8">
-                            Related <span className="font-display italic font-normal">articles.</span>
+                            Related <span className="gradient-text font-display">articles.</span>
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -986,7 +986,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 <Link
                                     key={article.slug}
                                     href={`/blog/${article.slug}`}
-                                    className="group rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200 overflow-hidden"
+                                    className="group rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200 overflow-hidden"
                                 >
                                     {article.ogImage && (
                                         <div className="aspect-[4/3] relative overflow-hidden">
@@ -1028,7 +1028,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
 
                 <div className={`relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center ${ctaInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-                        Ready to <span className="font-display italic font-normal">scale?</span>
+                        Ready to <span className="gradient-text font-display">scale?</span>
                     </h2>
                     <p className="text-sm text-brand-gray max-w-lg mx-auto mb-10 leading-relaxed">
                         Book a 15-minute strategy call to discuss how we can help grow your business with {service.title.toLowerCase()}.
@@ -1061,7 +1061,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         />
                         <button
                             type="submit"
-                            className="px-6 py-3.5 cta-primary text-white font-semibold rounded-lg text-sm whitespace-nowrap cursor-pointer"
+                            className="px-6 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm whitespace-nowrap cursor-pointer"
                         >
                             Get My Free Strategy Call
                         </button>
@@ -1076,7 +1076,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             href="https://cal.com/aureliusmedia/15min"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto px-8 py-3.5 cta-primary text-white font-semibold rounded-lg text-sm"
+                            className="w-full sm:w-auto px-8 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm"
                         >
                             Book a Strategy Call
                         </a>

@@ -143,7 +143,7 @@ export default function TestimonialsCarousel() {
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                         There&apos;s a reason people
                         <br />
-                        are <span className="font-display italic font-normal">raving</span> about us.
+                        are <span className="gradient-text font-display">raving</span> about us.
                     </h2>
                 </div>
 

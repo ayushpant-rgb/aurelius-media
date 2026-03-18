@@ -61,7 +61,7 @@ export default function AboutPageClient() {
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                         We Don&apos;t Just Run Ads.{' '}
                         <br />
-                        We Engineer <span className="font-display italic font-normal">Growth.</span>
+                        We Engineer <span className="gradient-text font-display">Growth.</span>
                     </h1>
                     <p className="text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed">
                         Aurelius Media is named after Marcus Aurelius, the Stoic philosopher-emperor.
@@ -90,7 +90,7 @@ export default function AboutPageClient() {
                 <div className={`max-w-4xl mx-auto ${founderInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
                         <div className="lg:col-span-1">
-                            <div className="w-32 h-32 mx-auto lg:mx-0 rounded-2xl bg-gradient-to-br from-brand-accent/20 to-brand-gold/20 flex items-center justify-center text-5xl font-bold text-brand-white mb-4 border border-brand-border-subtle">
+                            <div className="w-32 h-32 mx-auto lg:mx-0 rounded-[20px] bg-gradient-to-br from-brand-accent/20 to-brand-gold/20 flex items-center justify-center text-5xl font-bold text-brand-white mb-4 border border-brand-border-subtle">
                                 AP
                             </div>
                             <h3 className="text-xl font-bold text-center lg:text-left">Ayush Pant</h3>
@@ -108,7 +108,7 @@ export default function AboutPageClient() {
 
                         <div className="lg:col-span-2 space-y-4">
                             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                                The Founder <span className="font-display italic font-normal">Story</span>
+                                The Founder <span className="gradient-text font-display">Story</span>
                             </h2>
                             <p className="text-brand-gray leading-relaxed">
                                 With over two decades in digital marketing, Ayush Pant has navigated every evolution of the
@@ -140,7 +140,7 @@ export default function AboutPageClient() {
                     <div className="text-center mb-12">
                         <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-4">The Team</p>
                         <h2 className="text-3xl sm:text-4xl font-bold">
-                            The People Behind the <span className="font-display italic font-normal">Results</span>
+                            The People Behind the <span className="gradient-text font-display">Results</span>
                         </h2>
                     </div>
 
@@ -153,7 +153,7 @@ export default function AboutPageClient() {
                                 style={{ animationDelay: `${i * 0.1}s` }}
                             >
                                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-lg font-bold mb-4 border border-brand-border-subtle"
-                                    style={{ background: 'rgba(220, 70, 50, 0.12)', color: '#DC4632' }}
+                                    style={{ background: 'rgba(232, 85, 15, 0.10)', color: '#FF7A3D' }}
                                 >
                                     {member.initials}
                                 </div>
@@ -174,7 +174,7 @@ export default function AboutPageClient() {
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
                         We don&apos;t just run ads.{' '}
                         <br />
-                        We <span className="font-display italic font-normal">engineer</span> growth.
+                        We <span className="gradient-text font-display">engineer</span> growth.
                     </h2>
                     <p className="text-brand-gray text-lg leading-relaxed mb-8">
                         Every campaign starts with data. Every creative is tested systematically. Every dollar
@@ -207,7 +207,7 @@ export default function AboutPageClient() {
                     <div className="text-center mb-12">
                         <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-4">Industries</p>
                         <h2 className="text-3xl sm:text-4xl font-bold">
-                            Verticals We <span className="font-display italic font-normal">Serve</span>
+                            Verticals We <span className="gradient-text font-display">Serve</span>
                         </h2>
                     </div>
 
@@ -232,7 +232,7 @@ export default function AboutPageClient() {
             <section className="section-padding bg-brand-dark">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                        Ready to Work <span className="font-display italic font-normal">Together?</span>
+                        Ready to Work <span className="gradient-text font-display">Together?</span>
                     </h2>
                     <p className="text-brand-gray text-lg mb-8 leading-relaxed">
                         Let us show you what disciplined, AI-augmented marketing can do for your business.
@@ -241,7 +241,7 @@ export default function AboutPageClient() {
                         href="https://cal.com/aureliusmedia/15min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-lg"
+                        className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-[20px]"
                     >
                         Book a Strategy Call →
                     </a>

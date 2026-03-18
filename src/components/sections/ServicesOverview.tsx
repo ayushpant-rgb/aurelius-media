@@ -89,7 +89,7 @@ export default function ServicesOverview() {
                         What we do
                     </p>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
-                        Services built for <span className="font-display italic font-normal">growth.</span>
+                        Services built for <span className="gradient-text font-display">growth.</span>
                     </h2>
                     <p className="text-sm text-brand-gray max-w-md leading-relaxed">
                         From performance marketing to AI automation, we offer a full stack of services designed to scale your business.

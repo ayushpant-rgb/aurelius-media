@@ -22,7 +22,7 @@ export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
                     <div>
                         <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-4">Blog</p>
                         <h2 className="text-3xl sm:text-4xl font-bold">
-                            Latest <span className="font-display italic font-normal">Insights</span>
+                            Latest <span className="gradient-text font-display">Insights</span>
                         </h2>
                     </div>
                     <Link

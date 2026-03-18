@@ -48,7 +48,7 @@ export default function FAQAccordion({
             )}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 tracking-tight">
                 {heading}{' '}
-                <span className="font-display italic font-normal">{headingAccent}</span>
+                <span className="gradient-text font-display">{headingAccent}</span>
             </h2>
 
             {/* Accordion */}

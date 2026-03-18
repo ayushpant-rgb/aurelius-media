@@ -51,7 +51,7 @@ export default function AIInnovation() {
                 <div className="text-center mb-16">
                     <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-4">AI & Innovation</p>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                        We Build. We Ship. We <span className="font-display italic font-normal">Lead.</span>
+                        We Build. We Ship. We <span className="gradient-text font-display">Lead.</span>
                     </h2>
                     <p className="text-brand-gray text-lg max-w-2xl mx-auto leading-relaxed">
                         Aurelius Media is not just a service provider. We are active builders in the AI

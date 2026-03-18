@@ -215,7 +215,7 @@ export default function ServicesHubClient() {
                         Our Services
                     </p>
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                        Services built for <span className="font-display italic font-normal">growth.</span>
+                        Services built for <span className="gradient-text font-display">growth.</span>
                     </h1>
                     <p className="text-sm text-brand-gray max-w-[500px] mx-auto mb-8 leading-relaxed">
                         From performance marketing to AI automation — a full stack of services designed to scale your business.
@@ -224,7 +224,7 @@ export default function ServicesHubClient() {
                         href="https://cal.com/aureliusmedia/15min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex px-6 py-3 cta-primary text-white font-semibold rounded-lg text-sm"
+                        className="inline-flex px-6 py-3 cta-primary text-white font-semibold rounded-[20px] text-sm"
                     >
                         Book a Strategy Call
                     </a>
@@ -250,7 +250,7 @@ export default function ServicesHubClient() {
                 </div>
                 <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-                        Not sure where to <span className="font-display italic font-normal">start?</span>
+                        Not sure where to <span className="gradient-text font-display">start?</span>
                     </h2>
                     <p className="text-sm text-brand-gray max-w-lg mx-auto mb-8 leading-relaxed">
                         Book a free 15-minute strategy call. We&apos;ll review your current marketing and identify opportunities for growth.
@@ -259,7 +259,7 @@ export default function ServicesHubClient() {
                         href="https://cal.com/aureliusmedia/15min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex px-8 py-3.5 cta-primary text-white font-semibold rounded-lg text-sm"
+                        className="inline-flex px-8 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm"
                     >
                         Book a Strategy Call
                     </a>
