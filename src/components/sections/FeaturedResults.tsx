@@ -1,22 +1,20 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useInView } from '@/lib/hooks';
-import { useEffect, useRef } from 'react';
 
 const caseStudies = [
     {
         title: 'Stealth Health Tech\nStartup',
         subtitle: 'Successful MVP Testing',
-        image: '/case-studies/PCg7rQvx3EQUl4ncNISDMHw8io.avif',
+        image: '/case-studies/qblDLWSIdCrrJBd83Cjf6xh6HM.avif',
         tags: ['84% Response Rate', '300+ Qualified Leads'],
         hasDot: true,
     },
     {
         title: 'Private University',
         subtitle: '250% increase in enrollments',
-        image: '/case-studies/qblDLWSIdCrrJBd83Cjf6xh6HM.avif',
+        image: '/case-studies/PCg7rQvx3EQUl4ncNISDMHw8io.avif',
         tags: ['2.5x Enrollments', 'No increase in budget'],
         hasDot: false,
     },
@@ -31,13 +29,13 @@ const caseStudies = [
 
 function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
     return (
-        <div className="group relative rounded-[20px] overflow-hidden w-[240px] sm:w-[280px] h-[320px] sm:h-[370px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 shrink-0">
+        <div className="group relative rounded-[20px] overflow-hidden w-[300px] sm:w-[360px] lg:w-[400px] h-[360px] sm:h-[420px] lg:h-[460px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 shrink-0">
             <Image
                 src={study.image}
                 alt={study.title.replace('\n', ' ')}
                 fill
                 className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                sizes="280px"
+                sizes="400px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
@@ -65,53 +63,9 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
 
 export default function FeaturedResults() {
     const { ref, inView } = useInView();
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const animationRef = useRef<number>(0);
-    const positionRef = useRef<number>(0);
-    const isPausedRef = useRef<boolean>(false);
 
-    useEffect(() => {
-        const container = scrollRef.current;
-        if (!container) return;
-
-        const speed = 0.4;
-        let isVisible = true;
-
-        // Only animate when visible in viewport
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                isVisible = entry.isIntersecting;
-            },
-            { threshold: 0 }
-        );
-        if (container.parentElement) {
-            observer.observe(container.parentElement);
-        }
-
-        const animate = () => {
-            if (!isPausedRef.current && isVisible) {
-                positionRef.current -= speed;
-
-                const quarterWidth = container.scrollWidth / 4;
-
-                if (Math.abs(positionRef.current) >= quarterWidth * 2) {
-                    positionRef.current = 0;
-                }
-
-                container.style.transform = `translateX(${positionRef.current}px)`;
-            }
-            animationRef.current = requestAnimationFrame(animate);
-        };
-
-        animationRef.current = requestAnimationFrame(animate);
-
-        return () => {
-            if (animationRef.current) {
-                cancelAnimationFrame(animationRef.current);
-            }
-            observer.disconnect();
-        };
-    }, []);
+    // Duplicate for seamless CSS loop
+    const items = [...caseStudies, ...caseStudies, ...caseStudies, ...caseStudies];
 
     return (
         <section ref={ref} className="py-16 sm:py-20 bg-brand-darker overflow-hidden">
@@ -129,31 +83,18 @@ export default function FeaturedResults() {
                 </div>
             </div>
 
-            {/* Full-width Scrolling Carousel */}
-            <div
-                className="relative w-full"
-                onMouseEnter={() => { isPausedRef.current = true; }}
-                onMouseLeave={() => { isPausedRef.current = false; }}
-            >
-                {/* Dark shadow gradients on edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-brand-darker via-brand-darker/80 to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-brand-darker via-brand-darker/80 to-transparent z-10 pointer-events-none" />
+            {/* Contained Carousel */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <div className="relative overflow-hidden">
+                    {/* Edge fades */}
+                    <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-brand-darker to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-brand-darker to-transparent z-10 pointer-events-none" />
 
-                {/* Scrolling Track — moves LEFT TO RIGHT */}
-                <div
-                    ref={scrollRef}
-                    className="flex gap-5 w-max will-change-transform"
-                    style={{ transform: 'translateX(0px)' }}
-                >
-                    {/* We need the cards starting off-screen to the left, so we shift the initial position */}
-                    {/* Render 4 sets for seamless infinite scrolling in right direction */}
-                    {[0, 1, 2, 3].map((setIndex) => (
-                        <div key={setIndex} className="flex gap-5">
-                            {caseStudies.map((study, i) => (
-                                <CaseStudyCard key={`${setIndex}-${i}`} study={study} />
-                            ))}
-                        </div>
-                    ))}
+                    <div className="flex gap-5 animate-scroll-rtl-slow group hover:[animation-play-state:paused]">
+                        {items.map((study, i) => (
+                            <CaseStudyCard key={i} study={study} />
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -172,7 +113,6 @@ export default function FeaturedResults() {
                     </svg>
                 </a>
             </div>
-
         </section>
     );
 }

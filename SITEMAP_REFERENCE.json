@@ -26,7 +26,11 @@
       "Bento grid layout (bento-grid.tsx) for service cards on homepage and /services hub",
       "Lucide icon support added to ServicePersona interface and persona cards",
       "Complete design token migration: 3-tier dark surfaces, new orange accent palette, Inter body + Plus Jakarta Sans headings, gradient-text class, 20px pill radius, floating pill navbar, updated CTA buttons, atmospheric effects",
-      "Comparison heading contrast: 'Aurelius Media' rendered in gradient-text on all service pages"
+      "Comparison heading contrast: 'Aurelius Media' rendered in gradient-text on all service pages",
+      "TestimonialsCarousel rewritten: 3 vertical columns with alternating scroll (down/up/down at 40s/45s/42s), fixed-height container with top/bottom fades",
+      "Homepage section reorder: Testimonials moved after ServicesOverview, CapabilitiesPanel moved below",
+      "FeaturedResults case studies contained within max-w-7xl, CSS animation, enlarged cards (400x460px), swapped Health Tech / University images",
+      "Service page budget options changed from INR (₹1L–₹20L+) to USD ($1,000–$20,000+)"
     ]
   },
   "design_system_updates": {
@@ -96,7 +100,7 @@
         "/blog/performance-max-2026-hero-or-villain"
       ],
       "internal_links_from": [],
-      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock. ServicesOverview 6 category cards: Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing."
+      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel (3 vertical columns, down/up/down) → CapabilitiesPanel → BlogPreview → CTABlock. ServicesOverview 6 category cards: Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing."
     },
     {
       "route": "/about",

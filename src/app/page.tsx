@@ -18,8 +18,8 @@ export default function HomePage() {
       <BlurReveal><MissionStatement /></BlurReveal>
       <FeaturedResults />
       <ServicesOverview />
-      <CapabilitiesPanel />
       <TestimonialsCarousel />
+      <CapabilitiesPanel />
       <BlogPreview posts={posts} />
       <CTABlock />
     </>

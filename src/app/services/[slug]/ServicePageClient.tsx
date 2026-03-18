@@ -270,10 +270,10 @@ const industryOptions = [
 ];
 
 const budgetOptions = [
-    'Under ₹1L/month',
-    '₹1L – ₹5L/month',
-    '₹5L – ₹20L/month',
-    '₹20L+/month',
+    'Under $1,000/month',
+    '$1,000 – $5,000/month',
+    '$5,000 – $20,000/month',
+    '$20,000+/month',
 ];
 
 /* ─── WhatsApp number (update with real number) ─── */

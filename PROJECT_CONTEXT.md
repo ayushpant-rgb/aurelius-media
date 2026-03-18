@@ -250,7 +250,7 @@ Each service page (`ServicePageClient.tsx`) follows this section structure:
 Every active route in the codebase and its status:
 
 **Homepage section order** (as of March 2026):
-`Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock`
+`Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock`
 
 **ServicesOverview 6 category cards** (as of March 2026):
 1. Paid Media → `/services/google-ads`
@@ -384,3 +384,7 @@ If you are modifying this codebase:
   - **Section labels:** `.section-label` class with dashed prefix (20px × 2px orange line).
   - **Scope:** 21 files modified. Visual-only change — no structure, content, or functionality modifications.
 - **March 18, 2026:** Comparison section heading contrast: "Aurelius Media" rendered in `.gradient-text` on service pages.
+- **March 19, 2026:** Rewrote `TestimonialsCarousel` from 3 horizontal marquee rows to 3 vertical columns with alternating scroll directions (down 40s → up 45s → down 42s). Fixed-height container (550/600px) with top/bottom fade gradients. Creates dense "wall of testimonials" illusion.
+- **March 19, 2026:** Reordered homepage sections: Testimonials moved right after ServicesOverview, CapabilitiesPanel (Digital CMO) moved below. New order: Hero → MissionStatement → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock.
+- **March 19, 2026:** Contained `FeaturedResults` case studies carousel within `max-w-7xl` (no longer edge-to-edge). Switched from JS requestAnimationFrame to CSS `animate-scroll-rtl-slow` animation. Cards enlarged to 400×460px on desktop. Swapped images for Stealth Health Tech Startup and Private University.
+- **March 19, 2026:** Changed service page lead gen form budget options from INR (₹1L–₹20L+) to USD ($1,000–$20,000+).
