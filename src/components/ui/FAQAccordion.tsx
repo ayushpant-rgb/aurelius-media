@@ -12,6 +12,7 @@ interface FAQAccordionProps {
     heading?: string;
     headingAccent?: string;
     eyebrow?: string;
+    defaultOpenCount?: number;
 }
 
 export default function FAQAccordion({
@@ -19,8 +20,23 @@ export default function FAQAccordion({
     heading = 'Frequently asked',
     headingAccent = 'questions.',
     eyebrow = 'FAQ',
+    defaultOpenCount = 0,
 }: FAQAccordionProps) {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [openIndices, setOpenIndices] = useState<Set<number>>(
+        () => new Set(Array.from({ length: Math.min(defaultOpenCount, items.length) }, (_, i) => i))
+    );
+
+    const toggle = (index: number) => {
+        setOpenIndices((prev) => {
+            const next = new Set(prev);
+            if (next.has(index)) {
+                next.delete(index);
+            } else {
+                next.add(index);
+            }
+            return next;
+        });
+    };
 
     return (
         <div>
@@ -38,11 +54,11 @@ export default function FAQAccordion({
             {/* Accordion */}
             <div className="space-y-0 divide-y divide-brand-border-subtle border-y border-brand-border-subtle">
                 {items.map((item, i) => {
-                    const isOpen = openIndex === i;
+                    const isOpen = openIndices.has(i);
                     return (
                         <div key={i} className="group">
                             <button
-                                onClick={() => setOpenIndex(isOpen ? null : i)}
+                                onClick={() => toggle(i)}
                                 className="w-full flex items-center justify-between py-6 sm:py-7 text-left cursor-pointer transition-colors duration-200"
                             >
                                 <span className={`text-lg sm:text-xl font-medium pr-8 transition-colors duration-200 ${isOpen ? 'text-brand-white' : 'text-brand-white/80 group-hover:text-brand-white'}`}>
