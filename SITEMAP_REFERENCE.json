@@ -3,15 +3,24 @@
   "total_pages": 24,
   "session_changes": {
     "date": "2026-03-18",
-    "summary": "Homepage category cards updated, service pages rewritten to 13-section blueprint, comparison section redesigned",
+    "summary": "Service pages V2: 15-task improvement list + 10-item V2 audit executed. Hero form, expanded FAQs, JSON-LD schemas, WhatsApp CTA, testimonial carousel, comparison redesign, H3 keyword optimization, section cleanup.",
     "changes": [
       "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
-      "ServicePageClient.tsx rewritten from 9 sections to 13-section programmatic SEO blueprint",
-      "New service page sections: Social Proof Bar, What is [Service], Who Is This For, Benefits, Sub-Services Grid, Comparison (two-column cards), Results stat highlights, Why Aurelius Media",
-      "ServiceData interface extended with 7 new optional fields: whatIs, personas, benefits, subServices, comparisonRows, resultHighlights, differentiators",
-      "All 12 services populated with unique SEO-optimized content for every new section",
-      "Comparison section redesigned: table replaced with two-column card layout (Other Agencies with X icons vs Aurelius Media with checkmarks + warm gradient glow)",
-      "Social proof bar on service pages uses same logo carousel as homepage Hero (full-color, proper sizing)",
+      "ServicePageClient.tsx rewritten from 9 sections to V2 blueprint with inline lead capture forms, expanded FAQs, testimonial carousel, and WhatsApp floating CTA",
+      "Hero section: split 50/50 layout with H1 + positive value-prop bullets (from benefits) on left, white lead capture form card on right",
+      "Hero value props flipped from pain points to positive benefit outcomes (checkmarks paired with positive messaging)",
+      "Sound Familiar? pain points section removed entirely (pain established in hero subtitle)",
+      "Comparison heading changed from 'But, why would you want to work with us?' to 'What sets Aurelius Media apart?'",
+      "FAQs expanded to 8-10 per service via getCommonFAQs() appending 6 universal questions. First 3 expanded by default",
+      "FAQPage + Service + BreadcrumbList JSON-LD structured data added to all service pages (auto-generated in page.tsx)",
+      "Final CTA upgraded: inline 3-field form (Name, Email, Phone) + dual buttons + trust copy",
+      "Testimonials expanded from single quote to 3-card carousel per service with dedicated testimonial pool",
+      "Why Aurelius Media differentiators section removed, unique points merged into comparison rows",
+      "AI/automation comparison row auto-appended to every service page",
+      "Context labels added under proof stats (metric + timeframe description)",
+      "WhatsApp floating CTA added: green button (#25D366), appears after 30% scroll, hides at final CTA, dynamic pre-filled message",
+      "H3 keyword optimization for benefits + sub-services in no-code-development, ai-workshops, and real-estate-marketing",
+      "Related articles filtered by category per service page via serviceBlogCategoryMap",
       "Project uploaded to GitHub: github.com/ayushpant-rgb/aurelius-media"
     ]
   },
@@ -37,10 +46,14 @@
     },
     "service_page_blueprint": {
       "file": "src/app/services/[slug]/ServicePageClient.tsx",
-      "sections": 15,
-      "section_order": "Hero+CTA → Social Proof Bar → What Is [Service] → Who Is This For → Sound Familiar (Problems) → How We Do It → Benefits → Sub-Services Grid → Comparison → Results Stats → Testimonial → Why Aurelius Media → FAQ → Related Services → Final CTA",
-      "comparison_design": "Two-column card layout: left card (Other Agencies, X icons, muted text), right card (Aurelius Media with pulsing red dot + logo, checkmarks, white bold text, warm radial gradient glow from top-right corner)",
-      "social_proof_bar": "Client logo carousel matching homepage Hero implementation (full-color logos, h-16 sm:h-20 md:h-24, animate-logo-scroll)"
+      "sections": 14,
+      "section_order": "Hero+LeadForm → Social Proof Bar → What Is [Service] → Who Is This For → How We Do It → Benefits → Sub-Services Grid → What Sets Aurelius Media Apart (Comparison) → Results Stats → Testimonials (3-card carousel) → FAQ (8-10 questions) → Related Services → Related Articles → Final CTA (form + dual buttons) + WhatsApp floating CTA",
+      "removed_sections": "Sound Familiar? (pain points) removed in V2 — pain established in hero subtitle. Why Aurelius Media (differentiators) merged into comparison rows.",
+      "hero_design": "Split 50/50: left = H1 + description + 3 positive value-prop bullets (from benefits[0:3]) + secondary CTAs, right = white lead capture form card (Name, Email, Phone, Industry, Budget)",
+      "comparison_design": "Two-column card layout: left card (Other Agencies, X icons, muted text), right card (Aurelius Media with pulsing red dot + logo, checkmarks, white bold text, warm radial gradient glow). Heading: 'What sets Aurelius Media apart?'. AI/automation row auto-appended.",
+      "social_proof_bar": "Client logo carousel matching homepage Hero implementation (full-color logos, h-16 sm:h-20 md:h-24, animate-logo-scroll)",
+      "structured_data": "FAQPage + Service + BreadcrumbList JSON-LD auto-generated per page in page.tsx via schema.ts generators",
+      "whatsapp_cta": "Fixed bottom-right green button (#25D366, 56px), appears after 30% scroll, hides when final CTA in viewport, pre-filled message with service name"
     },
     "homepage_category_cards": {
       "file": "src/components/sections/ServicesOverview.tsx",
@@ -166,7 +179,7 @@
         "/services/ai-automation"
       ],
       "internal_links_from": ["/services", "/services/google-ads"],
-      "notes": "13-section blueprint: Hero+CTA, Social Proof Bar, What Is, Personas, Problems, Approach, Benefits, Sub-Services, Comparison, Results, Testimonial, Why Us, FAQ, Related, Final CTA."
+      "notes": "V2 blueprint: Hero+LeadForm, Social Proof Bar, What Is, Personas, Approach, Benefits, Sub-Services, Comparison ('What sets Aurelius Media apart?'), Results, Testimonials (3-card), FAQ (8-10 Qs), Related Services, Related Articles, Final CTA (form + dual buttons), WhatsApp CTA. JSON-LD: FAQPage + Service + BreadcrumbList."
     },
     {
       "route": "/services/google-ads",
@@ -186,7 +199,7 @@
         "/services/ai-creative-design"
       ],
       "internal_links_from": ["/services", "/services/marketing-strategy-audit"],
-      "notes": "13-section blueprint with all new data fields populated."
+      "notes": "V2 blueprint with all data fields populated. Hero value props flipped to positive outcomes. H3 titles keyword-optimized."
     },
     {
       "route": "/services/meta-ads",
@@ -510,7 +523,7 @@
         "/services/google-ads",
         "/services/meta-ads"
       ],
-      "notes": "All service pages use 13-section blueprint (ServicePageClient.tsx): Hero+CTA, Social Proof Bar, What Is [Service], Who Is This For, Sound Familiar (Problems), How We Do It, Benefits, Sub-Services Grid, Comparison (two-column cards), Results Stats, Testimonial, Why Aurelius Media, FAQ (FAQAccordion), Related Services, Final CTA. ServiceData interface has 7 new optional fields (whatIs, personas, benefits, subServices, comparisonRows, resultHighlights, differentiators). All 12 services fully populated."
+      "notes": "V2 blueprint: Hero+LeadForm (positive value props from benefits), Social Proof Bar, What Is [Service], Who Is This For, How We Do It, Benefits, Sub-Services Grid, What Sets Aurelius Media Apart (comparison with AI row auto-appended), Results Stats (with context labels), Testimonials (3-card carousel), FAQ (8-10 questions, FAQAccordion + FAQPage JSON-LD), Related Services, Related Articles (category-filtered), Final CTA (inline form + dual buttons), WhatsApp floating CTA. Sound Familiar and Why Aurelius Media sections removed in V2. Service + BreadcrumbList JSON-LD also injected. H3 titles keyword-optimized across all services."
     },
     {
       "template_name": "Blog Post Dynamic Router",

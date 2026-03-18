@@ -212,23 +212,25 @@ To add new content, simply drop markdown files in `content/blog/` or append an o
 - **Service Pages Linking:** Every service page concludes with a "Related Services" block cross-linking siblings (`relatedSlugs` in schema), pushing link equity laterally across hubs.
 - **Blog Cross-Linking:** **(TODO)** Blog posts currently do not auto-embed or cross-link explicitly back to conversion/service pages. Future agents should introduce inline CTA links inside `.mdx` parsing.
 
-## 8b. Service Page 13-Section Blueprint
+## 8b. Service Page Section Blueprint (V2)
 Each service page (`ServicePageClient.tsx`) follows this section structure:
-1. **Hero + Lead Capture** — Breadcrumbs, category badge, headline, description, dual CTAs, optional hero image
+1. **Hero + Lead Capture** — Breadcrumbs, category badge, headline, description, 3 positive value-prop bullets (from `benefits`), inline lead capture form (white card, right column), secondary CTAs. Hero value props use checkmark icons paired with positive benefit titles (NOT pain points).
 2. **Social Proof Bar** — Scrolling client logo carousel (same logos as homepage Hero)
 3. **What is [Service]** — Explanatory overview paragraph (optional, renders if `whatIs` exists)
 4. **Who Is This For** — 3 persona cards describing ideal clients (optional, renders if `personas` exists)
-5. **Sound Familiar? (The Problem)** — Pain point cards from `problems` array
+5. ~~**Sound Familiar?**~~ — **REMOVED** (V2 audit). Pain is established in hero subtitle; section was redundant.
 6. **How We Do It** — Approach paragraph + checklist from `approachPoints`
 7. **Benefits** — 6 benefit cards (optional, renders if `benefits` exists)
 8. **Sub-Services / What's Included** — Numbered deliverable cards from `subServices`, falls back to plain `deliverables` list
-9. **Comparison** — Two-column "Other Agencies vs Aurelius Media" card layout with X/checkmark icons and warm gradient glow (optional, renders if `comparisonRows` exists)
-10. **Results / Case Studies** — Stat highlight cards from `resultHighlights`, falls back to placeholder text
-11. **Client Testimonial** — Per-service testimonial (data stored in component)
-12. **Why Aurelius Media** — Differentiator cards (optional, renders if `differentiators` exists)
-13. **FAQ** — FAQAccordion component with schema markup
-14. **Related Services** — Cross-linked sibling service cards
-15. **Final CTA** — Book a Strategy Call + Explore All Services
+9. **What Sets Aurelius Media Apart** — Two-column "Other Agencies vs Aurelius Media" card layout with X/checkmark icons and warm gradient glow (optional, renders if `comparisonRows` exists). Heading: "What sets Aurelius Media apart?" (previously "But, why would you want to work with us?"). AI/automation row auto-appended.
+10. **Results / Case Studies** — Stat highlight cards with context labels (metric + timeframe description) from `resultHighlights`
+11. **Client Testimonials** — 3-card carousel per service (data stored in `serviceTestimonialKeys` map inside component)
+12. **FAQ** — FAQAccordion component with FAQPage JSON-LD schema. Service-specific FAQs + 6 common FAQs appended via `getCommonFAQs()` (8-10 per page). First 3 expanded by default.
+13. **Related Services** — Cross-linked sibling service cards from `relatedSlugs`
+14. **Related Articles** — Blog posts filtered by `serviceBlogCategoryMap` in page.tsx (category-based). Only shows if matching articles exist.
+15. **Final CTA** — Inline lead capture form (Name + Email + Phone) + dual buttons (Book a Strategy Call + Explore All Services) + trust copy
+16. **WhatsApp Floating CTA** — Fixed bottom-right green button (#25D366), appears after 30% scroll, hides when final CTA in viewport, pre-populated message with service name
+17. **JSON-LD Structured Data** — FAQPage, Service, and BreadcrumbList schemas auto-generated per page in page.tsx
 
 ## 9. Pages Built
 Every active route in the codebase and its status:
@@ -323,3 +325,19 @@ If you are modifying this codebase:
 - **March 18, 2026:** Rewrote `ServicePageClient.tsx` from 9-section layout to 13-section programmatic SEO blueprint. New sections: Social Proof Bar (client logo carousel), What is [Service], Who Is This For (persona cards), Benefits grid, Sub-Services grid, Comparison (two-column card layout), Results stat highlights, Why Aurelius Media (differentiator cards).
 - **March 18, 2026:** Extended `ServiceData` interface with 7 new optional fields: `whatIs`, `personas`, `benefits`, `subServices`, `comparisonRows`, `resultHighlights`, `differentiators`. All 12 services populated with unique SEO-optimized content for every new section.
 - **March 18, 2026:** Redesigned Comparison section from table to two-column card layout matching previous site design: "Other Agencies" (X icons, muted text) vs "Aurelius Media" (checkmarks, white text, warm radial gradient glow, pulsing red dot + logo).
+- **March 18, 2026:** V2 service page improvements (15-task list + 10-item V2 audit):
+  - Added inline lead capture form to hero (white card, right column, fields: Name, Email, Phone, Industry, Budget)
+  - Expanded FAQs to 8-10 per service (6 common questions auto-appended via `getCommonFAQs()`, first 3 expanded by default)
+  - Added FAQPage, Service, and BreadcrumbList JSON-LD structured data to all service pages
+  - Strengthened final CTA with inline form (Name + Email + Phone) + dual buttons + trust copy
+  - Expanded testimonials from single quote to 3-card carousel per service
+  - Removed dedicated "Why Aurelius Media" differentiators section, merged unique points into comparison rows
+  - Trimmed "Sound familiar?" pain points from 6 to 3 cards, then removed entirely in V2
+  - Added AI/automation row auto-appended to every comparison section
+  - Added context labels under proof stats (metric + timeframe description)
+  - Added WhatsApp floating CTA (green button, appears after 30% scroll, dynamic pre-filled message)
+  - Fixed hero value props: checkmarks now show positive benefit outcomes instead of pain points
+  - Fixed comparison heading from "But, why would you want to work with us?" to "What sets Aurelius Media apart?"
+  - H3 keyword optimization for benefits + sub-services in no-code-development, ai-workshops, and real-estate-marketing
+  - Implemented category-based blog article filtering per service page via `serviceBlogCategoryMap`
+  - Verified internal linking in sub-services grid and aligned related articles with service keywords
