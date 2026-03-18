@@ -1,20 +1,18 @@
 {
-  "last_updated": "2026-03-17",
+  "last_updated": "2026-03-18",
   "total_pages": 24,
   "session_changes": {
-    "date": "2026-03-17",
-    "summary": "Blog readability overhaul, FAQ accordion component, 4:3 image standardization, pSEO blog content improvements",
+    "date": "2026-03-18",
+    "summary": "Homepage category cards updated, service pages rewritten to 13-section blueprint, comparison section redesigned",
     "changes": [
-      "Blog post typography: body text upgraded from 14px to 17-18px with 1.85 line-height, white text, generous spacing",
-      "Blog content column narrowed from max-w-3xl (768px) to max-w-[720px] for focused reading",
-      "Blog hyperlinks: white with subtle underline, accent red on hover",
-      "Blog bullet/number markers: white (previously gold, originally accent red)",
-      "Blog blockquotes: gold left border, larger italic text (19-20px)",
-      "New reusable FAQAccordion component: src/components/ui/FAQAccordion.tsx — divider-based accordion with plus/minus icon, used on all service pages",
-      "Blog FAQ sections use <details>/<summary> HTML styled via globals.css to match FAQAccordion look",
-      "All blog image containers standardized to aspect-[4/3] (homepage BlogPreview, blog hub cards, blog post hero)",
-      "Programmatic SEO blog: added hero image (/blog/programatic-seo.jpeg), rewrote topical ecosystem architecture section with Wise case study",
-      "Programmatic SEO blog: FAQ section converted from plain markdown to collapsible <details>/<summary> accordion"
+      "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
+      "ServicePageClient.tsx rewritten from 9 sections to 13-section programmatic SEO blueprint",
+      "New service page sections: Social Proof Bar, What is [Service], Who Is This For, Benefits, Sub-Services Grid, Comparison (two-column cards), Results stat highlights, Why Aurelius Media",
+      "ServiceData interface extended with 7 new optional fields: whatIs, personas, benefits, subServices, comparisonRows, resultHighlights, differentiators",
+      "All 12 services populated with unique SEO-optimized content for every new section",
+      "Comparison section redesigned: table replaced with two-column card layout (Other Agencies with X icons vs Aurelius Media with checkmarks + warm gradient glow)",
+      "Social proof bar on service pages uses same logo carousel as homepage Hero (full-color, proper sizing)",
+      "Project uploaded to GitHub: github.com/ayushpant-rgb/aurelius-media"
     ]
   },
   "design_system_updates": {
@@ -36,6 +34,24 @@
       "style": "Divider-based (border-top/bottom lines, not boxed cards), large question text (text-lg sm:text-xl), circled plus/minus icon, smooth grid-row expand animation",
       "usage_service_pages": "Import FAQAccordion and pass items={service.faqs}",
       "usage_blog_mdx": "Use <details><summary>Question</summary>Answer</details> — styled via globals.css"
+    },
+    "service_page_blueprint": {
+      "file": "src/app/services/[slug]/ServicePageClient.tsx",
+      "sections": 15,
+      "section_order": "Hero+CTA → Social Proof Bar → What Is [Service] → Who Is This For → Sound Familiar (Problems) → How We Do It → Benefits → Sub-Services Grid → Comparison → Results Stats → Testimonial → Why Aurelius Media → FAQ → Related Services → Final CTA",
+      "comparison_design": "Two-column card layout: left card (Other Agencies, X icons, muted text), right card (Aurelius Media with pulsing red dot + logo, checkmarks, white bold text, warm radial gradient glow from top-right corner)",
+      "social_proof_bar": "Client logo carousel matching homepage Hero implementation (full-color logos, h-16 sm:h-20 md:h-24, animate-logo-scroll)"
+    },
+    "homepage_category_cards": {
+      "file": "src/components/sections/ServicesOverview.tsx",
+      "cards": [
+        {"title": "Paid Media", "href": "/services/google-ads"},
+        {"title": "Growth Engine", "href": "/services/marketing-strategy-audit"},
+        {"title": "Creative Studio", "href": "/services/creative-design"},
+        {"title": "AI & Build", "href": "/services/ai-automation"},
+        {"title": "Industry Verticals", "href": "/services/book-marketing"},
+        {"title": "Full Funnel Marketing", "href": "/services/marketing-strategy-audit"}
+      ]
     }
   },
   "pages": [
@@ -51,19 +67,18 @@
       "internal_links_to": [
         "https://cal.com/aureliusmedia/15min",
         "/services",
-        "/categories/performance-marketing",
-        "/categories/b2b-marketing",
-        "/categories/marketing-collaterals",
-        "/categories/programmatic-seo",
-        "/categories/web-apps-mvps",
-        "/categories/full-funnel-marketing",
+        "/services/google-ads",
+        "/services/marketing-strategy-audit",
+        "/services/creative-design",
+        "/services/ai-automation",
+        "/services/book-marketing",
         "/blog",
         "/blog/meta-ads-vs-google-ads-budget-2026",
         "/blog/vibe-coding-explained-build-saas-weekend",
         "/blog/performance-max-2026-hero-or-villain"
       ],
       "internal_links_from": [],
-      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock. BlogPreview images now 4:3 aspect ratio."
+      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock. ServicesOverview 6 category cards: Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing."
     },
     {
       "route": "/about",
@@ -151,12 +166,12 @@
         "/services/ai-automation"
       ],
       "internal_links_from": ["/services", "/services/google-ads"],
-      "notes": "FAQ section now uses reusable FAQAccordion component."
+      "notes": "13-section blueprint: Hero+CTA, Social Proof Bar, What Is, Personas, Problems, Approach, Benefits, Sub-Services, Comparison, Results, Testimonial, Why Us, FAQ, Related, Final CTA."
     },
     {
       "route": "/services/google-ads",
       "title": "Google Ads Management | Aurelius Media",
-      "h1": "Capture High-Intent Demand at Scale.",
+      "h1": "Scale Revenue with Certified Google Ads Experts.",
       "meta_description": "Expert Google Ads management. Search, Display, Shopping, and YouTube campaigns optimized for maximum ROAS and lead generation.",
       "primary_keyword": "google ads agency",
       "topic_cluster": "Performance Advertising",
@@ -171,7 +186,7 @@
         "/services/ai-creative-design"
       ],
       "internal_links_from": ["/services", "/services/marketing-strategy-audit"],
-      "notes": "FAQ section now uses reusable FAQAccordion component."
+      "notes": "13-section blueprint with all new data fields populated."
     },
     {
       "route": "/services/meta-ads",
@@ -495,7 +510,7 @@
         "/services/google-ads",
         "/services/meta-ads"
       ],
-      "notes": "All service pages now use FAQAccordion component (src/components/ui/FAQAccordion.tsx) for FAQ sections."
+      "notes": "All service pages use 13-section blueprint (ServicePageClient.tsx): Hero+CTA, Social Proof Bar, What Is [Service], Who Is This For, Sound Familiar (Problems), How We Do It, Benefits, Sub-Services Grid, Comparison (two-column cards), Results Stats, Testimonial, Why Aurelius Media, FAQ (FAQAccordion), Related Services, Final CTA. ServiceData interface has 7 new optional fields (whatIs, personas, benefits, subServices, comparisonRows, resultHighlights, differentiators). All 12 services fully populated."
     },
     {
       "template_name": "Blog Post Dynamic Router",

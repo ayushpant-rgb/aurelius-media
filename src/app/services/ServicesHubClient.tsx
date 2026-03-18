@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { services, serviceCategories, getServicesByCategory } from '@/data/servicePages';
+import { serviceCategories, getServicesByCategory } from '@/data/servicePages';
 import { ServiceData } from '@/data/servicePages';
 
 /* ───────────────────────────────────────────────
@@ -318,6 +318,389 @@ function AIWorkshopsVisual() {
     );
 }
 
+/* ─── New service visuals ─── */
+
+function LinkedInAdsVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-blue-600/20 flex items-center justify-center text-blue-400 text-[8px] font-bold">in</span>
+                ABM Campaign
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5 space-y-1.5">
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Pipeline</span>
+                    <span className="text-[10px] font-bold text-blue-400">$420K</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">MQLs</span>
+                    <span className="text-[10px] font-bold text-brand-white">142</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Meetings Booked</span>
+                    <span className="text-[10px] font-bold text-emerald-400">38</span>
+                </div>
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">💼 Firmographic targeting · InMail</div>
+        </div>
+    );
+}
+
+function YouTubeAdsVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-red-500/20 flex items-center justify-center text-red-400 text-[8px]">▶</span>
+                Video Campaigns
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+                <div className="bg-brand-dark/60 rounded-lg p-2">
+                    <p className="text-[8px] text-brand-gray-dark mb-0.5">VTR</p>
+                    <p className="text-sm font-bold text-red-400">32%</p>
+                </div>
+                <div className="bg-brand-dark/60 rounded-lg p-2">
+                    <p className="text-[8px] text-brand-gray-dark mb-0.5">CPV</p>
+                    <p className="text-sm font-bold text-brand-white">$0.04</p>
+                </div>
+                <div className="bg-brand-dark/60 rounded-lg p-2">
+                    <p className="text-[8px] text-brand-gray-dark mb-0.5">Conv.</p>
+                    <p className="text-sm font-bold text-emerald-400">847</p>
+                </div>
+            </div>
+            <div className="flex items-end gap-1 h-6">
+                {[20, 35, 45, 38, 55, 62, 58, 70].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-sm bg-red-500/25" style={{ height: `${h}%` }} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function TikTokAdsVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-pink-500/20 flex items-center justify-center text-pink-400 text-[8px]">♪</span>
+                TikTok Performance
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5 space-y-2">
+                <div className="flex items-center justify-between">
+                    <span className="text-[9px] text-brand-gray-dark">Engagement</span>
+                    <span className="text-[9px] text-pink-400">8.4%</span>
+                </div>
+                <div className="w-full bg-brand-dark rounded-full h-1.5">
+                    <div className="bg-pink-400 h-1.5 rounded-full" style={{ width: '84%' }} />
+                </div>
+                <div className="flex items-center justify-between">
+                    <span className="text-[9px] text-brand-gray-dark">Conversions</span>
+                    <span className="text-[9px] text-brand-gray">2,340</span>
+                </div>
+                <div className="w-full bg-brand-dark rounded-full h-1.5">
+                    <div className="bg-cyan-400 h-1.5 rounded-full" style={{ width: '65%' }} />
+                </div>
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">🎵 Platform-native · Trend-aware</div>
+        </div>
+    );
+}
+
+function RetargetingVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-orange-500/20 flex items-center justify-center text-orange-400 text-[8px]">⟳</span>
+                Retargeting Funnel
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5">
+                <div className="font-mono text-[9px] text-brand-gray space-y-1">
+                    <p><span className="text-orange-400">1.</span> Visitor lands on site</p>
+                    <p><span className="text-orange-400">2.</span> Pixel fires → audience built</p>
+                    <p><span className="text-orange-400">3.</span> Sequential ads across platforms</p>
+                    <p><span className="text-emerald-400">✓</span> <span className="text-emerald-400">Converted</span> in 3.2 touchpoints avg</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LeadGenerationVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-[8px]">⊕</span>
+                Lead Pipeline
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5 space-y-1.5">
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Leads / Month</span>
+                    <span className="text-[10px] font-bold text-emerald-400">340</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Qualified Rate</span>
+                    <span className="text-[10px] font-bold text-brand-white">68%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Cost/SQL</span>
+                    <span className="text-[10px] font-bold text-amber-400">$24</span>
+                </div>
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">🎯 Multi-channel · CRM-integrated</div>
+        </div>
+    );
+}
+
+function FunnelBuildingVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-violet-500/20 flex items-center justify-center text-violet-400 text-[8px]">▽</span>
+                Funnel Architecture
+            </div>
+            <div className="space-y-1">
+                {[
+                    { label: 'TOFU — Awareness', width: '100%', color: 'bg-violet-500/20' },
+                    { label: 'MOFU — Consideration', width: '70%', color: 'bg-violet-500/30' },
+                    { label: 'BOFU — Conversion', width: '40%', color: 'bg-violet-500/45' },
+                    { label: 'Retention', width: '25%', color: 'bg-emerald-500/40' },
+                ].map((step, i) => (
+                    <div key={i} className={`${step.color} rounded px-2 py-1.5`} style={{ width: step.width }}>
+                        <span className="text-[8px] text-brand-gray">{step.label}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function CROVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-green-500/20 flex items-center justify-center text-green-400 text-[8px]">↗</span>
+                Experiment Dashboard
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5 space-y-2">
+                <div className="flex items-center justify-between">
+                    <span className="text-[9px] text-brand-gray-dark">Test A (Control)</span>
+                    <span className="text-[9px] text-brand-gray">2.4%</span>
+                </div>
+                <div className="w-full bg-brand-dark rounded-full h-1.5">
+                    <div className="bg-brand-gray-dark h-1.5 rounded-full" style={{ width: '24%' }} />
+                </div>
+                <div className="flex items-center justify-between">
+                    <span className="text-[9px] text-green-400">Test B (Winner) ✓</span>
+                    <span className="text-[9px] text-green-400">4.1%</span>
+                </div>
+                <div className="w-full bg-brand-dark rounded-full h-1.5">
+                    <div className="bg-green-400 h-1.5 rounded-full" style={{ width: '41%' }} />
+                </div>
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">📈 +71% uplift · 95% confidence</div>
+        </div>
+    );
+}
+
+function ProgrammaticSEOVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-lime-500/20 flex items-center justify-center text-lime-400 text-[8px]">◎</span>
+                pSEO Engine
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5 space-y-1.5">
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Pages Generated</span>
+                    <span className="text-[10px] font-bold text-lime-400">2,400</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Indexed</span>
+                    <span className="text-[10px] font-bold text-emerald-400">2,180</span>
+                </div>
+                <div className="flex justify-between items-center">
+                    <span className="text-[9px] text-brand-gray">Organic Traffic</span>
+                    <span className="text-[10px] font-bold text-brand-white">+340%</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function AnalyticsReportingVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-sky-500/20 flex items-center justify-center text-sky-400 text-[8px]">◧</span>
+                Analytics Dashboard
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+                <div className="bg-brand-dark/60 rounded-lg p-2">
+                    <p className="text-[8px] text-brand-gray-dark mb-0.5">Revenue</p>
+                    <p className="text-sm font-bold text-emerald-400">$842K</p>
+                </div>
+                <div className="bg-brand-dark/60 rounded-lg p-2">
+                    <p className="text-[8px] text-brand-gray-dark mb-0.5">ROAS</p>
+                    <p className="text-sm font-bold text-sky-400">5.2x</p>
+                </div>
+            </div>
+            <div className="flex items-end gap-0.5 h-8">
+                {[25, 30, 45, 35, 55, 48, 60, 52, 70, 65, 75, 82].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-sm bg-sky-500/25" style={{ height: `${h}%` }} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function EmailLifecycleVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-[8px]">✉</span>
+                Email Sequences
+            </div>
+            <div className="space-y-1.5">
+                {['Welcome Series', 'Nurture Flow', 'Win-Back Campaign'].map((item, i) => (
+                    <div key={i} className="bg-brand-dark/60 rounded-lg px-2.5 py-2 flex items-center justify-between">
+                        <span className="text-[9px] text-brand-gray">{item}</span>
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded-full ${i === 0 ? 'bg-emerald-500/15 text-emerald-400' : i === 1 ? 'bg-indigo-500/15 text-indigo-400' : 'bg-amber-500/15 text-amber-400'}`}>
+                            {i === 0 ? '45% open' : i === 1 ? '32% CTR' : '12% reactivated'}
+                        </span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function BrandVideosVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-amber-500/20 flex items-center justify-center text-amber-400 text-[8px]">▶</span>
+                Production Pipeline
+            </div>
+            <div className="space-y-1.5">
+                {['Concept & Script', 'Production', 'Post-Production'].map((item, i) => (
+                    <div key={i} className="bg-brand-dark/60 rounded-lg px-2.5 py-2 flex items-center justify-between">
+                        <span className="text-[9px] text-brand-gray">{item}</span>
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded-full ${i === 0 ? 'bg-emerald-500/15 text-emerald-400' : i === 1 ? 'bg-amber-500/15 text-amber-400' : 'bg-brand-card text-brand-gray-dark'}`}>
+                            {i === 0 ? 'Done' : i === 1 ? 'Filming' : 'Queued'}
+                        </span>
+                    </div>
+                ))}
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">🎬 4K · Multi-format delivery</div>
+        </div>
+    );
+}
+
+function UGCAdsVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-pink-500/20 flex items-center justify-center text-pink-400 text-[8px]">◉</span>
+                UGC Studio
+            </div>
+            <div className="grid grid-cols-3 gap-1.5">
+                {[1, 2, 3].map(i => (
+                    <div key={i} className="aspect-[9/16] rounded bg-gradient-to-br from-pink-500/15 to-rose-500/10 flex items-center justify-center">
+                        <span className="text-[8px] text-pink-400/60">UGC {i}</span>
+                    </div>
+                ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+                <span className="text-[9px] text-emerald-400">✓</span>
+                <span className="text-[9px] text-brand-gray-dark">3x outperforming branded ads</span>
+            </div>
+        </div>
+    );
+}
+
+function LandingPagesVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-[8px]">⊞</span>
+                Page Builder
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5">
+                <div className="w-full h-3 bg-brand-card rounded-t mb-1" />
+                <div className="w-3/4 h-2 bg-brand-card rounded mb-1" />
+                <div className="w-1/2 h-2 bg-brand-card rounded mb-2" />
+                <div className="w-1/3 h-5 bg-cyan-500/20 rounded flex items-center justify-center">
+                    <span className="text-[7px] text-cyan-400">CTA</span>
+                </div>
+            </div>
+            <div className="flex items-center justify-between">
+                <span className="text-[9px] text-brand-gray-dark">Conversion rate</span>
+                <span className="text-[9px] text-emerald-400 font-bold">8.4%</span>
+            </div>
+        </div>
+    );
+}
+
+function ContentStrategyVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-teal-500/20 flex items-center justify-center text-teal-400 text-[8px]">◇</span>
+                Content Calendar
+            </div>
+            <div className="grid grid-cols-5 gap-1">
+                {['M', 'T', 'W', 'T', 'F'].map((day, i) => (
+                    <div key={i} className="text-center">
+                        <span className="text-[7px] text-brand-gray-dark">{day}</span>
+                        <div className={`mt-1 h-6 rounded ${i === 0 ? 'bg-teal-500/25' : i === 2 ? 'bg-purple-500/20' : i === 4 ? 'bg-amber-500/20' : 'bg-brand-dark/40'}`} />
+                    </div>
+                ))}
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">📝 3 posts/week · Topic clusters</div>
+        </div>
+    );
+}
+
+function PitchDecksVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-amber-500/20 flex items-center justify-center text-amber-400 text-[8px]">◫</span>
+                Deck Preview
+            </div>
+            <div className="grid grid-cols-3 gap-1.5">
+                {['Problem', 'Solution', 'Traction'].map((slide, i) => (
+                    <div key={i} className="aspect-[4/3] rounded bg-gradient-to-br from-amber-500/10 to-orange-500/5 border border-brand-border-subtle flex items-center justify-center">
+                        <span className="text-[7px] text-amber-400/70">{slide}</span>
+                    </div>
+                ))}
+            </div>
+            <div className="text-[9px] text-brand-gray-dark">📑 12-20 slides · Data-driven narrative</div>
+        </div>
+    );
+}
+
+function AIAgentsVisual() {
+    return (
+        <div className="space-y-2.5">
+            <div className="flex items-center gap-2 text-[10px] text-brand-gray-dark">
+                <span className="w-5 h-5 rounded bg-violet-500/20 flex items-center justify-center text-violet-400 text-[8px]">⊛</span>
+                AI Agent
+            </div>
+            <div className="bg-brand-dark/60 rounded-lg p-2.5">
+                <div className="font-mono text-[9px] text-brand-gray space-y-1">
+                    <p><span className="text-violet-400">Agent:</span> Analyzing incoming lead...</p>
+                    <p><span className="text-violet-400">Score:</span> <span className="text-emerald-400">92/100 — High Intent</span></p>
+                    <p><span className="text-violet-400">Action:</span> Route to sales + send welcome</p>
+                    <p><span className="text-emerald-400">✓</span> Completed in 1.2s</p>
+                </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+                <span className="text-[9px] text-violet-400">●</span>
+                <span className="text-[9px] text-brand-gray-dark">Custom LLM · Your data</span>
+            </div>
+        </div>
+    );
+}
+
 const visualMap: Record<string, () => React.ReactNode> = {
     'marketing-strategy-audit': MarketingStrategyAuditVisual,
     'google-ads': GoogleAdsVisual,
@@ -331,6 +714,22 @@ const visualMap: Record<string, () => React.ReactNode> = {
     'ai-automation': AIAutomationVisual,
     'no-code-development': NoCodeDevVisual,
     'ai-workshops': AIWorkshopsVisual,
+    'linkedin-ads': LinkedInAdsVisual,
+    'youtube-ads': YouTubeAdsVisual,
+    'tiktok-ads': TikTokAdsVisual,
+    'retargeting': RetargetingVisual,
+    'lead-generation': LeadGenerationVisual,
+    'funnel-building': FunnelBuildingVisual,
+    'cro': CROVisual,
+    'programmatic-seo': ProgrammaticSEOVisual,
+    'analytics-reporting': AnalyticsReportingVisual,
+    'email-lifecycle': EmailLifecycleVisual,
+    'brand-videos': BrandVideosVisual,
+    'ugc-ads': UGCAdsVisual,
+    'landing-pages': LandingPagesVisual,
+    'content-strategy': ContentStrategyVisual,
+    'pitch-decks': PitchDecksVisual,
+    'ai-agents': AIAgentsVisual,
 };
 
 function ServiceCard({ service }: { service: ServiceData }) {
@@ -407,7 +806,7 @@ export default function ServicesHubClient() {
             {serviceCategories.map((category) => {
                 const categoryServices = getServicesByCategory(category.key);
                 return (
-                    <section key={category.key} className="py-16 sm:py-20 odd:bg-brand-darker even:bg-brand-dark">
+                    <section key={category.key} id={category.key.replace('_', '-')} className="py-16 sm:py-20 odd:bg-brand-darker even:bg-brand-dark scroll-mt-24">
                         <div className="max-w-6xl mx-auto px-4 sm:px-6">
                             <div className="mb-10">
                                 <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">{category.label}</p>

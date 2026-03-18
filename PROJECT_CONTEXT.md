@@ -122,6 +122,37 @@ export interface ServiceFAQ {
     answer: string;
 }
 
+export interface ServicePersona {
+    title: string;
+    description: string;
+}
+
+export interface ServiceBenefit {
+    title: string;
+    description: string;
+}
+
+export interface SubService {
+    title: string;
+    description: string;
+    slug?: string;
+}
+
+export interface ComparisonRow {
+    us: string;
+    others: string;
+}
+
+export interface ResultHighlight {
+    metric: string;
+    description: string;
+}
+
+export interface Differentiator {
+    title: string;
+    description: string;
+}
+
 export interface ServiceData {
     slug: string; // Used for URL generation
     title: string;
@@ -139,6 +170,14 @@ export interface ServiceData {
     relatedSlugs: string[];
     metaTitle: string;
     metaDescription: string;
+    // 13-section blueprint fields (all optional)
+    whatIs?: string;                    // "What is [Service]" explainer paragraph
+    personas?: ServicePersona[];        // "Who Is This For" cards
+    benefits?: ServiceBenefit[];        // Benefits grid
+    subServices?: SubService[];         // Sub-services/deliverables grid (replaces plain deliverables list)
+    comparisonRows?: ComparisonRow[];   // Two-column "Us vs Others" comparison cards
+    resultHighlights?: ResultHighlight[]; // Stat highlight cards (metric + description)
+    differentiators?: Differentiator[]; // "Why Aurelius Media" cards
 }
 ```
 
@@ -163,21 +202,47 @@ export interface BlogPostMeta {
 To add new content, simply drop markdown files in `content/blog/` or append an object to the array in `servicePages.ts`.
 
 ## 8. SEO & Internal Linking Strategy
-- **Metadata:** All pages export a `metadata` object. Dynamic pages use `generateMetadata`. 
+- **Metadata:** All pages export a `metadata` object. Dynamic pages use `generateMetadata`.
 - **Programmatic Scale:** The `/services/[slug]` structure is designed to be easily duplicated for hundreds of keywords targeting programmatic SEO landing pages in the future.
-- **Schema:** We inject standard JSON-LD Schema (Organization) globally in `layout.tsx`.
+- **Schema:** We inject standard JSON-LD Schema (Organization) globally in `layout.tsx`. Service pages also inject FAQPage, Service, and BreadcrumbList JSON-LD schema.
 
 **Internal Linking Strategy:**
 - **Header Navigation:** The mega-menu routes primarily to Category Pillar Pages (`/categories/performance-marketing`), not directly to the 12 deep service pages.
-- **Homepage Linking:** The `ServicesOverview` module links to the higher-level Category pages. The 28-item `CapabilitiesPanel` acts as an interactive UI explorer but does *not* link out to distinct URLs yet.
+- **Homepage Linking:** The `ServicesOverview` module links to 6 category cards (Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing) which each link to a representative service page.
 - **Service Pages Linking:** Every service page concludes with a "Related Services" block cross-linking siblings (`relatedSlugs` in schema), pushing link equity laterally across hubs.
 - **Blog Cross-Linking:** **(TODO)** Blog posts currently do not auto-embed or cross-link explicitly back to conversion/service pages. Future agents should introduce inline CTA links inside `.mdx` parsing.
+
+## 8b. Service Page 13-Section Blueprint
+Each service page (`ServicePageClient.tsx`) follows this section structure:
+1. **Hero + Lead Capture** — Breadcrumbs, category badge, headline, description, dual CTAs, optional hero image
+2. **Social Proof Bar** — Scrolling client logo carousel (same logos as homepage Hero)
+3. **What is [Service]** — Explanatory overview paragraph (optional, renders if `whatIs` exists)
+4. **Who Is This For** — 3 persona cards describing ideal clients (optional, renders if `personas` exists)
+5. **Sound Familiar? (The Problem)** — Pain point cards from `problems` array
+6. **How We Do It** — Approach paragraph + checklist from `approachPoints`
+7. **Benefits** — 6 benefit cards (optional, renders if `benefits` exists)
+8. **Sub-Services / What's Included** — Numbered deliverable cards from `subServices`, falls back to plain `deliverables` list
+9. **Comparison** — Two-column "Other Agencies vs Aurelius Media" card layout with X/checkmark icons and warm gradient glow (optional, renders if `comparisonRows` exists)
+10. **Results / Case Studies** — Stat highlight cards from `resultHighlights`, falls back to placeholder text
+11. **Client Testimonial** — Per-service testimonial (data stored in component)
+12. **Why Aurelius Media** — Differentiator cards (optional, renders if `differentiators` exists)
+13. **FAQ** — FAQAccordion component with schema markup
+14. **Related Services** — Cross-linked sibling service cards
+15. **Final CTA** — Book a Strategy Call + Explore All Services
 
 ## 9. Pages Built
 Every active route in the codebase and its status:
 
 **Homepage section order** (as of March 2026):
 `Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock`
+
+**ServicesOverview 6 category cards** (as of March 2026):
+1. Paid Media → `/services/google-ads`
+2. Growth Engine → `/services/marketing-strategy-audit`
+3. Creative Studio → `/services/creative-design`
+4. AI & Build → `/services/ai-automation`
+5. Industry Verticals → `/services/book-marketing`
+6. Full Funnel Marketing → `/services/marketing-strategy-audit`
 
 | Route | Page Title | Status |
 |-------|-----------|--------|
@@ -254,3 +319,7 @@ If you are modifying this codebase:
 - **March 15, 2026:** Added `BlurReveal` component (`src/components/ui/BlurReveal.tsx`) — IntersectionObserver-based scroll blur reveal. Applied only to `MissionStatement` on homepage.
 - **March 15, 2026:** Rewrote `TestimonialsCarousel` from vertical floating columns to 3 horizontal CSS marquee rows (RTL 18s → LTR 20s → RTL 22s). Added `scroll-rtl` / `scroll-ltr` keyframes and animation classes to `globals.css`. Each person appears in exactly one row.
 - **March 15, 2026:** Updated homepage section order: Hero → MissionStatement → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock.
+- **March 18, 2026:** Updated homepage `ServicesOverview` 6 category cards: Paid Media, Growth Engine, Creative Studio, AI & Build (code brackets icon), Industry Verticals (building icon), Full Funnel Marketing (funnel icon). Card design, glow effects, and layout unchanged.
+- **March 18, 2026:** Rewrote `ServicePageClient.tsx` from 9-section layout to 13-section programmatic SEO blueprint. New sections: Social Proof Bar (client logo carousel), What is [Service], Who Is This For (persona cards), Benefits grid, Sub-Services grid, Comparison (two-column card layout), Results stat highlights, Why Aurelius Media (differentiator cards).
+- **March 18, 2026:** Extended `ServiceData` interface with 7 new optional fields: `whatIs`, `personas`, `benefits`, `subServices`, `comparisonRows`, `resultHighlights`, `differentiators`. All 12 services populated with unique SEO-optimized content for every new section.
+- **March 18, 2026:** Redesigned Comparison section from table to two-column card layout matching previous site design: "Other Agencies" (X icons, muted text) vs "Aurelius Media" (checkmarks, white text, warm radial gradient glow, pulsing red dot + logo).

@@ -11,17 +11,16 @@ const footerLinks = {
         { label: 'Contact', href: '/contact' },
     ],
     services: [
-        { label: 'Performance Marketing', href: '/categories/performance-marketing' },
-        { label: 'B2B Demand Gen', href: '/categories/b2b-marketing' },
-        { label: 'Marketing Collaterals', href: '/categories/marketing-collaterals' },
-        { label: 'Programmatic SEO', href: '/categories/programmatic-seo' },
-        { label: 'Full-Funnel Marketing', href: '/categories/full-funnel-marketing' },
-        { label: 'Google Ads Management', href: '/services/google-ads' },
-        { label: 'Meta Ads Management', href: '/services/meta-ads' },
-        { label: 'Creative & Design', href: '/services/creative-design' },
-        { label: 'No-Code Development', href: '/services/no-code-development' },
-        { label: 'AI Workshops & Training', href: '/services/ai-workshops' },
+        { label: 'Paid Media', href: '/services#paid-media' },
+        { label: 'Growth Engine', href: '/services#growth-engine' },
+        { label: 'Creative Studio', href: '/services#creative-studio' },
+        { label: 'AI & Build', href: '/services#ai-build' },
         { label: 'All Services', href: '/services' },
+    ],
+    verticals: [
+        { label: 'Book & Author Marketing', href: '/services/book-marketing' },
+        { label: 'Education & EdTech', href: '/services/education-marketing' },
+        { label: 'Real Estate Marketing', href: '/services/real-estate-marketing' },
     ],
     resources: [
         { label: 'Blog', href: '/blog' },
@@ -72,7 +71,7 @@ export default function Footer() {
         <footer className="bg-brand-darker border-t border-brand-border-subtle">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 {/* Main Footer */}
-                <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-4">
@@ -132,9 +131,20 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Resources Links */}
+                    {/* Industry Verticals + Resources */}
                     <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-gold mb-4">Resources</h4>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-gold mb-4">Industries</h4>
+                        <ul className="space-y-3">
+                            {footerLinks.verticals.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-sm text-brand-gray hover:text-brand-white transition-colors">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-gold mb-4 mt-8">Resources</h4>
                         <ul className="space-y-3">
                             {footerLinks.resources.map((link) => (
                                 <li key={link.href}>
