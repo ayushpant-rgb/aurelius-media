@@ -1,0 +1,524 @@
+{
+  "last_updated": "2026-03-17",
+  "total_pages": 24,
+  "session_changes": {
+    "date": "2026-03-17",
+    "summary": "Blog readability overhaul, FAQ accordion component, 4:3 image standardization, pSEO blog content improvements",
+    "changes": [
+      "Blog post typography: body text upgraded from 14px to 17-18px with 1.85 line-height, white text, generous spacing",
+      "Blog content column narrowed from max-w-3xl (768px) to max-w-[720px] for focused reading",
+      "Blog hyperlinks: white with subtle underline, accent red on hover",
+      "Blog bullet/number markers: white (previously gold, originally accent red)",
+      "Blog blockquotes: gold left border, larger italic text (19-20px)",
+      "New reusable FAQAccordion component: src/components/ui/FAQAccordion.tsx — divider-based accordion with plus/minus icon, used on all service pages",
+      "Blog FAQ sections use <details>/<summary> HTML styled via globals.css to match FAQAccordion look",
+      "All blog image containers standardized to aspect-[4/3] (homepage BlogPreview, blog hub cards, blog post hero)",
+      "Programmatic SEO blog: added hero image (/blog/programatic-seo.jpeg), rewrote topical ecosystem architecture section with Wise case study",
+      "Programmatic SEO blog: FAQ section converted from plain markdown to collapsible <details>/<summary> accordion"
+    ]
+  },
+  "design_system_updates": {
+    "blog_typography": {
+      "body_text": "text-[17px] sm:text-lg, text-brand-white, leading-[1.85], mb-7",
+      "h2": "text-xl sm:text-2xl md:text-3xl, font-bold, mt-14 mb-5, tracking-tight",
+      "h3": "text-lg sm:text-xl, font-bold, mt-10 mb-4",
+      "links": "text-brand-white, hover:text-brand-accent, underline underline-offset-4",
+      "bullets": "marker:text-brand-white",
+      "blockquotes": "border-l-[3px] border-brand-gold, text-[19px] sm:text-xl italic",
+      "content_width": "max-w-[720px]"
+    },
+    "blog_images": {
+      "aspect_ratio": "4:3 (aspect-[4/3]) everywhere — homepage preview, blog hub cards, blog post hero",
+      "format": "All future blog images should be 4:3"
+    },
+    "faq_component": {
+      "file": "src/components/ui/FAQAccordion.tsx",
+      "style": "Divider-based (border-top/bottom lines, not boxed cards), large question text (text-lg sm:text-xl), circled plus/minus icon, smooth grid-row expand animation",
+      "usage_service_pages": "Import FAQAccordion and pass items={service.faqs}",
+      "usage_blog_mdx": "Use <details><summary>Question</summary>Answer</details> — styled via globals.css"
+    }
+  },
+  "pages": [
+    {
+      "route": "/",
+      "title": "Aurelius Media | AI-Powered Performance Marketing Agency",
+      "h1": "AI-Powered Marketing. Real Results.",
+      "meta_description": "AI-powered performance marketing agency with 20+ years of experience. Google & Meta Ads, AI Creative, Video Production, Book Marketing and more. 100CR+ in ad spend managed across 25+ countries.",
+      "primary_keyword": "AI marketing agency",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/services",
+        "/categories/performance-marketing",
+        "/categories/b2b-marketing",
+        "/categories/marketing-collaterals",
+        "/categories/programmatic-seo",
+        "/categories/web-apps-mvps",
+        "/categories/full-funnel-marketing",
+        "/blog",
+        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/vibe-coding-explained-build-saas-weekend",
+        "/blog/performance-max-2026-hero-or-villain"
+      ],
+      "internal_links_from": [],
+      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → CapabilitiesPanel → TestimonialsCarousel → BlogPreview → CTABlock. BlogPreview images now 4:3 aspect ratio."
+    },
+    {
+      "route": "/about",
+      "title": "About Us | Aurelius Media",
+      "h1": "How We Build Growth Engines",
+      "meta_description": "Our methodology and framework for scaling modern businesses using AI creative and data-driven media buying.",
+      "primary_keyword": "growth media strategy",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "in-progress",
+      "internal_links_to": [],
+      "internal_links_from": ["Header", "Footer"]
+    },
+    {
+      "route": "/services",
+      "title": "All Services | Aurelius Media",
+      "h1": "Services Hub",
+      "meta_description": "Explore our 12 core capabilities across performance marketing, B2B demand gen, marketing collaterals, and more.",
+      "primary_keyword": "Aurelius Media Services",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/marketing-strategy-audit",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/ai-creative-design",
+        "/services/creative-design",
+        "/services/reels-editing",
+        "/services/book-marketing",
+        "/services/education-marketing",
+        "/services/ai-automation",
+        "/services/no-code-development",
+        "/services/ai-workshops",
+        "/services/real-estate-marketing"
+      ],
+      "internal_links_from": ["/", "Header", "Footer"]
+    },
+    {
+      "route": "/contact",
+      "title": "Contact | Aurelius Media",
+      "h1": "Let's Talk Growth",
+      "meta_description": "Get in touch with Aurelius Media to scale your business.",
+      "primary_keyword": "Contact Aurelius Media",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "in-progress",
+      "internal_links_to": [],
+      "internal_links_from": ["Header", "Footer"]
+    },
+    {
+      "route": "/blog",
+      "title": "Insights & Blog | Aurelius Media",
+      "h1": "Latest Insights",
+      "meta_description": "Read the latest thoughts on performance marketing, AI, and scale from Aurelius Media.",
+      "primary_keyword": "AI Marketing Blog",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_to": [
+        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/vibe-coding-explained-build-saas-weekend",
+        "/blog/performance-max-2026-hero-or-villain",
+        "/blog/instagram-growth-strategy-for-authors-2026",
+        "/blog/is-programmatic-seo-dead-in-2026"
+      ],
+      "internal_links_from": ["/", "Header", "Footer"],
+      "notes": "Blog hub card images now 4:3 aspect ratio. Category filter UI with colored badges."
+    },
+    {
+      "route": "/services/marketing-strategy-audit",
+      "title": "Marketing Strategy Audit | Aurelius Media",
+      "h1": "A Data-Driven Blueprint for Your Growth.",
+      "meta_description": "Full-funnel marketing strategy and audit services to identify bottlenecks, optimize channel mix, and build a growth roadmap.",
+      "primary_keyword": "marketing strategy audit",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/ai-automation"
+      ],
+      "internal_links_from": ["/services", "/services/google-ads"],
+      "notes": "FAQ section now uses reusable FAQAccordion component."
+    },
+    {
+      "route": "/services/google-ads",
+      "title": "Google Ads Management | Aurelius Media",
+      "h1": "Capture High-Intent Demand at Scale.",
+      "meta_description": "Expert Google Ads management. Search, Display, Shopping, and YouTube campaigns optimized for maximum ROAS and lead generation.",
+      "primary_keyword": "google ads agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/meta-ads",
+        "/services/marketing-strategy-audit",
+        "/services/ai-creative-design"
+      ],
+      "internal_links_from": ["/services", "/services/marketing-strategy-audit"],
+      "notes": "FAQ section now uses reusable FAQAccordion component."
+    },
+    {
+      "route": "/services/meta-ads",
+      "title": "Meta Ads Management | Aurelius Media",
+      "h1": "Scale Revenue with AI-Driven Social Ads.",
+      "meta_description": "High-performance Facebook and Instagram advertising. We combine rapid creative testing with AI-augmented bidding for explosive growth.",
+      "primary_keyword": "meta ads agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/ai-creative-design",
+        "/services/reels-editing"
+      ],
+      "internal_links_from": ["/services", "/services/marketing-strategy-audit"]
+    },
+    {
+      "route": "/services/ai-creative-design",
+      "title": "AI Creative Design | Aurelius Media",
+      "h1": "Ad Creatives at the Speed of Thought.",
+      "meta_description": "Generate hundreds of high-converting ad variations, thumbnails, and brand assets at 10x the speed using cutting-edge AI design workflows.",
+      "primary_keyword": "ai ad creatives",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/meta-ads",
+        "/services/google-ads",
+        "/services/creative-design"
+      ],
+      "internal_links_from": ["/services", "/services/google-ads", "/services/meta-ads"]
+    },
+    {
+      "route": "/services/creative-design",
+      "title": "Creative & Design | Aurelius Media",
+      "h1": "Brand Design That Converts.",
+      "meta_description": "Stop the scroll with premium ad creatives, pitch decks, landing pages, and visual identity systems built for modern brands.",
+      "primary_keyword": "creative design agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/ai-creative-design",
+        "/services/reels-editing",
+        "/services/meta-ads"
+      ],
+      "internal_links_from": ["/services", "/services/ai-creative-design"]
+    },
+    {
+      "route": "/services/reels-editing",
+      "title": "Reels & Shorts Editing | Aurelius Media",
+      "h1": "Short-Form Content That Goes Viral.",
+      "meta_description": "Fast-paced, high-retention video editing for TikTok, Instagram Reels, and YouTube Shorts. Built for organic reach and paid performance.",
+      "primary_keyword": "short form video editing",
+      "topic_cluster": "Creative Production",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/creative-design",
+        "/services/meta-ads",
+        "/services/ai-creative-design"
+      ],
+      "internal_links_from": ["/services", "/services/meta-ads", "/services/creative-design"]
+    },
+    {
+      "route": "/services/book-marketing",
+      "title": "Book Marketing Strategy | Aurelius Media",
+      "h1": "Turn Your Book into a Bestseller.",
+      "meta_description": "Comprehensive marketing sequences for authors and publishers. Pre-launch strategy, Amazon optimization, and social media campaigns.",
+      "primary_keyword": "book marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/meta-ads",
+        "/services/marketing-strategy-audit",
+        "/services/reels-editing"
+      ],
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/education-marketing",
+      "title": "Education & EdTech Marketing | Aurelius Media",
+      "h1": "Drive Enrollments at Scale.",
+      "meta_description": "Data-driven marketing for universities, EdTech platforms, and coaching businesses. We turn intent into confirmed enrollments.",
+      "primary_keyword": "edtech marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/ai-automation"
+      ],
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/ai-automation",
+      "title": "AI Automation & Systems | Aurelius Media",
+      "h1": "Automate Manual Tasks. Scale Smarter.",
+      "meta_description": "We build custom AI workflows, intelligent chatbots, and automated CRM pipelines that save teams hundreds of hours.",
+      "primary_keyword": "ai automation agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/no-code-development",
+        "/services/marketing-strategy-audit",
+        "/services/ai-creative-design"
+      ],
+      "internal_links_from": ["/services", "/services/marketing-strategy-audit", "/services/education-marketing"]
+    },
+    {
+      "route": "/services/no-code-development",
+      "title": "No-Code & Web App Development | Aurelius Media",
+      "h1": "From Idea to Functional Product in Weeks.",
+      "meta_description": "Rapid MVP development using modern web frameworks and no-code tools. We build tools, landing pages, and portals that accelerate growth.",
+      "primary_keyword": "no code agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/ai-automation",
+        "/services/marketing-strategy-audit",
+        "/services/google-ads"
+      ],
+      "internal_links_from": ["/services", "/services/ai-automation"]
+    },
+    {
+      "route": "/services/ai-workshops",
+      "title": "Corporate AI Workshops | Aurelius Media",
+      "h1": "Train Your Team on the Future of Growth.",
+      "meta_description": "Hands-on corporate training focused on immediate ROI. We teach your marketing teams how to use ChatGPT, Midjourney, and automation sequences.",
+      "primary_keyword": "corporate ai training",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/ai-automation",
+        "/services/marketing-strategy-audit",
+        "/services/ai-creative-design"
+      ],
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/services/real-estate-marketing",
+      "title": "Real Estate Marketing System | Aurelius Media",
+      "h1": "Generate High-Quality Property Leads.",
+      "meta_description": "End-to-end performance marketing for real estate developers and top-tier brokerages. Consistent, qualified lead generation across UAE and India.",
+      "primary_keyword": "real estate marketing agency dubai",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/ai-automation"
+      ],
+      "internal_links_from": ["/services"]
+    },
+    {
+      "route": "/blog/meta-ads-vs-google-ads-budget-2026",
+      "title": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
+      "h1": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
+      "meta_description": "A data-driven breakdown of Meta Ads vs Google Ads for 2026 — CPAs, intent signals, creative requirements, and when to use each platform.",
+      "primary_keyword": "meta ads vs google ads",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [],
+      "internal_links_from": ["/blog", "/"]
+    },
+    {
+      "route": "/blog/vibe-coding-explained-build-saas-weekend",
+      "title": "Vibe Coding Explained: How to Build a SaaS in a Weekend",
+      "h1": "Vibe Coding Explained: How to Build a SaaS in a Weekend",
+      "meta_description": "What is vibe coding? How AI-assisted development lets founders ship real products in 48 hours — tools, workflow, and what to watch out for.",
+      "primary_keyword": "vibe coding",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [],
+      "internal_links_from": ["/blog", "/"]
+    },
+    {
+      "route": "/blog/performance-max-2026-hero-or-villain",
+      "title": "Performance Max 2026: Hero or Villain for Your Ad Budget?",
+      "h1": "Performance Max 2026: Hero or Villain for Your Ad Budget?",
+      "meta_description": "An honest look at Google's Performance Max campaigns in 2026 — when PMax works, when it wastes budget, and how to control it.",
+      "primary_keyword": "performance max 2026",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [],
+      "internal_links_from": ["/blog", "/"]
+    },
+    {
+      "route": "/blog/instagram-growth-strategy-for-authors-2026",
+      "title": "Instagram Growth Strategy for Authors in 2026",
+      "h1": "Instagram Growth Strategy for Authors in 2026",
+      "meta_description": "How authors can build a real Instagram following in 2026 — content pillars, reels strategy, and converting followers to readers.",
+      "primary_keyword": "instagram growth for authors",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [],
+      "internal_links_from": ["/blog"]
+    },
+    {
+      "route": "/blog/is-programmatic-seo-dead-in-2026",
+      "title": "Is Programmatic SEO Dead in 2026?",
+      "h1": "Is Programmatic SEO Dead in 2026?",
+      "meta_description": "A data-backed look at programmatic SEO in 2026 — what's getting deindexed, what's thriving, and how to build pSEO that survives AI Overviews and Google quality updates.",
+      "primary_keyword": "programmatic SEO 2026",
+      "topic_cluster": "SEO & Content Strategy",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/programatic-seo.jpeg",
+      "internal_links_to": ["/categories/programmatic-seo"],
+      "internal_links_from": ["/blog"],
+      "notes": "Hero image added. FAQ section converted to collapsible <details>/<summary> accordion. Topical ecosystem architecture section rewritten with Wise case study (March 17, 2026)."
+    }
+  ],
+  "topic_clusters": [
+    {
+      "name": "Performance Advertising",
+      "pillar_page": "/categories/performance-marketing",
+      "supporting_pages": [
+        "/services/marketing-strategy-audit",
+        "/services/google-ads",
+        "/services/meta-ads"
+      ],
+      "target_keywords": [
+        "performance marketing strategy",
+        "google ads agency",
+        "meta ads agency",
+        "marketing audit agency"
+      ]
+    },
+    {
+      "name": "Creative Production",
+      "pillar_page": "/categories/marketing-collaterals",
+      "supporting_pages": [
+        "/services/ai-creative-design",
+        "/services/creative-design",
+        "/services/reels-editing"
+      ],
+      "target_keywords": [
+        "ai ad creatives",
+        "creative design agency",
+        "short form video editing"
+      ]
+    },
+    {
+      "name": "Growth Engineering",
+      "pillar_page": "/categories/web-apps-mvps",
+      "supporting_pages": [
+        "/services/ai-automation",
+        "/services/no-code-development",
+        "/services/ai-workshops"
+      ],
+      "target_keywords": [
+        "ai automation agency",
+        "no code agency",
+        "corporate ai training"
+      ]
+    },
+    {
+      "name": "Industry Specialized",
+      "pillar_page": "/categories/b2b-marketing",
+      "supporting_pages": [
+        "/services/book-marketing",
+        "/services/education-marketing",
+        "/services/real-estate-marketing"
+      ],
+      "target_keywords": [
+        "book marketing agency",
+        "edtech marketing agency",
+        "real estate marketing agency dubai"
+      ]
+    }
+  ],
+  "programmatic_templates": [
+    {
+      "template_name": "Service Hub Dynamic Router",
+      "route_pattern": "/services/[slug]",
+      "data_source": "src/data/servicePages.ts",
+      "total_pages_generated": 12,
+      "sample_urls": [
+        "/services/google-ads",
+        "/services/meta-ads"
+      ],
+      "notes": "All service pages now use FAQAccordion component (src/components/ui/FAQAccordion.tsx) for FAQ sections."
+    },
+    {
+      "template_name": "Blog Post Dynamic Router",
+      "route_pattern": "/blog/[slug]",
+      "data_source": "content/blog/*.mdx",
+      "total_pages_generated": 5,
+      "sample_urls": [
+        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/vibe-coding-explained-build-saas-weekend",
+        "/blog/performance-max-2026-hero-or-villain",
+        "/blog/instagram-growth-strategy-for-authors-2026",
+        "/blog/is-programmatic-seo-dead-in-2026"
+      ],
+      "notes": "Blog post template updated: 17-18px body text, 1.85 line-height, 720px content column, 4:3 hero image aspect ratio. Blog FAQs use <details>/<summary> HTML styled via globals.css."
+    }
+  ],
+  "reusable_components": [
+    {
+      "name": "FAQAccordion",
+      "file": "src/components/ui/FAQAccordion.tsx",
+      "type": "client",
+      "description": "Divider-based FAQ accordion with plus/minus icon animation. Accepts items array of {question, answer}, optional heading/eyebrow props.",
+      "used_in": ["All /services/[slug] pages"]
+    }
+  ]
+}
