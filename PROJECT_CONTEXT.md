@@ -388,3 +388,4 @@ If you are modifying this codebase:
 - **March 19, 2026:** Reordered homepage sections: Testimonials moved right after ServicesOverview, CapabilitiesPanel (Digital CMO) moved below. New order: Hero → MissionStatement → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock.
 - **March 19, 2026:** Contained `FeaturedResults` case studies carousel within `max-w-7xl` (no longer edge-to-edge). Switched from JS requestAnimationFrame to CSS `animate-scroll-rtl-slow` animation. Cards enlarged to 400×460px on desktop. Swapped images for Stealth Health Tech Startup and Private University.
 - **March 19, 2026:** Changed service page lead gen form budget options from INR (₹1L–₹20L+) to USD ($1,000–$20,000+).
+- **March 19, 2026:** Fixed Hero sub-headline text clipping on mobile: widened from `max-w-md` to `max-w-lg` with `px-2` padding.

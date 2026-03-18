@@ -30,7 +30,8 @@
       "TestimonialsCarousel rewritten: 3 vertical columns with alternating scroll (down/up/down at 40s/45s/42s), fixed-height container with top/bottom fades",
       "Homepage section reorder: Testimonials moved after ServicesOverview, CapabilitiesPanel moved below",
       "FeaturedResults case studies contained within max-w-7xl, CSS animation, enlarged cards (400x460px), swapped Health Tech / University images",
-      "Service page budget options changed from INR (₹1L–₹20L+) to USD ($1,000–$20,000+)"
+      "Service page budget options changed from INR (₹1L–₹20L+) to USD ($1,000–$20,000+)",
+      "Hero sub-headline: max-w-md → max-w-lg + px-2 to prevent text clipping on mobile"
     ]
   },
   "design_system_updates": {
