@@ -125,6 +125,7 @@ export interface ServiceFAQ {
 export interface ServicePersona {
     title: string;
     description: string;
+    icon?: string;              // Lucide icon name (e.g. 'Rocket', 'ShoppingBag')
 }
 
 export interface ServiceBenefit {
@@ -156,7 +157,7 @@ export interface Differentiator {
 export interface ServiceData {
     slug: string; // Used for URL generation
     title: string;
-    category: 'performance' | 'creative' | 'growth' | 'industry';
+    category: 'paid_media' | 'growth_engine' | 'creative_studio' | 'ai_build' | 'vertical';
     categoryLabel: string;
     headline: string;
     description: string;
@@ -172,7 +173,8 @@ export interface ServiceData {
     metaDescription: string;
     // 13-section blueprint fields (all optional)
     whatIs?: string;                    // "What is [Service]" explainer paragraph
-    personas?: ServicePersona[];        // "Who Is This For" cards
+    personas?: ServicePersona[];        // "Who Is This For" cards (4 per service, 2×2 grid)
+    catchAllText?: string;              // Catch-all text line below persona cards
     benefits?: ServiceBenefit[];        // Benefits grid
     subServices?: SubService[];         // Sub-services/deliverables grid (replaces plain deliverables list)
     comparisonRows?: ComparisonRow[];   // Two-column "Us vs Others" comparison cards

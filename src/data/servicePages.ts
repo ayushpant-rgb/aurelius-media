@@ -6,6 +6,7 @@ export interface ServiceFAQ {
 export interface ServicePersona {
     title: string;
     description: string;
+    icon?: string;
 }
 
 export interface ServiceBenefit {
@@ -54,6 +55,7 @@ export interface ServiceData {
     // 13-section blueprint fields
     whatIs?: string;
     personas?: ServicePersona[];
+    catchAllText?: string;
     benefits?: ServiceBenefit[];
     subServices?: SubService[];
     comparisonRows?: ComparisonRow[];
@@ -74,10 +76,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['marketing strategy audit', 'marketing audit agency', 'performance marketing strategy'],
         whatIs: 'A marketing strategy audit is a comprehensive, data-driven review of your entire marketing ecosystem — every channel, campaign, funnel stage, and dollar spent. We analyze what is working, what is wasting budget, and where the biggest growth opportunities are. The result is a custom roadmap that tells you exactly where to invest, what to fix, and how to scale profitably.',
         personas: [
-            { title: 'Funded Startups', description: 'Series A-C companies spending on multiple channels without a unified strategy or clear attribution model.' },
-            { title: 'Scaling D2C Brands', description: 'E-commerce brands that have hit a growth ceiling and need to identify the bottleneck.' },
-            { title: 'Marketing Leaders', description: 'CMOs and VPs inheriting a marketing stack and needing an objective assessment of what to keep, cut, or rebuild.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'No Clear Marketing Strategy', description: 'You are spending on ads across multiple channels without a unified strategy or understanding of what is actually driving results.' },
             { title: 'Wrong Channel Mix', description: 'You are investing in channels that do not align with your audience, buying journey, or business model.' },
@@ -158,10 +162,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['google ads agency india', 'google ads management', 'PPC agency'],
         whatIs: 'Google Ads management is the strategic planning, execution, and optimization of paid search, shopping, display, and video campaigns on Google\'s advertising platform. We go beyond basic campaign setup — we build scalable architectures with AI-augmented bidding, intent-based keyword strategies, and continuous creative testing to drive profitable customer acquisition at scale.',
         personas: [
-            { title: 'E-Commerce Brands', description: 'Online stores looking to scale Shopping and Performance Max campaigns with profitable ROAS targets.' },
-            { title: 'B2B SaaS Companies', description: 'Software companies targeting high-intent search queries to drive demo requests and qualified pipeline.' },
-            { title: 'Lead Generation Businesses', description: 'Service businesses that need a steady stream of qualified leads from Google Search and Display.' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores scaling Shopping and Performance Max campaigns with profitable ROAS targets.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software companies targeting high-intent search queries to drive demos and qualified pipeline.', icon: 'Briefcase' },
+            { title: 'Education & EdTech', description: 'Schools, universities, and edtech platforms driving enrollments through Search and Display campaigns.', icon: 'GraduationCap' },
+            { title: 'Real estate & services', description: 'Property developers, healthcare providers, and service businesses generating a steady stream of qualified local leads.', icon: 'Home' },
         ],
+        catchAllText: 'We also work with health & wellness brands, authors & publishers, coaches, hospitality companies, and more. If your business needs leads or sales from Google, we can help.',
         problems: [
             { title: 'Wasted Ad Spend', description: 'Your campaigns burn budget on irrelevant clicks with no clear attribution to revenue.' },
             { title: 'No Clear Strategy', description: 'Running ads without a structured keyword strategy, bid management framework, or conversion tracking setup.' },
@@ -242,10 +248,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['facebook ads agency', 'instagram advertising', 'meta ads management'],
         whatIs: 'Meta Ads management covers the strategic planning, creative production, and ongoing optimization of advertising campaigns across Facebook, Instagram, Messenger, and the Audience Network. We build full-funnel campaign architectures — from cold awareness to retargeting and conversion — with structured creative testing, advanced audience segmentation, and Advantage+ automation to deliver consistent, scalable results.',
         personas: [
-            { title: 'D2C & E-Commerce Brands', description: 'Product brands looking to scale paid social with high-converting creatives and retargeting funnels.' },
-            { title: 'Lead Gen Businesses', description: 'Companies that need a steady flow of qualified leads from Facebook and Instagram campaigns.' },
-            { title: 'App & Tech Companies', description: 'Mobile apps and SaaS products targeting user acquisition and engagement through Meta platforms.' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores running conversion campaigns, dynamic product ads, and Advantage+ Shopping across Facebook and Instagram.', icon: 'ShoppingBag' },
+            { title: 'Health & wellness brands', description: 'Clinics, supplements, fitness, and wellness brands building trust and driving bookings through visual storytelling.', icon: 'Heart' },
+            { title: 'Authors & publishers', description: 'Authors and publishing houses using targeted interest-based campaigns to drive book sales and build readership.', icon: 'BookOpen' },
+            { title: 'Coaches & course creators', description: 'Business coaches, educators, and course creators filling webinars and selling programs through high-converting funnels.', icon: 'Mic' },
         ],
+        catchAllText: 'We also work with B2B companies, real estate developers, education institutions, hospitality brands, and more. If your audience is on Facebook or Instagram, we can reach them.',
         problems: [
             { title: 'Rising CPAs', description: 'Your cost per acquisition keeps climbing while campaign performance deteriorates.' },
             { title: 'Creative Fatigue', description: 'Your ads stop converting because the audience has seen the same creatives too many times.' },
@@ -328,10 +336,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['AI ad creative', 'AI design agency', 'AI-powered marketing creative'],
         whatIs: 'AI creative design uses generative AI tools — Midjourney, DALL-E, Flux, Kling, Veo, and Runway — to produce high-quality ad creatives, video content, and brand assets at dramatically faster speeds and lower costs than traditional production. We combine strategic marketing insight with cutting-edge AI generation to create visuals that are not only stunning but built to convert.',
         personas: [
-            { title: 'Growth-Stage Startups', description: 'Teams that need high-volume creative testing but cannot afford traditional production timelines or costs.' },
-            { title: 'Performance Marketers', description: 'Media buyers who need 20-30 ad variations per month to test and optimize campaigns.' },
-            { title: 'Brand Teams', description: 'Marketing teams looking to augment their creative output with AI without sacrificing brand consistency.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Slow Production Cycles', description: 'Traditional design timelines cannot keep up with the pace of digital advertising and creative testing needs.' },
             { title: 'High Creative Costs', description: 'Producing quality ad creatives, videos, and brand assets eats into your marketing budget.' },
@@ -410,10 +420,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['marketing creative agency', 'ad design services', 'brand creative'],
         whatIs: 'Creative and design services encompass everything visual that powers your marketing — ad creatives, social media graphics, brand identity, pitch decks, landing pages, and marketing collateral. We approach creative production as a performance marketing function, not just a design exercise. Every asset is built with conversion data, platform specifications, and campaign objectives in mind.',
         personas: [
-            { title: 'Brands Running Paid Ads', description: 'Companies that need a steady stream of high-converting ad creatives across Google, Meta, and LinkedIn.' },
-            { title: 'Startups Building a Brand', description: 'Early-stage companies that need a cohesive brand identity system built for growth.' },
-            { title: 'Teams Without In-House Design', description: 'Marketing teams that need an external creative partner to handle production at scale.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Low-Converting Creatives', description: 'Your ads look polished but fail to drive clicks, leads, or sales.' },
             { title: 'Brand Inconsistency', description: 'Your visual identity is fragmented across channels and campaigns.' },
@@ -493,10 +505,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['reels editing service', 'short form video ads', 'social media video editing'],
         whatIs: 'Reels ads editing is the production of short-form vertical video content optimized for Instagram Reels, YouTube Shorts, and TikTok. We do not just edit videos — we engineer them to stop the scroll with hook-first storytelling, trending formats, dynamic caption overlays, and platform-native editing techniques that maximize engagement and ad performance.',
         personas: [
-            { title: 'D2C Brands', description: 'Product brands that need scroll-stopping short-form content for organic reach and paid social campaigns.' },
-            { title: 'Content Creators & Authors', description: 'Creators who need a consistent cadence of polished Reels without spending hours editing.' },
-            { title: 'Marketing Teams', description: 'In-house teams that need to scale short-form video output without adding headcount.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'No Short-Form Strategy', description: 'You are not producing Reels or Shorts content and missing massive organic and paid reach.' },
             { title: 'Poor Hook Rates', description: 'Your short-form content does not capture attention in the first 2 seconds.' },
@@ -577,10 +591,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['book marketing agency', 'author marketing', 'book launch campaign'],
         whatIs: 'Book and author marketing is a specialized discipline that combines launch strategy, Amazon optimization, paid advertising, and author platform building to drive book sales. Unlike general marketing agencies, we understand the nuances of the publishing industry — from Amazon algorithm dynamics and Goodreads optimization to author brand building and multi-platform launch sequencing.',
         personas: [
-            { title: 'First-Time Authors', description: 'Debut authors who need a structured launch plan to maximize initial sales and reviews.' },
-            { title: 'Published Authors', description: 'Authors with existing titles looking to revive backlist sales or launch their next book.' },
-            { title: 'Publishers & Imprints', description: 'Publishing houses that need a performance marketing partner for digital-first book promotion.' },
+            { title: 'First-time authors', description: 'Debut authors who need a structured launch plan to maximise initial sales and reviews.', icon: 'BookOpen' },
+            { title: 'Published authors', description: 'Authors with existing titles looking to revive backlist sales or launch their next book with a bigger impact.', icon: 'Star' },
+            { title: 'Publishers & imprints', description: 'Publishing houses that need a performance marketing partner for digital-first book promotion at scale.', icon: 'Building2' },
+            { title: 'Self-published authors', description: 'Independent authors looking for professional marketing support to compete with traditionally published titles.', icon: 'Rocket' },
         ],
+        catchAllText: 'We also work with literary agents, academic publishers, content creators, and more. If you have a book to sell, we build the marketing engine to sell it.',
         problems: [
             { title: 'No Launch Strategy', description: 'Your book is ready but you have no structured plan to generate buzz, reviews, and sales at launch.' },
             { title: 'Low Discoverability', description: 'Your book is listed on Amazon but nobody can find it among millions of titles.' },
@@ -661,10 +677,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['education marketing agency', 'school admissions marketing', 'EdTech ads'],
         whatIs: 'Education and EdTech marketing is the strategic use of digital advertising, content marketing, and lead nurturing to drive student enrollments and platform signups. We build year-round admissions engines that generate qualified inquiries through full-funnel campaigns across Google, Meta, and organic channels — tailored to the unique buying journey of students, parents, and education decision-makers.',
         personas: [
-            { title: 'K-12 Schools & International Schools', description: 'Schools looking to fill seats with targeted parent outreach and admissions funnel optimization.' },
-            { title: 'Universities & Institutes', description: 'Higher education institutions that need to scale enrollment pipelines across programs.' },
-            { title: 'EdTech Platforms', description: 'Online education companies that need to acquire users and reduce cost per signup.' },
+            { title: 'K-12 & international schools', description: 'Schools looking to fill seats with targeted parent outreach and admissions funnel optimisation.', icon: 'GraduationCap' },
+            { title: 'Universities & institutes', description: 'Higher education institutions that need to scale enrollment pipelines across programs and campuses.', icon: 'Building2' },
+            { title: 'EdTech platforms', description: 'Online education companies that need to acquire users and reduce cost per signup at scale.', icon: 'Code2' },
+            { title: 'Coaching & training', description: 'Coaching institutes and professional training providers looking to generate enrollments through digital campaigns.', icon: 'Mic' },
         ],
+        catchAllText: 'We also work with study abroad consultants, exam prep platforms, language schools, and more. If you need students, we build the admissions engine.',
         problems: [
             { title: 'Enrollment Shortfalls', description: 'Your institution struggles to meet enrollment targets each academic cycle.' },
             { title: 'Ineffective Digital Presence', description: 'Your website and social media do not convert visitors into inquiries or applications.' },
@@ -743,10 +761,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['AI marketing automation', 'AI agents', 'marketing workflow automation'],
         whatIs: 'AI automation and agents are custom-built intelligent systems that handle repetitive marketing tasks — lead scoring, email personalization, content generation, data routing, and more — without human intervention. We design and deploy AI agents using tools like Make, Zapier, n8n, and custom LLM integrations that plug directly into your existing marketing stack and deliver immediate operational ROI.',
         personas: [
-            { title: 'Scaling Startups', description: 'Teams that need to do more with less and cannot hire fast enough to keep up with growth.' },
-            { title: 'Marketing Operations Teams', description: 'RevOps and marketing ops professionals looking to automate manual workflows and data processes.' },
-            { title: 'Founders & Solo Operators', description: 'Entrepreneurs who need AI systems to handle tasks they currently do manually.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Manual Marketing Operations', description: 'Your team spends hours on repetitive tasks that could be automated.' },
             { title: 'Slow Response Times', description: 'Leads go cold because your follow-up process is manual and inconsistent.' },
@@ -825,10 +845,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['no-code web apps', 'AI app development', 'MVP prototyping'],
         whatIs: 'No-code app development uses visual platforms and AI-powered coding tools to build functional web applications, internal tools, and MVPs without traditional software engineering. We leverage platforms like Bolt, Lovable, Replit, Cursor, Bubble, and Webflow to go from idea to deployed product in weeks — at a fraction of the cost and time of traditional development.',
         personas: [
-            { title: 'Pre-Seed & Seed Startups', description: 'Founders who need a working MVP to validate their idea and raise funding.' },
-            { title: 'Marketing & Ops Teams', description: 'Teams that need custom internal tools to replace spreadsheets and manual processes.' },
-            { title: 'Non-Technical Founders', description: 'Entrepreneurs with great ideas but no engineering team or technical background.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Slow Development Cycles', description: 'Traditional development takes months and costs a fortune before you can validate your idea.' },
             { title: 'Technical Talent Gap', description: 'Your team has great ideas but lacks the engineering resources to build them.' },
@@ -907,10 +929,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['AI marketing workshop', 'AI training for teams', 'generative AI training'],
         whatIs: 'AI workshops and training are hands-on, customized programs designed to help teams adopt generative AI tools for real marketing workflows. We do not deliver generic AI overviews — we teach your team how to use specific tools like ChatGPT, Claude, Midjourney, and automation platforms to solve actual problems in their daily work. Every workshop is built around practical exercises with tools participants will use the next day.',
         personas: [
-            { title: 'Marketing Teams', description: 'In-house marketing teams looking to integrate AI into content, advertising, and operations workflows.' },
-            { title: 'Corporate Organizations', description: 'Companies that want to upskill employees on practical AI adoption across departments.' },
-            { title: 'Academic Institutions', description: 'Universities and schools looking for AI literacy programs for students and faculty.' },
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
         ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'AI Knowledge Gap', description: 'Your team knows AI is important but does not know where to start or which tools to use.' },
             { title: 'Fear of Disruption', description: 'Team members worry AI will replace them rather than seeing it as a force multiplier.' },
@@ -990,10 +1014,12 @@ export const services: ServiceData[] = [
         targetKeywords: ['real estate marketing agency', 'property ads', 'real estate lead generation'],
         whatIs: 'Real estate marketing is the strategic use of digital advertising, landing pages, and lead nurturing systems to generate qualified buyer and investor leads for property developers, brokerages, and proptech platforms. We build always-on lead generation engines with hyper-targeted paid campaigns, conversion-optimized landing pages, and CRM-integrated follow-up systems tailored to the long sales cycles and high-value transactions of real estate.',
         personas: [
-            { title: 'Real Estate Developers', description: 'Developers launching residential or commercial projects who need a pipeline of qualified buyer leads.' },
-            { title: 'Brokerages & Agents', description: 'Real estate firms looking to generate consistent buyer and seller leads across markets.' },
-            { title: 'PropTech Platforms', description: 'Property technology companies that need to acquire users and drive platform adoption.' },
+            { title: 'Real estate developers', description: 'Developers launching residential or commercial projects who need a pipeline of qualified buyer and investor leads.', icon: 'Building2' },
+            { title: 'Brokerages & agents', description: 'Real estate firms looking to generate consistent buyer and seller leads across markets and localities.', icon: 'Home' },
+            { title: 'PropTech platforms', description: 'Property technology companies that need to acquire users and drive platform adoption at scale.', icon: 'Code2' },
+            { title: 'Commercial real estate', description: 'Commercial property firms and REITs targeting investors, tenants, and corporate buyers through digital campaigns.', icon: 'Briefcase' },
         ],
+        catchAllText: 'We also work with hospitality companies, co-living brands, property management firms, and more. If you sell or lease property, we build the lead generation engine.',
         problems: [
             { title: 'Low-Quality Leads', description: 'Your campaigns generate inquiries but most are unqualified or not ready to buy.' },
             { title: 'High Cost Per Lead', description: 'Real estate ad costs keep rising while conversion rates stagnate.' },
@@ -1072,6 +1098,13 @@ export const services: ServiceData[] = [
         headline: 'Reach Decision-Makers on the World\'s Largest B2B Platform.',
         description: 'Precision-targeted LinkedIn advertising campaigns that put your brand in front of the right executives, founders, and buying committees — driving pipeline, not just impressions.',
         targetKeywords: ['linkedin ads agency', 'linkedin advertising', 'B2B linkedin campaigns'],
+        personas: [
+            { title: 'B2B & SaaS companies', description: 'Software companies running Sponsored Content, InMail, and lead gen forms to reach decision-makers and fill pipeline.', icon: 'Briefcase' },
+            { title: 'Professional services', description: 'Consulting firms, agencies, and financial services targeting C-suite and senior leaders with account-based campaigns.', icon: 'Scale' },
+            { title: 'Education & executive programs', description: 'MBA programs, executive education, and universities reaching working professionals considering upskilling.', icon: 'GraduationCap' },
+            { title: 'Recruitment & employer branding', description: 'Companies using LinkedIn\'s unique audience data for talent acquisition campaigns and employer brand awareness.', icon: 'Users' },
+        ],
+        catchAllText: 'We also work with edtech platforms, healthcare companies, real estate firms, and any business targeting professionals. If your buyers are on LinkedIn, we can reach them.',
         problems: [
             { title: 'High CPCs With No Pipeline', description: 'LinkedIn is expensive by default — without the right strategy, you burn budget on clicks that never convert.' },
             { title: 'Poor Audience Targeting', description: 'You are targeting job titles instead of buying committees, missing the people who actually make purchase decisions.' },
@@ -1112,6 +1145,13 @@ export const services: ServiceData[] = [
         headline: 'Video Ads That Drive Real Business Results.',
         description: 'Strategic YouTube advertising across skippable, non-skippable, Shorts, and Discovery formats — designed for brand awareness, consideration, and direct response.',
         targetKeywords: ['youtube ads agency', 'youtube advertising', 'video ads management'],
+        personas: [
+            { title: 'eCommerce & D2C brands', description: 'Product brands using TrueView for Action and Video Action campaigns to drive purchases from YouTube\'s 2B+ monthly users.', icon: 'ShoppingBag' },
+            { title: 'Education & EdTech', description: 'Schools, course platforms, and edtech companies running pre-roll and in-feed ads to drive enrollments and sign-ups.', icon: 'GraduationCap' },
+            { title: 'Health & wellness', description: 'Hospitals, clinics, fitness brands, and supplement companies building trust through video storytelling and patient education.', icon: 'Heart' },
+            { title: 'Real estate developers', description: 'Property developers and brokers showcasing listings, virtual tours, and project walkthroughs to in-market buyers.', icon: 'Home' },
+        ],
+        catchAllText: 'We also work with B2B companies, authors, coaches, hospitality brands, and more. If your story is best told on video, YouTube Ads can deliver.',
         problems: [
             { title: 'Low View Rates', description: 'Your YouTube ads get skipped within 5 seconds because they lack a compelling hook.' },
             { title: 'No Attribution', description: 'You cannot connect YouTube ad spend to actual conversions or revenue.' },
@@ -1152,6 +1192,13 @@ export const services: ServiceData[] = [
         headline: 'Reach the Next Generation of Buyers.',
         description: 'Native TikTok advertising campaigns that blend into the feed, drive engagement, and convert — built with platform-native creative and advanced targeting.',
         targetKeywords: ['tiktok ads agency', 'tiktok advertising', 'tiktok marketing'],
+        personas: [
+            { title: 'eCommerce & D2C brands', description: 'Direct-to-consumer brands running Spark Ads, Shopping Ads, and creator-driven campaigns for Gen Z and millennial audiences.', icon: 'ShoppingBag' },
+            { title: 'Health & wellness brands', description: 'Fitness, skincare, supplements, and wellness brands leveraging trending content formats to build community and drive sales.', icon: 'Heart' },
+            { title: 'Coaches & course creators', description: 'Personal brands, coaches, and educators using organic-native ad formats to fill webinars and sell digital products.', icon: 'Mic' },
+            { title: 'Food & hospitality', description: 'Restaurants, cafes, food brands, and hospitality companies driving foot traffic and awareness through short-form video.', icon: 'UtensilsCrossed' },
+        ],
+        catchAllText: 'We also work with edtech companies, authors, real estate brands, and more. If your audience scrolls TikTok, we can put your brand in their feed.',
         problems: [
             { title: 'Content Feels Like an Ad', description: 'Your TikTok ads look and feel like traditional advertising — users scroll past instantly.' },
             { title: 'No Creative Strategy', description: 'You are repurposing Instagram or YouTube creatives on TikTok instead of creating platform-native content.' },
@@ -1192,6 +1239,13 @@ export const services: ServiceData[] = [
         headline: 'Turn Visitors Into Customers.',
         description: 'Multi-platform retargeting campaigns that re-engage your website visitors, cart abandoners, and warm leads across Google, Meta, LinkedIn, and programmatic networks.',
         targetKeywords: ['retargeting agency', 'remarketing campaigns', 'retargeting ads'],
+        personas: [
+            { title: 'eCommerce brands', description: 'Online stores recovering abandoned carts and re-engaging past visitors with dynamic product retargeting across Meta, Google, and display networks.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software companies nurturing long sales cycles by retargeting demo visitors, free trial sign-ups, and content engagers.', icon: 'Briefcase' },
+            { title: 'Education institutions', description: 'Schools and edtech platforms re-engaging prospective students who visited program pages but didn\'t apply or enrol.', icon: 'GraduationCap' },
+            { title: 'Lead gen businesses', description: 'Service businesses and agencies retargeting website visitors and form abandoners to bring them back into the funnel.', icon: 'Target' },
+        ],
+        catchAllText: 'We also work with real estate firms, health & wellness brands, authors, coaches, and more. If your visitors leave without converting, retargeting brings them back.',
         problems: [
             { title: 'Lost Visitors', description: '97% of website visitors leave without converting — and you have no system to bring them back.' },
             { title: 'Cart Abandonment', description: 'Your e-commerce store loses revenue every day from abandoned carts with no follow-up.' },
@@ -1234,6 +1288,13 @@ export const services: ServiceData[] = [
         headline: 'Build a Predictable Pipeline of Qualified Leads.',
         description: 'End-to-end lead generation systems combining paid channels, landing pages, and nurture sequences to deliver a consistent flow of sales-ready leads.',
         targetKeywords: ['lead generation agency', 'B2B lead generation', 'lead gen services'],
+        personas: [
+            { title: 'B2B & SaaS companies', description: 'Software companies building predictable pipeline through multi-channel lead gen across Google, Meta, and LinkedIn.', icon: 'Briefcase' },
+            { title: 'Real estate developers', description: 'Property developers and brokers generating qualified buyer and investor leads for residential and commercial projects.', icon: 'Home' },
+            { title: 'Education & EdTech', description: 'Schools, colleges, and edtech platforms filling seats and driving applications through targeted lead capture campaigns.', icon: 'GraduationCap' },
+            { title: 'Health & wellness', description: 'Hospitals, clinics, gyms, and wellness centres generating appointment bookings and consultation leads.', icon: 'Heart' },
+        ],
+        catchAllText: 'We also work with coaches, authors, eCommerce brands, hospitality companies, and more. If your business needs a steady flow of qualified leads, we build the system.',
         problems: [
             { title: 'Inconsistent Lead Flow', description: 'Your pipeline fluctuates month to month with no predictable system for generating new leads.' },
             { title: 'Low Lead Quality', description: 'Marketing delivers volume but sales rejects 70% of leads as unqualified.' },
@@ -1274,6 +1335,13 @@ export const services: ServiceData[] = [
         headline: 'Design Funnels That Convert at Every Stage.',
         description: 'Strategic funnel architecture from awareness to conversion — including landing pages, email sequences, checkout flows, and post-purchase upsells designed to maximize lifetime value.',
         targetKeywords: ['funnel building agency', 'sales funnel', 'conversion funnel'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Leaky Funnel', description: 'Leads enter your funnel but drop off at key stages — you do not know where or why.' },
             { title: 'No Funnel Architecture', description: 'You are sending all traffic to a homepage instead of optimized stage-specific landing pages.' },
@@ -1314,6 +1382,13 @@ export const services: ServiceData[] = [
         headline: 'Get More Revenue From Your Existing Traffic.',
         description: 'Conversion rate optimization that turns your website and landing pages into revenue machines — through systematic testing, UX improvements, and data-driven experiments.',
         targetKeywords: ['CRO agency', 'conversion rate optimization', 'website optimization'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Low Conversion Rates', description: 'Your website gets traffic but only a tiny fraction converts into leads or customers.' },
             { title: 'No Testing Culture', description: 'Design and copy changes are based on opinions, not data from controlled experiments.' },
@@ -1354,6 +1429,13 @@ export const services: ServiceData[] = [
         headline: 'Scale Organic Traffic With Programmatic Content.',
         description: 'Build thousands of SEO-optimized pages from structured data — targeting long-tail keywords at scale with programmatic content generation and technical SEO foundations.',
         targetKeywords: ['programmatic SEO agency', 'pSEO', 'scalable SEO'],
+        personas: [
+            { title: 'SaaS & marketplace platforms', description: 'Platforms generating hundreds of keyword-optimized landing pages at scale to capture long-tail search traffic.', icon: 'Code2' },
+            { title: 'eCommerce brands', description: 'Online stores building category, product, and comparison pages that rank for thousands of product-related search queries.', icon: 'ShoppingBag' },
+            { title: 'Education directories', description: 'Educational platforms creating location-specific and program-specific pages that capture "near me" and comparison searches.', icon: 'GraduationCap' },
+            { title: 'Real estate & listings', description: 'Property platforms generating locality-based and property-type pages that rank for hyperlocal real estate searches.', icon: 'Home' },
+        ],
+        catchAllText: 'We also work with healthcare directories, professional services, travel companies, and more. If your business can benefit from hundreds of search-optimized pages, programmatic SEO is for you.',
         problems: [
             { title: 'Manual Content Bottleneck', description: 'You cannot write hundreds of pages manually to capture long-tail keyword opportunities.' },
             { title: 'Thin Content Risk', description: 'Previous programmatic SEO attempts generated low-quality pages that got deindexed.' },
@@ -1394,6 +1476,13 @@ export const services: ServiceData[] = [
         headline: 'Make Data-Driven Decisions With Clarity.',
         description: 'Custom analytics dashboards, attribution modeling, and performance reporting that give you full visibility into what is driving growth and what is wasting budget.',
         targetKeywords: ['marketing analytics agency', 'analytics reporting', 'marketing dashboards'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Data Blindness', description: 'You are making marketing decisions without reliable data or clear attribution.' },
             { title: 'Fragmented Reporting', description: 'Your data lives across 10 platforms with no unified dashboard or single source of truth.' },
@@ -1434,6 +1523,13 @@ export const services: ServiceData[] = [
         headline: 'Turn Subscribers Into Loyal Customers.',
         description: 'Strategic email marketing and lifecycle campaigns that nurture leads, convert prospects, retain customers, and maximize lifetime value through personalized, automated sequences.',
         targetKeywords: ['email marketing agency', 'lifecycle marketing', 'email automation'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Low Email Engagement', description: 'Your emails have poor open and click rates because they are not personalized or relevant.' },
             { title: 'No Automation', description: 'Your email marketing is manual — one-off blasts with no triggered sequences or behavioral automation.' },
@@ -1476,6 +1572,13 @@ export const services: ServiceData[] = [
         headline: 'Tell Your Brand Story Through Cinematic Video.',
         description: 'High-quality brand video production — from concept and scripting to filming, editing, and distribution — designed to build trust, communicate value, and drive action.',
         targetKeywords: ['brand video production', 'corporate video agency', 'video marketing'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'No Video Presence', description: 'You have no video content to showcase your brand, team, or product across digital channels.' },
             { title: 'DIY Quality Issues', description: 'Your in-house videos look amateur and fail to convey the quality and professionalism of your brand.' },
@@ -1516,6 +1619,13 @@ export const services: ServiceData[] = [
         headline: 'Authentic User-Generated Content That Converts.',
         description: 'UGC-style ad production that combines the authenticity of real user content with the strategic intent of performance advertising — designed to outperform polished brand ads.',
         targetKeywords: ['UGC ads agency', 'user generated content ads', 'UGC video production'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Polished Ads Underperform', description: 'Your studio-quality ads are getting outperformed by authentic, raw-looking content on social platforms.' },
             { title: 'No UGC Pipeline', description: 'You do not have a system for sourcing, producing, and testing UGC-style content at scale.' },
@@ -1556,6 +1666,13 @@ export const services: ServiceData[] = [
         headline: 'High-Converting Pages Built for Results.',
         description: 'Conversion-optimized landing pages designed, built, and tested to maximize lead capture, sign-ups, and sales — from campaign landing pages to full product launch sites.',
         targetKeywords: ['landing page agency', 'landing page design', 'conversion landing pages'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Low Conversion Rates', description: 'Your landing pages are not converting because they lack clear messaging, proper hierarchy, and trust signals.' },
             { title: 'Sending Traffic to Homepage', description: 'You are driving paid traffic to your homepage instead of campaign-specific, conversion-optimized landing pages.' },
@@ -1596,6 +1713,13 @@ export const services: ServiceData[] = [
         headline: 'Strategic Content That Fuels Growth.',
         description: 'Data-driven content strategy that aligns your blog, social media, email, and video content with business goals — from editorial calendars to distribution frameworks.',
         targetKeywords: ['content strategy agency', 'content marketing', 'content planning'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Content Without Strategy', description: 'You publish content reactively without a plan tied to business objectives or audience needs.' },
             { title: 'No Content System', description: 'Your content production is ad hoc — no editorial calendar, no distribution plan, no measurement.' },
@@ -1636,6 +1760,13 @@ export const services: ServiceData[] = [
         headline: 'Pitch Decks That Close Deals and Raise Capital.',
         description: 'Investor pitch decks, sales presentations, and partnership proposals designed with compelling narratives, stunning visuals, and data-driven storytelling.',
         targetKeywords: ['pitch deck agency', 'pitch deck design', 'investor presentation design'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Forgettable Presentations', description: 'Your pitch deck looks like every other startup deck — generic templates, wall-of-text slides, no visual impact.' },
             { title: 'Weak Narrative Arc', description: 'Your deck presents information but does not tell a compelling story that moves investors or buyers to action.' },
@@ -1678,6 +1809,13 @@ export const services: ServiceData[] = [
         headline: 'Custom AI Agents That Work 24/7.',
         description: 'Purpose-built AI agents for lead qualification, customer support, content generation, and internal operations — deployed on your stack and trained on your data.',
         targetKeywords: ['AI agents agency', 'custom AI agents', 'AI agent development'],
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage and growth-stage companies looking for expert marketing support without the cost of a full-time hire.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores and direct-to-consumer brands looking to grow revenue and improve marketing efficiency.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software and B2B companies looking to build pipeline, reduce CAC, and accelerate growth.', icon: 'Briefcase' },
+            { title: 'Established brands', description: 'Mid-market and enterprise companies looking for a strategic partner to optimise or transform their marketing operations.', icon: 'Building2' },
+        ],
+        catchAllText: 'We also work with education institutions, real estate firms, health & wellness brands, authors, coaches, and more. Whatever your industry, we bring the strategy and execution to grow your business.',
         problems: [
             { title: 'Manual Repetitive Tasks', description: 'Your team spends hours on tasks that an AI agent could handle in seconds — qualification, routing, responses, data entry.' },
             { title: 'Slow Customer Response', description: 'Leads and customers wait hours or days for a response because your team cannot respond instantly 24/7.' },

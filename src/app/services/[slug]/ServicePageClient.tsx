@@ -6,6 +6,138 @@ import Image from 'next/image';
 import { ServiceData } from '@/data/servicePages';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import { useInView } from '@/lib/hooks';
+import type { LucideIcon } from 'lucide-react';
+import {
+    Sparkles, Target, BarChart3, GitBranch, Rocket, PiggyBank, RefreshCw,
+    GraduationCap, Building2, ShoppingCart, BadgeDollarSign, TrendingUp,
+    FileBarChart, UserCheck, Zap, Layers, FlaskConical, LayoutGrid, Type,
+    Palette, Gauge, Activity, ArrowDownRight, ArrowUpRight, Banknote,
+    Search, Share2, ClipboardCheck, Wand2, Code2, BookOpen, Home, Video,
+    Megaphone, Pencil, Bot, Brain, Globe, Shield, Clock, Eye, Users,
+    MousePointerClick, LineChart, Cpu, Star, Lightbulb, CheckCircle2,
+    Heart, Mic, Scale, ShoppingBag, UtensilsCrossed, Briefcase,
+} from 'lucide-react';
+
+/* ─── Icon mappings ─── */
+
+/** Per-service hero value-prop icons (3 per service, matching benefit order) */
+const heroIconMap: Record<string, LucideIcon[]> = {
+    'google-ads':              [BadgeDollarSign, Target, BarChart3],
+    'meta-ads':                [Sparkles, GitBranch, BarChart3],
+    'marketing-strategy-audit': [ClipboardCheck, LineChart, Lightbulb],
+    'creative-design':         [Palette, Pencil, Eye],
+    'ai-creative-design':      [Wand2, Sparkles, Zap],
+    'reels-editing':           [Video, Sparkles, TrendingUp],
+    'ai-automation':           [Bot, Cpu, Zap],
+    'no-code-development':     [Code2, Rocket, Globe],
+    'ai-workshops':            [GraduationCap, Brain, Users],
+    'real-estate-marketing':   [Home, Target, TrendingUp],
+    'book-marketing':          [BookOpen, Megaphone, TrendingUp],
+    'education-marketing':     [GraduationCap, Target, BarChart3],
+};
+
+/** Persona card icons — matched by keyword in persona title */
+const personaIconKeywords: [string[], LucideIcon][] = [
+    [['growth', 'scale', 'scaling'],       Rocket],
+    [['budget', 'cost', 'lean', 'bootstrap'], PiggyBank],
+    [['agency', 'fatigued', 'switch', 'burned'], RefreshCw],
+    [['first', 'new', 'beginner', 'starting', 'learn'], GraduationCap],
+    [['enterprise', 'corporate', 'large'],  Building2],
+    [['ecommerce', 'e-commerce', 'shop', 'store', 'retail', 'd2c'], ShoppingCart],
+    [['startup', 'founder'],                Rocket],
+    [['marketing', 'marketer', 'cmo'],      Megaphone],
+    [['author', 'book', 'publisher'],       BookOpen],
+    [['real estate', 'property', 'broker'], Home],
+    [['saas', 'software', 'tech'],          Code2],
+    [['education', 'school', 'university'], GraduationCap],
+    [['creator', 'influencer', 'content'],  Video],
+    [['brand', 'manager'],                  Star],
+];
+
+/** Map icon name strings (from data) to Lucide components */
+const iconByName: Record<string, LucideIcon> = {
+    Rocket, ShoppingBag, Briefcase, Building2, ShoppingCart,
+    GraduationCap, Heart, BookOpen, Mic, Home, Code2,
+    Star, Target, Users, Scale, UtensilsCrossed, Video,
+    Sparkles, Bot, Brain, Pencil, Wand2, Megaphone, Search,
+    Share2, ClipboardCheck, Zap, Eye, Shield,
+};
+
+function getPersonaIcon(title: string, iconName?: string): LucideIcon {
+    if (iconName && iconByName[iconName]) return iconByName[iconName];
+    const lower = title.toLowerCase();
+    for (const [keywords, icon] of personaIconKeywords) {
+        if (keywords.some((kw) => lower.includes(kw))) return icon;
+    }
+    return Users;
+}
+
+/** Benefit icons — matched by keyword in benefit title */
+const benefitIconKeywords: [string[], LucideIcon][] = [
+    [['cpa', 'cost per', 'acquisition cost'],  BadgeDollarSign],
+    [['roas', 'return on ad', 'roi', 'return'], TrendingUp],
+    [['ai', 'artificial', 'machine learning', 'smart'], Sparkles],
+    [['report', 'analytics', 'dashboard', 'data', 'insight'], FileBarChart],
+    [['strategist', 'dedicated', 'fractional', 'cmo', 'expert'], UserCheck],
+    [['speed', 'fast', 'quick', 'rapid', 'turnaround', 'velocity'], Zap],
+    [['full-funnel', 'funnel', 'full funnel', 'pipeline'],  Layers],
+    [['test', 'a/b', 'experiment', 'optimization', 'creative testing'], FlaskConical],
+    [['lead', 'qualified', 'generation'],      Target],
+    [['scale', 'growth', 'grow'],              Rocket],
+    [['automat', 'workflow', 'efficiency'],    Bot],
+    [['brand', 'awareness', 'visibility'],     Eye],
+    [['transparent', 'clarity', 'no hidden'],  Shield],
+    [['custom', 'tailored', 'personali'],      Palette],
+    [['time', 'save', 'hours'],                Clock],
+    [['engage', 'click', 'ctr', 'conversion'], MousePointerClick],
+    [['content', 'creative', 'design'],        Pencil],
+    [['team', 'train', 'upskill', 'workshop'], GraduationCap],
+    [['integration', 'connect', 'api'],        Globe],
+    [['revenue', 'profit', 'sales', 'money'],  Banknote],
+    [['produc', 'mvp', 'launch', 'ship'],      Rocket],
+    [['always-on', 'pipeline', '24/7'],        Activity],
+];
+
+function getBenefitIcon(title: string): LucideIcon {
+    const lower = title.toLowerCase();
+    for (const [keywords, icon] of benefitIconKeywords) {
+        if (keywords.some((kw) => lower.includes(kw))) return icon;
+    }
+    return CheckCircle2;
+}
+
+/** Sub-service icons — cycled from this list */
+const subServiceIcons: LucideIcon[] = [
+    LayoutGrid, Target, Type, Palette, Gauge, Activity, FlaskConical, BarChart3,
+];
+
+/** Stats icons — based on metric content */
+function getStatIcon(metric: string): { Icon: LucideIcon; color: string } {
+    const lower = metric.toLowerCase();
+    if (lower.includes('↓') || lower.includes('down') || lower.includes('decrease') || lower.includes('lower') || lower.includes('reduc') || lower.includes('cpa') || lower.includes('cost')) {
+        return { Icon: ArrowDownRight, color: '#059669' };
+    }
+    if (lower.includes('↑') || lower.includes('up') || lower.includes('increase') || lower.includes('higher') || lower.includes('roas') || lower.includes('growth') || lower.includes('+') || lower.includes('%') || lower.includes('x')) {
+        return { Icon: ArrowUpRight, color: '#059669' };
+    }
+    return { Icon: Banknote, color: '#E8613A' };
+}
+
+/** Related services master icon map — by slug */
+const serviceIconMap: Record<string, LucideIcon> = {
+    'google-ads':              Search,
+    'meta-ads':                Share2,
+    'marketing-strategy-audit': ClipboardCheck,
+    'creative-design':         Pencil,
+    'ai-creative-design':      Wand2,
+    'reels-editing':           Video,
+    'ai-automation':           Bot,
+    'no-code-development':     Code2,
+    'ai-workshops':            GraduationCap,
+    'real-estate-marketing':   Home,
+    'book-marketing':          BookOpen,
+    'education-marketing':     GraduationCap,
+};
 
 /* ─── Client logos for social proof bar ─── */
 const clientLogos = [
@@ -264,17 +396,19 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 {service.description}
                             </p>
 
-                            {/* Value props — positive outcomes with checkmarks */}
+                            {/* Value props — positive outcomes with per-service icons */}
                             {service.benefits && service.benefits.length > 0 && (
                                 <div className="space-y-3 mb-8">
-                                    {service.benefits.slice(0, 3).map((benefit, i) => (
-                                        <div key={i} className="flex items-start gap-3">
-                                            <svg className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                            <span className="text-sm text-brand-gray-light">{benefit.title}</span>
-                                        </div>
-                                    ))}
+                                    {service.benefits.slice(0, 3).map((benefit, i) => {
+                                        const icons = heroIconMap[service.slug];
+                                        const HeroIcon = icons ? icons[i % icons.length] : CheckCircle2;
+                                        return (
+                                            <div key={i} className="flex items-start gap-3">
+                                                <HeroIcon className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" strokeWidth={1.5} />
+                                                <span className="text-sm text-brand-gray-light">{benefit.title}</span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             )}
 
@@ -430,7 +564,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                 </section>
             )}
 
-            {/* ─── 4. WHO IS THIS FOR ─── */}
+            {/* ─── 4. WHO IS THIS FOR (2×2 grid + catch-all line) ─── */}
             {service.personas && service.personas.length > 0 && (
                 <section ref={personaRef} className="py-16 sm:py-24 bg-brand-darker">
                     <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -440,23 +574,29 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 Built for teams that are <span className="font-display italic font-normal">ready to grow.</span>
                             </h2>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {service.personas.map((persona, i) => (
-                                <div
-                                    key={i}
-                                    className={`p-6 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                    style={{ animationDelay: `${i * 0.08}s` }}
-                                >
-                                    <div className="w-9 h-9 rounded-lg bg-brand-accent/10 flex items-center justify-center mb-4">
-                                        <svg className="w-4.5 h-4.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                        </svg>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {service.personas.slice(0, 4).map((persona, i) => {
+                                const PersonaIcon = getPersonaIcon(persona.title, persona.icon);
+                                return (
+                                    <div
+                                        key={i}
+                                        className={`p-6 rounded-xl bg-white/[0.02] border border-white/10 hover:border-brand-border-hover transition-all duration-300 ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${i * 0.08}s` }}
+                                    >
+                                        <div className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-4" style={{ background: 'rgba(232,99,58,0.12)' }}>
+                                            <PersonaIcon className="w-[22px] h-[22px] text-brand-accent" strokeWidth={1.5} />
+                                        </div>
+                                        <h3 className="text-[15px] font-medium text-[#f1f1ef] mb-2">{persona.title}</h3>
+                                        <p className="text-[13px] text-[#9ca3af] leading-[1.55] line-clamp-2">{persona.description}</p>
                                     </div>
-                                    <h3 className="text-sm font-semibold text-brand-white mb-2">{persona.title}</h3>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{persona.description}</p>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
+                        {service.catchAllText && (
+                            <p className={`mt-6 text-[13px] leading-[1.6] text-center max-w-[600px] mx-auto ${personaInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.35s' }}>
+                                <span className="text-[#6b7280]">{service.catchAllText}</span>
+                            </p>
+                        )}
                     </div>
                 </section>
             )}
@@ -477,19 +617,24 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             </p>
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-0">
                             {service.approachPoints.map((point, i) => (
                                 <div
                                     key={i}
-                                    className={`flex items-start gap-3 p-3 rounded-lg hover:bg-brand-card/50 transition-colors duration-200 ${approachInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                    className={`flex items-start gap-4 ${approachInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                                     style={{ animationDelay: `${i * 0.06}s` }}
                                 >
-                                    <div className="mt-0.5 w-5 h-5 rounded-full bg-brand-accent/15 flex items-center justify-center shrink-0">
-                                        <svg className="w-3.5 h-3.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                        </svg>
+                                    <div className="flex flex-col items-center shrink-0">
+                                        <div className="w-8 h-8 rounded-full border-2 border-brand-accent bg-brand-accent/10 flex items-center justify-center">
+                                            <span className="text-xs font-bold text-brand-accent">{i + 1}</span>
+                                        </div>
+                                        {i < service.approachPoints.length - 1 && (
+                                            <div className="w-px h-8 border-l-2 border-dashed border-brand-border-subtle" />
+                                        )}
                                     </div>
-                                    <p className="text-sm text-brand-gray leading-relaxed">{point}</p>
+                                    <div className="pt-1 pb-4">
+                                        <p className="text-sm text-brand-gray leading-relaxed">{point}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -508,21 +653,22 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {service.benefits.map((benefit, i) => (
-                                <div
-                                    key={i}
-                                    className={`p-6 rounded-xl bg-brand-card/50 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${benefitsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                    style={{ animationDelay: `${i * 0.06}s` }}
-                                >
-                                    <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center mb-4">
-                                        <svg className="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                                        </svg>
+                            {service.benefits.map((benefit, i) => {
+                                const BenefitIcon = getBenefitIcon(benefit.title);
+                                return (
+                                    <div
+                                        key={i}
+                                        className={`p-6 rounded-xl bg-brand-card/50 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${benefitsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${i * 0.06}s` }}
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-4">
+                                            <BenefitIcon className="w-6 h-6 text-brand-accent" strokeWidth={1.5} />
+                                        </div>
+                                        <h3 className="text-sm font-semibold text-brand-white mb-2">{benefit.title}</h3>
+                                        <p className="text-xs text-brand-gray leading-relaxed">{benefit.description}</p>
                                     </div>
-                                    <h3 className="text-sm font-semibold text-brand-white mb-2">{benefit.title}</h3>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{benefit.description}</p>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
@@ -539,44 +685,49 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {service.subServices.map((sub, i) => (
-                                <div
-                                    key={i}
-                                    className={`group p-6 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                    style={{ animationDelay: `${i * 0.05}s` }}
-                                >
-                                    <div className="flex items-start gap-3 mb-3">
-                                        <div className="w-6 h-6 rounded-md bg-brand-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                                            <span className="text-brand-accent text-[10px] font-bold">{String(i + 1).padStart(2, '0')}</span>
+                            {service.subServices.map((sub, i) => {
+                                const SubIcon = subServiceIcons[i % subServiceIcons.length];
+                                return (
+                                    <div
+                                        key={i}
+                                        className={`group p-6 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 ${subServicesInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${i * 0.05}s` }}
+                                    >
+                                        <div className="flex items-start gap-3 mb-3">
+                                            <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center shrink-0">
+                                                <SubIcon className="w-6 h-6 text-brand-accent" strokeWidth={1.5} />
+                                            </div>
+                                            <div className="pt-1">
+                                                <h3 className="text-sm font-semibold text-brand-white group-hover:text-brand-accent transition-colors">
+                                                    {sub.title}
+                                                </h3>
+                                            </div>
                                         </div>
-                                        <h3 className="text-sm font-semibold text-brand-white group-hover:text-brand-accent transition-colors">
-                                            {sub.title}
-                                        </h3>
+                                        <p className="text-xs text-brand-gray leading-relaxed">{sub.description}</p>
+                                        {sub.slug ? (
+                                            <Link
+                                                href={`/services/${sub.slug}`}
+                                                className="inline-flex items-center gap-1 mt-3 text-[10px] font-medium text-brand-accent hover:underline"
+                                            >
+                                                Learn More
+                                                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                </svg>
+                                            </Link>
+                                        ) : (
+                                            <Link
+                                                href={`/services/${service.slug}#${sub.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                                className="inline-flex items-center gap-1 mt-3 text-[10px] font-medium text-brand-accent hover:underline"
+                                            >
+                                                Learn More
+                                                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                </svg>
+                                            </Link>
+                                        )}
                                     </div>
-                                    <p className="text-xs text-brand-gray leading-relaxed pl-9">{sub.description}</p>
-                                    {sub.slug ? (
-                                        <Link
-                                            href={`/services/${sub.slug}`}
-                                            className="inline-flex items-center gap-1 mt-3 pl-9 text-[10px] font-medium text-brand-accent hover:underline"
-                                        >
-                                            Learn More
-                                            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                            </svg>
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            href={`/services/${service.slug}#${sub.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                            className="inline-flex items-center gap-1 mt-3 pl-9 text-[10px] font-medium text-brand-accent hover:underline"
-                                        >
-                                            Learn More
-                                            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                            </svg>
-                                        </Link>
-                                    )}
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                         <div className="mt-8 text-center">
                             <Link
@@ -702,16 +853,20 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     </div>
                     {service.resultHighlights && service.resultHighlights.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {service.resultHighlights.map((result, i) => (
-                                <div
-                                    key={i}
-                                    className={`p-8 rounded-xl bg-brand-card border border-brand-border-subtle text-center ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                    style={{ animationDelay: `${i * 0.08}s` }}
-                                >
-                                    <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-accent mb-3">{result.metric}</p>
-                                    <p className="text-sm text-brand-gray leading-relaxed">{result.description}</p>
-                                </div>
-                            ))}
+                            {service.resultHighlights.map((result, i) => {
+                                const { Icon: StatIcon, color } = getStatIcon(result.metric);
+                                return (
+                                    <div
+                                        key={i}
+                                        className={`p-8 rounded-xl bg-brand-card border border-brand-border-subtle text-center ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${i * 0.08}s` }}
+                                    >
+                                        <StatIcon className="w-6 h-6 mx-auto mb-3" strokeWidth={1.5} style={{ color }} />
+                                        <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-accent mb-3">{result.metric}</p>
+                                        <p className="text-sm text-brand-gray leading-relaxed">{result.description}</p>
+                                    </div>
+                                );
+                            })}
                         </div>
                     ) : (
                         <p className={`text-sm text-brand-gray max-w-lg mx-auto leading-relaxed text-center ${resultsInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -783,29 +938,35 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            {relatedServices.map((rel) => (
-                                <Link
-                                    key={rel.slug}
-                                    href={`/services/${rel.slug}`}
-                                    className="group p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200"
-                                >
-                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-accent/10 text-[9px] font-medium text-brand-accent mb-3">
-                                        {rel.categoryLabel}
-                                    </div>
-                                    <h3 className="text-sm font-semibold text-brand-white mb-2 group-hover:text-brand-accent transition-colors duration-200">
-                                        {rel.title}
-                                    </h3>
-                                    <p className="text-xs text-brand-gray leading-relaxed line-clamp-2">
-                                        {rel.description}
-                                    </p>
-                                    <div className="mt-3 flex items-center gap-1 text-[10px] font-medium text-brand-accent">
-                                        Learn More
-                                        <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </div>
-                                </Link>
-                            ))}
+                            {relatedServices.map((rel) => {
+                                const RelIcon = serviceIconMap[rel.slug] || Sparkles;
+                                return (
+                                    <Link
+                                        key={rel.slug}
+                                        href={`/services/${rel.slug}`}
+                                        className="group p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200"
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-4">
+                                            <RelIcon className="w-6 h-6 text-brand-accent" strokeWidth={1.5} />
+                                        </div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-accent/10 text-[9px] font-medium text-brand-accent mb-3">
+                                            {rel.categoryLabel}
+                                        </div>
+                                        <h3 className="text-sm font-semibold text-brand-white mb-2 group-hover:text-brand-accent transition-colors duration-200">
+                                            {rel.title}
+                                        </h3>
+                                        <p className="text-xs text-brand-gray leading-relaxed line-clamp-2">
+                                            {rel.description}
+                                        </p>
+                                        <div className="mt-3 flex items-center gap-1 text-[10px] font-medium text-brand-accent">
+                                            Learn More
+                                            <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                            </svg>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
