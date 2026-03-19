@@ -44,6 +44,7 @@ Useful Tool → Solves Real Problem → User Shares It → Organic Traffic → T
 - No LLM API costs — tools use decision trees, weighted scoring, and Firecrawl
 - Dark luxury aesthetic maintained throughout
 - Sprint pace (~3-5 days)
+- New env variable required: `FIRECRAWL_API_KEY` (for Competitor Gap Analyzer only)
 
 ---
 
@@ -96,6 +97,13 @@ All lead captures feed into the existing Supabase leads system with `source: 'to
 - **Result:** Visual report card — your site vs. competitors across 8-10 dimensions. Email gate to get the full PDF report.
 - **Links to:** `/services/marketing-strategy-audit`, `/services/programmatic-seo`
 - **Tech:** Client component for UI. Server-side API route (`/api/tools/competitor-analyzer`) that calls Firecrawl. Results rendered client-side. This is the only tool with a backend component.
+- **Backend details:**
+  - New env variable: `FIRECRAWL_API_KEY` (add to `.env.local` and Vercel env vars)
+  - Firecrawl has a free tier; verify crawl limits during implementation. If per-crawl costs apply, add a daily usage cap.
+  - Rate limiting: Max 3 analyses per IP per hour (tracked via in-memory map or Supabase row). Prevents abuse/spam.
+  - Error handling: If Firecrawl is down or a URL is unreachable, show a graceful error message per-URL ("We couldn't reach this site") rather than failing the whole analysis. Partial results are still valuable.
+  - Loading state: Crawling takes 10-30 seconds. Show a progress UI with animated steps ("Crawling your site...", "Analyzing competitors...", "Generating report...").
+  - Timeout: 60-second max per crawl. Abort and show partial results if exceeded.
 
 ### 4.6 Tool 5: AI Readiness Assessment
 
@@ -111,8 +119,9 @@ All lead captures feed into the existing Supabase leads system with `source: 'to
 
 - **Data layer:** New `src/data/tools.ts` with a `ToolData` interface (slug, title, description, audience, linkedService, linkedResource)
 - **Page template:** `/tools/[slug]` with `generateStaticParams` from tools data. Each tool page imports a tool-specific client component.
-- **Email gate component:** Reusable `EmailGate.tsx` component. Renders a form (name + email) that blocks the full result until submitted. Posts to `/api/leads` with `source: 'tool-[slug]'`.
-- **Result sharing:** Each tool result generates a unique URL hash so users can bookmark/return to their result.
+- **Email gate component:** Reusable `EmailGate.tsx` component. Renders a form (name + email) that blocks the full result until submitted. Posts to `/api/leads` with `source: 'tool-[slug]'` and `service_interest` mapped from the tool's `linkedServiceSlug`. The component accepts a `source` and `serviceInterest` prop so it's reusable across tools and resources.
+- **Lead source integration:** The existing `/api/leads` route validates against `VALID_SOURCES` in `route.ts` and the `LeadSource` type in `src/types/lead.ts`. Phase 2 must extend both to accept new source values: `'tool-book-launch-planner'`, `'tool-budget-allocator'`, `'tool-andromeda-creative-matrix'`, `'tool-competitor-analyzer'`, `'tool-ai-readiness'`, `'resource-[slug]'` (for each e-book/template), and `'chatbot'`. The Supabase `leads` table `source` column should already accept arbitrary strings, but verify during implementation.
+- **Result sharing:** Each tool result encodes the user's inputs as a base64-encoded JSON string in the URL hash fragment (e.g., `/tools/budget-allocator#eyJidWRnZXQiOjEwMDAw...`). On page load, the component checks for a hash, decodes it, and restores the inputs to regenerate the result. This keeps state entirely client-side with no backend persistence. If the encoded hash exceeds 2000 characters, fall back to localStorage with a short ID in the hash.
 
 ---
 
@@ -296,7 +305,7 @@ Bot: Personalized recommendation
   - Appears after 10 seconds or 30% scroll (whichever comes first)
   - Does NOT appear on `/tools/*` or `/resources/*` pages (user is already engaged)
   - Collapsed by default, never auto-opens
-- **WhatsApp coexistence:** WhatsApp CTA becomes a secondary option inside the chatbot's final recommendation ("Prefer WhatsApp? Message us directly")
+- **WhatsApp coexistence:** On pages where the chatbot appears, WhatsApp CTA becomes a secondary option inside the chatbot's final recommendation ("Prefer WhatsApp? Message us directly"). On `/tools/*` and `/resources/*` pages where the chatbot is hidden, the existing WhatsApp floating CTA remains visible and independent in the bottom-right position.
 
 ---
 
@@ -369,11 +378,11 @@ Recommended posts:
 | `src/app/resources/page.tsx` | Resource hub page |
 | `src/app/resources/[slug]/page.tsx` | Resource landing page template |
 | `src/app/tools/[slug]/page.tsx` | Tool page template |
-| `src/app/tools/[slug]/BookLaunchPlanner.tsx` | Book Launch Planner tool component |
-| `src/app/tools/[slug]/BudgetAllocator.tsx` | Budget Allocator tool component |
-| `src/app/tools/[slug]/AndromedalMatrix.tsx` | Andromeda Creative Testing Matrix component |
-| `src/app/tools/[slug]/CompetitorAnalyzer.tsx` | Competitor Gap Analyzer component |
-| `src/app/tools/[slug]/AiReadiness.tsx` | AI Readiness Assessment component |
+| `src/components/tools/BookLaunchPlanner.tsx` | Book Launch Planner tool component |
+| `src/components/tools/BudgetAllocator.tsx` | Budget Allocator tool component |
+| `src/components/tools/AndromedaMatrix.tsx` | Andromeda Creative Testing Matrix component |
+| `src/components/tools/CompetitorAnalyzer.tsx` | Competitor Gap Analyzer component |
+| `src/components/tools/AiReadiness.tsx` | AI Readiness Assessment component |
 | `src/app/api/tools/competitor-analyzer/route.ts` | Firecrawl API route for Competitor Analyzer |
 | `src/components/ui/ChatWidget.tsx` | Lead qualifier chatbot widget |
 | `src/components/ui/EmailGate.tsx` | Reusable email gate component |
