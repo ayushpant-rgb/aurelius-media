@@ -125,6 +125,25 @@ We employ a sleek, dark-mode-first luxury aesthetic.
 - Ghost: `.btn-ghost` — transparent bg, white/08 border, 20px radius.
 - Orange outline: `.btn-outline-or` — orange text/border, transparent bg.
 
+**Blog Typography (`.blog-article` class in `globals.css`):**
+- **Body text:** Inter 16px, line-height 1.75, color `rgba(255,255,255,0.65)`, max-width 680px, 20px paragraph spacing.
+- **H2:** Plus Jakarta Sans, 28px, weight 800, letter-spacing -0.03em, margin-top 48px, margin-bottom 16px, line-height 1.2.
+- **H3:** Plus Jakarta Sans, 20px, weight 700, letter-spacing -0.01em, margin-top 36px, margin-bottom 12px, line-height 1.3.
+- **Links:** `#FF7A3D` with underline, 3px offset, hover intensifies underline color.
+- **List markers:** Orange `#FF7A3D` (not white).
+- **Blockquotes:** 3px orange left border (not gold), Plus Jakarta Sans 20px italic bold, white text, leading 1.45.
+- **Code blocks:** Header bar (`bg-brand-card-hover`, language label + copy button) + body (`font-mono 13px`, line-height 1.7). Inline code uses `#FF7A3D` accent color.
+- **Images:** 12px radius, subtle border.
+- **Tables:** Full-width, mono uppercase headers, striped hover rows, subtle borders.
+- **Article width:** 680px body text, 900px hero/wide elements.
+
+**Blog Listing Cards:**
+- 3-column grid, 20px radius, 200px image area, orange hover border + 3px lift.
+- Category pills use `.tag` + `.tag-orange`/`.tag-green`/`.tag-blue` CSS classes.
+- Featured post: 2-column card (image left, content right), only shown on "All" filter.
+- Author avatars: 28px circles with real photo.
+- Newsletter CTA: warm gradient card (`#1A0D05` → `brand-card`), orange border, 24px radius.
+
 ## 7. CMS / Content Schema
 
 ### Services Interface (`src/data/servicePages.ts`)
@@ -389,3 +408,9 @@ If you are modifying this codebase:
 - **March 19, 2026:** Contained `FeaturedResults` case studies carousel within `max-w-7xl` (no longer edge-to-edge). Switched from JS requestAnimationFrame to CSS `animate-scroll-rtl-slow` animation. Cards enlarged to 400×460px on desktop. Swapped images for Stealth Health Tech Startup and Private University.
 - **March 19, 2026:** Changed service page lead gen form budget options from INR (₹1L–₹20L+) to USD ($1,000–$20,000+).
 - **March 19, 2026:** Fixed Hero sub-headline text clipping on mobile: widened from `max-w-md` to `max-w-lg` with `px-2` padding.
+- **March 19, 2026:** Blog redesign per Blog Style Tile v1.0:
+  - **Blog listing page (`BlogListClient.tsx`):** Redesigned header ("Latest insights." with gradient text + subtitle), horizontal category filter pills, featured post as 2-column hero card (image left, content right), 3-column card grid with 20px radius + orange hover glow + 3px lift + author photo avatars, "Load more" ghost button, warm-gradient newsletter CTA section with email input.
+  - **Blog post page (`BlogPostClient.tsx`):** Centered article header (category pill + read time → large title → author photo + name/role + date), 900px-wide hero image with 16:9 ratio + 20px radius, 680px article body using `.blog-article` CSS class (Inter 16px/1.75, orange list markers, orange-bordered pull quotes, code blocks with language header bar + copy button), redesigned author card (photo + bio), warm-gradient inline CTA, "Keep reading" related posts 3-column grid, newsletter CTA at bottom.
+  - **Server component (`page.tsx`):** Now fetches and passes `relatedPosts` (same category prioritized, max 3) to BlogPostClient.
+  - **Homepage blog preview (`BlogPreview.tsx`):** Updated cards to match new listing card style (20px radius, orange hover border, 200px image height, category tag pills, author photo avatars, short date format).
+  - **`globals.css`:** Added comprehensive `.blog-article` typography styles (headings, body, links, lists, blockquotes, code, tables, images, hr) replacing inline MDX component classes.

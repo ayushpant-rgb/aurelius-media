@@ -5,11 +5,31 @@ import Image from 'next/image';
 import { useInView } from '@/lib/hooks';
 import { BlogPostMeta } from '@/lib/blog';
 
-const categoryColors: Record<string, string> = {
-    'AI Marketing': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    'Case Study': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    'Creative Production': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+const categoryTagClass: Record<string, string> = {
+    'Performance Marketing': 'tag-orange',
+    'Performance Advertising': 'tag-orange',
+    'Paid Media': 'tag-orange',
+    'Book Marketing': 'tag-orange',
+    'Creative Production': 'tag-orange',
+    'SEO & Content Strategy': 'tag-green',
+    'Case Study': 'tag-green',
+    'Industry Insights': 'tag-green',
+    'Growth Engineering': 'tag-blue',
+    'AI Marketing': 'tag-blue',
+    'Tutorials': 'tag-blue',
 };
+
+function getTagClass(category: string): string {
+    return categoryTagClass[category] || 'tag-orange';
+}
+
+function getInitials(name: string): string {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function formatDateShort(dateStr: string): string {
+    return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
 
 export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
     const { ref, inView } = useInView();
@@ -20,7 +40,7 @@ export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
                 {/* Section Header */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
                     <div>
-                        <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-4">Blog</p>
+                        <p className="section-label">Blog</p>
                         <h2 className="text-3xl sm:text-4xl font-bold">
                             Latest <span className="gradient-text font-display">Insights</span>
                         </h2>
@@ -42,45 +62,56 @@ export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className={`group flex flex-col rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${inView ? 'animate-fade-in-up' : 'opacity-0'
-                                }`}
+                            className={`group flex flex-col rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-[rgba(232,85,15,0.3)] transition-all duration-300 overflow-hidden hover:-translate-y-[3px] ${
+                                inView ? 'animate-fade-in-up' : 'opacity-0'
+                            }`}
                             style={{ animationDelay: `${i * 0.1}s` }}
                         >
-                            {/* Image Placeholder or Actual Image */}
-                            <div className="relative aspect-[4/3] bg-gradient-to-br from-brand-card to-brand-dark overflow-hidden">
+                            {/* Image */}
+                            <div className="relative h-[200px] bg-gradient-to-br from-brand-card-hover to-brand-dark overflow-hidden">
                                 {post.ogImage ? (
                                     <Image
                                         src={post.ogImage}
                                         alt={post.title}
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        sizes="(max-width: 768px) 100vw, 380px"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center">
-                                        <span className="text-4xl opacity-30">📝</span>
+                                    <div className="w-full h-full flex items-center justify-center text-[11px] text-brand-gray-dark">
+                                        Article cover
                                     </div>
                                 )}
                             </div>
 
                             <div className="p-6 flex flex-col flex-1">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${categoryColors[post.category] || 'bg-brand-card text-brand-gray border-brand-border'}`}>
+                                <div className="flex items-center gap-2 mb-2.5">
+                                    <span
+                                        className={`tag ${getTagClass(post.category)}`}
+                                        style={{ fontSize: '9px', padding: '2px 8px' }}
+                                    >
                                         {post.category}
                                     </span>
-                                    <span className="text-xs text-brand-gray-dark">{post.readTime}</span>
+                                    <span className="text-[11px] text-brand-gray-dark">{post.readTime}</span>
                                 </div>
 
-                                <h3 className="text-base font-bold mb-2 group-hover:text-brand-white transition-colors leading-snug">
+                                <h3 className="font-display text-[18px] font-bold tracking-[-0.02em] leading-[1.3] text-brand-white mb-2">
                                     {post.title}
                                 </h3>
 
-                                <p className="text-sm text-brand-gray leading-relaxed flex-1">
+                                <p className="text-[13px] text-brand-gray leading-[1.6] flex-1 line-clamp-2">
                                     {post.excerpt}
                                 </p>
 
-                                <span className="mt-4 text-sm font-medium text-brand-accent group-hover:text-brand-accent-hover transition-colors">
-                                    Read More →
-                                </span>
+                                <div className="flex items-center justify-between mt-4">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 border border-brand-border-subtle">
+                                            <Image src="/images/ayush.jpeg" alt={post.author} width={28} height={28} className="object-cover w-full h-full" />
+                                        </div>
+                                        <span className="text-[11px] text-brand-gray-dark">{post.author}</span>
+                                    </div>
+                                    <span className="text-[11px] text-brand-gray-dark font-mono">{formatDateShort(post.date)}</span>
+                                </div>
                             </div>
                         </Link>
                     ))}

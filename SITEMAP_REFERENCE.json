@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-03-18",
+  "last_updated": "2026-03-19",
   "total_pages": 40,
   "session_changes": {
-    "date": "2026-03-18",
-    "summary": "Design token migration + service expansion. 28 service pages (up from 12). Complete visual reskin: 3-tier dark surfaces, orange accent palette, Inter/Plus Jakarta Sans fonts, gradient-text replacing Playfair italic, 20px pill radius, floating navbar, atmospheric effects. Bento grid service cards. Comparison heading contrast.",
+    "date": "2026-03-19",
+    "summary": "Blog redesign per Blog Style Tile v1.0. Blog listing: featured 2-column hero card, 3-col card grid with author photos, category filter pills, newsletter CTA. Blog posts: centered header, 900px 16:9 hero, 680px article body with .blog-article CSS class, code blocks with language headers, related posts grid, newsletter CTA. Homepage BlogPreview updated to match.",
     "changes": [
       "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
       "ServicePageClient.tsx rewritten from 9 sections to V2 blueprint with inline lead capture forms, expanded FAQs, testimonial carousel, and WhatsApp floating CTA",
@@ -36,17 +36,36 @@
   },
   "design_system_updates": {
     "blog_typography": {
-      "body_text": "text-[17px] sm:text-lg, text-brand-white, leading-[1.85], mb-7",
-      "h2": "text-xl sm:text-2xl md:text-3xl, font-bold, mt-14 mb-5, tracking-tight",
-      "h3": "text-lg sm:text-xl, font-bold, mt-10 mb-4",
-      "links": "text-brand-white, hover:text-brand-accent, underline underline-offset-4",
-      "bullets": "marker:text-brand-white",
-      "blockquotes": "border-l-[3px] border-brand-gold, text-[19px] sm:text-xl italic",
-      "content_width": "max-w-[720px]"
+      "method": ".blog-article CSS class in globals.css (not inline Tailwind classes)",
+      "body_text": "Inter 16px, line-height 1.75, color rgba(255,255,255,0.65), 20px margin-bottom",
+      "h2": "Plus Jakarta Sans 28px, weight 800, letter-spacing -0.03em, mt-48px mb-16px, line-height 1.2",
+      "h3": "Plus Jakarta Sans 20px, weight 700, letter-spacing -0.01em, mt-36px mb-12px, line-height 1.3",
+      "links": "#FF7A3D, underline, text-underline-offset 3px, hover intensifies underline",
+      "bullets": "marker:text-brand-accent-text (#FF7A3D)",
+      "blockquotes": "border-l-[3px] border-brand-accent (orange, not gold), Plus Jakarta Sans 20px italic bold, white text, leading 1.45",
+      "code_blocks": "Header bar (bg-brand-card-hover, language label + copy button) + body (font-mono 13px, line-height 1.7). Inline code: #FF7A3D accent.",
+      "content_width": "max-w-[680px] (body), max-w-[900px] (hero/wide)"
     },
     "blog_images": {
-      "aspect_ratio": "4:3 (aspect-[4/3]) everywhere — homepage preview, blog hub cards, blog post hero",
-      "format": "All future blog images should be 4:3"
+      "hero_aspect_ratio": "16:9 on blog post hero (900px max-width, 20px border-radius)",
+      "listing_image_height": "200px fixed height on listing cards",
+      "format": "All future blog images should be 16:9 for hero, 200px height for cards"
+    },
+    "blog_listing": {
+      "header": "Latest insights. (gradient text) + subtitle + horizontal category filter pills",
+      "featured_card": "2-column grid (image left, content right), only on 'All' filter, for posts with featured:true",
+      "card_grid": "3-column, 20px radius, orange hover border + 3px lift, author photo avatar, category tag pills",
+      "newsletter_cta": "Warm gradient card (#1A0D05 → brand-card), orange border, 24px radius, email input + subscribe button",
+      "category_tags": "tag-orange (Paid Media, Book Marketing, Creative Production), tag-green (SEO, Case Study, Industry), tag-blue (AI, Growth Engineering, Tutorials)"
+    },
+    "blog_post": {
+      "header": "Centered: category pill + read time → title → author photo + name/role + date",
+      "hero": "900px max-width, 16:9 ratio, 20px border-radius, ambient orange glow above",
+      "article_body": ".blog-article CSS class, 680px max-width",
+      "author_card": "20px radius card, photo + name + role + bio, below article",
+      "inline_cta": "Warm gradient card, orange border, centered text + CTA button",
+      "related_posts": "Keep reading heading + 3-column card grid, bg-brand-card section",
+      "newsletter_cta": "Same style as listing page newsletter CTA"
     },
     "faq_component": {
       "file": "src/components/ui/FAQAccordion.tsx",
@@ -185,7 +204,7 @@
         "/blog/is-programmatic-seo-dead-in-2026"
       ],
       "internal_links_from": ["/", "Header", "Footer"],
-      "notes": "Blog hub card images now 4:3 aspect ratio. Category filter UI with colored badges."
+      "notes": "Redesigned per Blog Style Tile v1.0: 'Latest insights.' gradient header, category filter pills, featured 2-column hero card, 3-col card grid (20px radius, 200px image height, author photo avatars, orange hover glow), 'Load more' ghost button, warm-gradient newsletter CTA section."
     },
     {
       "route": "/services/marketing-strategy-audit",
@@ -723,7 +742,7 @@
         "/blog/instagram-growth-strategy-for-authors-2026",
         "/blog/is-programmatic-seo-dead-in-2026"
       ],
-      "notes": "Blog post template updated: 17-18px body text, 1.85 line-height, 720px content column, 4:3 hero image aspect ratio. Blog FAQs use <details>/<summary> HTML styled via globals.css."
+      "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
   ],
   "reusable_components": [

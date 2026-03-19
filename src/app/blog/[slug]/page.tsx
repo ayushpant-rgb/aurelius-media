@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getAllSlugs, getPostBySlug } from '@/lib/blog';
+import { getAllPosts, getAllSlugs, getPostBySlug } from '@/lib/blog';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
@@ -67,6 +67,17 @@ export default async function BlogPostPage({ params }: Props) {
         },
     };
 
+    // Get related posts: same category first, then recent, exclude current
+    const allPosts = getAllPosts();
+    const relatedPosts = allPosts
+        .filter(p => p.slug !== slug)
+        .sort((a, b) => {
+            const aMatch = a.category === post.category ? 1 : 0;
+            const bMatch = b.category === post.category ? 1 : 0;
+            return bMatch - aMatch;
+        })
+        .slice(0, 3);
+
     return (
         <>
             <script
@@ -77,7 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
             />
-            <BlogPostClient post={post} />
+            <BlogPostClient post={post} relatedPosts={relatedPosts} />
         </>
     );
 }
