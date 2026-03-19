@@ -137,6 +137,11 @@ We employ a sleek, dark-mode-first luxury aesthetic.
 - **Tables:** Full-width, mono uppercase headers, striped hover rows, subtle borders.
 - **Article width:** 680px body text, 900px hero/wide elements.
 
+**Blog Content Components (reusable CSS classes in `globals.css`):**
+- `.blog-tree` — Visual tree/hierarchy diagrams. Use in MDX with `.blog-tree-hub` (orange-bordered hub card), `.blog-tree-clusters` (left-bordered container), `.blog-tree-cluster` (individual cluster with `.blog-tree-label` + `.blog-tree-items` + `.blog-tree-item`). Replaces broken Unicode box-drawing code blocks.
+- `.blog-callout` — Tip/info callout boxes. Orange left border accent, dark card bg. Use `.blog-callout-title` + `<p>` inside.
+- `.blog-stats` — 3-column stat card grid (collapses to 1-col on mobile). Use `.blog-stat` with `.blog-stat-num` + `.blog-stat-label` inside.
+
 **Blog Listing Cards:**
 - 3-column grid, 20px radius, 200px image area, orange hover border + 3px lift.
 - Category pills use `.tag` + `.tag-orange`/`.tag-green`/`.tag-blue` CSS classes.
@@ -414,3 +419,4 @@ If you are modifying this codebase:
   - **Server component (`page.tsx`):** Now fetches and passes `relatedPosts` (same category prioritized, max 3) to BlogPostClient.
   - **Homepage blog preview (`BlogPreview.tsx`):** Updated cards to match new listing card style (20px radius, orange hover border, 200px image height, category tag pills, author photo avatars, short date format).
   - **`globals.css`:** Added comprehensive `.blog-article` typography styles (headings, body, links, lists, blockquotes, code, tables, images, hr) replacing inline MDX component classes.
+- **March 19, 2026:** Added reusable blog content components to `globals.css`: `.blog-tree` (visual hierarchy diagrams with hub/cluster/item structure), `.blog-callout` (tip/info boxes with orange left border), `.blog-stats` (3-column responsive stat cards). Replaced broken Unicode tree diagram in `is-programmatic-seo-dead-in-2026.mdx` with `.blog-tree` component markup.

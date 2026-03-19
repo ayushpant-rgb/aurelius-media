@@ -67,6 +67,13 @@
       "related_posts": "Keep reading heading + 3-column card grid, bg-brand-card section",
       "newsletter_cta": "Same style as listing page newsletter CTA"
     },
+    "blog_content_components": {
+      "file": "src/app/globals.css",
+      "tree_diagram": ".blog-tree — visual hierarchy diagrams. Children: .blog-tree-hub (orange-bordered hub), .blog-tree-clusters (left-bordered container), .blog-tree-cluster (.blog-tree-label + .blog-tree-items + .blog-tree-item). Use in MDX via raw HTML divs with className.",
+      "callout_box": ".blog-callout — tip/info boxes. Orange 4px left border, dark card bg, 12px radius. Children: .blog-callout-title + <p>.",
+      "stat_cards": ".blog-stats — 3-column grid (1-col mobile). Children: .blog-stat (.blog-stat-num + .blog-stat-label).",
+      "usage": "Use directly in MDX files via <div className='blog-tree'> etc. No React component import needed."
+    },
     "faq_component": {
       "file": "src/components/ui/FAQAccordion.tsx",
       "style": "Divider-based (border-top/bottom lines, not boxed cards), large question text (text-lg sm:text-xl), circled plus/minus icon, smooth grid-row expand animation",
