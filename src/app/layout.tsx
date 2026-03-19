@@ -25,6 +25,10 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.aureliusmedia.co"),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Aurelius Media | AI-Powered Performance Marketing Agency",
     template: "%s | Aurelius Media",
