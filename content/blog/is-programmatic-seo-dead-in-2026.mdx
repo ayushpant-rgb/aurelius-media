@@ -139,29 +139,45 @@ Isolated programmatic pages — even thousands of them — no longer hold long-t
 
 The architecture that works — here's how Wise (formerly TransferWise) structures their currency ecosystem, one of the most successful pSEO implementations ever built:
 
-```
-Hub: "International Money Transfer" (pillar page — ranks for 50+ head terms)
-│
-├── Cluster A: Currency Converters (8,500+ pages)
-│   ├── "1 USD to EUR" → real-time rate + fee calculator + historical chart
-│   ├── "1 GBP to INR" → same template, entirely different data
-│   └── Every currency pair gets its own page with live data
-│
-├── Cluster B: Country Transfer Guides (190+ pages)
-│   ├── "How to Send Money to India" → regulations, fees, speed comparison
-│   ├── "How to Send Money to Nigeria" → unique banking context, local options
-│   └── Cross-links to relevant currency pairs in Cluster A
-│
-├── Cluster C: Comparison Pages (500+ pages)
-│   ├── "Wise vs PayPal for USD to PHP" → proprietary fee comparison data
-│   ├── "Wise vs Western Union for GBP to EUR" → real cost breakdowns
-│   └── Each page links back to the relevant converter + country guide
-│
-└── Cluster D: Educational Content (200+ pages)
-    ├── "What Is SWIFT?" → contextual links to country guides
-    ├── "Mid-Market Exchange Rate Explained" → links to converters
-    └── Builds E-E-A-T for the entire topical ecosystem
-```
+<div className="blog-tree">
+  <div className="blog-tree-hub">
+    Hub: "International Money Transfer" <span className="muted">— pillar page, ranks for 50+ head terms</span>
+  </div>
+  <div className="blog-tree-clusters">
+    <div className="blog-tree-cluster">
+      <div className="blog-tree-label">Cluster A: Currency Converters <span className="count">(8,500+ pages)</span></div>
+      <div className="blog-tree-items">
+        <div className="blog-tree-item">"1 USD to EUR" — real-time rate + fee calculator + historical chart</div>
+        <div className="blog-tree-item">"1 GBP to INR" — same template, entirely different data</div>
+        <div className="blog-tree-item"><em>Every currency pair gets its own page with live data</em></div>
+      </div>
+    </div>
+    <div className="blog-tree-cluster">
+      <div className="blog-tree-label">Cluster B: Country Transfer Guides <span className="count">(190+ pages)</span></div>
+      <div className="blog-tree-items">
+        <div className="blog-tree-item">"How to Send Money to India" — regulations, fees, speed comparison</div>
+        <div className="blog-tree-item">"How to Send Money to Nigeria" — unique banking context, local options</div>
+        <div className="blog-tree-item"><em>Cross-links to relevant currency pairs in Cluster A</em></div>
+      </div>
+    </div>
+    <div className="blog-tree-cluster">
+      <div className="blog-tree-label">Cluster C: Comparison Pages <span className="count">(500+ pages)</span></div>
+      <div className="blog-tree-items">
+        <div className="blog-tree-item">"Wise vs PayPal for USD to PHP" — proprietary fee comparison data</div>
+        <div className="blog-tree-item">"Wise vs Western Union for GBP to EUR" — real cost breakdowns</div>
+        <div className="blog-tree-item"><em>Each page links back to the relevant converter + country guide</em></div>
+      </div>
+    </div>
+    <div className="blog-tree-cluster">
+      <div className="blog-tree-label">Cluster D: Educational Content <span className="count">(200+ pages)</span></div>
+      <div className="blog-tree-items">
+        <div className="blog-tree-item">"What Is SWIFT?" — contextual links to country guides</div>
+        <div className="blog-tree-item">"Mid-Market Exchange Rate Explained" — links to converters</div>
+        <div className="blog-tree-item"><em>Builds E-E-A-T for the entire topical ecosystem</em></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 Notice the key pattern: **every page serves a genuinely different user intent**, powered by unique real-time data. The currency converter for USD→EUR and GBP→INR aren't template swaps with different keywords — they pull different exchange rates, different fee structures, different historical charts, and different regulatory footnotes. Google sees 8,500+ pages of unique, useful content, not one template repeated 8,500 times.
 
