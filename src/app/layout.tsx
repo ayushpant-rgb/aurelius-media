@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | Aurelius Media",
   },
   description:
-    "AI-powered performance marketing agency with 20+ years of experience. Google & Meta Ads, AI Creative, Video Production, Book Marketing and more. $15M+ in ad spend managed across 25+ countries.",
+    "AI-powered performance marketing agency. Google & Meta Ads, AI Creative, Video Production and more. $15M+ in ad spend managed across 25+ countries.",
   keywords: [
     "performance marketing agency",
     "AI marketing agency",
@@ -83,6 +83,15 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y2CTMVVP1H"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2CTMVVP1H');`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -104,9 +113,9 @@ export default function RootLayout({
                 addressCountry: "IN",
               },
               sameAs: [
-                "https://linkedin.com/company/aurelius-media",
-                "https://x.com/aureliusmedia",
-                "https://instagram.com/aureliusmedia",
+                "https://www.linkedin.com/in/ayushpant/",
+                "https://x.com/FollowAurelius",
+                "https://www.instagram.com/aurelius.media",
               ],
             }),
           }}

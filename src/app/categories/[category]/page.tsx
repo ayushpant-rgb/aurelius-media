@@ -51,8 +51,8 @@ interface CategoryData {
 const categories: Record<string, CategoryData> = {
     'performance-marketing': {
         title: 'Performance Marketing',
-        metaTitle: 'Performance Marketing Agency | Google, Meta, LinkedIn & TikTok Ads | Aurelius Media',
-        metaDescription: 'Full-funnel performance marketing across Google, Meta, LinkedIn, TikTok, and YouTube. AI-augmented bidding, creative testing at scale, and real-time attribution. Trusted by 200+ brands worldwide.',
+        metaTitle: 'Performance Marketing Agency | Aurelius Media',
+        metaDescription: 'Full-funnel performance marketing across Google, Meta, LinkedIn, TikTok, and YouTube. AI-augmented bidding and real-time attribution.',
         eyebrow: 'Paid Media',
         headline: 'From ad spend to measurable revenue.',
         subHeadline: 'Performance marketing that treats every dollar as an investment — not an experiment.',
@@ -110,8 +110,8 @@ const categories: Record<string, CategoryData> = {
     },
     'b2b-marketing': {
         title: 'B2B Marketing & Demand Gen',
-        metaTitle: 'B2B Marketing & Demand Generation Agency | ABM, LinkedIn & Outbound | Aurelius Media',
-        metaDescription: 'Account-based marketing, LinkedIn lead generation, outbound sequencing, and demand capture strategies for B2B companies. Build qualified pipeline, not just clicks.',
+        metaTitle: 'B2B Marketing & Demand Gen Agency | Aurelius Media',
+        metaDescription: 'Account-based marketing, LinkedIn lead gen, outbound sequencing, and demand capture for B2B companies. Build qualified pipeline, not clicks.',
         eyebrow: 'B2B Growth',
         headline: 'Build pipeline. Not just traffic.',
         subHeadline: 'Demand generation strategies designed for complex B2B sales cycles — from first touch to closed deal.',
@@ -168,8 +168,8 @@ const categories: Record<string, CategoryData> = {
     },
     'marketing-collaterals': {
         title: 'Marketing Collaterals',
-        metaTitle: 'Marketing Collaterals & Creative Production | UGC, Video, Design | Aurelius Media',
-        metaDescription: 'Ad creatives, brand videos, UGC ads, landing pages, pitch decks, and social assets — produced at 10x speed with AI-augmented creative tools and human creative direction.',
+        metaTitle: 'Creative Production | UGC, Video & Design | Aurelius Media',
+        metaDescription: 'Ad creatives, brand videos, UGC ads, landing pages, pitch decks, and social assets — produced at 10x speed with AI-augmented tools.',
         eyebrow: 'Creative & Production',
         headline: 'Creative that earns attention and drives action.',
         subHeadline: 'Every asset your campaigns need — produced at 10x speed with AI-augmented tools and human creative direction.',
@@ -227,8 +227,8 @@ const categories: Record<string, CategoryData> = {
     },
     'programmatic-seo': {
         title: 'Programmatic SEO & AEO',
-        metaTitle: 'Programmatic SEO & AI Engine Optimization (AEO) Agency | Aurelius Media',
-        metaDescription: 'Programmatic SEO systems that generate hundreds of keyword-optimized pages at scale. Plus AI Engine Optimization to surface your brand in ChatGPT, Perplexity, and Google AI Overviews.',
+        metaTitle: 'Programmatic SEO & AEO Agency | Aurelius Media',
+        metaDescription: 'Programmatic SEO that generates hundreds of keyword-optimized pages at scale. AI Engine Optimization for ChatGPT, Perplexity, and Google AI Overviews.',
         eyebrow: 'Organic Growth',
         headline: 'Own organic search. Win in the age of AI answers.',
         subHeadline: 'Programmatic SEO systems and AI Engine Optimization strategies that build sustainable, compounding organic growth.',
@@ -285,8 +285,8 @@ const categories: Record<string, CategoryData> = {
     },
     'web-apps-mvps': {
         title: 'Web Apps & MVPs',
-        metaTitle: 'Web App & MVP Development Agency | Idea to Prototype in 2 Weeks | Aurelius Media',
-        metaDescription: 'Rapid web app and MVP development using Next.js and AI-native tools. From idea to working prototype in 2 weeks. Internal tools, SaaS products, and marketing sites.',
+        metaTitle: 'Web App & MVP Development | Aurelius Media',
+        metaDescription: 'Rapid web app and MVP development using Next.js and AI tools. From idea to working prototype in 2 weeks. SaaS products and marketing sites.',
         eyebrow: 'Product & Dev',
         headline: 'Ship fast. Learn faster.',
         subHeadline: 'Rapid product development for teams that need to test, launch, and iterate — not wait 6 months for a spec.',
@@ -343,8 +343,8 @@ const categories: Record<string, CategoryData> = {
     },
     'full-funnel-marketing': {
         title: 'Full Funnel Marketing',
-        metaTitle: 'Full Funnel Marketing Agency | End-to-End Growth Partner | Aurelius Media',
-        metaDescription: 'End-to-end growth marketing — strategy, paid media, creative, email, SEO, and analytics. One team managing your entire marketing stack. Fractional CMO services available.',
+        metaTitle: 'Full Funnel Marketing Agency | Aurelius Media',
+        metaDescription: 'End-to-end growth marketing — strategy, paid media, creative, email, SEO, and analytics. One team managing your entire stack.',
         eyebrow: 'Growth System',
         headline: 'Your entire growth engine. One team.',
         subHeadline: 'Awareness to loyalty. Strategy, creative, paid media, email, SEO, and analytics — all working together as a cohesive system.',
@@ -417,6 +417,18 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     return {
         title: cat.metaTitle,
         description: cat.metaDescription,
+        openGraph: {
+            title: cat.metaTitle,
+            description: cat.metaDescription,
+            type: 'website',
+            url: `https://www.aureliusmedia.co/categories/${category}`,
+            images: [{ url: '/logo.png', alt: cat.title }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: cat.metaTitle,
+            description: cat.metaDescription,
+        },
     };
 }
 

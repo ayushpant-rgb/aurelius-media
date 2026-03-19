@@ -6,8 +6,8 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, About, Services Hub, Service Sub-pages, Categories, Blog, Contact). 28 specific service pages built with programmatic routing. 5 blog posts live. All core homepage sections complete with scroll animations and marquee testimonials.
-- **Live URL:** `http://localhost:3000` (Currently in local development)
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact). 28 specific service pages built with programmatic routing. 7 blog posts live. All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links.
+- **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
 - **Framework:** Next.js 16.1.6 (App Router)
@@ -34,7 +34,8 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 ```text
 /src
   /app                 # Next.js App Router pages and layouts
-    /about             # About page route
+    /admin             # Admin dashboard (leads management)
+    /api               # API routes (leads submission)
     /blog              # Blog hub and dynamic [slug] routes
     /categories        # Dynamic category pages (e.g., performance-marketing)
     /contact           # Contact form route
@@ -47,7 +48,8 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
     /sections        # Large page blocks (Hero, CTABlock, MissionStatement, etc.)
     /ui              # Smaller reusable elements (cards, falling-pattern, shaders, BlurReveal)
   /data                # Static TS data (servicePages.ts, caseStudies.ts, events.ts)
-  /lib                 # Utilities (blog parser, hooks, schema.ts, utils.ts)
+  /lib                 # Utilities (blog parser, hooks, schema.ts, utils.ts, supabase.ts, emails.ts, admin-auth.ts)
+  /types               # TypeScript types (lead.ts)
 /content
   /blog                # Markdown files for blog posts
 /public
@@ -73,7 +75,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
   <section ref={ref} className={inView ? 'animate-fade-in-up' : 'opacity-0'}>
   ```
 - **BlurReveal:** `src/components/ui/BlurReveal.tsx` — a scroll-based blur+opacity reveal wrapper. Uses `IntersectionObserver` with 101 thresholds. Maps `intersectionRatio / 0.4` → progress (0–1), applies `filter: blur()` (max 18px) and `opacity` (0.3→1.0). Currently wraps only `MissionStatement` on the homepage. Do NOT apply it globally.
-- **Horizontal Marquee (Testimonials):** CSS-only infinite scroll via `@keyframes scroll-rtl` / `scroll-ltr` defined in `globals.css`. Pattern: duplicate array ×2, wrap in `flex gap-4` with the animation class, add left/right fade overlays. `group-hover:[animation-play-state:paused]` pauses on hover. Animation classes: `.animate-scroll-rtl` (18s), `.animate-scroll-ltr` (20s), `.animate-scroll-rtl-slow` (22s). Always use CSS classes — not inline `style={{ animation: '...' }}` — for reliable cross-browser behavior.
+- **Testimonials:** Desktop: 3 vertical columns with alternating scroll (down/up/down at 56s/63s/59s), fixed-height container with top/bottom fades. Mobile: 3 horizontal rows (RTL/LTR/RTL at 45s/40s/47s), each row features a single person (Cameron/Tom/Karan). CSS-only infinite scroll via `@keyframes scroll-rtl` / `scroll-ltr` / `marquee-vertical-down` / `marquee-vertical-up`. Always use CSS classes — not inline `style={{ animation: '...' }}` — for reliable cross-browser behavior.
 - **Responsive Images:** We use `next/image` with `object-cover` for nearly all images to retain aspect ratios nicely.
 - **Naming:** PascalCase for React components, camelCase for variables/functions.
 
@@ -110,7 +112,7 @@ We employ a sleek, dark-mode-first luxury aesthetic.
 
 **Animation Standards:**
 - **Classes:** `animate-fade-in-up`, `animate-fade-in`, `animate-slide-in-right`, `animate-pulse-glow`, `animate-marquee`, `animate-scroll-rtl`, `animate-scroll-ltr`, `animate-scroll-rtl-slow`, `animate-logo-scroll`.
-- **Durations:** `fade-in-up` defaults to 0.7s ease-out. Marquee rows: 18s / 20s / 22s.
+- **Durations:** `fade-in-up` defaults to 0.7s ease-out. Desktop testimonial columns: 56s/63s/59s. Mobile testimonial rows: 45s/40s/47s.
 - **Staggers:** When iterating mapping over arrays, use inline styles for staggered entries: `style={{ animationDelay: \`${i * 0.1}s\` }}`.
 - **Rule:** All animations must be defined as named CSS classes in `globals.css`. Never use inline `style={{ animation: '...' }}` for scroll/marquee effects.
 
@@ -287,7 +289,6 @@ Every active route in the codebase and its status:
 | Route | Page Title | Status |
 |-------|-----------|--------|
 | `/` | Home | Complete |
-| `/about` | About | In Progress |
 | `/services` | Services Hub | Complete |
 | `/services/marketing-strategy-audit` | Marketing Strategy Audit | Complete |
 | `/services/google-ads` | Google Ads | Complete |
@@ -324,7 +325,8 @@ Every active route in the codebase and its status:
 | `/blog/vibe-coding-explained-build-saas-weekend` | Vibe Coding Explained | Complete |
 | `/blog/performance-max-2026-hero-or-villain` | Performance Max 2026 | Complete |
 | `/blog/instagram-growth-strategy-for-authors-2026` | Instagram Growth for Authors | Complete |
-| `/contact` | Contact | In Progress |
+| `/contact` | Contact | Complete |
+| `/admin/leads` | Admin Dashboard | Complete |
 
 ## 10. Known Issues & TODOs (from recent audit)
 - ✅ **RESOLVED — Blog Links:** Homepage `BlogPreview` now correctly links to real published slugs.
@@ -335,23 +337,27 @@ Every active route in the codebase and its status:
 - 🔴 **Metadata outdated:** Global OG description in `layout.tsx` still references `"100CR+"` — should be updated to `"$15M+"`.
 - 🟡 **Shader Accessibility:** `AnoAI` WebGL shader on the hero does not respect `prefers-reduced-motion`.
 - 🟡 **Blog Cross-Linking:** Blog posts do not auto-link back to service pages. Future: add inline CTA links inside `.mdx` files or via a custom MDX component.
-- 🟡 **About & Contact pages:** Both are marked "In Progress" — no substantial content yet.
+- ✅ **RESOLVED — About page:** Removed. 301 redirect to `/#how-it-works` via `next.config.ts`.
+- ✅ **RESOLVED — Contact page:** Complete with lead capture form (Supabase), Cal.com placeholder, SVG social icons, email `ayush@aureliusmedia.co`.
+- 🟡 **Cal.com embed:** Contact page uses placeholder — integrate real Cal.com scheduling widget when ready.
 
 ## 11. Build & Deploy
 
 ### Environment Variables
 | Variable | Purpose | Status |
 |----------|---------|--------|
-| `NEXT_PUBLIC_SITE_URL` | Base URL for OG image generation and canonical URIs | Planned |
-| `CONTACT_FORM_API_KEY` | Backend mapping for the `/contact` form submissions | Planned |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL for leads database | Active |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key for client-side access | Active |
+| `RESEND_API_KEY` | Resend email service for lead notifications | Active |
+| `ADMIN_PASSWORD` | Password for `/admin/leads` dashboard access | Active |
 | `ANALYTICS_ID` | PostHog / Google Analytics tracking keys | Planned |
-*(Note: As of now, the application functions fully entirely without `.env` files.)*
 
 ### Local Development
 - **Dev:** `npm run dev`
 - **Build:** `npm run build` (Ensures all static params are valid)
 - **Start Prod Server:** `npm run start`
-- Deployment target will be **Vercel** with zero-config needed.
+- **Deploy:** `vercel --prod --yes` (Vercel CLI)
+- **Live URL:** `https://www.aureliusmedia.co`
 
 ## 12. Rules for AI Agents
 If you are modifying this codebase:
@@ -421,3 +427,13 @@ If you are modifying this codebase:
   - **`globals.css`:** Added comprehensive `.blog-article` typography styles (headings, body, links, lists, blockquotes, code, tables, images, hr) replacing inline MDX component classes.
 - **March 19, 2026:** Added self-referencing canonical URLs to all pages via `metadataBase` + `alternates.canonical` in root `layout.tsx`. Next.js auto-generates `<link rel="canonical" href="https://www.aureliusmedia.co/...">` for every route.
 - **March 19, 2026:** Added reusable blog content components to `globals.css`: `.blog-tree` (visual hierarchy diagrams with hub/cluster/item structure), `.blog-callout` (tip/info boxes with orange left border), `.blog-stats` (3-column responsive stat cards). Replaced broken Unicode tree diagram in `is-programmatic-seo-dead-in-2026.mdx` with `.blog-tree` component markup.
+- **March 20, 2026:** Deployed to Vercel production at `aureliusmedia.co`. DNS configured (A record → 76.76.21.21, CNAME www → cname.vercel-dns.com).
+- **March 20, 2026:** Updated social media links site-wide: LinkedIn (`linkedin.com/in/ayushpant/`), X (`x.com/FollowAurelius`), Instagram (`instagram.com/aurelius.media`).
+- **March 20, 2026:** Removed Google/Meta Certified badges from footer. Changed footer heading colors from `text-brand-gold` to `text-brand-accent`.
+- **March 20, 2026:** Rewrote `TestimonialsCarousel` mobile layout: 3 horizontal rows (RTL/LTR/RTL) with each row featuring a single person (Cameron/Tom/Karan). Desktop: 3 vertical columns (56s/63s/59s). Mobile rows: 45s/40s/47s.
+- **March 20, 2026:** Fixed Header mobile menu z-index: drawer moved outside `<header>` as sibling with `z-[60]`. Made header fully opaque (no transparency). CTA text changed to "Join the Client Waitlist". Nav "About" redirects to `/#how-it-works`.
+- **March 20, 2026:** Removed `/about` page entirely. Added 301 redirect in `next.config.ts` (`/about` → `/#how-it-works`).
+- **March 20, 2026:** Removed `line-clamp` truncation from service pages (personas, testimonials, related services) for mobile readability.
+- **March 20, 2026:** Added leads system: Supabase database, `/api/leads` POST endpoint, admin dashboard at `/admin/leads` with password auth, Resend email notifications.
+- **March 20, 2026:** Contact page completed: lead capture form (name, email, phone, company, service, message), Cal.com booking placeholder, email updated to `ayush@aureliusmedia.co`, SVG social icons matching footer style.
+- **March 20, 2026:** Added `robots.txt` and `sitemap.ts` for SEO. Increased FeaturedResults mobile speed by 25%.

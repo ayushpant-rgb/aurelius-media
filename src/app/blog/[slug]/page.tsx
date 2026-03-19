@@ -17,6 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = getPostBySlug(slug);
     if (!post) return {};
 
+    const ogImage = post.ogImage || '/logo.png';
+
     return {
         title: post.metaTitle || `${post.title} | Aurelius Media Blog`,
         description: post.metaDescription || post.excerpt,
@@ -27,11 +29,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: `https://www.aureliusmedia.co/blog/${slug}`,
             publishedTime: post.date,
             authors: [post.author],
+            images: [{ url: ogImage, alt: post.title }],
         },
         twitter: {
             card: 'summary_large_image',
             title: post.metaTitle || post.title,
             description: post.metaDescription || post.excerpt,
+            images: [ogImage],
         },
     };
 }
@@ -56,6 +60,7 @@ export default async function BlogPostPage({ params }: Props) {
         headline: post.title,
         description: post.excerpt,
         datePublished: post.date,
+        image: post.ogImage ? `https://www.aureliusmedia.co${post.ogImage}` : undefined,
         author: {
             '@type': 'Person',
             name: post.author,

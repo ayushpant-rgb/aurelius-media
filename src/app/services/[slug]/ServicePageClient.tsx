@@ -332,13 +332,39 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
     /* ─── Hero form state ─── */
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', industry: '', budget: '' });
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formLoading, setFormLoading] = useState(false);
+    const [formError, setFormError] = useState('');
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setFormSubmitted(true);
-        setTimeout(() => {
-            window.open('https://cal.com/aureliusmedia/15min', '_blank');
-        }, 500);
+        setFormLoading(true);
+        setFormError('');
+
+        try {
+            const res = await fetch('/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    source: 'service_hero' as const,
+                    service_interest: service.slug,
+                }),
+            });
+
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || 'Something went wrong');
+            }
+
+            setFormSubmitted(true);
+            setTimeout(() => {
+                window.open('https://cal.com/aureliusmedia/15min', '_blank');
+            }, 500);
+        } catch (err) {
+            setFormError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+        } finally {
+            setFormLoading(false);
+        }
     };
 
     /* ─── WhatsApp floating CTA: show after 30% scroll, hide at top and when final CTA in view ─── */
@@ -509,12 +535,16 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                                 </select>
                                             </div>
 
+                                            {formError && (
+                                                <p className="text-red-500 text-xs text-center">{formError}</p>
+                                            )}
                                             <button
                                                 type="submit"
-                                                className="w-full py-3.5 bg-[#E8550F] hover:bg-[#C0420A] text-white font-semibold rounded-lg text-sm transition-colors duration-200 cursor-pointer"
+                                                disabled={formLoading}
+                                                className="w-full py-3.5 bg-[#E8550F] hover:bg-[#C0420A] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg text-sm transition-colors duration-200 cursor-pointer"
                                                 style={{ height: '48px' }}
                                             >
-                                                Get My Free Audit
+                                                {formLoading ? 'Sending...' : 'Get My Free Audit'}
                                             </button>
                                         </form>
 
@@ -587,7 +617,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                             <PersonaIcon className="w-[22px] h-[22px] text-brand-accent" strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-[15px] font-medium text-[#f1f1ef] mb-2">{persona.title}</h3>
-                                        <p className="text-[13px] text-brand-gray leading-[1.55] line-clamp-2">{persona.description}</p>
+                                        <p className="text-[13px] text-brand-gray leading-[1.55]">{persona.description}</p>
                                     </div>
                                 );
                             })}
@@ -897,7 +927,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                 <svg className="w-7 h-7 text-brand-accent/30 mb-4" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                                 </svg>
-                                <blockquote className="text-sm text-brand-gray-light leading-relaxed mb-5 italic line-clamp-4">
+                                <blockquote className="text-sm text-brand-gray-light leading-relaxed mb-5 italic">
                                     &ldquo;{t.quote}&rdquo;
                                 </blockquote>
                                 <div className="flex items-center gap-3">
@@ -955,7 +985,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                         <h3 className="text-sm font-semibold text-brand-white mb-2 group-hover:text-brand-accent transition-colors duration-200">
                                             {rel.title}
                                         </h3>
-                                        <p className="text-xs text-brand-gray leading-relaxed line-clamp-2">
+                                        <p className="text-xs text-brand-gray leading-relaxed">
                                             {rel.description}
                                         </p>
                                         <div className="mt-3 flex items-center gap-1 text-[10px] font-medium text-brand-accent">
@@ -1036,32 +1066,58 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
 
                     {/* Inline form: Name, Email, Phone — horizontal on desktop */}
                     <form
-                        onSubmit={(e) => {
+                        onSubmit={async (e) => {
                             e.preventDefault();
+                            const fd = new FormData(e.currentTarget);
+                            const btn = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
+                            btn.disabled = true;
+                            btn.textContent = 'Sending...';
+
+                            try {
+                                await fetch('/api/leads', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        name: fd.get('name'),
+                                        email: fd.get('email'),
+                                        phone: fd.get('phone'),
+                                        source: 'service_cta',
+                                        service_interest: service.slug,
+                                    }),
+                                });
+                            } catch {
+                                // Best-effort — still open Cal.com
+                            }
+
                             window.open('https://cal.com/aureliusmedia/15min', '_blank');
+                            btn.disabled = false;
+                            btn.textContent = 'Get My Free Strategy Call';
                         }}
                         className="flex flex-col sm:flex-row items-stretch gap-3 max-w-2xl mx-auto mb-5"
                     >
                         <input
                             type="text"
+                            name="name"
                             required
                             placeholder="Name"
                             className="flex-1 px-4 py-3.5 rounded-lg bg-brand-card border border-brand-border-subtle text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent transition-colors"
                         />
                         <input
                             type="email"
+                            name="email"
                             required
                             placeholder="Email"
                             className="flex-1 px-4 py-3.5 rounded-lg bg-brand-card border border-brand-border-subtle text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent transition-colors"
                         />
                         <input
                             type="tel"
+                            name="phone"
                             placeholder="Phone"
                             className="flex-1 px-4 py-3.5 rounded-lg bg-brand-card border border-brand-border-subtle text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent transition-colors"
                         />
                         <button
                             type="submit"
-                            className="px-6 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm whitespace-nowrap cursor-pointer"
+                            className="px-6 py-3.5 cta-primary text-white font-semibold rounded-[20px] text-sm whitespace-nowrap cursor-pointer disabled:opacity-50"
                         >
                             Get My Free Strategy Call
                         </button>

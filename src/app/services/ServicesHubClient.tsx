@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { BentoGrid } from '@/components/ui/bento-grid';
 import type { BentoItem } from '@/components/ui/bento-grid';
@@ -205,6 +206,17 @@ function CategorySection({ category }: { category: ServiceCategory }) {
 
 /* ─── Main Page Component ─── */
 export default function ServicesHubClient() {
+    // Handle hash scroll on navigation
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const el = document.querySelector(hash);
+            if (el) {
+                setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+            }
+        }
+    }, []);
+
     return (
         <main className="bg-brand-dark text-brand-white">
 
@@ -242,6 +254,35 @@ export default function ServicesHubClient() {
                     <CategorySection category={cat} />
                 </div>
             ))}
+
+            {/* ─── Industry Verticals ─── */}
+            <section id="verticals" className="py-12 sm:py-16">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                        <div className="h-px bg-brand-border-subtle mb-12" />
+                    </div>
+                    <div className="mb-6">
+                        <div className="flex items-baseline gap-2.5 mb-1">
+                            <div className="w-[3px] h-4 rounded-sm shrink-0 self-center" style={{ background: '#F59E0B' }} />
+                            <h2 className="text-2xl font-medium text-brand-white">Industry verticals</h2>
+                            <span className="text-[13px] text-brand-gray-dark">Specialized marketing</span>
+                        </div>
+                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education & EdTech, and real estate.</p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {[
+                            { title: 'Book & Author Marketing', href: '/services/book-marketing', desc: 'Launch campaigns, Amazon optimization, and audience building for authors.' },
+                            { title: 'Education & EdTech', href: '/services/education-marketing', desc: 'Student acquisition, enrollment funnels, and brand positioning for education.' },
+                            { title: 'Real Estate Marketing', href: '/services/real-estate-marketing', desc: 'Lead generation, virtual tours, and digital campaigns for real estate.' },
+                        ].map((v) => (
+                            <Link key={v.href} href={v.href} className="p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-colors">
+                                <h3 className="text-sm font-semibold text-brand-white mb-2">{v.title}</h3>
+                                <p className="text-xs text-brand-gray leading-relaxed">{v.desc}</p>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* ─── Final CTA ─── */}
             <section className="py-20 sm:py-28 relative overflow-hidden">

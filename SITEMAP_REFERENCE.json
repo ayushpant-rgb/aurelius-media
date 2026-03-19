@@ -1,37 +1,23 @@
 {
-  "last_updated": "2026-03-19",
-  "total_pages": 40,
+  "last_updated": "2026-03-20",
+  "total_pages": 41,
   "session_changes": {
-    "date": "2026-03-19",
-    "summary": "Blog redesign per Blog Style Tile v1.0. Self-referencing canonical URLs added to all pages. Reusable blog content components (.blog-tree, .blog-callout, .blog-stats). Blog listing: featured 2-column hero card, 3-col card grid with author photos, category filter pills, newsletter CTA. Blog posts: centered header, 900px 16:9 hero, 680px article body with .blog-article CSS class, code blocks with language headers, related posts grid, newsletter CTA. Homepage BlogPreview updated to match.",
+    "date": "2026-03-20",
+    "summary": "Site deployed to Vercel at aureliusmedia.co. Removed /about page (301 redirect to /#how-it-works). Contact page completed with lead capture form, Cal.com placeholder, SVG social icons. Leads system added (Supabase + Resend + admin dashboard). Header made fully opaque, CTA changed to 'Join the Client Waitlist'. Mobile testimonials rewritten as horizontal rows (RTL/LTR/RTL) with one person per row. Social links updated site-wide. Footer badges removed, heading colors changed to orange.",
     "changes": [
-      "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
-      "ServicePageClient.tsx rewritten from 9 sections to V2 blueprint with inline lead capture forms, expanded FAQs, testimonial carousel, and WhatsApp floating CTA",
-      "Hero section: split 50/50 layout with H1 + positive value-prop bullets (from benefits) on left, white lead capture form card on right",
-      "Hero value props flipped from pain points to positive benefit outcomes (checkmarks paired with positive messaging)",
-      "Sound Familiar? pain points section removed entirely (pain established in hero subtitle)",
-      "Comparison heading changed from 'But, why would you want to work with us?' to 'What sets Aurelius Media apart?'",
-      "FAQs expanded to 8-10 per service via getCommonFAQs() appending 6 universal questions. First 3 expanded by default",
-      "FAQPage + Service + BreadcrumbList JSON-LD structured data added to all service pages (auto-generated in page.tsx)",
-      "Final CTA upgraded: inline 3-field form (Name, Email, Phone) + dual buttons + trust copy",
-      "Testimonials expanded from single quote to 3-card carousel per service with dedicated testimonial pool",
-      "Why Aurelius Media differentiators section removed, unique points merged into comparison rows",
-      "AI/automation comparison row auto-appended to every service page",
-      "Context labels added under proof stats (metric + timeframe description)",
-      "WhatsApp floating CTA added: green button (#25D366), appears after 30% scroll, hides at final CTA, dynamic pre-filled message",
-      "H3 keyword optimization for benefits + sub-services in no-code-development, ai-workshops, and real-estate-marketing",
-      "Related articles filtered by category per service page via serviceBlogCategoryMap",
-      "Project uploaded to GitHub: github.com/ayushpant-rgb/aurelius-media",
-      "Expanded from 12 to 28 service pages — 16 new services added (linkedin-ads, youtube-ads, tiktok-ads, retargeting, lead-generation, funnel-building, cro, programmatic-seo, analytics-reporting, email-lifecycle, brand-videos, ugc-ads, landing-pages, content-strategy, pitch-decks, ai-agents)",
-      "Bento grid layout (bento-grid.tsx) for service cards on homepage and /services hub",
-      "Lucide icon support added to ServicePersona interface and persona cards",
-      "Complete design token migration: 3-tier dark surfaces, new orange accent palette, Inter body + Plus Jakarta Sans headings, gradient-text class, 20px pill radius, floating pill navbar, updated CTA buttons, atmospheric effects",
-      "Comparison heading contrast: 'Aurelius Media' rendered in gradient-text on all service pages",
-      "TestimonialsCarousel rewritten: 3 vertical columns with alternating scroll (down/up/down at 40s/45s/42s), fixed-height container with top/bottom fades",
-      "Homepage section reorder: Testimonials moved after ServicesOverview, CapabilitiesPanel moved below",
-      "FeaturedResults case studies contained within max-w-7xl, CSS animation, enlarged cards (400x460px), swapped Health Tech / University images",
-      "Service page budget options changed from INR (₹1L–₹20L+) to USD ($1,000–$20,000+)",
-      "Hero sub-headline: max-w-md → max-w-lg + px-2 to prevent text clipping on mobile"
+      "Deployed to Vercel production at aureliusmedia.co with custom domain DNS",
+      "Removed /about page, added 301 redirect to /#how-it-works in next.config.ts",
+      "Contact page completed: lead capture form, Cal.com placeholder, email ayush@aureliusmedia.co, SVG social icons",
+      "Leads system: Supabase database, /api/leads POST endpoint, /admin/leads dashboard with password auth, Resend email notifications",
+      "Header: fully opaque glass (no transparency), CTA 'Join the Client Waitlist', mobile drawer z-index fix",
+      "TestimonialsCarousel mobile: 3 horizontal rows (RTL/LTR/RTL) each featuring single person (Cameron/Tom/Karan) at 45s/40s/47s",
+      "TestimonialsCarousel desktop: slowed to 56s/63s/59s vertical columns",
+      "Social links updated site-wide: LinkedIn (ayushpant), X (FollowAurelius), Instagram (aurelius.media)",
+      "Footer: removed Google/Meta Certified badges, heading colors changed from gold to orange, removed Results link",
+      "Service pages: removed line-clamp truncation on personas, testimonials, related services for mobile",
+      "FeaturedResults mobile speed increased by 25%",
+      "Added robots.txt and sitemap.ts for SEO",
+      "Hero CTA text changed to 'Join the Client Waitlist'"
     ]
   },
   "design_system_updates": {
@@ -127,19 +113,21 @@
         "/blog/performance-max-2026-hero-or-villain"
       ],
       "internal_links_from": [],
-      "notes": "Home. Shader hero graphic. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel (3 vertical columns, down/up/down) → CapabilitiesPanel → BlogPreview → CTABlock. ServicesOverview 6 category cards: Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing."
+      "notes": "Home. Shader hero graphic. CTA: 'Join the Client Waitlist'. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock. Desktop testimonials: 3 vertical columns (56s/63s/59s). Mobile testimonials: 3 horizontal rows (RTL/LTR/RTL, 45s/40s/47s, one person per row). Header: fully opaque, floating pill navbar."
     },
     {
       "route": "/about",
-      "title": "About Us | Aurelius Media",
-      "h1": "How We Build Growth Engines",
-      "meta_description": "Our methodology and framework for scaling modern businesses using AI creative and data-driven media buying.",
-      "primary_keyword": "growth media strategy",
-      "topic_cluster": "Core Operations",
+      "title": "REMOVED — 301 redirect to /#how-it-works",
+      "status": "redirect",
+      "notes": "Page deleted. Permanent redirect configured in next.config.ts. 'About' nav link points to /#how-it-works."
+    },
+    {
+      "route": "/admin/leads",
+      "title": "Admin Dashboard | Aurelius Media",
+      "h1": "Lead Management",
       "page_type": "static",
-      "status": "in-progress",
-      "internal_links_to": [],
-      "internal_links_from": ["Header", "Footer"]
+      "status": "complete",
+      "notes": "Password-protected admin dashboard for viewing/managing leads from contact form and service page forms. Supabase backend."
     },
     {
       "route": "/services",
@@ -185,14 +173,15 @@
     {
       "route": "/contact",
       "title": "Contact | Aurelius Media",
-      "h1": "Let's Talk Growth",
-      "meta_description": "Get in touch with Aurelius Media to scale your business.",
+      "h1": "Let's Build Something Extraordinary",
+      "meta_description": "Get in touch with Aurelius Media to scale your business. Book a free 15-minute strategy call or send us a message.",
       "primary_keyword": "Contact Aurelius Media",
       "topic_cluster": "Core Operations",
       "page_type": "static",
-      "status": "in-progress",
-      "internal_links_to": [],
-      "internal_links_from": ["Header", "Footer"]
+      "status": "complete",
+      "internal_links_to": ["https://cal.com"],
+      "internal_links_from": ["Header", "Footer"],
+      "notes": "Two-column layout: Cal.com booking placeholder (left) + lead capture form (right). Email: ayush@aureliusmedia.co. SVG social icons (LinkedIn, X, Instagram). Form submits to /api/leads with source 'contact'."
     },
     {
       "route": "/blog",

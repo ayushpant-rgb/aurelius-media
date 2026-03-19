@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../content";
 
 @theme {
   /* Core Backgrounds — 3-tier depth system */
@@ -106,6 +107,14 @@
 
 .animate-marquee-vertical-up {
   animation: marquee-vertical-up var(--duration, 35s) linear infinite;
+}
+
+.animate-scroll-rtl {
+  animation: scroll-rtl var(--duration, 30s) linear infinite;
+}
+
+.animate-scroll-ltr {
+  animation: scroll-ltr var(--duration, 30s) linear infinite;
 }
 
 /* ===== Base Styles ===== */
@@ -244,7 +253,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-scroll-rtl-slow {
-  animation: scroll-rtl 22s linear infinite;
+  animation: scroll-rtl 16.5s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .animate-scroll-rtl-slow {
+    animation: scroll-rtl 22s linear infinite;
+  }
 }
 
 .animate-scroll-ltr {
@@ -266,9 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Utility Classes ===== */
 
 .glass {
-  background: rgba(11, 11, 13, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgb(11, 11, 13);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
 }

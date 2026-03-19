@@ -10,6 +10,12 @@ export const metadata: Metadata = {
         description: 'AI marketing insights, case studies, and growth strategies from Aurelius Media.',
         type: 'website',
         url: 'https://www.aureliusmedia.co/blog',
+        images: [{ url: '/logo.png', alt: 'Aurelius Media Blog' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Blog | Aurelius Media',
+        description: 'AI marketing insights, case studies, and growth strategies from Aurelius Media.',
     },
 };
 

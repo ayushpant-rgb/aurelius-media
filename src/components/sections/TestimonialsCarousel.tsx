@@ -88,6 +88,11 @@ const col3: Testimonial[] = [
     },
 ];
 
+// Mobile rows: each row features a single person with all their testimonials
+const cameronAll: Testimonial[] = [col1[0], col1[2], col1[4], col3[3]];
+const tomAll: Testimonial[] = [col1[1], col1[3]];
+const karanAll: Testimonial[] = [col2[0], col2[2], col2[4], col3[1]];
+
 function TestimonialCard({ author, text }: Testimonial) {
     return (
         <div className="w-full p-5 rounded-[20px] bg-brand-card border border-brand-border-subtle">
@@ -108,10 +113,58 @@ function TestimonialCard({ author, text }: Testimonial) {
     );
 }
 
-function VerticalColumn({ testimonials, direction, duration }: {
+function MobileTestimonialCard({ author, text }: Testimonial) {
+    return (
+        <div className="w-[300px] shrink-0 p-5 rounded-[20px] bg-brand-card border border-brand-border-subtle">
+            <p className="text-sm text-brand-gray leading-relaxed mb-4">
+                &ldquo;{text}&rdquo;
+            </p>
+            <div className="flex items-center gap-3">
+                <Avatar className="h-9 w-9 border border-brand-border-subtle flex-shrink-0">
+                    <AvatarImage src={author.avatar} alt={author.name} className="object-cover object-top" />
+                    <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <div>
+                    <p className="text-sm font-bold text-brand-white leading-tight">{author.name}</p>
+                    <p className="text-xs text-brand-gray-dark">{author.role}, {author.company}</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function HorizontalRow({ testimonials, direction, duration }: {
+    testimonials: Testimonial[];
+    direction: 'rtl' | 'ltr';
+    duration: string;
+}) {
+    const items = [...testimonials, ...testimonials];
+    const animClass = direction === 'rtl' ? 'animate-scroll-rtl' : 'animate-scroll-ltr';
+
+    return (
+        <div className="relative overflow-hidden">
+            {/* Left fade */}
+            <div className="absolute top-0 bottom-0 left-0 w-12 z-10 bg-gradient-to-r from-brand-dark to-transparent pointer-events-none" />
+            {/* Right fade */}
+            <div className="absolute top-0 bottom-0 right-0 w-12 z-10 bg-gradient-to-l from-brand-dark to-transparent pointer-events-none" />
+
+            <div
+                className={`flex gap-4 ${animClass}`}
+                style={{ '--duration': duration } as React.CSSProperties}
+            >
+                {items.map((testimonial, i) => (
+                    <MobileTestimonialCard key={i} {...testimonial} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function VerticalColumn({ testimonials, direction, duration, className }: {
     testimonials: Testimonial[];
     direction: 'down' | 'up';
     duration: string;
+    className?: string;
 }) {
     const items = [...testimonials, ...testimonials];
     const animClass = direction === 'down'
@@ -119,7 +172,7 @@ function VerticalColumn({ testimonials, direction, duration }: {
         : 'animate-marquee-vertical-up';
 
     return (
-        <div className="relative flex-1 overflow-hidden h-[550px] sm:h-[600px]">
+        <div className={cn("relative flex-1 overflow-hidden h-[550px] sm:h-[600px]", className)}>
             {/* Top fade */}
             <div className="absolute top-0 left-0 right-0 h-20 sm:h-28 z-10 bg-gradient-to-b from-brand-dark to-transparent pointer-events-none" />
             {/* Bottom fade */}
@@ -157,11 +210,18 @@ export default function TestimonialsCarousel() {
                     </h2>
                 </div>
 
-                {/* 3 Vertical Columns: Down → Up → Down */}
-                <div className="flex gap-4 sm:gap-6">
-                    <VerticalColumn testimonials={col1} direction="down" duration="40s" />
-                    <VerticalColumn testimonials={col2} direction="up" duration="45s" />
-                    <VerticalColumn testimonials={col3} direction="down" duration="42s" />
+                {/* Mobile: 3 horizontal rows with alternating directions */}
+                <div className="flex flex-col gap-4 sm:hidden">
+                    <HorizontalRow testimonials={cameronAll} direction="rtl" duration="45s" />
+                    <HorizontalRow testimonials={tomAll} direction="ltr" duration="40s" />
+                    <HorizontalRow testimonials={karanAll} direction="rtl" duration="47s" />
+                </div>
+
+                {/* Tablet/Desktop: vertical columns */}
+                <div className="hidden sm:flex gap-6">
+                    <VerticalColumn testimonials={col1} direction="down" duration="56s" />
+                    <VerticalColumn testimonials={col2} direction="up" duration="63s" />
+                    <VerticalColumn testimonials={col3} direction="down" duration="59s" className="hidden lg:block" />
                 </div>
 
                 {/* Inline CTA */}

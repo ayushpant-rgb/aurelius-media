@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const service = getServiceBySlug(slug);
     if (!service) return {};
 
+    const ogImage = service.heroImage || '/logo.png';
+
     return {
         title: service.metaTitle,
         description: service.metaDescription,
@@ -44,11 +46,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             description: service.metaDescription,
             type: 'website',
             url: `https://www.aureliusmedia.co/services/${service.slug}`,
+            images: [{ url: ogImage, alt: service.metaTitle }],
         },
         twitter: {
             card: 'summary_large_image',
             title: service.metaTitle,
             description: service.metaDescription,
+            images: [ogImage],
         },
     };
 }
