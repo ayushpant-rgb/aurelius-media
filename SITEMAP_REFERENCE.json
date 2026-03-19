@@ -3,7 +3,7 @@
   "total_pages": 40,
   "session_changes": {
     "date": "2026-03-19",
-    "summary": "Blog redesign per Blog Style Tile v1.0. Blog listing: featured 2-column hero card, 3-col card grid with author photos, category filter pills, newsletter CTA. Blog posts: centered header, 900px 16:9 hero, 680px article body with .blog-article CSS class, code blocks with language headers, related posts grid, newsletter CTA. Homepage BlogPreview updated to match.",
+    "summary": "Blog redesign per Blog Style Tile v1.0. Self-referencing canonical URLs added to all pages. Reusable blog content components (.blog-tree, .blog-callout, .blog-stats). Blog listing: featured 2-column hero card, 3-col card grid with author photos, category filter pills, newsletter CTA. Blog posts: centered header, 900px 16:9 hero, 680px article body with .blog-article CSS class, code blocks with language headers, related posts grid, newsletter CTA. Homepage BlogPreview updated to match.",
     "changes": [
       "Homepage ServicesOverview: 6 category cards updated — Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing",
       "ServicePageClient.tsx rewritten from 9 sections to V2 blueprint with inline lead capture forms, expanded FAQs, testimonial carousel, and WhatsApp floating CTA",

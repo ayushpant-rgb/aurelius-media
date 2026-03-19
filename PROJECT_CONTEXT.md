@@ -240,7 +240,7 @@ export interface BlogPostMeta {
 To add new content, simply drop markdown files in `content/blog/` or append an object to the array in `servicePages.ts`.
 
 ## 8. SEO & Internal Linking Strategy
-- **Metadata:** All pages export a `metadata` object. Dynamic pages use `generateMetadata`.
+- **Metadata:** All pages export a `metadata` object. Dynamic pages use `generateMetadata`. Root layout sets `metadataBase: new URL("https://www.aureliusmedia.co")` and `alternates.canonical: "./"` — Next.js auto-generates self-referencing `<link rel="canonical">` for every page.
 - **Programmatic Scale:** The `/services/[slug]` structure is designed to be easily duplicated for hundreds of keywords targeting programmatic SEO landing pages in the future.
 - **Schema:** We inject standard JSON-LD Schema (Organization) globally in `layout.tsx`. Service pages also inject FAQPage, Service, and BreadcrumbList JSON-LD schema.
 
@@ -419,4 +419,5 @@ If you are modifying this codebase:
   - **Server component (`page.tsx`):** Now fetches and passes `relatedPosts` (same category prioritized, max 3) to BlogPostClient.
   - **Homepage blog preview (`BlogPreview.tsx`):** Updated cards to match new listing card style (20px radius, orange hover border, 200px image height, category tag pills, author photo avatars, short date format).
   - **`globals.css`:** Added comprehensive `.blog-article` typography styles (headings, body, links, lists, blockquotes, code, tables, images, hr) replacing inline MDX component classes.
+- **March 19, 2026:** Added self-referencing canonical URLs to all pages via `metadataBase` + `alternates.canonical` in root `layout.tsx`. Next.js auto-generates `<link rel="canonical" href="https://www.aureliusmedia.co/...">` for every route.
 - **March 19, 2026:** Added reusable blog content components to `globals.css`: `.blog-tree` (visual hierarchy diagrams with hub/cluster/item structure), `.blog-callout` (tip/info boxes with orange left border), `.blog-stats` (3-column responsive stat cards). Replaced broken Unicode tree diagram in `is-programmatic-seo-dead-in-2026.mdx` with `.blog-tree` component markup.
