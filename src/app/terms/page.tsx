@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Terms & Conditions | Aurelius Media',
+    title: 'Terms & Conditions',
     description:
         'Terms and Conditions for Aurelius Media. Read our terms of service, usage policies, and legal agreements.',
     openGraph: {

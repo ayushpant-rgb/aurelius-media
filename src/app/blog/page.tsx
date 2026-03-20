@@ -3,7 +3,7 @@ import { getAllPosts } from '@/lib/blog';
 import BlogListClient from './BlogListClient';
 
 export const metadata: Metadata = {
-    title: 'Blog | Aurelius Media',
+    title: 'Blog',
     description: 'Insights on AI marketing, performance advertising, creative production, and growth strategies for startups and brands.',
     openGraph: {
         title: 'Blog | Aurelius Media',

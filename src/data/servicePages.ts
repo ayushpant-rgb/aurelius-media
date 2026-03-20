@@ -149,7 +149,7 @@ export const services: ServiceData[] = [
             { question: 'Can I use the strategy with another agency or in-house team?', answer: 'Absolutely. The audit and strategy deliverables are yours to execute however you choose. Many clients do execute with us, but there is zero obligation.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'ai-automation'],
-        metaTitle: 'Marketing Strategy Audit | Aurelius Media',
+        metaTitle: 'Marketing Strategy Audit',
         metaDescription: 'Comprehensive marketing audit and performance strategy. Full-funnel analysis, channel selection, budget modeling, and a custom growth roadmap for your business.',
     },
     {
@@ -235,7 +235,7 @@ export const services: ServiceData[] = [
             { question: 'Do you offer a one-time audit without ongoing management?', answer: 'Yes. We offer standalone Google Ads audits that include a comprehensive review of your account structure, keyword strategy, bid management, and actionable recommendations.' },
         ],
         relatedSlugs: ['meta-ads', 'creative-design', 'ai-creative-design'],
-        metaTitle: 'Google Ads Management Agency | Aurelius Media',
+        metaTitle: 'Google Ads Management Agency',
         metaDescription: 'Certified Google Ads management for startups and brands. Search, Shopping, YouTube, and Performance Max campaigns optimized for ROAS and revenue growth.',
     },
     {
@@ -321,7 +321,7 @@ export const services: ServiceData[] = [
             { question: 'How often do you refresh ad creatives?', answer: 'We follow a structured creative testing cadence, typically introducing 3-5 new creative concepts every 2 weeks based on performance data and audience fatigue metrics.' },
         ],
         relatedSlugs: ['google-ads', 'creative-design', 'ai-creative-design'],
-        metaTitle: 'Meta Ads Agency | Facebook & Instagram Ads | Aurelius Media',
+        metaTitle: 'Meta Ads Agency | Facebook & Instagram Ads',
         metaDescription: 'Expert Facebook and Instagram advertising. Full-funnel Meta campaigns with advanced creative testing and Advantage+ optimization for startups and brands.',
     },
 
@@ -407,7 +407,7 @@ export const services: ServiceData[] = [
             { question: 'Do you handle the entire creative process?', answer: 'Yes. From concept and brief to final delivery, we handle creative direction, AI generation, post-processing, and format optimization for all platforms.' },
         ],
         relatedSlugs: ['creative-design', 'reels-editing', 'meta-ads'],
-        metaTitle: 'AI Creative & Design Agency | Aurelius Media',
+        metaTitle: 'AI Creative & Design Agency',
         metaDescription: 'AI-powered ad creatives and design at 10x speed. Midjourney, DALL-E, and Runway for stunning marketing assets at a fraction of traditional costs.',
     },
     {
@@ -492,7 +492,7 @@ export const services: ServiceData[] = [
             { question: 'What file formats do you deliver?', answer: 'We deliver in all standard digital formats including PNG, JPG, SVG, PDF, MP4, and platform-specific formats (e.g., Meta ad specs, Google display sizes).' },
         ],
         relatedSlugs: ['ai-creative-design', 'reels-editing', 'meta-ads'],
-        metaTitle: 'Creative & Design Services | Aurelius Media',
+        metaTitle: 'Creative & Design Services',
         metaDescription: 'Performance-driven creative and design services. Ad creatives, brand identity, social media graphics, and pitch decks that drive conversions.',
     },
     {
@@ -576,7 +576,7 @@ export const services: ServiceData[] = [
             { question: 'Do you add captions and subtitles?', answer: 'Yes. All reels include animated captions optimized for sound-off viewing, which is how the majority of social media content is consumed.' },
         ],
         relatedSlugs: ['creative-design', 'meta-ads', 'ai-creative-design'],
-        metaTitle: 'Reels & Short-Form Video Editing | Aurelius Media',
+        metaTitle: 'Reels & Short-Form Video Editing',
         metaDescription: 'Professional Reels, YouTube Shorts, and TikTok editing. Hook-first, trend-aware short-form video content optimized for engagement and paid ads.',
     },
 
@@ -677,7 +677,7 @@ export const services: ServiceData[] = [
             { question: 'What\'s the first step if I\'m interested?', answer: 'Book a free strategy call. We\'ll discuss your book, your goals, and create a custom marketing plan. No obligation, no hard sell — just a clear roadmap for your book\'s success.' },
         ],
         relatedSlugs: ['meta-ads', 'creative-design', 'google-ads'],
-        metaTitle: 'AI-Powered Book Marketing Agency | Aurelius Media',
+        metaTitle: 'AI-Powered Book Marketing Agency',
         metaDescription: 'AI-powered book marketing that sells more books. Trusted by Penguin, HarperCollins, Bloomsbury. 80,000+ copies sold. Launch campaigns, Amazon optimization, and author branding.',
     },
     {
@@ -760,7 +760,7 @@ export const services: ServiceData[] = [
             { question: 'Do you run campaigns year-round or just during admissions season?', answer: 'Year-round. Seasonal-only marketing creates boom-bust enrollment cycles. We build always-on systems that generate inquiries consistently, so your admissions team has a steady pipeline.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'lead-generation'],
-        metaTitle: 'Education Marketing Agency for Schools & Universities | Aurelius Media',
+        metaTitle: 'Education Marketing Agency for Schools & Universities',
         metaDescription: 'Admissions marketing for K-12 schools, universities, and coaching institutes. Year-round campaigns that drive qualified inquiries and enrollments.',
     },
     {
@@ -844,7 +844,7 @@ export const services: ServiceData[] = [
             { question: 'What metrics do you track for EdTech marketing?', answer: 'We focus on CAC (customer acquisition cost), LTV (lifetime value), trial-to-paid conversion rate, signup rate, demo booking rate, and cohort-level retention. We set up full attribution so every marketing dollar ties to revenue.' },
         ],
         relatedSlugs: ['lead-generation', 'funnel-building', 'content-strategy'],
-        metaTitle: 'EdTech Marketing Agency | Aurelius Media',
+        metaTitle: 'EdTech Marketing Agency',
         metaDescription: 'Growth marketing for EdTech platforms and online learning companies. We reduce CAC, improve trial-to-paid conversion, and scale user acquisition.',
     },
     {
@@ -928,7 +928,7 @@ export const services: ServiceData[] = [
             { question: 'What ROAS can I expect?', answer: 'ROAS varies by product, price point, and market. Our D2C clients typically see 3-5x blended ROAS. We set realistic targets based on your unit economics and optimise toward profitable growth, not vanity ROAS numbers.' },
         ],
         relatedSlugs: ['meta-ads', 'creative-design', 'ugc-ads'],
-        metaTitle: 'D2C & E-commerce Marketing Agency | Aurelius Media',
+        metaTitle: 'D2C & E-commerce Marketing Agency',
         metaDescription: 'Full-funnel performance marketing for D2C and e-commerce brands. AI-powered creative testing, paid acquisition, and lifecycle marketing that drives revenue.',
     },
     {
@@ -1012,7 +1012,7 @@ export const services: ServiceData[] = [
             { question: 'What metrics do you track?', answer: 'CAC, LTV, MRR, pipeline velocity, trial-to-paid conversion, demo booking rate, and cohort-level retention. We set up full attribution so every marketing dollar ties to revenue impact.' },
         ],
         relatedSlugs: ['programmatic-seo', 'lead-generation', 'google-ads'],
-        metaTitle: 'SaaS Marketing Agency | Aurelius Media',
+        metaTitle: 'SaaS Marketing Agency',
         metaDescription: 'Growth marketing for B2B and B2C SaaS companies. We reduce CAC, build pipeline, and scale revenue through paid acquisition, programmatic SEO, and funnel optimization.',
     },
     {
@@ -1096,7 +1096,7 @@ export const services: ServiceData[] = [
             { question: 'How long does it take to implement automations?', answer: 'Simple automations can be deployed in 1-2 weeks. Complex multi-system agent builds typically take 4-6 weeks.' },
         ],
         relatedSlugs: ['no-code-development', 'ai-workshops', 'ai-creative-design'],
-        metaTitle: 'AI Automation & Agents for Marketing | Aurelius Media',
+        metaTitle: 'AI Automation & Agents for Marketing',
         metaDescription: 'Custom AI agents and marketing automation. Lead scoring, content generation, and workflow automation that scales your marketing operations.',
     },
     {
@@ -1180,7 +1180,7 @@ export const services: ServiceData[] = [
             { question: 'Do you build mobile apps?', answer: 'We build responsive web applications that work on mobile devices. For native mobile app requirements, we recommend specialized mobile development partners.' },
         ],
         relatedSlugs: ['ai-automation', 'ai-workshops', 'ai-creative-design'],
-        metaTitle: 'No-Code App Development | Aurelius Media',
+        metaTitle: 'No-Code App Development',
         metaDescription: 'Rapid MVP and web app development using no-code and AI platforms. Build, test, and deploy products in 1–2 weeks instead of months.',
     },
     {
@@ -1264,7 +1264,7 @@ export const services: ServiceData[] = [
             { question: 'Do you provide certificates?', answer: 'Yes. All participants receive a certificate of completion from Aurelius Media upon finishing the workshop.' },
         ],
         relatedSlugs: ['ai-automation', 'ai-creative-design', 'no-code-development'],
-        metaTitle: 'AI Workshops & Training | Aurelius Media',
+        metaTitle: 'AI Workshops & Training',
         metaDescription: 'Hands-on AI workshops for marketing teams and organizations. Practical training on ChatGPT, Midjourney, and AI marketing tools.',
     },
     // ─── INDUSTRY: Real Estate ───
@@ -1349,7 +1349,7 @@ export const services: ServiceData[] = [
             { question: 'What platforms do you advertise on?', answer: 'Primarily Google Ads (Search, Display, YouTube) and Meta Ads (Facebook, Instagram). We also run LinkedIn campaigns for commercial real estate and investor-focused properties.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'marketing-strategy-audit'],
-        metaTitle: 'Real Estate Marketing Agency | Aurelius Media',
+        metaTitle: 'Real Estate Marketing Agency',
         metaDescription: 'Performance marketing for real estate developers and brokerages. Multi-channel campaigns that generate qualified buyer and investor leads.',
     },
 
@@ -1398,7 +1398,7 @@ export const services: ServiceData[] = [
             { question: 'Can LinkedIn Ads work for lead generation?', answer: 'Absolutely. LinkedIn Lead Gen Forms have some of the highest conversion rates in B2B advertising because they auto-fill user data, reducing friction.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'marketing-strategy-audit'],
-        metaTitle: 'LinkedIn Ads Agency | Aurelius Media',
+        metaTitle: 'LinkedIn Ads Agency',
         metaDescription: 'B2B LinkedIn advertising campaigns targeting decision-makers. ABM-style targeting, creative testing, and pipeline-focused optimization.',
     },
     {
@@ -1445,7 +1445,7 @@ export const services: ServiceData[] = [
             { question: 'How do you measure YouTube ad performance?', answer: 'We track view-through rates, cost per view, conversions, and assisted conversions using GA4 and Google Ads attribution models.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'reels-editing'],
-        metaTitle: 'YouTube Ads Agency | Aurelius Media',
+        metaTitle: 'YouTube Ads Agency',
         metaDescription: 'YouTube advertising campaigns for awareness and conversion. Skippable, non-skippable, Shorts, and Discovery ads optimized for business results.',
     },
     {
@@ -1492,7 +1492,7 @@ export const services: ServiceData[] = [
             { question: 'Do you create TikTok content?', answer: 'Yes. Our Creative Studio team produces platform-native TikTok content including UGC-style ads, trending format adaptations, and brand content.' },
         ],
         relatedSlugs: ['meta-ads', 'reels-editing', 'ai-creative-design'],
-        metaTitle: 'TikTok Ads Agency | Aurelius Media',
+        metaTitle: 'TikTok Ads Agency',
         metaDescription: 'TikTok advertising campaigns with platform-native creative. Trend-aware, algorithm-optimized ads for awareness, engagement, and conversions.',
     },
     {
@@ -1539,7 +1539,7 @@ export const services: ServiceData[] = [
             { question: 'Can retargeting work for B2B?', answer: 'Absolutely. B2B retargeting is critical given longer sales cycles. We segment audiences by engagement depth and serve stage-appropriate content.' },
         ],
         relatedSlugs: ['google-ads', 'meta-ads', 'linkedin-ads'],
-        metaTitle: 'Retargeting & Remarketing Agency | Aurelius Media',
+        metaTitle: 'Retargeting & Remarketing Agency',
         metaDescription: 'Multi-platform retargeting campaigns that bring visitors back and convert. Google, Meta, and LinkedIn remarketing with sequential messaging.',
     },
 
@@ -1588,7 +1588,7 @@ export const services: ServiceData[] = [
             { question: 'How quickly can leads start flowing?', answer: 'Paid campaigns can start generating leads within 48 hours of launch. Optimization typically takes 2-4 weeks for peak performance.' },
         ],
         relatedSlugs: ['marketing-strategy-audit', 'google-ads', 'meta-ads'],
-        metaTitle: 'Lead Generation Agency | Aurelius Media',
+        metaTitle: 'Lead Generation Agency',
         metaDescription: 'Build a predictable pipeline with multi-channel lead generation. Paid ads, landing pages, and nurture sequences delivering qualified leads consistently.',
     },
     {
@@ -1635,7 +1635,7 @@ export const services: ServiceData[] = [
             { question: 'Do you handle the email sequences too?', answer: 'Yes. We design and implement the complete email strategy for every funnel stage — from welcome sequences to cart abandonment to post-purchase flows.' },
         ],
         relatedSlugs: ['lead-generation', 'marketing-strategy-audit', 'cro'],
-        metaTitle: 'Funnel Building Agency | Aurelius Media',
+        metaTitle: 'Funnel Building Agency',
         metaDescription: 'Strategic funnel architecture from awareness to conversion. Landing pages, email sequences, and optimization designed to maximize conversions and LTV.',
     },
     {
@@ -1682,7 +1682,7 @@ export const services: ServiceData[] = [
             { question: 'How quickly can I expect results?', answer: 'First experiments typically launch within 2 weeks. Meaningful conversion improvements are usually visible within 4-8 weeks of testing.' },
         ],
         relatedSlugs: ['funnel-building', 'lead-generation', 'marketing-strategy-audit'],
-        metaTitle: 'CRO Agency | Conversion Rate Optimization | Aurelius Media',
+        metaTitle: 'CRO Agency | Conversion Rate Optimization',
         metaDescription: 'Conversion rate optimization through systematic A/B testing and UX improvements. More revenue from your existing traffic.',
     },
     {
@@ -1729,7 +1729,7 @@ export const services: ServiceData[] = [
             { question: 'What industries work best for pSEO?', answer: 'SaaS (comparison pages, integrations), real estate (location pages), travel, fintech, and any business with structured, repeatable data patterns.' },
         ],
         relatedSlugs: ['marketing-strategy-audit', 'analytics-reporting', 'lead-generation'],
-        metaTitle: 'Programmatic SEO Agency | Aurelius Media',
+        metaTitle: 'Programmatic SEO Agency',
         metaDescription: 'Scale organic traffic with programmatic SEO. Thousands of high-quality pages targeting long-tail keywords with structured data and technical foundations.',
     },
     {
@@ -1776,7 +1776,7 @@ export const services: ServiceData[] = [
             { question: 'Do you build custom dashboards?', answer: 'Absolutely. We build real-time dashboards in Looker Studio or custom tools that centralize data from all your marketing platforms.' },
         ],
         relatedSlugs: ['marketing-strategy-audit', 'cro', 'lead-generation'],
-        metaTitle: 'Analytics & Reporting Agency | Aurelius Media',
+        metaTitle: 'Analytics & Reporting Agency',
         metaDescription: 'Custom marketing analytics dashboards and attribution modeling. Full visibility into what drives growth and what wastes budget.',
     },
     {
@@ -1823,7 +1823,7 @@ export const services: ServiceData[] = [
             { question: 'Can you help with email deliverability?', answer: 'Yes. We handle domain authentication (SPF, DKIM, DMARC), list hygiene, warm-up protocols, and content optimization to maximize inbox placement.' },
         ],
         relatedSlugs: ['lead-generation', 'funnel-building', 'marketing-strategy-audit'],
-        metaTitle: 'Email & Lifecycle Marketing | Aurelius Media',
+        metaTitle: 'Email & Lifecycle Marketing',
         metaDescription: 'Email marketing and lifecycle campaigns that nurture leads, convert prospects, and retain customers. Automated sequences for maximum LTV.',
     },
 
@@ -1872,7 +1872,7 @@ export const services: ServiceData[] = [
             { question: 'Do you handle the entire production process?', answer: 'Yes. From concept and script to filming, editing, color grading, and delivery — we handle the complete production pipeline.' },
         ],
         relatedSlugs: ['reels-editing', 'ai-creative-design', 'creative-design'],
-        metaTitle: 'Brand Video Production | Aurelius Media',
+        metaTitle: 'Brand Video Production',
         metaDescription: 'Cinematic brand video production from concept to delivery. Professional filming, editing, and distribution for digital marketing.',
     },
     {
@@ -1919,7 +1919,7 @@ export const services: ServiceData[] = [
             { question: 'Which platforms perform best with UGC?', answer: 'UGC performs exceptionally well on Meta (Facebook/Instagram), TikTok, and YouTube Shorts where authentic content outperforms polished brand ads.' },
         ],
         relatedSlugs: ['reels-editing', 'meta-ads', 'tiktok-ads'],
-        metaTitle: 'UGC Ads Production | Aurelius Media',
+        metaTitle: 'UGC Ads Production',
         metaDescription: 'Authentic UGC-style ad production that converts. In-house creators and vetted networks delivering user-generated content at scale.',
     },
     {
@@ -1966,7 +1966,7 @@ export const services: ServiceData[] = [
             { question: 'Do you write the copy too?', answer: 'Yes. Our team handles end-to-end landing page production including strategy, copy, design, development, and optimization.' },
         ],
         relatedSlugs: ['funnel-building', 'cro', 'creative-design'],
-        metaTitle: 'Landing Page Design Agency | Aurelius Media',
+        metaTitle: 'Landing Page Design Agency',
         metaDescription: 'High-converting landing pages designed and built for results. Campaign pages, product launches, and lead capture optimized for maximum conversions.',
     },
     {
@@ -2013,7 +2013,7 @@ export const services: ServiceData[] = [
             { question: 'How do you measure content ROI?', answer: 'We track organic traffic, engagement, lead generation, and revenue attribution from content — connecting content efforts to actual business outcomes.' },
         ],
         relatedSlugs: ['programmatic-seo', 'email-lifecycle', 'creative-design'],
-        metaTitle: 'Content Strategy Agency | Aurelius Media',
+        metaTitle: 'Content Strategy Agency',
         metaDescription: 'Data-driven content strategy aligned with business goals. Editorial calendars, topic clusters, and distribution frameworks that fuel growth.',
     },
     {
@@ -2060,7 +2060,7 @@ export const services: ServiceData[] = [
             { question: 'What stage startups do you work with?', answer: 'We work with pre-seed through Series C startups, as well as established companies creating sales presentations and partnership proposals.' },
         ],
         relatedSlugs: ['creative-design', 'brand-videos', 'landing-pages'],
-        metaTitle: 'Pitch Deck Design Agency | Aurelius Media',
+        metaTitle: 'Pitch Deck Design Agency',
         metaDescription: 'Stunning pitch decks that close deals and raise capital. Narrative strategy, data visualization, and premium design for investors and buyers.',
     },
 
@@ -2109,7 +2109,7 @@ export const services: ServiceData[] = [
             { question: 'How long does it take to deploy an AI agent?', answer: 'Simple agents can be deployed in 1-2 weeks. Complex multi-system agents typically take 3-6 weeks including testing and refinement.' },
         ],
         relatedSlugs: ['ai-automation', 'no-code-development', 'ai-workshops'],
-        metaTitle: 'Custom AI Agents | Aurelius Media',
+        metaTitle: 'Custom AI Agents',
         metaDescription: 'Purpose-built AI agents for lead qualification, customer support, and operations. Custom LLM agents trained on your data, deployed on your stack.',
     },
 ];

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const ogImage = post.ogImage || '/logo.png';
 
     return {
-        title: post.metaTitle || `${post.title} | Aurelius Media Blog`,
+        title: post.metaTitle || post.title,
         description: post.metaDescription || post.excerpt,
         openGraph: {
             title: post.metaTitle || post.title,

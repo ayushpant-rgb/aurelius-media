@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import AdminDashboard from './AdminDashboard';
 
 export const metadata: Metadata = {
-  title: 'Leads | Admin — Aurelius Media',
+  title: 'Leads | Admin',
   robots: { index: false, follow: false },
 };
 

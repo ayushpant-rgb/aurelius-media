@@ -19,6 +19,9 @@ const serviceBlogCategoryMap: Record<string, string[]> = {
     'reels-editing': ['Book Marketing', 'Performance Marketing'],
     'book-marketing': ['Book Marketing'],
     'education-marketing': ['Performance Marketing'],
+    'edtech-marketing': ['Performance Marketing', 'Vibe Coding & MVPs'],
+    'd2c-ecommerce-marketing': ['Performance Marketing'],
+    'saas-marketing': ['Performance Marketing', 'Vibe Coding & MVPs', 'SEO & Content Strategy'],
     'ai-automation': ['Vibe Coding & MVPs'],
     'no-code-development': ['Vibe Coding & MVPs'],
     'ai-workshops': ['Vibe Coding & MVPs'],
@@ -38,11 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const ogImage = service.heroImage || '/logo.png';
 
+    const ogTitle = `${service.metaTitle} | Aurelius Media`;
+
     return {
         title: service.metaTitle,
         description: service.metaDescription,
         openGraph: {
-            title: service.metaTitle,
+            title: ogTitle,
             description: service.metaDescription,
             type: 'website',
             url: `https://www.aureliusmedia.co/services/${service.slug}`,
@@ -50,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
         twitter: {
             card: 'summary_large_image',
-            title: service.metaTitle,
+            title: ogTitle,
             description: service.metaDescription,
             images: [ogImage],
         },
