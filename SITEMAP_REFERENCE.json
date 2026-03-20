@@ -1,23 +1,18 @@
 {
   "last_updated": "2026-03-20",
-  "total_pages": 41,
+  "total_pages": 45,
   "session_changes": {
     "date": "2026-03-20",
-    "summary": "Site deployed to Vercel at aureliusmedia.co. Removed /about page (301 redirect to /#how-it-works). Contact page completed with lead capture form, Cal.com placeholder, SVG social icons. Leads system added (Supabase + Resend + admin dashboard). Header made fully opaque, CTA changed to 'Join the Client Waitlist'. Mobile testimonials rewritten as horizontal rows (RTL/LTR/RTL) with one person per row. Social links updated site-wide. Footer badges removed, heading colors changed to orange.",
+    "summary": "CTA text updated, 200+ → 84+ businesses site-wide, education/EdTech split into two verticals, added D2C and SaaS verticals, Anandi logo added, logo speed +15%, vibe coding blog expanded with 8 tool profiles and consistent blog format. All changes deployed to Vercel.",
     "changes": [
-      "Deployed to Vercel production at aureliusmedia.co with custom domain DNS",
-      "Removed /about page, added 301 redirect to /#how-it-works in next.config.ts",
-      "Contact page completed: lead capture form, Cal.com placeholder, email ayush@aureliusmedia.co, SVG social icons",
-      "Leads system: Supabase database, /api/leads POST endpoint, /admin/leads dashboard with password auth, Resend email notifications",
-      "Header: fully opaque glass (no transparency), CTA 'Join the Client Waitlist', mobile drawer z-index fix",
-      "TestimonialsCarousel mobile: 3 horizontal rows (RTL/LTR/RTL) each featuring single person (Cameron/Tom/Karan) at 45s/40s/47s",
-      "TestimonialsCarousel desktop: slowed to 56s/63s/59s vertical columns",
-      "Social links updated site-wide: LinkedIn (ayushpant), X (FollowAurelius), Instagram (aurelius.media)",
-      "Footer: removed Google/Meta Certified badges, heading colors changed from gold to orange, removed Results link",
-      "Service pages: removed line-clamp truncation on personas, testimonials, related services for mobile",
-      "FeaturedResults mobile speed increased by 25%",
-      "Added robots.txt and sitemap.ts for SEO",
-      "Hero CTA text changed to 'Join the Client Waitlist'"
+      "Changed CTA from 'Join the Client Waitlist' to 'Book a free strategy call' (Header + Hero)",
+      "Changed '200+ businesses scaled' to '84+ businesses scaled' site-wide (6 locations)",
+      "Split education-marketing into education-marketing (schools) + edtech-marketing (platforms/SaaS) — 8 files updated",
+      "Added d2c-ecommerce-marketing and saas-marketing industry verticals — full V2 blueprint content",
+      "Added Anandi logo to Hero and ServicePageClient carousels",
+      "Increased logo scroll speed by 15% (25s → 21.7s)",
+      "Expanded vibe coding blog: 8 tool profiles (Lovable, Bolt.new, Replit, v0, Cursor, Claude Code, Emergent, Firebase Studio), In a Nutshell, TOC, comparison table, 6 best practices, Bottom Line, 8 FAQs, OG images downloaded for each tool",
+      "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json with all changes"
     ]
   },
   "design_system_updates": {
@@ -197,7 +192,8 @@
         "/blog/vibe-coding-explained-build-saas-weekend",
         "/blog/performance-max-2026-hero-or-villain",
         "/blog/instagram-growth-strategy-for-authors-2026",
-        "/blog/is-programmatic-seo-dead-in-2026"
+        "/blog/is-programmatic-seo-dead-in-2026",
+        "/blog/marketing-trends-2026-2030"
       ],
       "internal_links_from": ["/", "Header", "Footer"],
       "notes": "Redesigned per Blog Style Tile v1.0: 'Latest insights.' gradient header, category filter pills, featured 2-column hero card, 3-col card grid (20px radius, 200px image height, author photo avatars, orange hover glow), 'Load more' ghost button, warm-gradient newsletter CTA section."
@@ -339,9 +335,28 @@
     },
     {
       "route": "/services/education-marketing",
-      "title": "Education & EdTech Marketing | Aurelius Media",
-      "h1": "Drive Enrollments at Scale.",
-      "meta_description": "Data-driven marketing for universities, EdTech platforms, and coaching businesses. We turn intent into confirmed enrollments.",
+      "title": "Education Marketing | Aurelius Media",
+      "h1": "Education Marketing That Fills Seats Year-Round.",
+      "meta_description": "Performance marketing for schools, universities, and training institutes. Data-driven student acquisition campaigns that fill seats cycle after cycle.",
+      "primary_keyword": "education marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/edtech-marketing"
+      ],
+      "internal_links_from": ["/services", "Footer"]
+    },
+    {
+      "route": "/services/edtech-marketing",
+      "title": "EdTech Marketing | Aurelius Media",
+      "h1": "EdTech Marketing That Scales Users, Not Just Spend.",
+      "meta_description": "Growth marketing for EdTech platforms and SaaS companies. User acquisition, activation, and retention strategies backed by data.",
       "primary_keyword": "edtech marketing agency",
       "topic_cluster": "Industry Specialized",
       "page_type": "template",
@@ -352,9 +367,47 @@
         "/services",
         "/services/google-ads",
         "/services/meta-ads",
-        "/services/ai-automation"
+        "/services/education-marketing"
       ],
-      "internal_links_from": ["/services"]
+      "internal_links_from": ["/services", "Footer"]
+    },
+    {
+      "route": "/services/d2c-ecommerce-marketing",
+      "title": "D2C & E-commerce Marketing | Aurelius Media",
+      "h1": "D2C & E-commerce Marketing That Turns Clicks Into Customers.",
+      "meta_description": "Full-funnel performance marketing for D2C brands and e-commerce stores. From customer acquisition to retention and repeat purchase optimization.",
+      "primary_keyword": "d2c marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/saas-marketing"
+      ],
+      "internal_links_from": ["/services", "Footer"]
+    },
+    {
+      "route": "/services/saas-marketing",
+      "title": "SaaS Marketing | Aurelius Media",
+      "h1": "SaaS Marketing That Compounds Growth, Not Just Spend.",
+      "meta_description": "Growth marketing for SaaS companies. From trial acquisition to activation and expansion revenue — full-funnel strategies that reduce CAC and increase LTV.",
+      "primary_keyword": "saas marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/d2c-ecommerce-marketing"
+      ],
+      "internal_links_from": ["/services", "Footer"]
     },
     {
       "route": "/services/ai-automation",
@@ -596,13 +649,14 @@
       "route": "/blog/meta-ads-vs-google-ads-budget-2026",
       "title": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
       "h1": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
-      "meta_description": "A data-driven breakdown of Meta Ads vs Google Ads for 2026 — CPAs, intent signals, creative requirements, and when to use each platform.",
+      "meta_description": "2026 benchmark data on Meta Ads vs Google Ads — CPC, CPM, CPL, ROAS by industry, platform AI updates, and budget allocation frameworks for every business type.",
       "primary_keyword": "meta ads vs google ads",
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog", "/"]
+      "internal_links_from": ["/blog", "/"],
+      "notes": "Rewritten March 2026 with in-depth research. Includes CPC/CPM/CPL benchmark tables, ROAS by industry (8 verticals), platform AI updates (Andromeda, AI Max, Demand Gen), budget allocation framework, full-funnel playbook. In a Nutshell + TOC + 11 sections + 7 FAQs. No explicit Sources section — inline links only."
     },
     {
       "route": "/blog/vibe-coding-explained-build-saas-weekend",
@@ -619,26 +673,41 @@
     {
       "route": "/blog/performance-max-2026-hero-or-villain",
       "title": "Performance Max 2026: Hero or Villain for Your Ad Budget?",
-      "h1": "Performance Max 2026: Hero or Villain for Your Ad Budget?",
-      "meta_description": "An honest look at Google's Performance Max campaigns in 2026 — when PMax works, when it wastes budget, and how to control it.",
+      "h1": "Performance Max in 2026: Hero or Villain for Your Ad Budget?",
+      "meta_description": "An honest, data-backed verdict on Google Performance Max campaigns in 2026. When PMax works, when it destroys your budget, and a setup framework for doing it right.",
       "primary_keyword": "performance max 2026",
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog", "/"]
+      "internal_links_from": ["/blog", "/"],
+      "notes": "Rewritten March 2026 with benchmark data. 71% adoption, 51B impressions, attribution inflation deep-dive, 2025-2026 updates table (10 new controls), PMax vs Search vs Shopping comparison, setup framework (5 pillars). In a Nutshell + TOC + 11 sections + 7 FAQs."
     },
     {
       "route": "/blog/instagram-growth-strategy-for-authors-2026",
       "title": "Instagram Growth Strategy for Authors in 2026",
       "h1": "Instagram Growth Strategy for Authors in 2026",
-      "meta_description": "How authors can build a real Instagram following in 2026 — content pillars, reels strategy, and converting followers to readers.",
+      "meta_description": "A practical Instagram growth playbook for authors — content pillars, Reels strategy, bio optimization, hashtags, and converting followers into readers.",
       "primary_keyword": "instagram growth for authors",
       "topic_cluster": "Industry Specialized",
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog"]
+      "internal_links_from": ["/blog"],
+      "notes": "Rewritten March 2026. Removed all client references (genericized). In a Nutshell + TOC + 14 anchored sections + 6 FAQs. Bio optimization table, content pillar framework, Reels hook strategies."
+    },
+    {
+      "route": "/blog/marketing-trends-2026-2030",
+      "title": "Disruptive Marketing Trends of 2026: AI, Agents, and the New Rules",
+      "h1": "Disruptive Marketing Trends of 2026: AI, Agents, and the New Rules",
+      "meta_description": "The 7 disruptive marketing trends defining 2026 — agentic AI, vibe coding, AI-native creative, AEO, and the rise of 10x marketers. Data-backed analysis.",
+      "primary_keyword": "marketing trends 2026",
+      "topic_cluster": "Marketing Trends",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [],
+      "internal_links_from": ["/blog"],
+      "notes": "Complete rewrite March 2026 (previously dated Aug 2025 with 4 generic trends). Now covers 7 trends: agentic AI (Meta/Manus $2B acquisition), vibe coding (92% dev AI adoption), AI-native creative (50%+ AI-generated by EOY), AEO replacing SEO, Meta vs Google AI arms race, 10x marketer, AI UGC revolution. In a Nutshell + TOC + 9 sections + 7 FAQs. No explicit Sources — inline links to MarTech, Forbes, TechCrunch, Adweek, Tenjin, GitHub, Gartner, Fluency."
     },
     {
       "route": "/blog/is-programmatic-seo-dead-in-2026",
@@ -730,13 +799,15 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 5,
+      "total_pages_generated": 7,
       "sample_urls": [
         "/blog/meta-ads-vs-google-ads-budget-2026",
         "/blog/vibe-coding-explained-build-saas-weekend",
         "/blog/performance-max-2026-hero-or-villain",
         "/blog/instagram-growth-strategy-for-authors-2026",
-        "/blog/is-programmatic-seo-dead-in-2026"
+        "/blog/is-programmatic-seo-dead-in-2026",
+        "/blog/marketing-trends-2026-2030",
+        "/blog/9-ai-tools-for-startup-founders"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }

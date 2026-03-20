@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact). 28 specific service pages built with programmatic routing. 7 blog posts live. All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links.
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links.
 - **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
@@ -298,6 +298,9 @@ Every active route in the codebase and its status:
 | `/services/reels-editing` | Reels & Shorts Editing | Complete |
 | `/services/book-marketing` | Book Marketing | Complete |
 | `/services/education-marketing` | Education Marketing | Complete |
+| `/services/edtech-marketing` | EdTech Marketing | Complete |
+| `/services/d2c-ecommerce-marketing` | D2C & E-commerce Marketing | Complete |
+| `/services/saas-marketing` | SaaS Marketing | Complete |
 | `/services/ai-automation` | AI Automation | Complete |
 | `/services/no-code-development` | No-Code Development | Complete |
 | `/services/ai-workshops` | AI Workshops | Complete |
@@ -325,6 +328,7 @@ Every active route in the codebase and its status:
 | `/blog/vibe-coding-explained-build-saas-weekend` | Vibe Coding Explained | Complete |
 | `/blog/performance-max-2026-hero-or-villain` | Performance Max 2026 | Complete |
 | `/blog/instagram-growth-strategy-for-authors-2026` | Instagram Growth for Authors | Complete |
+| `/blog/marketing-trends-2026-2030` | Disruptive Marketing Trends 2026 | Complete |
 | `/contact` | Contact | Complete |
 | `/admin/leads` | Admin Dashboard | Complete |
 
@@ -434,6 +438,14 @@ If you are modifying this codebase:
 - **March 20, 2026:** Fixed Header mobile menu z-index: drawer moved outside `<header>` as sibling with `z-[60]`. Made header fully opaque (no transparency). CTA text changed to "Join the Client Waitlist". Nav "About" redirects to `/#how-it-works`.
 - **March 20, 2026:** Removed `/about` page entirely. Added 301 redirect in `next.config.ts` (`/about` → `/#how-it-works`).
 - **March 20, 2026:** Removed `line-clamp` truncation from service pages (personas, testimonials, related services) for mobile readability.
+- **March 20, 2026:** Changed CTA text from "Join the Client Waitlist" to "Book a free strategy call" in Header and Hero.
+- **March 20, 2026:** Changed "200+ businesses scaled" to "84+ businesses scaled" site-wide (SocialProofBar, TestimonialsCarousel, layout.tsx OG description, marketing-trends blog).
+- **March 20, 2026:** Split Education & EdTech Marketing into two separate industry verticals: `/services/education-marketing` (schools/universities) and `/services/edtech-marketing` (platforms/SaaS). Updated servicePages.ts, services.ts, Footer, sitemap.ts, ServicesHubClient, ServicePageClient (3 icon maps + testimonial keys), page.tsx blog category map.
+- **March 20, 2026:** Added two new industry verticals: `/services/d2c-ecommerce-marketing` (D2C & E-commerce Marketing) and `/services/saas-marketing` (SaaS Marketing). Full V2 blueprint content with Firecrawl research. Updated all 8 files. Industry Verticals grid now shows 6 cards (3-column layout).
+- **March 20, 2026:** Added Anandi logo (`/logos/anandi-logo.webp`) to Hero and ServicePageClient logo carousels.
+- **March 20, 2026:** Increased logo scroll speed by 15% (25s → 21.7s animation duration).
+- **March 20, 2026:** Expanded vibe coding blog article from ~137 lines to comprehensive guide with 8 tool profiles (Lovable, Bolt.new, Replit, v0, Cursor, Claude Code, Emergent, Firebase Studio). Added In a Nutshell, Table of Contents, tool comparison table, 6 best practices, The Bottom Line, 8 FAQs. Downloaded OG images from each tool's website. Format matches other blog posts (anchored H2 sections, `<details><summary>` FAQs).
 - **March 20, 2026:** Added leads system: Supabase database, `/api/leads` POST endpoint, admin dashboard at `/admin/leads` with password auth, Resend email notifications.
 - **March 20, 2026:** Contact page completed: lead capture form (name, email, phone, company, service, message), Cal.com booking placeholder, email updated to `ayush@aureliusmedia.co`, SVG social icons matching footer style.
 - **March 20, 2026:** Added `robots.txt` and `sitemap.ts` for SEO. Increased FeaturedResults mobile speed by 25%.
+- **March 20, 2026:** Rewrote 4 blog posts with in-depth research, data tables, and consistent structure (In a Nutshell, TOC with anchor links, `<h2 id="">` sections, The Bottom Line, FAQs using `<details><summary>`). Removed explicit Sources sections — external links woven inline instead. Posts updated: `instagram-growth-strategy-for-authors-2026` (removed client references, genericized), `meta-ads-vs-google-ads-budget-2026` (added CPC/CPM/CPL benchmarks, ROAS by industry, platform AI updates, budget allocation framework), `performance-max-2026-hero-or-villain` (added 2026 benchmarks, attribution inflation deep-dive, setup framework, PMax vs Search comparison), `marketing-trends-2026-2030` (complete rewrite: 7 trends covering agentic AI, vibe coding, AI-native creative, AEO, Meta/Google AI arms race, 10x marketer, AI UGC).
