@@ -1,15 +1,16 @@
 {
   "last_updated": "2026-03-20",
-  "total_pages": 45,
+  "total_pages": 47,
   "session_changes": {
     "date": "2026-03-20",
-    "summary": "Internal linking across all 7 blogs (31 links to 16 service pages + 4 blog cross-links), fixed 2 broken links, removed non-functional Load More button from blog page. Vibe coding blog expanded. All deployed to Vercel.",
+    "summary": "Added Privacy Policy and Terms & Conditions pages with footer links. Previously: internal linking across all 7 blogs, broken link fixes, Load More removal, vibe coding expansion. All deployed to Vercel.",
     "changes": [
+      "Added /privacy-policy page with standard legal content (data collection, third-party services, cookies, data rights, security)",
+      "Added /terms page with standard terms and conditions (IP, usage, liability, warranties, indemnification)",
+      "Added Privacy Policy and Terms & Conditions links to footer bottom bar (next to copyright text)",
       "Added internal links across all 7 blog posts: 31 contextual links to 16 service pages + 4 blog-to-blog cross-links (editorial tone, not promotional)",
       "Fixed 2 broken links in programmatic SEO post: /categories/programmatic-seo → /services/programmatic-seo, /categories/web-apps-mvps → /services/no-code-development",
-      "Service pages linked from blogs: google-ads, meta-ads, d2c-ecommerce-marketing, saas-marketing, ai-creative-design, analytics-reporting, book-marketing, reels-editing, no-code-development, landing-pages, ai-agents, ai-workshops, content-strategy, programmatic-seo, brand-videos, retargeting",
-      "Blog cross-links added: Meta Ads ↔ PMax, Marketing Trends ↔ Vibe Coding, Marketing Trends ↔ Programmatic SEO, Vibe Coding ↔ Marketing Trends",
-      "Removed non-functional 'Load more articles' button from blog listing page (BlogListClient.tsx) — all 7 posts display without pagination",
+      "Removed non-functional 'Load more articles' button from blog listing page (BlogListClient.tsx)",
       "Expanded vibe coding blog: 8 tool profiles, In a Nutshell, TOC, comparison table, best practices, Bottom Line, 8 FAQs, OG images",
       "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json with all changes"
     ]
@@ -114,6 +115,26 @@
       "title": "REMOVED — 301 redirect to /#how-it-works",
       "status": "redirect",
       "notes": "Page deleted. Permanent redirect configured in next.config.ts. 'About' nav link points to /#how-it-works."
+    },
+    {
+      "route": "/privacy-policy",
+      "title": "Privacy Policy | Aurelius Media",
+      "h1": "Privacy Policy",
+      "meta_description": "Privacy Policy for Aurelius Media. Learn how we collect, use, and protect your personal information.",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_from": ["Footer"],
+      "notes": "Standard privacy policy covering data collection, third-party services (Vercel, Cal.com, Resend, Supabase, Google Analytics), cookies, data retention, user rights, security. Contact: hello@aureliusmedia.co."
+    },
+    {
+      "route": "/terms",
+      "title": "Terms & Conditions | Aurelius Media",
+      "h1": "Terms & Conditions",
+      "meta_description": "Terms and Conditions for Aurelius Media. Read our terms of service, usage policies, and legal agreements.",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_from": ["Footer"],
+      "notes": "Standard T&C covering services description, IP, site usage, blog disclaimer, third-party links, consultations, liability, warranties, indemnification, governing law."
     },
     {
       "route": "/admin/leads",

@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links.
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links.
 - **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
@@ -330,6 +330,8 @@ Every active route in the codebase and its status:
 | `/blog/instagram-growth-strategy-for-authors-2026` | Instagram Growth for Authors | Complete |
 | `/blog/marketing-trends-2026-2030` | Disruptive Marketing Trends 2026 | Complete |
 | `/contact` | Contact | Complete |
+| `/privacy-policy` | Privacy Policy | Complete |
+| `/terms` | Terms & Conditions | Complete |
 | `/admin/leads` | Admin Dashboard | Complete |
 
 ## 10. Known Issues & TODOs (from recent audit)
@@ -451,3 +453,4 @@ If you are modifying this codebase:
 - **March 20, 2026:** Rewrote 4 blog posts with in-depth research, data tables, and consistent structure (In a Nutshell, TOC with anchor links, `<h2 id="">` sections, The Bottom Line, FAQs using `<details><summary>`). Removed explicit Sources sections — external links woven inline instead. Posts updated: `instagram-growth-strategy-for-authors-2026` (removed client references, genericized), `meta-ads-vs-google-ads-budget-2026` (added CPC/CPM/CPL benchmarks, ROAS by industry, platform AI updates, budget allocation framework), `performance-max-2026-hero-or-villain` (added 2026 benchmarks, attribution inflation deep-dive, setup framework, PMax vs Search comparison), `marketing-trends-2026-2030` (complete rewrite: 7 trends covering agentic AI, vibe coding, AI-native creative, AEO, Meta/Google AI arms race, 10x marketer, AI UGC).
 - **March 20, 2026:** Added internal links across all 7 blog posts: 31 contextual links to 16 service pages + 4 blog-to-blog cross-links. Fixed 2 broken links in programmatic SEO post (`/categories/programmatic-seo` → `/services/programmatic-seo`, `/categories/web-apps-mvps` → `/services/no-code-development`). Editorial tone — no promotional "our services" language. Service pages linked: google-ads, meta-ads, d2c-ecommerce-marketing, saas-marketing, ai-creative-design, analytics-reporting, book-marketing, reels-editing, no-code-development, landing-pages, ai-agents, ai-workshops, content-strategy, programmatic-seo, brand-videos, retargeting. Blog cross-links: Meta↔PMax, Trends↔Vibe Coding, Trends↔pSEO, Vibe Coding↔Trends.
 - **March 20, 2026:** Removed non-functional "Load more articles" button from blog listing page (`BlogListClient.tsx`). All 7 posts display on page — button had no click handler and was misleading.
+- **March 20, 2026:** Added Privacy Policy (`/privacy-policy`) and Terms & Conditions (`/terms`) pages. Both linked from footer bottom bar next to copyright text. Standard legal content covering data collection, third-party services (Vercel, Cal.com, Resend, Supabase, Google Analytics), IP, liability, and contact info.
