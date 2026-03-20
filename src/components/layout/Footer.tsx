@@ -18,7 +18,10 @@ const footerLinks = {
     ],
     verticals: [
         { label: 'Book & Author Marketing', href: '/services/book-marketing' },
-        { label: 'Education & EdTech', href: '/services/education-marketing' },
+        { label: 'Education Marketing', href: '/services/education-marketing' },
+        { label: 'EdTech Marketing', href: '/services/edtech-marketing' },
+        { label: 'D2C & E-commerce', href: '/services/d2c-ecommerce-marketing' },
+        { label: 'SaaS Marketing', href: '/services/saas-marketing' },
         { label: 'Real Estate Marketing', href: '/services/real-estate-marketing' },
     ],
     resources: [
@@ -159,9 +162,18 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="py-6 border-t border-brand-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs text-brand-gray-dark">
-                        &copy; {new Date().getFullYear()} Aurelius Media. All rights reserved.
-                    </p>
+                    <div className="flex items-center gap-4">
+                        <p className="text-xs text-brand-gray-dark">
+                            &copy; {new Date().getFullYear()} Aurelius Media. All rights reserved.
+                        </p>
+                        <span className="text-brand-border-subtle hidden sm:inline">|</span>
+                        <Link href="/privacy-policy" className="text-xs text-brand-gray-dark hover:text-brand-white transition-colors">
+                            Privacy Policy
+                        </Link>
+                        <Link href="/terms" className="text-xs text-brand-gray-dark hover:text-brand-white transition-colors">
+                            Terms &amp; Conditions
+                        </Link>
+                    </div>
                     <div className="flex items-center gap-4">
                         {socialLinks.map((social) => (
                             <a
