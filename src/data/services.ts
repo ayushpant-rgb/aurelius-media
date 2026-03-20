@@ -118,7 +118,7 @@ export const services: Service[] = [
     {
         title: 'Book & Author Marketing',
         slug: 'book-marketing',
-        description: 'End-to-end book launch campaigns, author brand building, and digital marketing for publishers. 100,000+ copies sold for clients.',
+        description: 'AI-powered book marketing that sells more books. Trusted by Penguin, HarperCollins, Bloomsbury. 80,000+ copies sold for clients.',
         icon: '📚',
         category: 'vertical',
         keywords: ['book marketing agency', 'author marketing', 'book launch campaign'],
