@@ -122,11 +122,7 @@ export default function TermsPage() {
                         <section>
                             <h2 className="text-lg font-bold text-brand-white mb-3">13. Contact Us</h2>
                             <p>
-                                If you have any questions about these Terms &amp; Conditions, please contact us at:
-                            </p>
-                            <p className="mt-2">
-                                <strong className="text-brand-white">Aurelius Media</strong><br />
-                                Email: hello@aureliusmedia.co
+                                If you have any questions about these Terms &amp; Conditions, please reach out through our <a href="/contact" className="text-brand-accent-text underline underline-offset-2 hover:text-brand-accent-hover transition-colors">contact page</a>.
                             </p>
                         </section>
                     </div>
