@@ -183,12 +183,6 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
                         </div>
                     )}
 
-                    {/* Load more */}
-                    <div className="text-center mt-8">
-                        <button className="btn-ghost text-[14px] px-6 py-2.5 inline-flex items-center justify-center">
-                            Load more articles
-                        </button>
-                    </div>
                 </div>
             </section>
 
