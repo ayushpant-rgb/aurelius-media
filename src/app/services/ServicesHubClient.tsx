@@ -267,15 +267,12 @@ export default function ServicesHubClient() {
                             <h2 className="text-2xl font-medium text-brand-white">Industry verticals</h2>
                             <span className="text-[13px] text-brand-gray-dark">Specialized marketing</span>
                         </div>
-                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education, EdTech, D2C, SaaS, and real estate.</p>
+                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education & EdTech, and real estate.</p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {[
                             { title: 'Book & Author Marketing', href: '/services/book-marketing', desc: 'Launch campaigns, Amazon optimization, and audience building for authors.' },
-                            { title: 'Education Marketing', href: '/services/education-marketing', desc: 'Admissions marketing for schools, universities, and coaching institutes.' },
-                            { title: 'EdTech Marketing', href: '/services/edtech-marketing', desc: 'Growth marketing for EdTech platforms and online learning companies.' },
-                            { title: 'D2C & E-commerce', href: '/services/d2c-ecommerce-marketing', desc: 'Full-funnel revenue growth for direct-to-consumer and e-commerce brands.' },
-                            { title: 'SaaS Marketing', href: '/services/saas-marketing', desc: 'Pipeline-focused growth marketing for B2B and B2C SaaS companies.' },
+                            { title: 'Education & EdTech', href: '/services/education-marketing', desc: 'Student acquisition, enrollment funnels, and brand positioning for education.' },
                             { title: 'Real Estate Marketing', href: '/services/real-estate-marketing', desc: 'Lead generation, virtual tours, and digital campaigns for real estate.' },
                         ].map((v) => (
                             <Link key={v.href} href={v.href} className="p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-colors">

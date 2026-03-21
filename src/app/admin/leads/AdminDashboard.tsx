@@ -18,7 +18,6 @@ const SOURCE_LABELS: Record<LeadSource, string> = {
   service_cta: 'Service CTA',
   contact: 'Contact Page',
   popup: 'Popup',
-  ebook: 'Ebook Download',
 };
 
 function formatDate(dateStr: string): string {

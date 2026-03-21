@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Aurelius Media",
     title: "Aurelius Media | AI-Powered Performance Marketing Agency",
     description:
-      "20+ years of digital marketing expertise. $15M+ in ad spend managed. 84+ businesses scaled across 25+ countries.",
+      "20+ years of digital marketing expertise. $15M+ in ad spend managed. 200+ businesses scaled across 25+ countries.",
     images: [
       {
         url: "/logo.png",

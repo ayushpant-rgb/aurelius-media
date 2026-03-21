@@ -12,7 +12,6 @@ export default function Hero() {
         { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: 'Client Logo 3' },
         { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: 'Client Logo 4' },
         { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: 'Client Logo 5' },
-        { src: '/logos/anandi-logo.webp', alt: 'Anandi' },
     ];
 
     return (
@@ -108,7 +107,7 @@ export default function Hero() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center px-8 py-4 cta-primary text-white font-semibold rounded-full text-base w-full sm:w-auto max-w-xs"
                     >
-                        Book a free strategy call
+                        Join the Client Waitlist
                     </a>
                     <Link
                         href="/services"

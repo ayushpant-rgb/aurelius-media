@@ -8,7 +8,6 @@ const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'About', href: '/#how-it-works' },
-    { label: 'Resources', href: '/resources' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
 ];
@@ -73,7 +72,7 @@ export default function Header() {
                             rel="noopener noreferrer"
                             className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 cta-primary text-white text-sm font-semibold rounded-full"
                         >
-                            Book a free strategy call
+                            Join the Client Waitlist
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -130,7 +129,7 @@ export default function Header() {
                             onClick={() => setMobileOpen(false)}
                             className="mt-4 px-8 py-3 cta-primary text-white font-semibold rounded-[20px]"
                         >
-                            Book a free strategy call →
+                            Join the Client Waitlist →
                         </a>
                     </div>
                 </div>

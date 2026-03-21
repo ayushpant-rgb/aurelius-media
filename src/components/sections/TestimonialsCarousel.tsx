@@ -227,7 +227,7 @@ export default function TestimonialsCarousel() {
                 {/* Inline CTA */}
                 <div className="text-center mt-14">
                     <p className="text-sm text-brand-gray mb-5 max-w-sm mx-auto leading-relaxed">
-                        Join 84+ businesses that have scaled with Aurelius Media.
+                        Join 200+ businesses that have scaled with Aurelius Media.
                     </p>
                     <a
                         href="https://cal.com/aureliusmedia/15min"
