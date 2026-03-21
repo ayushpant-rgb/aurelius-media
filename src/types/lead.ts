@@ -1,4 +1,4 @@
-export type LeadSource = 'service_hero' | 'service_cta' | 'contact' | 'popup';
+export type LeadSource = 'service_hero' | 'service_cta' | 'contact' | 'popup' | 'ebook';
 export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'closed';
 
 export interface Lead {

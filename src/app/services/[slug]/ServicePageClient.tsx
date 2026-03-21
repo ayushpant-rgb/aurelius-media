@@ -34,6 +34,9 @@ const heroIconMap: Record<string, LucideIcon[]> = {
     'real-estate-marketing':   [Home, Target, TrendingUp],
     'book-marketing':          [BookOpen, Megaphone, TrendingUp],
     'education-marketing':     [GraduationCap, Target, BarChart3],
+    'edtech-marketing':        [Rocket, TrendingUp, BarChart3],
+    'd2c-ecommerce-marketing': [ShoppingCart, Sparkles, TrendingUp],
+    'saas-marketing':          [Rocket, LineChart, Target],
 };
 
 /** Persona card icons — matched by keyword in persona title */
@@ -137,6 +140,9 @@ const serviceIconMap: Record<string, LucideIcon> = {
     'real-estate-marketing':   Home,
     'book-marketing':          BookOpen,
     'education-marketing':     GraduationCap,
+    'edtech-marketing':        Cpu,
+    'd2c-ecommerce-marketing': ShoppingCart,
+    'saas-marketing':          Globe,
 };
 
 /* ─── Client logos for social proof bar ─── */
@@ -146,6 +152,7 @@ const clientLogos = [
     { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: 'Client' },
     { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: 'Client' },
     { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: 'Client' },
+    { src: '/logos/anandi-logo.webp', alt: 'Anandi' },
 ];
 
 /* ─── Per-service testimonial data (expanded to 3+ per service for carousel) ─── */
@@ -216,6 +223,9 @@ const allTestimonials: Record<string, ServiceTestimonial> = {
 const serviceTestimonialKeys: Record<string, string[]> = {
     'book-marketing': ['nidhi', 'tom', 'ira'],
     'education-marketing': ['karan', 'cameron', 'tom'],
+    'edtech-marketing': ['karan', 'james', 'arjun'],
+    'd2c-ecommerce-marketing': ['cameron', 'arjun', 'priya'],
+    'saas-marketing': ['karan', 'james', 'tom'],
     'google-ads': ['cameron', 'karan', 'tom'],
     'meta-ads': ['cameron', 'arjun', 'priya'],
     'marketing-strategy-audit': ['tom', 'karan', 'cameron'],
@@ -276,8 +286,8 @@ const budgetOptions = [
     '$20,000+/month',
 ];
 
-/* ─── WhatsApp number (update with real number) ─── */
-const WHATSAPP_NUMBER = '919999999999';
+/* ─── WhatsApp number ─── */
+const WHATSAPP_NUMBER = '919717755053';
 
 interface RelatedArticle {
     slug: string;

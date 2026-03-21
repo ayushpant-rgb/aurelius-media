@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-logo-scroll {
-  animation: logo-scroll 25s linear infinite;
+  animation: logo-scroll 21.7s linear infinite;
 }
 
 .animate-scroll-rtl {

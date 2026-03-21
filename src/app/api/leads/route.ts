@@ -6,7 +6,7 @@ import type { CreateLeadPayload } from '@/types/lead';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const VALID_SOURCES = ['service_hero', 'service_cta', 'contact', 'popup'] as const;
+const VALID_SOURCES = ['service_hero', 'service_cta', 'contact', 'popup', 'ebook'] as const;
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

@@ -3,7 +3,7 @@
 import { useInView, useCountUp } from '@/lib/hooks';
 
 const stats = [
-    { value: 200, suffix: '+', label: 'Businesses Scaled' },
+    { value: 84, suffix: '+', label: 'Businesses Scaled' },
     { value: 25, suffix: '+', label: 'Countries Served' },
     { value: 100, suffix: 'CR+', label: 'Ad Spend Managed', prefix: '₹' },
     { value: 20, suffix: '+', label: 'Years Experience' },
