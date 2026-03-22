@@ -15,44 +15,44 @@ import {
 
 const serviceCards: BentoItem[] = [
     {
-        title: 'Paid Media',
+        title: 'Performance Marketing',
         meta: '6 platforms',
         description:
             'Google, Meta, LinkedIn, TikTok, YouTube ads and retargeting — AI-augmented bidding for maximum ROAS.',
         icon: <TrendingUp className="w-5 h-5 text-brand-accent" />,
         tags: ['Google Ads', 'Meta Ads', 'LinkedIn', 'YouTube', 'TikTok', 'Retargeting'],
         cta: 'Explore →',
-        href: '/services#paid-media',
+        href: '/services#performance-marketing',
     },
     {
-        title: 'Growth Engine',
-        meta: '7 services',
+        title: 'Growth Marketing',
+        meta: '9 services',
         description:
-            'Strategy audits, lead gen, funnel building, CRO, programmatic SEO, and lifecycle marketing.',
+            'Strategy audits, lead gen, funnel building, CRO, programmatic SEO, analytics, lifecycle marketing, content strategy, and landing pages.',
         icon: <Briefcase className="w-5 h-5 text-brand-accent" />,
-        tags: ['Lead Gen', 'CRO', 'SEO', 'Analytics'],
+        tags: ['Lead Gen', 'CRO', 'SEO', 'Analytics', 'Content', 'Landing Pages'],
         cta: 'Explore →',
-        href: '/services#growth-engine',
+        href: '/services#growth-marketing',
     },
     {
-        title: 'Creative Studio',
-        meta: '7 services',
+        title: 'Creative Services',
+        meta: '6 services',
         description:
-            'Brand videos, reels & shorts, AI creatives, UGC ads, landing pages, content strategy, and pitch decks.',
+            'Brand videos, reels & shorts, AI creatives, UGC ads, creative design, and pitch decks.',
         icon: <Palette className="w-5 h-5 text-brand-accent" />,
         tags: ['Video', 'AI Creatives', 'UGC', 'Design'],
         cta: 'Explore →',
-        href: '/services#creative-studio',
+        href: '/services#creative-services',
     },
     {
-        title: 'AI & Build',
-        meta: '4 services',
+        title: 'AI Marketing & Automation',
+        meta: '5 services',
         description:
-            'AI automation, custom AI agents, web apps & MVPs, and hands-on AI workshops for teams.',
+            'AI automation, custom AI agents, AI chatbots, web apps & MVPs, and hands-on AI workshops for teams.',
         icon: <Zap className="w-5 h-5 text-brand-accent" />,
-        tags: ['AI Automation', 'AI Agents', 'Web Apps', 'Workshops'],
+        tags: ['AI Automation', 'AI Agents', 'Chatbots', 'Web Apps', 'Workshops'],
         cta: 'Explore →',
-        href: '/services#ai-build',
+        href: '/services#ai-automation',
     },
     {
         title: 'Industry Verticals',

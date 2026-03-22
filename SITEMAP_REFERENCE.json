@@ -1,7 +1,20 @@
 {
   "last_updated": "2026-03-22",
-  "total_pages": 55,
+  "total_pages": 56,
   "session_changes": [
+    {
+      "date": "2026-03-22",
+      "summary": "Category rename and restructure. Added AI Chatbots service page. Total pages: 55 → 56.",
+      "changes": [
+        "Renamed 'Paid Media' → 'Performance Marketing' across all pages and data files",
+        "Renamed 'Growth Engine' → 'Growth Marketing' across all pages and data files",
+        "Renamed 'Creative Studio' → 'Creative Services' across all pages and data files",
+        "Renamed 'AI & Build' → 'AI Marketing & Automation' across all pages and data files",
+        "Moved Content Strategy and Landing Pages from Creative Services to Growth Marketing category",
+        "Added /services/ai-chatbots — AI Chatbots service page under AI Marketing & Automation",
+        "Updated services.ts, servicePages.ts, ServicesHubClient.tsx, ServicesOverview.tsx, Footer.tsx, Hero.tsx, BlogPreview.tsx, BlogPostClient.tsx, page.tsx, sitemap.ts"
+      ]
+    },
     {
       "date": "2026-03-22",
       "summary": "Mobile performance optimization (THREE.js lazy-load, server components, gtag afterInteractive). SEO fixes: robots max-image-preview, removed years from 5 blog slugs with 301 redirects, sitemap updated with resources/ebooks/legal pages. OG description corrected.",
@@ -93,10 +106,10 @@
     "homepage_category_cards": {
       "file": "src/components/sections/ServicesOverview.tsx",
       "cards": [
-        {"title": "Paid Media", "href": "/services/google-ads"},
-        {"title": "Growth Engine", "href": "/services/marketing-strategy-audit"},
-        {"title": "Creative Studio", "href": "/services/creative-design"},
-        {"title": "AI & Build", "href": "/services/ai-automation"},
+        {"title": "Performance Marketing", "href": "/services/google-ads"},
+        {"title": "Growth Marketing", "href": "/services/marketing-strategy-audit"},
+        {"title": "Creative Services", "href": "/services/creative-design"},
+        {"title": "AI Marketing & Automation", "href": "/services/ai-automation"},
         {"title": "Industry Verticals", "href": "/services/book-marketing"},
         {"title": "Full Funnel Marketing", "href": "/services/marketing-strategy-audit"}
       ]
@@ -199,7 +212,8 @@
         "/services/landing-pages",
         "/services/content-strategy",
         "/services/pitch-decks",
-        "/services/ai-agents"
+        "/services/ai-agents",
+        "/services/ai-chatbots"
       ],
       "internal_links_from": ["/", "Header", "Footer"]
     },
@@ -684,6 +698,25 @@
       "internal_links_from": ["/services"]
     },
     {
+      "route": "/services/ai-chatbots",
+      "title": "AI Chatbots for Business | Aurelius Media",
+      "h1": "AI Chatbots That Convert Visitors Into Customers.",
+      "meta_description": "Custom AI chatbots for lead qualification, customer support, and sales. Trained on your business data, integrated with your CRM, available 24/7.",
+      "primary_keyword": "AI chatbot agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/ai-automation",
+        "/services/ai-agents",
+        "/services/lead-generation"
+      ],
+      "internal_links_from": ["/services"]
+    },
+    {
       "route": "/services/performance-marketing",
       "title": "Performance Marketing Services | Aurelius Media",
       "h1": "Performance Marketing That Drives Real Revenue.",
@@ -750,7 +783,7 @@
       "route": "/services/ai-marketing-automation",
       "title": "AI Marketing & Automation | Aurelius Media",
       "h1": "AI-Powered Systems That Scale Your Business.",
-      "meta_description": "AI marketing automation services: custom AI automation, AI agents, web app/MVP development, and corporate AI workshops. Build smarter, scale faster.",
+      "meta_description": "AI marketing automation services: custom AI automation, AI agents, AI chatbots, web app/MVP development, and corporate AI workshops. Build smarter, scale faster.",
       "primary_keyword": "ai marketing automation agency",
       "topic_cluster": "Growth Engineering",
       "page_type": "pillar",
@@ -758,11 +791,12 @@
       "internal_links_to": [
         "/services/ai-automation",
         "/services/ai-agents",
+        "/services/ai-chatbots",
         "/services/no-code-development",
         "/services/ai-workshops"
       ],
       "internal_links_from": ["/services"],
-      "notes": "SEO pillar page for AI & build category. Aggregates 4 sub-service pages."
+      "notes": "SEO pillar page for AI & build category. Aggregates 5 sub-service pages."
     },
     {
       "route": "/blog/meta-ads-vs-google-ads-budget",
@@ -879,12 +913,14 @@
       "supporting_pages": [
         "/services/ai-automation",
         "/services/no-code-development",
-        "/services/ai-workshops"
+        "/services/ai-workshops",
+        "/services/ai-chatbots"
       ],
       "target_keywords": [
         "ai automation agency",
         "no code agency",
-        "corporate ai training"
+        "corporate ai training",
+        "AI chatbot agency"
       ]
     },
     {
@@ -907,7 +943,7 @@
       "template_name": "Service Hub Dynamic Router",
       "route_pattern": "/services/[slug]",
       "data_source": "src/data/servicePages.ts",
-      "total_pages_generated": 32,
+      "total_pages_generated": 33,
       "sample_urls": [
         "/services/google-ads",
         "/services/meta-ads"

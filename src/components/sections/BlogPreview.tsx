@@ -5,7 +5,6 @@ import { BlogPostMeta } from '@/lib/blog';
 const categoryTagClass: Record<string, string> = {
     'Performance Marketing': 'tag-orange',
     'Performance Advertising': 'tag-orange',
-    'Paid Media': 'tag-orange',
     'Book Marketing': 'tag-orange',
     'Creative Production': 'tag-orange',
     'SEO & Content Strategy': 'tag-green',

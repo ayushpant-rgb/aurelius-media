@@ -8,7 +8,7 @@ import {
     Search, Share2, Linkedin, Play, Music2, RefreshCw,
     ClipboardCheck, Target, Filter, MousePointerClick, Globe, BarChart3, Mail,
     Wand2, Palette, Film, Video, Users, Layout, FileText,
-    Zap, Bot, Code2, GraduationCap,
+    Zap, Bot, MessageSquareText, Code2, GraduationCap,
 } from 'lucide-react';
 
 /* ─── Category definitions ─── */
@@ -23,8 +23,8 @@ interface ServiceCategory {
 
 const categories: ServiceCategory[] = [
     {
-        id: 'paid-media',
-        name: 'Paid media',
+        id: 'performance-marketing',
+        name: 'Performance marketing',
         meta: 'Ads & campaigns',
         subtitle: 'Google, Meta, LinkedIn, TikTok, YouTube ads and retargeting — managed with AI-augmented bidding.',
         accentHex: '#3B82F6',
@@ -62,10 +62,10 @@ const categories: ServiceCategory[] = [
         ],
     },
     {
-        id: 'growth-engine',
-        name: 'Growth engine',
+        id: 'growth-marketing',
+        name: 'Growth marketing',
         meta: 'Strategy & pipeline',
-        subtitle: 'Strategy audits, lead gen, funnel building, CRO, programmatic SEO, analytics, and lifecycle marketing.',
+        subtitle: 'Strategy audits, lead gen, funnel building, CRO, programmatic SEO, analytics, lifecycle marketing, content strategy, and landing pages.',
         accentHex: '#10B981',
         items: [
             {
@@ -103,13 +103,23 @@ const categories: ServiceCategory[] = [
                 description: 'Automated email sequences, segmentation, and lifecycle campaigns to nurture and retain customers.',
                 tags: ['Email', 'Retention'], cta: 'Explore →', href: '/services/email-lifecycle',
             },
+            {
+                title: 'Content Strategy', meta: 'Editorial', icon: <FileText className="w-5 h-5 text-brand-accent" />,
+                description: 'Editorial calendars, content pillars, and distribution strategies tied to business goals.',
+                tags: ['Content', 'Editorial'], cta: 'Explore →', href: '/services/content-strategy',
+            },
+            {
+                title: 'Landing Pages', meta: 'Conversion', icon: <Layout className="w-5 h-5 text-brand-accent" />,
+                description: 'High-converting landing pages designed for specific campaigns, offers, and audiences.',
+                tags: ['Landing', 'Conversion'], cta: 'Explore →', href: '/services/landing-pages',
+            },
         ],
     },
     {
-        id: 'creative-studio',
-        name: 'Creative studio',
-        meta: 'Content & assets',
-        subtitle: 'Brand videos, reels, AI creatives, UGC, landing pages, content strategy, and pitch decks.',
+        id: 'creative-services',
+        name: 'Creative services',
+        meta: 'Content & design',
+        subtitle: 'Brand videos, reels & shorts, AI creatives, UGC ads, creative design, and pitch decks.',
         accentHex: '#A855F7',
         items: [
             {
@@ -138,22 +148,17 @@ const categories: ServiceCategory[] = [
                 tags: ['UGC', 'Authentic'], cta: 'Explore →', href: '/services/ugc-ads',
             },
             {
-                title: 'Landing Pages', meta: 'Conversion', icon: <Layout className="w-5 h-5 text-brand-accent" />,
-                description: 'High-converting landing pages designed for specific campaigns, offers, and audiences.',
-                tags: ['Landing', 'Conversion'], cta: 'Explore →', href: '/services/landing-pages',
-            },
-            {
-                title: 'Content Strategy', meta: 'Editorial', icon: <FileText className="w-5 h-5 text-brand-accent" />,
-                description: 'Editorial calendars, content pillars, and distribution strategies tied to business goals.',
-                tags: ['Content', 'Editorial'], cta: 'Explore →', href: '/services/content-strategy',
+                title: 'Pitch Decks', meta: 'Presentations', icon: <Layout className="w-5 h-5 text-brand-accent" />,
+                description: 'Investor-ready pitch decks and sales presentations designed to win meetings and close deals.',
+                tags: ['Decks', 'Presentations'], cta: 'Explore →', href: '/services/pitch-decks',
             },
         ],
     },
     {
-        id: 'ai-build',
-        name: 'AI & build',
+        id: 'ai-automation',
+        name: 'AI marketing & automation',
         meta: 'Tech & automation',
-        subtitle: 'AI automation, custom agents, web apps & MVPs, and hands-on AI workshops for teams.',
+        subtitle: 'AI automation, custom AI agents, AI chatbots, web apps & MVPs, and hands-on AI workshops for teams.',
         accentHex: '#0EA5E9',
         items: [
             {
@@ -165,6 +170,11 @@ const categories: ServiceCategory[] = [
                 title: 'AI Agents', meta: 'Custom AI', icon: <Bot className="w-5 h-5 text-brand-accent" />,
                 description: 'Custom-built AI agents for customer support, lead qualification, content generation, and data analysis.',
                 tags: ['Agents', 'AI'], cta: 'Explore →', href: '/services/ai-agents',
+            },
+            {
+                title: 'AI Chatbots', meta: 'Conversational AI', icon: <MessageSquareText className="w-5 h-5 text-brand-accent" />,
+                description: 'Custom AI chatbots for customer support, lead qualification, and sales — trained on your data.',
+                tags: ['Chatbots', 'Support', 'Sales'], cta: 'Explore →', href: '/services/ai-chatbots',
             },
             {
                 title: 'Web Apps & MVPs', meta: 'Development', icon: <Code2 className="w-5 h-5 text-brand-accent" />,

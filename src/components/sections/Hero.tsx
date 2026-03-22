@@ -98,7 +98,7 @@ export default function Hero() {
 
                 {/* Sub-headline */}
                 <p className="text-sm sm:text-base md:text-lg text-brand-gray max-w-lg mx-auto mb-10 leading-relaxed animate-fade-in-up px-2" style={{ animationDelay: '0.15s' }}>
-                    10x Growth Engine for VC-Backed Startups.{' '}
+                    10x Growth Marketing for VC-Backed Startups.{' '}
                     <br className="hidden sm:block" />
                     Trusted by Unicorn Founders. We engineer growth, not guesswork.
                 </p>

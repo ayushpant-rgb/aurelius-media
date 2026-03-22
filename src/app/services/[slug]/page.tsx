@@ -30,6 +30,7 @@ const serviceBlogCategoryMap: Record<string, string[]> = {
     'growth-marketing': ['Performance Marketing', 'SEO & Content Strategy'],
     'creative-services': ['Performance Marketing', 'Book Marketing'],
     'ai-marketing-automation': ['Vibe Coding & MVPs'],
+    'ai-chatbots': ['Vibe Coding & MVPs'],
 };
 
 export async function generateStaticParams() {

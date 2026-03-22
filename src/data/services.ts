@@ -3,18 +3,18 @@ export interface Service {
     slug: string;
     description: string;
     icon: string;
-    category: 'paid_media' | 'growth_engine' | 'creative_studio' | 'ai_build' | 'vertical';
+    category: 'performance_marketing' | 'growth_marketing' | 'creative_services' | 'ai_automation' | 'vertical';
     keywords: string[];
 }
 
 export const services: Service[] = [
-    // ─── PAID MEDIA ───
+    // ─── PERFORMANCE MARKETING ───
     {
         title: 'Google Ads Management',
         slug: 'google-ads',
         description: 'Search, Display, Shopping, YouTube, and Performance Max campaigns with ROAS-focused optimization.',
         icon: '📊',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['google ads agency', 'google ads management', 'PPC agency'],
     },
     {
@@ -22,7 +22,7 @@ export const services: Service[] = [
         slug: 'meta-ads',
         description: 'Full-funnel Meta campaigns across Facebook and Instagram with advanced creative testing and Advantage+ optimization.',
         icon: '📱',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['facebook ads agency', 'instagram advertising', 'meta ads management'],
     },
     {
@@ -30,7 +30,7 @@ export const services: Service[] = [
         slug: 'linkedin-ads',
         description: 'ABM-style LinkedIn advertising targeting decision-makers with firmographic precision and pipeline-focused optimization.',
         icon: '💼',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['linkedin ads agency', 'linkedin advertising', 'B2B linkedin campaigns'],
     },
     {
@@ -38,7 +38,7 @@ export const services: Service[] = [
         slug: 'youtube-ads',
         description: 'Strategic YouTube advertising across skippable, non-skippable, Shorts, and Discovery formats for awareness and conversion.',
         icon: '▶️',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['youtube ads agency', 'youtube advertising', 'video ads management'],
     },
     {
@@ -46,7 +46,7 @@ export const services: Service[] = [
         slug: 'tiktok-ads',
         description: 'Platform-native TikTok advertising that blends into the feed, drives engagement, and converts across all demographics.',
         icon: '🎵',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['tiktok ads agency', 'tiktok advertising', 'tiktok marketing'],
     },
     {
@@ -54,17 +54,17 @@ export const services: Service[] = [
         slug: 'retargeting',
         description: 'Multi-platform retargeting campaigns that re-engage visitors, cart abandoners, and warm leads across Google, Meta, and LinkedIn.',
         icon: '🔄',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['retargeting agency', 'remarketing campaigns', 'retargeting ads'],
     },
 
-    // ─── GROWTH ENGINE ───
+    // ─── GROWTH MARKETING ───
     {
         title: 'Marketing Strategy Audit',
         slug: 'marketing-strategy-audit',
         description: 'Full-funnel marketing audit with channel strategy, budget allocation, and a custom growth roadmap.',
         icon: '📋',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['marketing strategy audit', 'marketing audit agency', 'performance marketing strategy'],
     },
     {
@@ -72,7 +72,7 @@ export const services: Service[] = [
         slug: 'lead-generation',
         description: 'End-to-end lead generation systems with paid channels, landing pages, and nurture sequences for predictable pipeline.',
         icon: '🎯',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['lead generation agency', 'B2B lead generation', 'lead gen services'],
     },
     {
@@ -80,7 +80,7 @@ export const services: Service[] = [
         slug: 'funnel-building',
         description: 'Strategic funnel architecture from awareness to conversion with optimized pages, sequences, and flows at every stage.',
         icon: '🔻',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['funnel building agency', 'sales funnel', 'conversion funnel'],
     },
     {
@@ -88,7 +88,7 @@ export const services: Service[] = [
         slug: 'cro',
         description: 'Conversion rate optimization through systematic A/B testing, UX improvements, and data-driven experiments.',
         icon: '📈',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['CRO agency', 'conversion rate optimization', 'website optimization'],
     },
     {
@@ -96,7 +96,7 @@ export const services: Service[] = [
         slug: 'programmatic-seo',
         description: 'Scale organic traffic with thousands of SEO-optimized pages from structured data, targeting long-tail keywords.',
         icon: '🔍',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['programmatic SEO agency', 'pSEO', 'scalable SEO'],
     },
     {
@@ -104,7 +104,7 @@ export const services: Service[] = [
         slug: 'analytics-reporting',
         description: 'Custom dashboards, attribution modeling, and performance reporting for full visibility into growth and spend.',
         icon: '📉',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['marketing analytics agency', 'analytics reporting', 'marketing dashboards'],
     },
     {
@@ -112,7 +112,7 @@ export const services: Service[] = [
         slug: 'email-lifecycle',
         description: 'Strategic email and lifecycle campaigns that nurture leads, retain customers, and maximize lifetime value.',
         icon: '✉️',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['email marketing agency', 'lifecycle marketing', 'email automation'],
     },
     {
@@ -140,13 +140,13 @@ export const services: Service[] = [
         keywords: ['real estate marketing agency', 'property ads', 'real estate lead generation'],
     },
 
-    // ─── CREATIVE STUDIO ───
+    // ─── CREATIVE SERVICES ───
     {
         title: 'Brand Videos',
         slug: 'brand-videos',
         description: 'Cinematic brand video production from concept to delivery — filming, editing, and distribution for digital marketing.',
         icon: '🎬',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['brand video production', 'corporate video agency', 'video marketing'],
     },
     {
@@ -154,7 +154,7 @@ export const services: Service[] = [
         slug: 'reels-editing',
         description: 'Short-form video editing optimized for Instagram Reels, YouTube Shorts, and TikTok. Hook-first, trend-aware content.',
         icon: '✂️',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['reels editing service', 'short form video ads', 'social media video editing'],
     },
     {
@@ -162,7 +162,7 @@ export const services: Service[] = [
         slug: 'ai-creative-design',
         description: 'AI-powered ad creatives, video content, and brand assets using Midjourney, DALL-E, Kling, and Runway at 10x speed.',
         icon: '✦',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['AI ad creative', 'AI design agency', 'AI-powered marketing creative'],
     },
     {
@@ -170,7 +170,7 @@ export const services: Service[] = [
         slug: 'ugc-ads',
         description: 'Authentic UGC-style ad production combining real user content feel with strategic performance advertising intent.',
         icon: '📸',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['UGC ads agency', 'user generated content ads', 'UGC video production'],
     },
     {
@@ -178,7 +178,7 @@ export const services: Service[] = [
         slug: 'landing-pages',
         description: 'Conversion-optimized landing pages designed and built for lead capture, sign-ups, and sales.',
         icon: '🖥️',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['landing page agency', 'landing page design', 'conversion landing pages'],
     },
     {
@@ -186,7 +186,7 @@ export const services: Service[] = [
         slug: 'content-strategy',
         description: 'Data-driven content strategy with editorial calendars, topic clusters, and distribution frameworks.',
         icon: '📝',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['content strategy agency', 'content marketing', 'content planning'],
     },
     {
@@ -194,7 +194,7 @@ export const services: Service[] = [
         slug: 'pitch-decks',
         description: 'Investor pitch decks and sales presentations with compelling narratives, stunning visuals, and data-driven storytelling.',
         icon: '📑',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['pitch deck agency', 'pitch deck design', 'investor presentation design'],
     },
     {
@@ -202,17 +202,17 @@ export const services: Service[] = [
         slug: 'creative-design',
         description: 'Ad creatives, branding, social media graphics, and marketing collateral with strategic intent.',
         icon: '🎨',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['marketing creative agency', 'ad design services', 'brand creative'],
     },
 
-    // ─── AI & BUILD ───
+    // ─── AI MARKETING & AUTOMATION ───
     {
         title: 'AI Automation',
         slug: 'ai-automation',
         description: 'Custom AI marketing automation, intelligent agents, and workflow optimization to scale your marketing operations.',
         icon: '⚡',
-        category: 'ai_build',
+        category: 'ai_automation',
         keywords: ['AI marketing automation', 'AI agents', 'marketing workflow automation'],
     },
     {
@@ -220,7 +220,7 @@ export const services: Service[] = [
         slug: 'ai-agents',
         description: 'Purpose-built AI agents for lead qualification, customer support, and operations — trained on your data.',
         icon: '🤖',
-        category: 'ai_build',
+        category: 'ai_automation',
         keywords: ['AI agents agency', 'custom AI agents', 'AI agent development'],
     },
     {
@@ -228,7 +228,7 @@ export const services: Service[] = [
         slug: 'no-code-development',
         description: 'Rapid MVP prototyping and web applications built with modern platforms for fast market validation.',
         icon: '🛠️',
-        category: 'ai_build',
+        category: 'ai_automation',
         keywords: ['no-code web apps', 'AI app development', 'MVP prototyping'],
     },
     {
@@ -236,8 +236,17 @@ export const services: Service[] = [
         slug: 'ai-workshops',
         description: 'Hands-on AI marketing workshops and generative AI training for teams, institutions, and enterprises.',
         icon: '🧠',
-        category: 'ai_build',
+        category: 'ai_automation',
         keywords: ['AI marketing workshop', 'AI training for teams', 'generative AI training'],
+    },
+
+    {
+        title: 'AI Chatbots',
+        slug: 'ai-chatbots',
+        description: 'Custom AI chatbots for customer support, lead qualification, and sales — trained on your data and integrated into your website.',
+        icon: '💬',
+        category: 'ai_automation',
+        keywords: ['AI chatbot agency', 'custom chatbot development', 'AI customer support chatbot'],
     },
 
     // ─── PILLAR PAGES ───
@@ -246,7 +255,7 @@ export const services: Service[] = [
         slug: 'performance-marketing',
         description: 'Full-spectrum paid media management across Google, Meta, LinkedIn, YouTube, and TikTok — built for measurable ROAS.',
         icon: '',
-        category: 'paid_media',
+        category: 'performance_marketing',
         keywords: ['performance marketing agency', 'paid media agency', 'PPC agency'],
     },
     {
@@ -254,7 +263,7 @@ export const services: Service[] = [
         slug: 'growth-marketing',
         description: 'Full-funnel growth systems combining strategy, lead generation, CRO, SEO, analytics, and lifecycle marketing.',
         icon: '',
-        category: 'growth_engine',
+        category: 'growth_marketing',
         keywords: ['growth marketing agency', 'full-funnel marketing agency', 'growth strategy agency'],
     },
     {
@@ -262,7 +271,7 @@ export const services: Service[] = [
         slug: 'creative-services',
         description: 'Performance-first creative studio producing ad creative, brand videos, reels, UGC, pitch decks, and AI-powered design.',
         icon: '',
-        category: 'creative_studio',
+        category: 'creative_services',
         keywords: ['creative agency for marketing', 'ad creative agency', 'marketing creative services'],
     },
     {
@@ -270,14 +279,14 @@ export const services: Service[] = [
         slug: 'ai-marketing-automation',
         description: 'AI-powered marketing automation, intelligent agents, custom web apps, and workshops that scale your operations.',
         icon: '',
-        category: 'ai_build',
+        category: 'ai_automation',
         keywords: ['AI marketing automation agency', 'AI marketing agency', 'marketing automation services'],
     },
 ];
 
 export const serviceCategories = [
-    { key: 'paid_media' as const, label: 'Paid Media' },
-    { key: 'growth_engine' as const, label: 'Growth Engine' },
-    { key: 'creative_studio' as const, label: 'Creative Studio' },
-    { key: 'ai_build' as const, label: 'AI & Build' },
+    { key: 'performance_marketing' as const, label: 'Performance Marketing' },
+    { key: 'growth_marketing' as const, label: 'Growth Marketing' },
+    { key: 'creative_services' as const, label: 'Creative Services' },
+    { key: 'ai_automation' as const, label: 'AI Marketing & Automation' },
 ];

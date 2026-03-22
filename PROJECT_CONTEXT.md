@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions, Resources Hub, Ebook Landing Pages). 35 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing, and 4 new SEO pillar pages: performance-marketing, growth-marketing, creative-services, ai-marketing-automation). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links. Resources hub with 3 ebook landing pages (gated PDF downloads with lead capture).
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions, Resources Hub, Ebook Landing Pages). 36 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing, ai-chatbots, and 4 SEO pillar pages: performance-marketing, growth-marketing, creative-services, ai-marketing-automation). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links. Resources hub with 3 ebook landing pages (gated PDF downloads with lead capture).
 - **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
@@ -195,7 +195,7 @@ export interface Differentiator {
 export interface ServiceData {
     slug: string; // Used for URL generation
     title: string;
-    category: 'paid_media' | 'growth_engine' | 'creative_studio' | 'ai_build' | 'vertical';
+    category: 'performance_marketing' | 'growth_marketing' | 'creative_services' | 'ai_automation' | 'vertical';
     categoryLabel: string;
     headline: string;
     description: string;
@@ -248,7 +248,7 @@ To add new content, simply drop markdown files in `content/blog/` or append an o
 
 **Internal Linking Strategy:**
 - **Header Navigation:** The mega-menu routes primarily to Category Pillar Pages (`/categories/performance-marketing`), not directly to the 28 deep service pages.
-- **Homepage Linking:** The `ServicesOverview` module links to 6 category cards (Paid Media, Growth Engine, Creative Studio, AI & Build, Industry Verticals, Full Funnel Marketing) which each link to a representative service page.
+- **Homepage Linking:** The `ServicesOverview` module links to 6 category cards (Performance Marketing, Growth Marketing, Creative Services, AI Marketing & Automation, Industry Verticals, Full Funnel Marketing) which each link to a representative service page.
 - **Service Pages Linking:** Every service page concludes with a "Related Services" block cross-linking siblings (`relatedSlugs` in schema), pushing link equity laterally across hubs.
 - **Blog Internal Linking:** All 7 blog posts include contextual internal links to relevant service pages (31 total across 16 services) and 4 blog-to-blog cross-links. Links use editorial tone (not promotional "our services" language). Guideline: 3-10 links per 1,000 words, placed where they naturally add value for the reader.
 
@@ -279,10 +279,10 @@ Every active route in the codebase and its status:
 `Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock`
 
 **ServicesOverview 6 category cards** (as of March 2026):
-1. Paid Media → `/services/google-ads`
-2. Growth Engine → `/services/marketing-strategy-audit`
-3. Creative Studio → `/services/creative-design`
-4. AI & Build → `/services/ai-automation`
+1. Performance Marketing → `/services/google-ads`
+2. Growth Marketing → `/services/marketing-strategy-audit`
+3. Creative Services → `/services/creative-design`
+4. AI Marketing & Automation → `/services/ai-automation`
 5. Industry Verticals → `/services/book-marketing`
 6. Full Funnel Marketing → `/services/marketing-strategy-audit`
 
@@ -321,6 +321,7 @@ Every active route in the codebase and its status:
 | `/services/content-strategy` | Content Strategy | Complete |
 | `/services/pitch-decks` | Pitch Decks | Complete |
 | `/services/ai-agents` | AI Agents | Complete |
+| `/services/ai-chatbots` | AI Chatbots | Complete |
 | `/services/performance-marketing` | Performance Marketing (Pillar) | Complete |
 | `/services/growth-marketing` | Growth Marketing (Pillar) | Complete |
 | `/services/creative-services` | Creative Services (Pillar) | Complete |
@@ -467,7 +468,7 @@ If you are modifying this codebase:
   - `/services/growth-marketing` — Growth engine pillar (Strategy Audit, Lead Gen, Funnel Building, CRO, Programmatic SEO, Analytics, Email/Lifecycle, Content Strategy, Landing Pages)
   - `/services/creative-services` — Creative studio pillar (AI Creative, Creative Design, Reels, Brand Videos, UGC, Pitch Decks)
   - `/services/ai-marketing-automation` — AI & build pillar (AI Automation, AI Agents, Web Apps/MVPs, AI Workshops)
-  - **Category note:** Content Strategy and Landing Pages moved from Creative Studio category to Growth Engine category. Total pages: 51 → 55.
+  - **Category note:** Content Strategy and Landing Pages moved from Creative Studio category to Growth Engine category. Total pages: 51 → 55 (pre-rename count).
 - **March 22, 2026:** Mobile performance optimization (PageSpeed score 40 → improved):
   - Dynamically imported THREE.js shader (`next/dynamic`, `ssr: false`) — defers ~600KB from initial load, eliminates render-blocking shader compilation
   - Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds — ~90% fewer callbacks
@@ -480,3 +481,12 @@ If you are modifying this codebase:
   - Updated sitemap: added `/resources`, `/privacy-policy`, `/terms`, and 3 ebook landing pages
   - Removed years from all 5 blog URL slugs (SEO best practice — prevents URL mismatch when topics are revisited). 301 redirects added for all old URLs in `next.config.ts`. All internal cross-links updated.
   - Old → New: `meta-ads-vs-google-ads-budget-2026` → `meta-ads-vs-google-ads-budget`, `instagram-growth-strategy-for-authors-2026` → `instagram-growth-strategy-for-authors`, `is-programmatic-seo-dead-in-2026` → `is-programmatic-seo-dead`, `marketing-trends-2026-2030` → `marketing-trends`, `performance-max-2026-hero-or-villain` → `performance-max-hero-or-villain`
+- **March 22, 2026:** Category rename and restructure:
+  - Renamed "Paid Media" → "Performance Marketing" across all pages and data files
+  - Renamed "Growth Engine" → "Growth Marketing" across all pages and data files
+  - Renamed "Creative Studio" → "Creative Services" across all pages and data files
+  - Renamed "AI & Build" → "AI Marketing & Automation" across all pages and data files
+  - Moved Content Strategy and Landing Pages from Creative Services to Growth Marketing category
+  - Added `/services/ai-chatbots` — new AI Chatbots service page under AI Marketing & Automation category (lead qualification, customer support, eCommerce, meeting booking, WhatsApp/Messenger, internal knowledge bots)
+  - Updated all 10+ files: services.ts, servicePages.ts, ServicesHubClient.tsx, ServicesOverview.tsx, Footer.tsx, Hero.tsx, BlogPreview.tsx, BlogPostClient.tsx, page.tsx, sitemap.ts
+  - Total pages: 55 → 56

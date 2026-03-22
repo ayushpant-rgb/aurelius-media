@@ -10,10 +10,10 @@ const footerLinks = {
         { label: 'Contact', href: '/contact' },
     ],
     services: [
-        { label: 'Paid Media', href: '/services#paid-media' },
-        { label: 'Growth Engine', href: '/services#growth-engine' },
-        { label: 'Creative Studio', href: '/services#creative-studio' },
-        { label: 'AI & Build', href: '/services#ai-build' },
+        { label: 'Performance Marketing', href: '/services#performance-marketing' },
+        { label: 'Growth Marketing', href: '/services#growth-marketing' },
+        { label: 'Creative Services', href: '/services#creative-services' },
+        { label: 'AI Marketing & Automation', href: '/services#ai-automation' },
         { label: 'All Services', href: '/services' },
     ],
     verticals: [

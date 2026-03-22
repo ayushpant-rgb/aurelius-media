@@ -38,7 +38,7 @@ export interface Differentiator {
 export interface ServiceData {
     slug: string;
     title: string;
-    category: 'paid_media' | 'growth_engine' | 'creative_studio' | 'ai_build' | 'vertical';
+    category: 'performance_marketing' | 'growth_marketing' | 'creative_services' | 'ai_automation' | 'vertical';
     categoryLabel: string;
     headline: string;
     description: string;
@@ -68,8 +68,8 @@ export const services: ServiceData[] = [
     {
         slug: 'marketing-strategy-audit',
         title: 'Marketing Strategy Audit',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'A Data-Driven Blueprint for Your Growth.',
         description: 'We audit your entire marketing funnel — from awareness to conversion — and build a custom performance strategy with the right channels, budgets, and KPIs for your business.',
         heroImage: '/services/marketing-strategy-audit-banner.png',
@@ -155,8 +155,8 @@ export const services: ServiceData[] = [
     {
         slug: 'google-ads',
         title: 'Google Ads Management',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Scale Revenue with Certified Google Ads Experts.',
         description: 'From Search and Shopping to YouTube and Performance Max, we architect and optimize Google Ads campaigns that deliver measurable, scalable revenue growth for funded startups and established brands.',
         targetKeywords: ['google ads agency india', 'google ads management', 'PPC agency'],
@@ -241,8 +241,8 @@ export const services: ServiceData[] = [
     {
         slug: 'meta-ads',
         title: 'Meta Ads Management',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Full-Funnel Meta Campaigns That Convert.',
         description: 'We design and optimize Facebook and Instagram ad campaigns that drive qualified leads, generate sales, and build brand awareness across the entire customer journey.',
         targetKeywords: ['facebook ads agency', 'instagram advertising', 'meta ads management'],
@@ -329,8 +329,8 @@ export const services: ServiceData[] = [
     {
         slug: 'ai-creative-design',
         title: 'AI Creative & Design',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'AI-Powered Creatives at 10x Speed.',
         description: 'We use Midjourney, DALL-E, Kling, Veo, and Runway to produce stunning ad creatives, video content, and brand assets at a fraction of traditional timelines and costs.',
         targetKeywords: ['AI ad creative', 'AI design agency', 'AI-powered marketing creative'],
@@ -413,8 +413,8 @@ export const services: ServiceData[] = [
     {
         slug: 'creative-design',
         title: 'Creative & Design',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Strategic Creative That Drives Conversions.',
         description: 'From ad creatives and social media graphics to brand identity and pitch decks, we blend strategic thinking with design execution to produce marketing assets that perform.',
         targetKeywords: ['marketing creative agency', 'ad design services', 'brand creative'],
@@ -498,8 +498,8 @@ export const services: ServiceData[] = [
     {
         slug: 'reels-editing',
         title: 'Reels & Shorts',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Short-Form Video That Stops the Scroll.',
         description: 'Instagram Reels, YouTube Shorts, and TikTok editing optimized for engagement. Fast turnaround, trend-aware editing, hook-first storytelling, and caption overlays.',
         targetKeywords: ['reels editing service', 'short form video ads', 'social media video editing'],
@@ -1018,8 +1018,8 @@ export const services: ServiceData[] = [
     {
         slug: 'ai-automation',
         title: 'AI Automation',
-        category: 'ai_build',
-        categoryLabel: 'AI & Build',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
         headline: 'Automate Marketing Workflows with AI.',
         description: 'Custom AI agents and automation workflows that transform marketing operations. From lead scoring to content generation, we build intelligent systems that scale your team.',
         targetKeywords: ['AI marketing automation', 'AI agents', 'marketing workflow automation'],
@@ -1102,8 +1102,8 @@ export const services: ServiceData[] = [
     {
         slug: 'no-code-development',
         title: 'Web Apps & MVPs',
-        category: 'ai_build',
-        categoryLabel: 'AI & Build',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
         headline: 'Ship Your MVP in 1–2 Weeks.',
         description: 'Rapid MVP development, internal tools, and web applications using no-code and AI-powered development platforms. From idea to deployed product in days, not months.',
         targetKeywords: ['no-code web apps', 'AI app development', 'MVP prototyping'],
@@ -1186,8 +1186,8 @@ export const services: ServiceData[] = [
     {
         slug: 'ai-workshops',
         title: 'AI Workshops',
-        category: 'ai_build',
-        categoryLabel: 'AI & Build',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
         headline: 'Upskill Your Team on Practical AI.',
         description: 'Hands-on workshops and training programs that help marketing teams, students, and organizations adopt AI tools to transform productivity and creative output.',
         targetKeywords: ['AI marketing workshop', 'AI training for teams', 'generative AI training'],
@@ -1266,6 +1266,90 @@ export const services: ServiceData[] = [
         relatedSlugs: ['ai-automation', 'ai-creative-design', 'no-code-development'],
         metaTitle: 'AI Workshops & Training',
         metaDescription: 'Hands-on AI workshops for marketing teams and organizations. Practical training on ChatGPT, Midjourney, and AI marketing tools.',
+    },
+    {
+        slug: 'ai-chatbots',
+        title: 'AI Chatbots',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
+        headline: 'AI Chatbots That Convert Visitors Into Customers.',
+        description: 'Custom AI chatbots for your website that handle customer support, qualify leads, book meetings, and drive sales — trained on your brand voice and business data. Available 24/7.',
+        targetKeywords: ['AI chatbot agency', 'custom chatbot development', 'AI customer support chatbot', 'lead qualification chatbot'],
+        whatIs: 'An AI chatbot is a conversational AI assistant embedded on your website or messaging platforms that interacts with visitors in real time. Unlike basic rule-based chatbots, our AI chatbots use large language models trained on your specific business data — product catalogs, FAQs, pricing, tone of voice — to deliver intelligent, context-aware responses. They qualify leads, answer support questions, book meetings, recommend products, and hand off to human agents when needed.',
+        personas: [
+            { title: 'Startups & scale-ups', description: 'Early-stage companies that need 24/7 lead qualification and customer support without hiring a large team.', icon: 'Rocket' },
+            { title: 'eCommerce & D2C brands', description: 'Online stores looking for AI-powered product recommendations, order tracking, and instant customer support.', icon: 'ShoppingBag' },
+            { title: 'B2B & SaaS companies', description: 'Software companies that need intelligent lead qualification, demo booking, and first-line support automation.', icon: 'Briefcase' },
+            { title: 'Service businesses', description: 'Agencies, consultancies, and professional services firms that want to capture and qualify leads around the clock.', icon: 'Building2' },
+        ],
+        catchAllText: 'We build AI chatbots for any industry — real estate, education, healthcare, finance, and more. If you have customers, we can build a chatbot that serves them better.',
+        problems: [
+            { title: 'Leads Going Cold', description: 'Visitors leave your website without talking to anyone because there is no instant response available.' },
+            { title: 'Overwhelmed Support Team', description: 'Your team spends hours answering the same repetitive questions instead of focusing on complex issues.' },
+            { title: 'Missed After-Hours Opportunities', description: 'Potential customers visit outside business hours and have no way to get answers or book a call.' },
+            { title: 'Generic Chat Experiences', description: 'Off-the-shelf chatbots feel robotic and frustrate users with irrelevant responses.' },
+        ],
+        approach: 'We design, build, and deploy custom AI chatbots trained on your business data that feel like talking to your best team member.',
+        approachPoints: [
+            'Discovery call to understand your business, customers, and key use cases',
+            'Knowledge base creation from your FAQs, docs, product data, and brand guidelines',
+            'Custom chatbot design with your brand voice, tone, and visual identity',
+            'Integration with your CRM, calendar, helpdesk, and messaging platforms',
+            'Testing, refinement, and deployment to your website',
+            'Ongoing monitoring, analytics, and optimization',
+        ],
+        benefits: [
+            { title: '24/7 Instant Lead Response', description: 'Never miss a lead again — your AI chatbot engages visitors and qualifies leads around the clock.' },
+            { title: 'Reduce Support Tickets by 60%', description: 'AI handles repetitive questions instantly, freeing your team for complex issues.' },
+            { title: 'Trained on Your Business Data', description: 'Your chatbot knows your products, pricing, and policies — not generic responses.' },
+            { title: 'Seamless CRM Integration', description: 'Qualified leads flow directly into your CRM with full conversation context.' },
+            { title: 'Book Meetings Automatically', description: 'AI chatbot qualifies leads and books meetings directly on your calendar.' },
+            { title: 'Human Handoff When Needed', description: 'Smart escalation to human agents for complex queries with full conversation history.' },
+        ],
+        deliverables: [
+            'Custom AI chatbot design and development',
+            'Knowledge base creation and training',
+            'Website widget integration',
+            'CRM and calendar integration',
+            'Brand voice and tone customization',
+            'Analytics dashboard and reporting',
+            'Ongoing optimization and retraining',
+        ],
+        subServices: [
+            { title: 'Lead Qualification Chatbot', description: 'AI chatbots that ask qualifying questions, score leads, and route them to your sales team automatically.' },
+            { title: 'Customer Support Chatbot', description: 'AI-powered support bots that resolve common queries instantly using your knowledge base and documentation.' },
+            { title: 'eCommerce Sales Chatbot', description: 'Product recommendation chatbots that guide shoppers, answer questions, and increase average order value.' },
+            { title: 'Meeting Booking Chatbot', description: 'AI assistants that qualify prospects and book meetings directly on your team\'s calendar.' },
+            { title: 'WhatsApp & Messenger Chatbot', description: 'AI chatbots deployed on WhatsApp, Facebook Messenger, and other messaging platforms.' },
+            { title: 'Internal Knowledge Bot', description: 'AI assistants for internal teams that answer questions from company docs, SOPs, and knowledge bases.' },
+        ],
+        comparisonRows: [
+            { others: 'Generic rule-based chatbots', us: 'AI chatbots trained on your specific business data' },
+            { others: 'One-size-fits-all templates', us: 'Custom-designed for your brand voice and use cases' },
+            { others: 'No CRM or calendar integration', us: 'Full integration with your CRM, calendar, and helpdesk' },
+            { others: 'Setup and forget', us: 'Ongoing optimization and retraining included' },
+            { others: 'Frustrating user experiences', us: 'Smart human handoff for complex queries' },
+        ],
+        resultHighlights: [
+            { metric: '60%', description: 'Average reduction in support ticket volume after AI chatbot deployment' },
+            { metric: '24/7', description: 'Always-on lead qualification and customer support coverage' },
+            { metric: '3x', description: 'Increase in qualified leads from website visitors through AI conversation' },
+        ],
+        differentiators: [
+            { title: 'Marketing-First Design', description: 'We build chatbots for conversion — lead qualification, meeting booking, and sales — not just support.' },
+            { title: 'LLM-Powered Intelligence', description: 'Our chatbots use the latest large language models for natural, context-aware conversations.' },
+            { title: 'Full Brand Customization', description: 'Every chatbot is trained on your data and speaks in your brand voice.' },
+            { title: 'Continuous Improvement', description: 'We monitor conversations, identify gaps, and retrain your chatbot for better results over time.' },
+        ],
+        faqs: [
+            { question: 'How is an AI chatbot different from a regular chatbot?', answer: 'Traditional chatbots follow rigid decision trees. AI chatbots use large language models to understand context, handle unexpected questions, and have natural conversations — trained specifically on your business data.' },
+            { question: 'What platforms can the chatbot be deployed on?', answer: 'We deploy chatbots as website widgets, WhatsApp bots, Facebook Messenger bots, and can integrate with Slack, Teams, or any platform with an API.' },
+            { question: 'How long does it take to build and deploy?', answer: 'A standard AI chatbot can be designed, trained, and deployed in 2-3 weeks. Complex multi-platform deployments with deep integrations typically take 4-6 weeks.' },
+            { question: 'Can the chatbot hand off to a human agent?', answer: 'Yes. Our chatbots include smart escalation — when a query is too complex or the visitor requests a human, the conversation is transferred seamlessly with full context.' },
+        ],
+        relatedSlugs: ['ai-automation', 'ai-agents', 'lead-generation'],
+        metaTitle: 'AI Chatbots for Business',
+        metaDescription: 'Custom AI chatbots for lead qualification, customer support, and sales. Trained on your business data, integrated with your CRM, available 24/7.',
     },
     // ─── INDUSTRY: Real Estate ───
     {
@@ -1357,8 +1441,8 @@ export const services: ServiceData[] = [
     {
         slug: 'linkedin-ads',
         title: 'LinkedIn Ads',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Reach Decision-Makers on the World\'s Largest B2B Platform.',
         description: 'Precision-targeted LinkedIn advertising campaigns that put your brand in front of the right executives, founders, and buying committees — driving pipeline, not just impressions.',
         targetKeywords: ['linkedin ads agency', 'linkedin advertising', 'B2B linkedin campaigns'],
@@ -1404,8 +1488,8 @@ export const services: ServiceData[] = [
     {
         slug: 'youtube-ads',
         title: 'YouTube Ads',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Video Ads That Drive Real Business Results.',
         description: 'Strategic YouTube advertising across skippable, non-skippable, Shorts, and Discovery formats — designed for brand awareness, consideration, and direct response.',
         targetKeywords: ['youtube ads agency', 'youtube advertising', 'video ads management'],
@@ -1451,8 +1535,8 @@ export const services: ServiceData[] = [
     {
         slug: 'tiktok-ads',
         title: 'TikTok Ads',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Reach the Next Generation of Buyers.',
         description: 'Native TikTok advertising campaigns that blend into the feed, drive engagement, and convert — built with platform-native creative and advanced targeting.',
         targetKeywords: ['tiktok ads agency', 'tiktok advertising', 'tiktok marketing'],
@@ -1498,8 +1582,8 @@ export const services: ServiceData[] = [
     {
         slug: 'retargeting',
         title: 'Retargeting',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Turn Visitors Into Customers.',
         description: 'Multi-platform retargeting campaigns that re-engage your website visitors, cart abandoners, and warm leads across Google, Meta, LinkedIn, and programmatic networks.',
         targetKeywords: ['retargeting agency', 'remarketing campaigns', 'retargeting ads'],
@@ -1547,8 +1631,8 @@ export const services: ServiceData[] = [
     {
         slug: 'lead-generation',
         title: 'Lead Generation',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Build a Predictable Pipeline of Qualified Leads.',
         description: 'End-to-end lead generation systems combining paid channels, landing pages, and nurture sequences to deliver a consistent flow of sales-ready leads.',
         targetKeywords: ['lead generation agency', 'B2B lead generation', 'lead gen services'],
@@ -1594,8 +1678,8 @@ export const services: ServiceData[] = [
     {
         slug: 'funnel-building',
         title: 'Funnel Building',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Design Funnels That Convert at Every Stage.',
         description: 'Strategic funnel architecture from awareness to conversion — including landing pages, email sequences, checkout flows, and post-purchase upsells designed to maximize lifetime value.',
         targetKeywords: ['funnel building agency', 'sales funnel', 'conversion funnel'],
@@ -1641,8 +1725,8 @@ export const services: ServiceData[] = [
     {
         slug: 'cro',
         title: 'CRO',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Get More Revenue From Your Existing Traffic.',
         description: 'Conversion rate optimization that turns your website and landing pages into revenue machines — through systematic testing, UX improvements, and data-driven experiments.',
         targetKeywords: ['CRO agency', 'conversion rate optimization', 'website optimization'],
@@ -1688,8 +1772,8 @@ export const services: ServiceData[] = [
     {
         slug: 'programmatic-seo',
         title: 'Programmatic SEO',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Scale Organic Traffic With Programmatic Content.',
         description: 'Build thousands of SEO-optimized pages from structured data — targeting long-tail keywords at scale with programmatic content generation and technical SEO foundations.',
         targetKeywords: ['programmatic SEO agency', 'pSEO', 'scalable SEO'],
@@ -1735,8 +1819,8 @@ export const services: ServiceData[] = [
     {
         slug: 'analytics-reporting',
         title: 'Analytics & Reporting',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Make Data-Driven Decisions With Clarity.',
         description: 'Custom analytics dashboards, attribution modeling, and performance reporting that give you full visibility into what is driving growth and what is wasting budget.',
         targetKeywords: ['marketing analytics agency', 'analytics reporting', 'marketing dashboards'],
@@ -1782,8 +1866,8 @@ export const services: ServiceData[] = [
     {
         slug: 'email-lifecycle',
         title: 'Email & Lifecycle',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Turn Subscribers Into Loyal Customers.',
         description: 'Strategic email marketing and lifecycle campaigns that nurture leads, convert prospects, retain customers, and maximize lifetime value through personalized, automated sequences.',
         targetKeywords: ['email marketing agency', 'lifecycle marketing', 'email automation'],
@@ -1831,8 +1915,8 @@ export const services: ServiceData[] = [
     {
         slug: 'brand-videos',
         title: 'Brand Videos',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Tell Your Brand Story Through Cinematic Video.',
         description: 'High-quality brand video production — from concept and scripting to filming, editing, and distribution — designed to build trust, communicate value, and drive action.',
         targetKeywords: ['brand video production', 'corporate video agency', 'video marketing'],
@@ -1878,8 +1962,8 @@ export const services: ServiceData[] = [
     {
         slug: 'ugc-ads',
         title: 'UGC Ads',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Authentic User-Generated Content That Converts.',
         description: 'UGC-style ad production that combines the authenticity of real user content with the strategic intent of performance advertising — designed to outperform polished brand ads.',
         targetKeywords: ['UGC ads agency', 'user generated content ads', 'UGC video production'],
@@ -1925,8 +2009,8 @@ export const services: ServiceData[] = [
     {
         slug: 'landing-pages',
         title: 'Landing Pages',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'High-Converting Pages Built for Results.',
         description: 'Conversion-optimized landing pages designed, built, and tested to maximize lead capture, sign-ups, and sales — from campaign landing pages to full product launch sites.',
         targetKeywords: ['landing page agency', 'landing page design', 'conversion landing pages'],
@@ -1972,8 +2056,8 @@ export const services: ServiceData[] = [
     {
         slug: 'content-strategy',
         title: 'Content Strategy',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Strategic Content That Fuels Growth.',
         description: 'Data-driven content strategy that aligns your blog, social media, email, and video content with business goals — from editorial calendars to distribution frameworks.',
         targetKeywords: ['content strategy agency', 'content marketing', 'content planning'],
@@ -2019,8 +2103,8 @@ export const services: ServiceData[] = [
     {
         slug: 'pitch-decks',
         title: 'Pitch Decks',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Pitch Decks That Close Deals and Raise Capital.',
         description: 'Investor pitch decks, sales presentations, and partnership proposals designed with compelling narratives, stunning visuals, and data-driven storytelling.',
         targetKeywords: ['pitch deck agency', 'pitch deck design', 'investor presentation design'],
@@ -2068,8 +2152,8 @@ export const services: ServiceData[] = [
     {
         slug: 'ai-agents',
         title: 'AI Agents',
-        category: 'ai_build',
-        categoryLabel: 'AI & Build',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
         headline: 'Custom AI Agents That Work 24/7.',
         description: 'Purpose-built AI agents for lead qualification, customer support, content generation, and internal operations — deployed on your stack and trained on your data.',
         targetKeywords: ['AI agents agency', 'custom AI agents', 'AI agent development'],
@@ -2117,8 +2201,8 @@ export const services: ServiceData[] = [
     {
         slug: 'performance-marketing',
         title: 'Performance Marketing',
-        category: 'paid_media',
-        categoryLabel: 'Paid Media',
+        category: 'performance_marketing',
+        categoryLabel: 'Performance Marketing',
         headline: 'Every Dollar Accountable. Every Campaign Built to Scale.',
         description: 'Aurelius Media is a performance marketing agency that turns paid media into a predictable revenue engine. From Google to TikTok, we manage the full spectrum of paid advertising — with relentless focus on ROAS, CAC, and the metrics that actually move your business forward.',
         targetKeywords: ['performance marketing agency', 'paid media agency', 'digital advertising agency', 'PPC agency', 'ROAS optimization'],
@@ -2203,8 +2287,8 @@ export const services: ServiceData[] = [
     {
         slug: 'growth-marketing',
         title: 'Growth Marketing',
-        category: 'growth_engine',
-        categoryLabel: 'Growth Engine',
+        category: 'growth_marketing',
+        categoryLabel: 'Growth Marketing',
         headline: 'Full-Funnel Growth Marketing That Compounds Over Time.',
         description: 'Aurelius Media is a growth marketing agency built for businesses that want more than vanity metrics. We engineer end-to-end systems that attract the right audience, convert them into customers, and retain them for life — turning your marketing spend into a scalable, compounding asset.',
         targetKeywords: ['growth marketing agency', 'full-funnel marketing agency', 'growth strategy agency', 'lead generation agency', 'conversion optimization'],
@@ -2292,8 +2376,8 @@ export const services: ServiceData[] = [
     {
         slug: 'creative-services',
         title: 'Creative Services',
-        category: 'creative_studio',
-        categoryLabel: 'Creative Studio',
+        category: 'creative_services',
+        categoryLabel: 'Creative Services',
         headline: 'Creative That Converts — Built for Performance.',
         description: 'Aurelius Media is a full-service creative agency for marketing that produces scroll-stopping visuals, video, and brand assets engineered to drive measurable results. From AI-powered design to hand-crafted brand videos, every deliverable is built to perform.',
         targetKeywords: ['creative agency for marketing', 'ad creative agency', 'marketing creative services', 'video production agency', 'design agency for ads'],
@@ -2378,10 +2462,10 @@ export const services: ServiceData[] = [
     {
         slug: 'ai-marketing-automation',
         title: 'AI Marketing Automation',
-        category: 'ai_build',
-        categoryLabel: 'AI & Build',
+        category: 'ai_automation',
+        categoryLabel: 'AI Marketing & Automation',
         headline: 'The AI Marketing Automation Agency Built for Revenue, Not Hype.',
-        description: 'Aurelius Media builds end-to-end AI marketing automation systems that replace manual workflows, accelerate pipeline, and compound your growth. From intelligent agents to custom web apps, we engineer the infrastructure that scales without scaling headcount.',
+        description: 'Aurelius Media builds end-to-end AI marketing automation systems that replace manual workflows, accelerate pipeline, and compound your growth. From intelligent agents and AI chatbots to custom web apps, we engineer the infrastructure that scales without scaling headcount.',
         targetKeywords: ['AI marketing automation agency', 'AI marketing agency', 'marketing automation services', 'AI agents for marketing', 'AI workflow automation'],
         whatIs: 'AI marketing automation is the discipline of replacing repetitive, high-volume marketing tasks with intelligent systems that act, adapt, and improve over time. Unlike legacy marketing automation tools that execute fixed rules, modern AI-powered systems reason through context, personalize at scale, and integrate across your entire stack. Aurelius Media designs and deploys these systems for growth-stage companies and enterprises that need leverage, not more software subscriptions.',
         personas: [
@@ -2427,6 +2511,7 @@ export const services: ServiceData[] = [
             { title: 'AI Agents', description: 'Intelligent agents that take on defined marketing roles: prospecting, content distribution, campaign monitoring, lead qualification. These are autonomous systems that reason, act, and report.', slug: 'ai-agents' },
             { title: 'Web Apps & MVPs', description: 'Custom internal tools, client-facing applications, and marketing infrastructure built on modern platforms. From lead scoring dashboards to custom intake flows, we ship functional products fast.', slug: 'no-code-development' },
             { title: 'AI Workshops', description: 'Structured AI training programs for marketing teams — from foundational literacy sessions to advanced workflow-building intensives. Your team leaves with hands-on skills and ready-to-deploy systems.', slug: 'ai-workshops' },
+            { title: 'AI Chatbots', description: 'Custom AI chatbots trained on your business data that qualify leads, handle support, book meetings, and drive sales — available 24/7 on your website and messaging platforms.', slug: 'ai-chatbots' },
         ],
         comparisonRows: [
             { us: 'Integrated AI systems designed around your specific workflows and stack', others: 'Generic automation templates that require heavy customization post-delivery' },
@@ -2453,17 +2538,17 @@ export const services: ServiceData[] = [
             { question: 'How long does it take to see results?', answer: 'Most clients see measurable results within 30 to 60 days of deployment. Initial wins come from the highest-frequency manual workflows automated first. Compounding returns build over 90 to 180 days as systems are refined.' },
             { question: 'Can you help our team learn to build AI systems themselves?', answer: 'Yes — knowledge transfer is a core part of every engagement. Our AI Workshops service builds internal capability, from foundational AI literacy to advanced automation-building intensives. The goal is to leave your team more capable and autonomous.' },
         ],
-        relatedSlugs: ['performance-marketing', 'growth-marketing', 'creative-services'],
+        relatedSlugs: ['performance-marketing', 'growth-marketing', 'creative-services', 'ai-chatbots'],
         metaTitle: 'AI Marketing Automation Agency',
         metaDescription: 'Aurelius Media is an AI marketing automation agency that builds intelligent systems — AI agents, custom automations, and web apps — that scale your marketing without scaling headcount.',
     },
 ];
 
 export const serviceCategories = [
-    { key: 'paid_media' as const, label: 'Paid Media', subtitle: 'Ads & campaigns', description: 'Google, Meta, LinkedIn, YouTube, and TikTok ads managed for maximum ROAS.' },
-    { key: 'growth_engine' as const, label: 'Growth Engine', subtitle: 'Strategy & pipeline', description: 'Strategy audits, lead generation, funnel optimization, CRO, SEO, analytics, lifecycle marketing, content strategy, and landing pages.' },
-    { key: 'creative_studio' as const, label: 'Creative Studio', subtitle: 'Content & assets', description: 'Brand videos, reels, AI creatives, UGC ads, pitch decks, and creative design.' },
-    { key: 'ai_build' as const, label: 'AI & Build', subtitle: 'Tech & automation', description: 'AI automation, AI agents, web apps, MVPs, and hands-on AI workshops.' },
+    { key: 'performance_marketing' as const, label: 'Performance Marketing', slug: 'performance-marketing' },
+    { key: 'growth_marketing' as const, label: 'Growth Marketing', slug: 'growth-marketing' },
+    { key: 'creative_services' as const, label: 'Creative Services', slug: 'creative-services' },
+    { key: 'ai_automation' as const, label: 'AI Marketing & Automation', slug: 'ai-marketing-automation' },
 ];
 
 export function getServiceBySlug(slug: string): ServiceData | undefined {
