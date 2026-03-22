@@ -34,6 +34,10 @@ const heroIconMap: Record<string, LucideIcon[]> = {
     'real-estate-marketing':   [Home, Target, TrendingUp],
     'book-marketing':          [BookOpen, Megaphone, TrendingUp],
     'education-marketing':     [GraduationCap, Target, BarChart3],
+    'performance-marketing':       [Target, BadgeDollarSign, TrendingUp],
+    'growth-marketing':            [Rocket, LineChart, Layers],
+    'creative-services':           [Palette, Sparkles, Video],
+    'ai-marketing-automation':     [Bot, Zap, Cpu],
 };
 
 /** Persona card icons — matched by keyword in persona title */

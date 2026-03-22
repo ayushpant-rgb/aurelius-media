@@ -36,6 +36,10 @@ const SERVICE_SLUGS = [
   'content-strategy',
   'pitch-decks',
   'ai-agents',
+  'performance-marketing',
+  'growth-marketing',
+  'creative-services',
+  'ai-marketing-automation',
 ];
 
 const CATEGORY_SLUGS = [

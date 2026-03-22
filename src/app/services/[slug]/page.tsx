@@ -26,6 +26,10 @@ const serviceBlogCategoryMap: Record<string, string[]> = {
     'no-code-development': ['Vibe Coding & MVPs'],
     'ai-workshops': ['Vibe Coding & MVPs'],
     'real-estate-marketing': ['Performance Marketing'],
+    'performance-marketing': ['Performance Marketing', 'Google Ads'],
+    'growth-marketing': ['Performance Marketing', 'SEO & Content Strategy'],
+    'creative-services': ['Performance Marketing', 'Book Marketing'],
+    'ai-marketing-automation': ['Vibe Coding & MVPs'],
 };
 
 export async function generateStaticParams() {

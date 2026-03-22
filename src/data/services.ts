@@ -178,7 +178,7 @@ export const services: Service[] = [
         slug: 'landing-pages',
         description: 'Conversion-optimized landing pages designed and built for lead capture, sign-ups, and sales.',
         icon: '🖥️',
-        category: 'creative_studio',
+        category: 'growth_engine',
         keywords: ['landing page agency', 'landing page design', 'conversion landing pages'],
     },
     {
@@ -186,7 +186,7 @@ export const services: Service[] = [
         slug: 'content-strategy',
         description: 'Data-driven content strategy with editorial calendars, topic clusters, and distribution frameworks.',
         icon: '📝',
-        category: 'creative_studio',
+        category: 'growth_engine',
         keywords: ['content strategy agency', 'content marketing', 'content planning'],
     },
     {
@@ -238,6 +238,40 @@ export const services: Service[] = [
         icon: '🧠',
         category: 'ai_build',
         keywords: ['AI marketing workshop', 'AI training for teams', 'generative AI training'],
+    },
+
+    // ─── PILLAR PAGES ───
+    {
+        title: 'Performance Marketing',
+        slug: 'performance-marketing',
+        description: 'Full-spectrum paid media management across Google, Meta, LinkedIn, YouTube, and TikTok — built for measurable ROAS.',
+        icon: '',
+        category: 'paid_media',
+        keywords: ['performance marketing agency', 'paid media agency', 'PPC agency'],
+    },
+    {
+        title: 'Growth Marketing',
+        slug: 'growth-marketing',
+        description: 'Full-funnel growth systems combining strategy, lead generation, CRO, SEO, analytics, and lifecycle marketing.',
+        icon: '',
+        category: 'growth_engine',
+        keywords: ['growth marketing agency', 'full-funnel marketing agency', 'growth strategy agency'],
+    },
+    {
+        title: 'Creative Services',
+        slug: 'creative-services',
+        description: 'Performance-first creative studio producing ad creative, brand videos, reels, UGC, pitch decks, and AI-powered design.',
+        icon: '',
+        category: 'creative_studio',
+        keywords: ['creative agency for marketing', 'ad creative agency', 'marketing creative services'],
+    },
+    {
+        title: 'AI Marketing Automation',
+        slug: 'ai-marketing-automation',
+        description: 'AI-powered marketing automation, intelligent agents, custom web apps, and workshops that scale your operations.',
+        icon: '',
+        category: 'ai_build',
+        keywords: ['AI marketing automation agency', 'AI marketing agency', 'marketing automation services'],
     },
 ];
 
