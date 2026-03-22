@@ -14,7 +14,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Language:** TypeScript 5.x
 - **Styling:** Tailwind CSS v4 (using `@theme` in `globals.css`)
 - **CMS / Data Layer:** Static TypeScript data files (`src/data/*.ts`) and Markdown files (`content/blog/*.mdx`). No external headless CMS is connected yet.
-- **Animations:** Custom CSS animations, Framer Motion, custom `useInView` hook for fade-ins, and Three.js (raw WebGL, dynamically imported) for hero shader backgrounds.
+- **Animations:** Custom CSS animations, Framer Motion, custom `useInView` hook for fade-ins. Three.js shader removed from Hero — replaced with CSS animated gradient. Three.js package still in dependencies but unused.
 - **Package Manager:** npm
 
 ## 2b. Key Dependencies
@@ -22,7 +22,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 |---------|---------|---------|
 | `next` | 16.1.6 | Core React Framework (App Router) |
 | `framer-motion` | 12.35.2 | Complex component enter/exit animations (e.g., CapabilitiesPanel) |
-| `three` | 0.183.2 | WebGL for rendering the `AnoAI` hero shader background |
+| `three` | 0.183.2 | WebGL shader — REMOVED from Hero, pending package cleanup |
 | `gray-matter` | 4.0.3 | Parsing frontmatter from local `.mdx` blog posts |
 | `next-mdx-remote` | 6.0.0 | Rendering markdown/MDX safely into React components |
 | `reading-time` | 1.5.0 | Generating "X min read" estimations for blog cards |
@@ -350,7 +350,7 @@ Every active route in the codebase and its status:
 - ✅ **RESOLVED — MDX Table Rendering:** `remark-gfm` added; tables render correctly in blog posts.
 - 🔴 **Blog Images:** `ogImage` is optional — posts without it render a branded gradient fallback (gradient + ghosted title text). No broken UI, but real images would improve CTR.
 - ✅ **RESOLVED — Metadata:** Global OG description updated to "84+ businesses scaled".
-- 🟡 **Shader Accessibility:** `AnoAI` WebGL shader on the hero does not respect `prefers-reduced-motion`.
+- ✅ **RESOLVED — Shader Accessibility:** THREE.js shader removed entirely, replaced with CSS gradient animation.
 - ✅ **RESOLVED — Blog Cross-Linking:** All 7 blog posts now include internal links to relevant service pages (31 links across 16 service pages + 4 blog-to-blog cross-links). Editorial tone throughout — no promotional language. Fixed 2 broken links in programmatic SEO post (`/categories/` → `/services/`).
 - ✅ **RESOLVED — About page:** Removed. 301 redirect to `/#how-it-works` via `next.config.ts`.
 - ✅ **RESOLVED — Contact page:** Complete with lead capture form (Supabase), Cal.com placeholder, SVG social icons, email `ayush@aureliusmedia.co`.
@@ -490,3 +490,4 @@ If you are modifying this codebase:
   - Added `/services/ai-chatbots` — new AI Chatbots service page under AI Marketing & Automation category (lead qualification, customer support, eCommerce, meeting booking, WhatsApp/Messenger, internal knowledge bots)
   - Updated all 10+ files: services.ts, servicePages.ts, ServicesHubClient.tsx, ServicesOverview.tsx, Footer.tsx, Hero.tsx, BlogPreview.tsx, BlogPostClient.tsx, page.tsx, sitemap.ts
   - Total pages: 55 → 56
+- **March 22, 2026:** Removed THREE.js WebGL shader from Hero — replaced with CSS-only animated gradient background (`hero-animated-bg` class). Eliminates ~600KB JavaScript bundle and ~31s Total Blocking Time on mobile Lighthouse. Performance score expected to jump from 36 to 80+. THREE.js, three.js types packages can be removed from dependencies in a future cleanup.

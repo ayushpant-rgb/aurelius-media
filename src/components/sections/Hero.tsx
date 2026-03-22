@@ -2,12 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-
-const AnoAI = dynamic(() => import('@/components/ui/animated-shader-background'), {
-    ssr: false,
-    loading: () => <div className="absolute inset-0 bg-brand-dark" />,
-});
 
 export default function Hero() {
     const clientLogos = [
@@ -23,12 +17,8 @@ export default function Hero() {
             {/* Background base */}
             <div className="absolute inset-0 bg-brand-dark" />
 
-            {/* Animated Shader Background */}
-            <div className="absolute inset-0 z-0 opacity-80">
-                <AnoAI />
-                {/* Dark gradient overlay to ensure text pops above the shader */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent pointer-events-none" />
-            </div>
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 z-0 opacity-60 hero-animated-bg" />
 
             {/* Hero Glow */}
             <div className="absolute inset-0 hero-glow z-0" />

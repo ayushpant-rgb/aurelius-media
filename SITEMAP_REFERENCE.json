@@ -4,6 +4,16 @@
   "session_changes": [
     {
       "date": "2026-03-22",
+      "summary": "Removed THREE.js WebGL shader from Hero component. Replaced with CSS-only animated gradient. Eliminates ~600KB JS and ~31s TBT on mobile.",
+      "changes": [
+        "Removed THREE.js dynamic import from Hero.tsx — no longer loads animated-shader-background component",
+        "Added CSS-only hero-animated-bg class with drifting radial gradient animation (hero-drift keyframes)",
+        "Eliminates ~600KB THREE.js JavaScript bundle from client",
+        "Expected mobile Lighthouse Performance score improvement: 36 → 80+"
+      ]
+    },
+    {
+      "date": "2026-03-22",
       "summary": "Category rename and restructure. Added AI Chatbots service page. Total pages: 55 → 56.",
       "changes": [
         "Renamed 'Paid Media' → 'Performance Marketing' across all pages and data files",
