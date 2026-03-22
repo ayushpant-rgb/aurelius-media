@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions, Resources Hub, Ebook Landing Pages). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links. Resources hub with 3 ebook landing pages (gated PDF downloads with lead capture).
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions, Resources Hub, Ebook Landing Pages). 35 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing, and 4 new SEO pillar pages: performance-marketing, growth-marketing, creative-services, ai-marketing-automation). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links. Resources hub with 3 ebook landing pages (gated PDF downloads with lead capture).
 - **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
@@ -321,6 +321,10 @@ Every active route in the codebase and its status:
 | `/services/content-strategy` | Content Strategy | Complete |
 | `/services/pitch-decks` | Pitch Decks | Complete |
 | `/services/ai-agents` | AI Agents | Complete |
+| `/services/performance-marketing` | Performance Marketing (Pillar) | Complete |
+| `/services/growth-marketing` | Growth Marketing (Pillar) | Complete |
+| `/services/creative-services` | Creative Services (Pillar) | Complete |
+| `/services/ai-marketing-automation` | AI Marketing & Automation (Pillar) | Complete |
 | `/categories/[slug]` | Category Pages Template | Complete |
 | `/blog` | Blog Hub | Complete |
 | `/blog/[slug]` | Blog Post Template | Complete |
@@ -458,6 +462,12 @@ If you are modifying this codebase:
 - **March 20, 2026:** Added internal links across all 7 blog posts: 31 contextual links to 16 service pages + 4 blog-to-blog cross-links. Fixed 2 broken links in programmatic SEO post (`/categories/programmatic-seo` → `/services/programmatic-seo`, `/categories/web-apps-mvps` → `/services/no-code-development`). Editorial tone — no promotional "our services" language. Service pages linked: google-ads, meta-ads, d2c-ecommerce-marketing, saas-marketing, ai-creative-design, analytics-reporting, book-marketing, reels-editing, no-code-development, landing-pages, ai-agents, ai-workshops, content-strategy, programmatic-seo, brand-videos, retargeting. Blog cross-links: Meta↔PMax, Trends↔Vibe Coding, Trends↔pSEO, Vibe Coding↔Trends.
 - **March 20, 2026:** Removed non-functional "Load more articles" button from blog listing page (`BlogListClient.tsx`). All 7 posts display on page — button had no click handler and was misleading.
 - **March 20, 2026:** Added Privacy Policy (`/privacy-policy`) and Terms & Conditions (`/terms`) pages. Both linked from footer bottom bar next to copyright text. Standard legal content covering data collection, third-party services (Vercel, Cal.com, Resend, Supabase, Google Analytics), IP, liability, and contact info.
+- **March 22, 2026:** Created 4 SEO pillar pages consolidating service categories:
+  - `/services/performance-marketing` — Paid media pillar (Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads, TikTok Ads, Retargeting)
+  - `/services/growth-marketing` — Growth engine pillar (Strategy Audit, Lead Gen, Funnel Building, CRO, Programmatic SEO, Analytics, Email/Lifecycle, Content Strategy, Landing Pages)
+  - `/services/creative-services` — Creative studio pillar (AI Creative, Creative Design, Reels, Brand Videos, UGC, Pitch Decks)
+  - `/services/ai-marketing-automation` — AI & build pillar (AI Automation, AI Agents, Web Apps/MVPs, AI Workshops)
+  - **Category note:** Content Strategy and Landing Pages moved from Creative Studio category to Growth Engine category. Total pages: 51 → 55.
 - **March 22, 2026:** Mobile performance optimization (PageSpeed score 40 → improved):
   - Dynamically imported THREE.js shader (`next/dynamic`, `ssr: false`) — defers ~600KB from initial load, eliminates render-blocking shader compilation
   - Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds — ~90% fewer callbacks

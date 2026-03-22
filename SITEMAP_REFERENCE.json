@@ -1,23 +1,38 @@
 {
   "last_updated": "2026-03-22",
-  "total_pages": 51,
-  "session_changes": {
-    "date": "2026-03-22",
-    "summary": "Mobile performance optimization (THREE.js lazy-load, server components, gtag afterInteractive). SEO fixes: robots max-image-preview, removed years from 5 blog slugs with 301 redirects, sitemap updated with resources/ebooks/legal pages. OG description corrected.",
-    "changes": [
-      "Dynamic import THREE.js shader (next/dynamic, ssr: false) — defers ~600KB from initial load",
-      "Converted MissionStatement, BlogPreview, CTABlock to server components (removed use client + useInView)",
-      "Moved Google Analytics to next/script with afterInteractive strategy",
-      "Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds",
-      "Added max-image-preview:large to robots metadata for Google Discover",
-      "Removed years from 5 blog slugs: meta-ads-vs-google-ads-budget-2026 → meta-ads-vs-google-ads-budget, instagram-growth-strategy-for-authors-2026 → instagram-growth-strategy-for-authors, is-programmatic-seo-dead-in-2026 → is-programmatic-seo-dead, marketing-trends-2026-2030 → marketing-trends, performance-max-2026-hero-or-villain → performance-max-hero-or-villain",
-      "Added 5 permanent 301 redirects in next.config.ts for old blog URLs",
-      "Updated all internal blog cross-links to use new slugs",
-      "Added /resources, /privacy-policy, /terms, and 3 ebook pages to sitemap.ts",
-      "Fixed OG description: 200+ businesses → 84+ businesses",
-      "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
-    ]
-  },
+  "total_pages": 55,
+  "session_changes": [
+    {
+      "date": "2026-03-22",
+      "summary": "Mobile performance optimization (THREE.js lazy-load, server components, gtag afterInteractive). SEO fixes: robots max-image-preview, removed years from 5 blog slugs with 301 redirects, sitemap updated with resources/ebooks/legal pages. OG description corrected.",
+      "changes": [
+        "Dynamic import THREE.js shader (next/dynamic, ssr: false) — defers ~600KB from initial load",
+        "Converted MissionStatement, BlogPreview, CTABlock to server components (removed use client + useInView)",
+        "Moved Google Analytics to next/script with afterInteractive strategy",
+        "Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds",
+        "Added max-image-preview:large to robots metadata for Google Discover",
+        "Removed years from 5 blog slugs: meta-ads-vs-google-ads-budget-2026 → meta-ads-vs-google-ads-budget, instagram-growth-strategy-for-authors-2026 → instagram-growth-strategy-for-authors, is-programmatic-seo-dead-in-2026 → is-programmatic-seo-dead, marketing-trends-2026-2030 → marketing-trends, performance-max-2026-hero-or-villain → performance-max-hero-or-villain",
+        "Added 5 permanent 301 redirects in next.config.ts for old blog URLs",
+        "Updated all internal blog cross-links to use new slugs",
+        "Added /resources, /privacy-policy, /terms, and 3 ebook pages to sitemap.ts",
+        "Fixed OG description: 200+ businesses → 84+ businesses",
+        "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "summary": "Added 4 SEO pillar pages consolidating service categories. Content Strategy and Landing Pages moved from Creative Studio to Growth Engine. Total pages: 51 → 55.",
+      "changes": [
+        "Added /services/performance-marketing — SEO pillar page for paid media services (Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads, TikTok Ads, Retargeting)",
+        "Added /services/growth-marketing — SEO pillar page for growth engine services (Strategy Audit, Lead Gen, Funnel Building, CRO, Programmatic SEO, Analytics, Email/Lifecycle, Content Strategy, Landing Pages)",
+        "Added /services/creative-services — SEO pillar page for creative studio services (AI Creative, Creative Design, Reels, Brand Videos, UGC, Pitch Decks)",
+        "Added /services/ai-marketing-automation — SEO pillar page for AI & build services (AI Automation, AI Agents, Web Apps/MVPs, AI Workshops)",
+        "Category reassignment: Content Strategy and Landing Pages moved from Creative Studio to Growth Engine",
+        "Updated total_pages from 51 to 55",
+        "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
+      ]
+    }
+  ],
   "design_system_updates": {
     "blog_typography": {
       "method": ".blog-article CSS class in globals.css (not inline Tailwind classes)",
@@ -669,6 +684,87 @@
       "internal_links_from": ["/services"]
     },
     {
+      "route": "/services/performance-marketing",
+      "title": "Performance Marketing Services | Aurelius Media",
+      "h1": "Performance Marketing That Drives Real Revenue.",
+      "meta_description": "Full-service paid media agency covering Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads, TikTok Ads, and Retargeting. Data-driven campaigns built for scale.",
+      "primary_keyword": "performance marketing agency",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "pillar",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/google-ads",
+        "/services/meta-ads",
+        "/services/linkedin-ads",
+        "/services/youtube-ads",
+        "/services/tiktok-ads",
+        "/services/retargeting"
+      ],
+      "internal_links_from": ["/services"],
+      "notes": "SEO pillar page for paid media category. Aggregates and links to all 6 paid media sub-service pages."
+    },
+    {
+      "route": "/services/growth-marketing",
+      "title": "Growth Marketing Services | Aurelius Media",
+      "h1": "Build a Growth Engine That Compounds.",
+      "meta_description": "Full-funnel growth marketing services: strategy audit, lead generation, funnel building, CRO, programmatic SEO, analytics, email/lifecycle, content strategy, and landing pages.",
+      "primary_keyword": "growth marketing agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "pillar",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/marketing-strategy-audit",
+        "/services/lead-generation",
+        "/services/funnel-building",
+        "/services/cro",
+        "/services/programmatic-seo",
+        "/services/analytics-reporting",
+        "/services/email-lifecycle",
+        "/services/content-strategy",
+        "/services/landing-pages"
+      ],
+      "internal_links_from": ["/services"],
+      "notes": "SEO pillar page for growth engine category. Aggregates 9 sub-service pages. Content Strategy and Landing Pages moved here from Creative Studio."
+    },
+    {
+      "route": "/services/creative-services",
+      "title": "Creative Services | Aurelius Media",
+      "h1": "Creative That Converts at Every Touchpoint.",
+      "meta_description": "Full creative studio services: AI creative design, creative design, reels editing, brand videos, UGC ads, and pitch decks. Built for performance and brand storytelling.",
+      "primary_keyword": "creative marketing agency",
+      "topic_cluster": "Creative Production",
+      "page_type": "pillar",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/ai-creative-design",
+        "/services/creative-design",
+        "/services/reels-editing",
+        "/services/brand-videos",
+        "/services/ugc-ads",
+        "/services/pitch-decks"
+      ],
+      "internal_links_from": ["/services"],
+      "notes": "SEO pillar page for creative studio category. Aggregates 6 sub-service pages. Content Strategy and Landing Pages removed from this category and moved to Growth Engine."
+    },
+    {
+      "route": "/services/ai-marketing-automation",
+      "title": "AI Marketing & Automation | Aurelius Media",
+      "h1": "AI-Powered Systems That Scale Your Business.",
+      "meta_description": "AI marketing automation services: custom AI automation, AI agents, web app/MVP development, and corporate AI workshops. Build smarter, scale faster.",
+      "primary_keyword": "ai marketing automation agency",
+      "topic_cluster": "Growth Engineering",
+      "page_type": "pillar",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/ai-automation",
+        "/services/ai-agents",
+        "/services/no-code-development",
+        "/services/ai-workshops"
+      ],
+      "internal_links_from": ["/services"],
+      "notes": "SEO pillar page for AI & build category. Aggregates 4 sub-service pages."
+    },
+    {
       "route": "/blog/meta-ads-vs-google-ads-budget",
       "title": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
       "h1": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
@@ -811,7 +907,7 @@
       "template_name": "Service Hub Dynamic Router",
       "route_pattern": "/services/[slug]",
       "data_source": "src/data/servicePages.ts",
-      "total_pages_generated": 28,
+      "total_pages_generated": 32,
       "sample_urls": [
         "/services/google-ads",
         "/services/meta-ads"
