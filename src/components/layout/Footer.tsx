@@ -77,7 +77,7 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-4">
-                            <Image src="/logo.png" alt="Aurelius Media" width={36} height={36} className="rounded-md" />
+                            <Image src="/logo.png" alt="Aurelius Media" width={36} height={36} sizes="36px" className="rounded-md" />
                             <span className="text-lg font-bold tracking-tight">AURELIUS MEDIA</span>
                         </Link>
                         <p className="text-brand-gray text-sm leading-relaxed mb-6 max-w-sm">

@@ -56,6 +56,7 @@ export default function Hero() {
                                 alt={p.alt}
                                 width={36}
                                 height={36}
+                                sizes="36px"
                                 className="w-9 h-9 rounded-full border-2 border-brand-dark object-cover object-top"
                             />
                         ))}
@@ -131,6 +132,7 @@ export default function Hero() {
                                         alt={logo.alt}
                                         width={200}
                                         height={80}
+                                        sizes="120px"
                                         className="h-16 sm:h-20 md:h-24 w-auto object-contain"
                                     />
                                 </div>

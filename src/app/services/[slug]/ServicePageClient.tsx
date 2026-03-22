@@ -145,11 +145,11 @@ const serviceIconMap: Record<string, LucideIcon> = {
 
 /* ─── Client logos for social proof bar ─── */
 const clientLogos = [
-    { src: '/logos/3TIH6U8UUBCqp0JjaEjDBKV0qr0.avif', alt: 'Client' },
-    { src: '/logos/A4sYu7KC74rOzwxehkShLCdL0cQ.avif', alt: 'Client' },
-    { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: 'Client' },
-    { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: 'Client' },
-    { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: 'Client' },
+    { src: '/logos/3TIH6U8UUBCqp0JjaEjDBKV0qr0.avif', alt: '' },
+    { src: '/logos/A4sYu7KC74rOzwxehkShLCdL0cQ.avif', alt: '' },
+    { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: '' },
+    { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: '' },
+    { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: '' },
 ];
 
 /* ─── Per-service testimonial data (expanded to 3+ per service for carousel) ─── */
@@ -574,7 +574,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     <div className="flex animate-logo-scroll items-center gap-10 md:gap-16 lg:gap-24">
                         {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((logo, i) => (
                             <div key={i} className="flex-shrink-0 flex items-center justify-center p-2">
-                                <Image src={logo.src} alt={logo.alt} width={200} height={80} className="h-16 sm:h-20 md:h-24 w-auto object-contain" />
+                                <Image src={logo.src} alt={logo.alt} width={200} height={80} sizes="120px" className="h-16 sm:h-20 md:h-24 w-auto object-contain" />
                             </div>
                         ))}
                     </div>
@@ -849,7 +849,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             <div>
                                 <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
                                     <span className="w-2.5 h-2.5 bg-brand-accent rounded-full animate-pulse shadow-[0_0_10px_rgba(232,85,15,0.6)]" />
-                                    <Image src="/logo.png" alt="Aurelius Media" width={36} height={36} className="rounded-md" />
+                                    <Image src="/logo.png" alt="Aurelius Media" width={36} height={36} sizes="36px" className="rounded-md" />
                                     <span className="text-lg sm:text-xl font-extrabold tracking-wider uppercase text-brand-white">Aurelius Media</span>
                                 </div>
                                 <div className="relative rounded-[20px] border border-brand-border-subtle bg-brand-card/40 p-6 sm:p-8 overflow-hidden">

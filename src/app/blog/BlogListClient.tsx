@@ -110,7 +110,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
                                     </p>
                                     <div className="flex items-center gap-3">
                                         <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 border border-brand-border-subtle">
-                                            <Image src="/images/ayush.jpeg" alt={featuredPost.author} width={28} height={28} className="object-cover w-full h-full" />
+                                            <Image src="/images/ayush.jpeg" alt={featuredPost.author} width={28} height={28} sizes="28px" className="object-cover w-full h-full" />
                                         </div>
                                         <div>
                                             <div className="text-[12px] font-semibold text-brand-white">{featuredPost.author}</div>
@@ -167,7 +167,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 border border-brand-border-subtle">
-                                                    <Image src="/images/ayush.jpeg" alt={post.author} width={28} height={28} className="object-cover w-full h-full" />
+                                                    <Image src="/images/ayush.jpeg" alt={post.author} width={28} height={28} sizes="28px" className="object-cover w-full h-full" />
                                                 </div>
                                                 <span className="text-[11px] text-brand-gray-dark">{post.author}</span>
                                             </div>

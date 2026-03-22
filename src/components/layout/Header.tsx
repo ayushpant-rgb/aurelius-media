@@ -44,6 +44,7 @@ export default function Header() {
                             alt="Aurelius Media"
                             width={52}
                             height={52}
+                            sizes="52px"
                             className="rounded-md transition-transform group-hover:scale-105"
                         />
                         <span className="whitespace-nowrap text-lg sm:text-xl font-extrabold tracking-wider uppercase text-brand-white">

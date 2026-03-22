@@ -94,7 +94,7 @@ export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
                                 <div className="flex items-center justify-between mt-4">
                                     <div className="flex items-center gap-2">
                                         <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 border border-brand-border-subtle">
-                                            <Image src="/images/ayush.jpeg" alt={post.author} width={28} height={28} className="object-cover w-full h-full" />
+                                            <Image src="/images/ayush.jpeg" alt={post.author} width={28} height={28} sizes="28px" className="object-cover w-full h-full" />
                                         </div>
                                         <span className="text-[11px] text-brand-gray-dark">{post.author}</span>
                                     </div>

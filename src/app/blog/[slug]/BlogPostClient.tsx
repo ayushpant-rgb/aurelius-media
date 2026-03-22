@@ -158,6 +158,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
                                     alt={post.author}
                                     width={32}
                                     height={32}
+                                    sizes="32px"
                                     className="object-cover w-full h-full"
                                 />
                             </div>
@@ -226,6 +227,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
                             alt={post.author}
                             width={56}
                             height={56}
+                            sizes="56px"
                             className="object-cover w-full h-full"
                         />
                     </div>
