@@ -15,8 +15,8 @@ export default function BlurReveal({ children, className = '' }: BlurRevealProps
         const el = ref.current;
         if (!el) return;
 
-        // Build a dense threshold array for smooth interpolation
-        const thresholds = Array.from({ length: 101 }, (_, i) => i / 100);
+        // Use fewer thresholds to avoid excessive callback overhead
+        const thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5];
 
         const observer = new IntersectionObserver(
             ([entry]) => {

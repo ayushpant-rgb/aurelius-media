@@ -6,7 +6,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Project Name:** Aurelius Media Website
 - **Purpose:** A premium, "wow-factor" corporate website for an AI-powered performance marketing agency. It aims to attract VC-backed startups and enterprise clients.
 - **Goals:** High-end aesthetic (SaaS-like, dark mode, cinematic), fast performance, programmatic SEO structure for scaling content, and highly readable capabilities overviews.
-- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links.
+- **Current Status:** Main pages built (Home, Services Hub, Service Sub-pages, Categories, Blog, Contact, Privacy Policy, Terms & Conditions, Resources Hub, Ebook Landing Pages). 31 specific service pages built with programmatic routing (including education-marketing, edtech-marketing, d2c-ecommerce-marketing, saas-marketing). 7 blog posts live (5 recently rewritten with in-depth research, data tables, and consistent structure including vibe coding expansion with 8 tool profiles). All core homepage sections complete with scroll animations and marquee testimonials. About page removed (301 redirect to `/#how-it-works`). Contact page complete with lead capture form, Cal.com placeholder, and social links. Privacy Policy and Terms & Conditions pages added with footer links. Resources hub with 3 ebook landing pages (gated PDF downloads with lead capture).
 - **Live URL:** `https://www.aureliusmedia.co` (Deployed on Vercel)
 
 ## 2. Tech Stack
@@ -14,7 +14,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
 - **Language:** TypeScript 5.x
 - **Styling:** Tailwind CSS v4 (using `@theme` in `globals.css`)
 - **CMS / Data Layer:** Static TypeScript data files (`src/data/*.ts`) and Markdown files (`content/blog/*.mdx`). No external headless CMS is connected yet.
-- **Animations:** Custom CSS animations, Framer Motion, custom `useInView` hook for fade-ins, and Three.js (raw WebGL) for hero shader backgrounds.
+- **Animations:** Custom CSS animations, Framer Motion, custom `useInView` hook for fade-ins, and Three.js (raw WebGL, dynamically imported) for hero shader backgrounds.
 - **Package Manager:** npm
 
 ## 2b. Key Dependencies
@@ -74,7 +74,7 @@ Welcome to the **Aurelius Media** codebase! This file acts as your ultimate sour
   // ...
   <section ref={ref} className={inView ? 'animate-fade-in-up' : 'opacity-0'}>
   ```
-- **BlurReveal:** `src/components/ui/BlurReveal.tsx` — a scroll-based blur+opacity reveal wrapper. Uses `IntersectionObserver` with 101 thresholds. Maps `intersectionRatio / 0.4` → progress (0–1), applies `filter: blur()` (max 18px) and `opacity` (0.3→1.0). Currently wraps only `MissionStatement` on the homepage. Do NOT apply it globally.
+- **BlurReveal:** `src/components/ui/BlurReveal.tsx` — a scroll-based blur+opacity reveal wrapper. Uses `IntersectionObserver` with 10 thresholds (reduced from 101 for performance). Maps `intersectionRatio / 0.4` → progress (0–1), applies `filter: blur()` (max 18px) and `opacity` (0.3→1.0). Not currently used on homepage (MissionStatement converted to server component). Available for use on other pages.
 - **Testimonials:** Desktop: 3 vertical columns with alternating scroll (down/up/down at 56s/63s/59s), fixed-height container with top/bottom fades. Mobile: 3 horizontal rows (RTL/LTR/RTL at 45s/40s/47s), each row features a single person (Cameron/Tom/Karan). CSS-only infinite scroll via `@keyframes scroll-rtl` / `scroll-ltr` / `marquee-vertical-down` / `marquee-vertical-up`. Always use CSS classes — not inline `style={{ animation: '...' }}` — for reliable cross-browser behavior.
 - **Responsive Images:** We use `next/image` with `object-cover` for nearly all images to retain aspect ratios nicely.
 - **Naming:** PascalCase for React components, camelCase for variables/functions.
@@ -324,11 +324,15 @@ Every active route in the codebase and its status:
 | `/categories/[slug]` | Category Pages Template | Complete |
 | `/blog` | Blog Hub | Complete |
 | `/blog/[slug]` | Blog Post Template | Complete |
-| `/blog/meta-ads-vs-google-ads-budget-2026` | Meta Ads vs Google Ads | Complete |
+| `/blog/meta-ads-vs-google-ads-budget` | Meta Ads vs Google Ads | Complete |
 | `/blog/vibe-coding-explained-build-saas-weekend` | Vibe Coding Explained | Complete |
-| `/blog/performance-max-2026-hero-or-villain` | Performance Max 2026 | Complete |
-| `/blog/instagram-growth-strategy-for-authors-2026` | Instagram Growth for Authors | Complete |
-| `/blog/marketing-trends-2026-2030` | Disruptive Marketing Trends 2026 | Complete |
+| `/blog/performance-max-hero-or-villain` | Performance Max | Complete |
+| `/blog/instagram-growth-strategy-for-authors` | Instagram Growth for Authors | Complete |
+| `/blog/marketing-trends` | Disruptive Marketing Trends | Complete |
+| `/resources` | Resources Hub (Ebooks) | Complete |
+| `/resources/startup-growth-playbook` | Startup Growth Playbook Ebook | Complete |
+| `/resources/meta-andromeda-playbook` | Meta Andromeda Playbook Ebook | Complete |
+| `/resources/authors-book-marketing-playbook` | Authors Book Marketing Playbook | Complete |
 | `/contact` | Contact | Complete |
 | `/privacy-policy` | Privacy Policy | Complete |
 | `/terms` | Terms & Conditions | Complete |
@@ -340,7 +344,7 @@ Every active route in the codebase and its status:
 - ✅ **RESOLVED — Testimonials Repetition:** Each person appears in exactly one row (Cameron+Karan → row1, Tom+Ira → row2, Nidhi → row3).
 - ✅ **RESOLVED — MDX Table Rendering:** `remark-gfm` added; tables render correctly in blog posts.
 - 🔴 **Blog Images:** `ogImage` is optional — posts without it render a branded gradient fallback (gradient + ghosted title text). No broken UI, but real images would improve CTR.
-- 🔴 **Metadata outdated:** Global OG description in `layout.tsx` still references `"100CR+"` — should be updated to `"$15M+"`.
+- ✅ **RESOLVED — Metadata:** Global OG description updated to "84+ businesses scaled".
 - 🟡 **Shader Accessibility:** `AnoAI` WebGL shader on the hero does not respect `prefers-reduced-motion`.
 - ✅ **RESOLVED — Blog Cross-Linking:** All 7 blog posts now include internal links to relevant service pages (31 links across 16 service pages + 4 blog-to-blog cross-links). Editorial tone throughout — no promotional language. Fixed 2 broken links in programmatic SEO post (`/categories/` → `/services/`).
 - ✅ **RESOLVED — About page:** Removed. 301 redirect to `/#how-it-works` via `next.config.ts`.
@@ -454,3 +458,15 @@ If you are modifying this codebase:
 - **March 20, 2026:** Added internal links across all 7 blog posts: 31 contextual links to 16 service pages + 4 blog-to-blog cross-links. Fixed 2 broken links in programmatic SEO post (`/categories/programmatic-seo` → `/services/programmatic-seo`, `/categories/web-apps-mvps` → `/services/no-code-development`). Editorial tone — no promotional "our services" language. Service pages linked: google-ads, meta-ads, d2c-ecommerce-marketing, saas-marketing, ai-creative-design, analytics-reporting, book-marketing, reels-editing, no-code-development, landing-pages, ai-agents, ai-workshops, content-strategy, programmatic-seo, brand-videos, retargeting. Blog cross-links: Meta↔PMax, Trends↔Vibe Coding, Trends↔pSEO, Vibe Coding↔Trends.
 - **March 20, 2026:** Removed non-functional "Load more articles" button from blog listing page (`BlogListClient.tsx`). All 7 posts display on page — button had no click handler and was misleading.
 - **March 20, 2026:** Added Privacy Policy (`/privacy-policy`) and Terms & Conditions (`/terms`) pages. Both linked from footer bottom bar next to copyright text. Standard legal content covering data collection, third-party services (Vercel, Cal.com, Resend, Supabase, Google Analytics), IP, liability, and contact info.
+- **March 22, 2026:** Mobile performance optimization (PageSpeed score 40 → improved):
+  - Dynamically imported THREE.js shader (`next/dynamic`, `ssr: false`) — defers ~600KB from initial load, eliminates render-blocking shader compilation
+  - Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds — ~90% fewer callbacks
+  - Moved Google Analytics to `next/script` with `strategy="afterInteractive"` — no longer blocks first paint
+  - Converted MissionStatement, BlogPreview, CTABlock from client to server components — removed `'use client'` and `useInView`, animations now CSS-only
+  - Removed BlurReveal wrapper from homepage MissionStatement
+- **March 22, 2026:** SEO improvements:
+  - Added `max-image-preview: large` to robots metadata for Google Discover optimization
+  - Fixed OG description: "200+ businesses" → "84+ businesses"
+  - Updated sitemap: added `/resources`, `/privacy-policy`, `/terms`, and 3 ebook landing pages
+  - Removed years from all 5 blog URL slugs (SEO best practice — prevents URL mismatch when topics are revisited). 301 redirects added for all old URLs in `next.config.ts`. All internal cross-links updated.
+  - Old → New: `meta-ads-vs-google-ads-budget-2026` → `meta-ads-vs-google-ads-budget`, `instagram-growth-strategy-for-authors-2026` → `instagram-growth-strategy-for-authors`, `is-programmatic-seo-dead-in-2026` → `is-programmatic-seo-dead`, `marketing-trends-2026-2030` → `marketing-trends`, `performance-max-2026-hero-or-villain` → `performance-max-hero-or-villain`

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Aurelius Media",
     title: "Aurelius Media | AI-Powered Performance Marketing Agency",
     description:
-      "20+ years of digital marketing expertise. $15M+ in ad spend managed. 200+ businesses scaled across 25+ countries.",
+      "20+ years of digital marketing expertise. $15M+ in ad spend managed. 84+ businesses scaled across 25+ countries.",
     images: [
       {
         url: "/logo.png",
@@ -71,6 +72,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    "max-image-preview": "large",
   },
 };
 
@@ -82,11 +84,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <script
-          async
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Y2CTMVVP1H"
+          strategy="afterInteractive"
         />
-        <script
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2CTMVVP1H');`,
           }}

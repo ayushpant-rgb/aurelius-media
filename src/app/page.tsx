@@ -6,7 +6,6 @@ import FeaturedResults from '@/components/sections/FeaturedResults';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import BlogPreview from '@/components/sections/BlogPreview';
 import CTABlock from '@/components/sections/CTABlock';
-import BlurReveal from '@/components/ui/BlurReveal';
 import { getAllPosts } from '@/lib/blog';
 
 export default function HomePage() {
@@ -15,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <BlurReveal><MissionStatement /></BlurReveal>
+      <MissionStatement />
       <FeaturedResults />
       <ServicesOverview />
       <TestimonialsCarousel />

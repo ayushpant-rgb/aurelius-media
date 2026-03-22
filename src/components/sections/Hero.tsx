@@ -2,8 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
-import AnoAI from '@/components/ui/animated-shader-background';
+const AnoAI = dynamic(() => import('@/components/ui/animated-shader-background'), {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-brand-dark" />,
+});
 
 export default function Hero() {
     const clientLogos = [

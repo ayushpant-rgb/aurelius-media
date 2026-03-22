@@ -1,18 +1,21 @@
 {
-  "last_updated": "2026-03-20",
-  "total_pages": 47,
+  "last_updated": "2026-03-22",
+  "total_pages": 51,
   "session_changes": {
-    "date": "2026-03-20",
-    "summary": "Added Privacy Policy and Terms & Conditions pages with footer links. Previously: internal linking across all 7 blogs, broken link fixes, Load More removal, vibe coding expansion. All deployed to Vercel.",
+    "date": "2026-03-22",
+    "summary": "Mobile performance optimization (THREE.js lazy-load, server components, gtag afterInteractive). SEO fixes: robots max-image-preview, removed years from 5 blog slugs with 301 redirects, sitemap updated with resources/ebooks/legal pages. OG description corrected.",
     "changes": [
-      "Added /privacy-policy page with standard legal content (data collection, third-party services, cookies, data rights, security)",
-      "Added /terms page with standard terms and conditions (IP, usage, liability, warranties, indemnification)",
-      "Added Privacy Policy and Terms & Conditions links to footer bottom bar (next to copyright text)",
-      "Added internal links across all 7 blog posts: 31 contextual links to 16 service pages + 4 blog-to-blog cross-links (editorial tone, not promotional)",
-      "Fixed 2 broken links in programmatic SEO post: /categories/programmatic-seo → /services/programmatic-seo, /categories/web-apps-mvps → /services/no-code-development",
-      "Removed non-functional 'Load more articles' button from blog listing page (BlogListClient.tsx)",
-      "Expanded vibe coding blog: 8 tool profiles, In a Nutshell, TOC, comparison table, best practices, Bottom Line, 8 FAQs, OG images",
-      "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json with all changes"
+      "Dynamic import THREE.js shader (next/dynamic, ssr: false) — defers ~600KB from initial load",
+      "Converted MissionStatement, BlogPreview, CTABlock to server components (removed use client + useInView)",
+      "Moved Google Analytics to next/script with afterInteractive strategy",
+      "Reduced BlurReveal IntersectionObserver from 101 to 10 thresholds",
+      "Added max-image-preview:large to robots metadata for Google Discover",
+      "Removed years from 5 blog slugs: meta-ads-vs-google-ads-budget-2026 → meta-ads-vs-google-ads-budget, instagram-growth-strategy-for-authors-2026 → instagram-growth-strategy-for-authors, is-programmatic-seo-dead-in-2026 → is-programmatic-seo-dead, marketing-trends-2026-2030 → marketing-trends, performance-max-2026-hero-or-villain → performance-max-hero-or-villain",
+      "Added 5 permanent 301 redirects in next.config.ts for old blog URLs",
+      "Updated all internal blog cross-links to use new slugs",
+      "Added /resources, /privacy-policy, /terms, and 3 ebook pages to sitemap.ts",
+      "Fixed OG description: 200+ businesses → 84+ businesses",
+      "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
     ]
   },
   "design_system_updates": {
@@ -103,9 +106,9 @@
         "/services/ai-automation",
         "/services/book-marketing",
         "/blog",
-        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
-        "/blog/performance-max-2026-hero-or-villain"
+        "/blog/performance-max-hero-or-villain"
       ],
       "internal_links_from": [],
       "notes": "Home. Shader hero graphic. CTA: 'Join the Client Waitlist'. Section order: Hero → MissionStatement (BlurReveal) → FeaturedResults → ServicesOverview → TestimonialsCarousel → CapabilitiesPanel → BlogPreview → CTABlock. Desktop testimonials: 3 vertical columns (56s/63s/59s). Mobile testimonials: 3 horizontal rows (RTL/LTR/RTL, 45s/40s/47s, one person per row). Header: fully opaque, floating pill navbar."
@@ -208,12 +211,12 @@
       "page_type": "static",
       "status": "complete",
       "internal_links_to": [
-        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
-        "/blog/performance-max-2026-hero-or-villain",
-        "/blog/instagram-growth-strategy-for-authors-2026",
-        "/blog/is-programmatic-seo-dead-in-2026",
-        "/blog/marketing-trends-2026-2030"
+        "/blog/performance-max-hero-or-villain",
+        "/blog/instagram-growth-strategy-for-authors",
+        "/blog/is-programmatic-seo-dead",
+        "/blog/marketing-trends"
       ],
       "internal_links_from": ["/", "Header", "Footer"],
       "notes": "Redesigned per Blog Style Tile v1.0: 'Latest insights.' gradient header, category filter pills, featured 2-column hero card, 3-col card grid (20px radius, 200px image height, author photo avatars, orange hover glow), 'Load more' ghost button, warm-gradient newsletter CTA section."
@@ -666,7 +669,7 @@
       "internal_links_from": ["/services"]
     },
     {
-      "route": "/blog/meta-ads-vs-google-ads-budget-2026",
+      "route": "/blog/meta-ads-vs-google-ads-budget",
       "title": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
       "h1": "Meta Ads vs. Google Ads: Where to Put Your Budget in 2026",
       "meta_description": "2026 benchmark data on Meta Ads vs Google Ads — CPC, CPM, CPL, ROAS by industry, platform AI updates, and budget allocation frameworks for every business type.",
@@ -691,7 +694,7 @@
       "internal_links_from": ["/blog", "/"]
     },
     {
-      "route": "/blog/performance-max-2026-hero-or-villain",
+      "route": "/blog/performance-max-hero-or-villain",
       "title": "Performance Max 2026: Hero or Villain for Your Ad Budget?",
       "h1": "Performance Max in 2026: Hero or Villain for Your Ad Budget?",
       "meta_description": "An honest, data-backed verdict on Google Performance Max campaigns in 2026. When PMax works, when it destroys your budget, and a setup framework for doing it right.",
@@ -704,7 +707,7 @@
       "notes": "Rewritten March 2026 with benchmark data. 71% adoption, 51B impressions, attribution inflation deep-dive, 2025-2026 updates table (10 new controls), PMax vs Search vs Shopping comparison, setup framework (5 pillars). In a Nutshell + TOC + 11 sections + 7 FAQs."
     },
     {
-      "route": "/blog/instagram-growth-strategy-for-authors-2026",
+      "route": "/blog/instagram-growth-strategy-for-authors",
       "title": "Instagram Growth Strategy for Authors in 2026",
       "h1": "Instagram Growth Strategy for Authors in 2026",
       "meta_description": "A practical Instagram growth playbook for authors — content pillars, Reels strategy, bio optimization, hashtags, and converting followers into readers.",
@@ -717,7 +720,7 @@
       "notes": "Rewritten March 2026. Removed all client references (genericized). In a Nutshell + TOC + 14 anchored sections + 6 FAQs. Bio optimization table, content pillar framework, Reels hook strategies."
     },
     {
-      "route": "/blog/marketing-trends-2026-2030",
+      "route": "/blog/marketing-trends",
       "title": "Disruptive Marketing Trends of 2026: AI, Agents, and the New Rules",
       "h1": "Disruptive Marketing Trends of 2026: AI, Agents, and the New Rules",
       "meta_description": "The 7 disruptive marketing trends defining 2026 — agentic AI, vibe coding, AI-native creative, AEO, and the rise of 10x marketers. Data-backed analysis.",
@@ -730,7 +733,7 @@
       "notes": "Complete rewrite March 2026 (previously dated Aug 2025 with 4 generic trends). Now covers 7 trends: agentic AI (Meta/Manus $2B acquisition), vibe coding (92% dev AI adoption), AI-native creative (50%+ AI-generated by EOY), AEO replacing SEO, Meta vs Google AI arms race, 10x marketer, AI UGC revolution. In a Nutshell + TOC + 9 sections + 7 FAQs. No explicit Sources — inline links to MarTech, Forbes, TechCrunch, Adweek, Tenjin, GitHub, Gartner, Fluency."
     },
     {
-      "route": "/blog/is-programmatic-seo-dead-in-2026",
+      "route": "/blog/is-programmatic-seo-dead",
       "title": "Is Programmatic SEO Dead in 2026?",
       "h1": "Is Programmatic SEO Dead in 2026?",
       "meta_description": "A data-backed look at programmatic SEO in 2026 — what's getting deindexed, what's thriving, and how to build pSEO that survives AI Overviews and Google quality updates.",
@@ -821,12 +824,12 @@
       "data_source": "content/blog/*.mdx",
       "total_pages_generated": 7,
       "sample_urls": [
-        "/blog/meta-ads-vs-google-ads-budget-2026",
+        "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
-        "/blog/performance-max-2026-hero-or-villain",
-        "/blog/instagram-growth-strategy-for-authors-2026",
-        "/blog/is-programmatic-seo-dead-in-2026",
-        "/blog/marketing-trends-2026-2030",
+        "/blog/performance-max-hero-or-villain",
+        "/blog/instagram-growth-strategy-for-authors",
+        "/blog/is-programmatic-seo-dead",
+        "/blog/marketing-trends",
         "/blog/9-ai-tools-for-startup-founders"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."

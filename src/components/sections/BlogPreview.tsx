@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { useInView } from '@/lib/hooks';
 import { BlogPostMeta } from '@/lib/blog';
 
 const categoryTagClass: Record<string, string> = {
@@ -23,19 +20,13 @@ function getTagClass(category: string): string {
     return categoryTagClass[category] || 'tag-orange';
 }
 
-function getInitials(name: string): string {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-}
-
 function formatDateShort(dateStr: string): string {
     return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
 export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
-    const { ref, inView } = useInView();
-
     return (
-        <section ref={ref} className="section-padding bg-brand-dark">
+        <section className="section-padding bg-brand-dark">
             <div className="max-w-7xl mx-auto">
                 {/* Section Header */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
@@ -62,9 +53,7 @@ export default function BlogPreview({ posts }: { posts: BlogPostMeta[] }) {
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className={`group flex flex-col rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-[rgba(232,85,15,0.3)] transition-all duration-300 overflow-hidden hover:-translate-y-[3px] ${
-                                inView ? 'animate-fade-in-up' : 'opacity-0'
-                            }`}
+                            className="group flex flex-col rounded-[20px] bg-brand-card border border-brand-border-subtle hover:border-[rgba(232,85,15,0.3)] transition-all duration-300 overflow-hidden hover:-translate-y-[3px] animate-fade-in-up"
                             style={{ animationDelay: `${i * 0.1}s` }}
                         >
                             {/* Image */}

@@ -1,7 +1,3 @@
-'use client';
-
-import { useInView } from '@/lib/hooks';
-
 const stats = [
     {
         value: '$15M+',
@@ -21,10 +17,8 @@ const stats = [
 ];
 
 export default function MissionStatement() {
-    const { ref, inView } = useInView();
-
     return (
-        <section id="how-it-works" ref={ref} className="relative bg-brand-dark py-20 sm:py-28 overflow-hidden">
+        <section id="how-it-works" className="relative bg-brand-dark py-20 sm:py-28 overflow-hidden">
             {/* Subtle dot grid background like the Dovetail reference */}
             <div
                 className="absolute inset-0 opacity-[0.07] pointer-events-none"
@@ -44,21 +38,17 @@ export default function MissionStatement() {
 
             <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
                 {/* Eyebrow */}
-                <p
-                    className={`text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-gray-dark mb-8 sm:mb-10 font-mono ${inView ? 'animate-fade-in' : 'opacity-0'}`}
-                >
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-gray-dark mb-8 sm:mb-10 font-mono animate-fade-in">
                     How It Works
                 </p>
 
                 {/* Big Headline */}
-                <h2
-                    className={`text-2xl sm:text-3xl md:text-[2.75rem] lg:text-[3.25rem] font-medium text-brand-white leading-[1.15] tracking-tight max-w-4xl mb-16 sm:mb-20 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                >
+                <h2 className="text-2xl sm:text-3xl md:text-[2.75rem] lg:text-[3.25rem] font-medium text-brand-white leading-[1.15] tracking-tight max-w-4xl mb-16 sm:mb-20 animate-fade-in-up">
                     Aurelius Media turns your ad spend into predictable revenue through AI-powered creative, data-driven media buying, and growth engineering.
                 </h2>
 
                 {/* Stats Grid */}
-                <div className={`grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-border-subtle rounded-xl overflow-hidden mb-12 sm:mb-16 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-border-subtle rounded-xl overflow-hidden mb-12 sm:mb-16 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
                     {stats.map((stat) => (
                         <div key={stat.label} className="bg-brand-dark p-6 sm:p-8">
                             <div className="flex items-center gap-2 mb-2">
