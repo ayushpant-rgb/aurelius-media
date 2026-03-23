@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
-import { ebooks } from '@/data/ebooks';
 
 const BASE_URL = 'https://www.aureliusmedia.co';
 
@@ -61,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/services`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/resources`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    // { url: `${BASE_URL}/resources`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 }, // Unpublished — redesigning
     { url: `${BASE_URL}/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE_URL}/terms`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ];
@@ -91,13 +90,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // Resource/ebook pages
-  const ebookPages: MetadataRoute.Sitemap = ebooks.map((ebook) => ({
-    url: `${BASE_URL}/resources/${ebook.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  // Resource/ebook pages — unpublished, redesigning with cover art
+  // const ebookPages: MetadataRoute.Sitemap = ebooks.map((ebook) => ({
+  //   url: `${BASE_URL}/resources/${ebook.slug}`,
+  //   lastModified: now,
+  //   changeFrequency: 'monthly' as const,
+  //   priority: 0.7,
+  // }));
 
-  return [...staticPages, ...servicePages, ...blogPages, ...categoryPages, ...ebookPages];
+  return [...staticPages, ...servicePages, ...blogPages, ...categoryPages];
 }
