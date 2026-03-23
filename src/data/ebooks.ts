@@ -138,6 +138,54 @@ export const ebooks: Ebook[] = [
     metaDescription:
       'Download the free Author\'s Book Marketing Playbook. Complete digital marketing guide covering Amazon Ads, social media strategy, launch campaigns, and discoverability for authors.',
   },
+  {
+    slug: 'google-ads-audit-checklist',
+    title: 'The $100K Google Ads Audit Checklist',
+    subtitle: 'The Complete Framework for Finding Wasted Spend and Unlocking Hidden Revenue',
+    description:
+      'A comprehensive audit checklist for marketing managers and founders spending $5K-$100K+/month on Google Ads. Covers account structure, keyword strategy, bidding optimization, ad copy, conversion tracking, landing pages, and reporting — with actionable steps to find wasted spend and unlock hidden revenue.',
+    pdfPath: '/ebooks/google-ads-audit-checklist.pdf',
+    coverPlaceholder: '\uD83D\uDD0D',
+    accentColor: '#4285F4',
+    chapters: [
+      {
+        title: 'The Account Structure Audit',
+        description: 'Campaign organization, naming conventions, ad group structure, and PMax cannibalization.',
+      },
+      {
+        title: 'The Keyword & Match Type Audit',
+        description: 'Wasted spend on broad match, negative keyword gaps, search term mining, and Quality Score.',
+      },
+      {
+        title: 'The Bidding & Budget Audit',
+        description: 'Smart Bidding strategy selection, budget allocation, and learning phase violations.',
+      },
+      {
+        title: 'The Ad Copy & Creative Audit',
+        description: 'RSA pin strategy, Ad Strength vs actual performance, and extension coverage.',
+      },
+      {
+        title: 'The Conversion Tracking Audit',
+        description: 'Conversion action setup, Enhanced Conversions, offline import, and GA4 integration.',
+      },
+      {
+        title: 'The Landing Page & CRO Audit',
+        description: 'Page speed, message match, mobile experience, and form optimization.',
+      },
+      {
+        title: 'The Reporting & Attribution Audit',
+        description: 'Cross-channel attribution, blended MER, incrementality testing, and automated reporting.',
+      },
+    ],
+    formFields: {
+      label: 'Monthly Google Ads Spend',
+      name: 'company',
+      placeholder: 'e.g. $10,000/month',
+    },
+    metaTitle: 'The $100K Google Ads Audit Checklist — Free Ebook | Aurelius Media',
+    metaDescription:
+      'Download the free Google Ads Audit Checklist. A complete framework for finding wasted spend and unlocking hidden revenue in accounts spending $5K-$100K+/month on Google Ads.',
+  },
 ];
 
 export function getEbookBySlug(slug: string): Ebook | undefined {

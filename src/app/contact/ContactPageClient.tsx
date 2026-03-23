@@ -110,22 +110,16 @@ export default function ContactPageClient() {
                                 we will discuss your marketing goals and how we can help.
                             </p>
 
-                            {/* Cal.com Embed Placeholder */}
-                            <div className="rounded-xl bg-brand-card border border-brand-border-subtle p-8 text-center min-h-[400px] flex flex-col items-center justify-center">
-                                <span className="text-4xl mb-4">📅</span>
-                                <h3 className="text-lg font-bold mb-2">Cal.com Scheduling</h3>
-                                <p className="text-sm text-brand-gray mb-6 max-w-sm">
-                                    The booking calendar will be embedded here. Currently showing a placeholder.
-                                    Share your Cal.com link to activate this feature.
-                                </p>
-                                <a
-                                    href="https://cal.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="px-6 py-3 cta-primary text-white font-semibold rounded-[20px]"
-                                >
-                                    Open Calendar →
-                                </a>
+                            {/* Cal.com Inline Embed */}
+                            <div className="rounded-xl overflow-hidden border border-brand-border-subtle">
+                                <iframe
+                                    src="https://cal.com/aureliusmedia/15min?embed=true&theme=dark&layout=month_view"
+                                    width="100%"
+                                    frameBorder="0"
+                                    className="rounded-xl"
+                                    style={{ minHeight: '660px', border: 'none' }}
+                                    title="Book a Strategy Call"
+                                />
                             </div>
                         </div>
 
