@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BlogPostMeta } from '@/lib/blog';
 import { useState } from 'react';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const categoryTagClass: Record<string, string> = {
     'Performance Marketing': 'tag-orange',
@@ -198,16 +199,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostMeta[] }) {
                             <p className="text-[14px] text-brand-gray mb-6">
                                 Weekly insights on performance marketing, AI, and growth. No spam. Unsubscribe anytime.
                             </p>
-                            <form className="flex flex-col sm:flex-row gap-2 max-w-[420px] mx-auto">
-                                <input
-                                    type="email"
-                                    placeholder="your@email.com"
-                                    className="flex-1 bg-brand-card-hover border border-brand-border rounded-xl py-[11px] px-4 text-[14px] text-brand-white placeholder:text-brand-gray-dark focus:outline-none"
-                                />
-                                <button type="submit" className="cta-primary text-white font-semibold rounded-xl px-5 py-[11px] text-[14px]">
-                                    Subscribe
-                                </button>
-                            </form>
+                            <NewsletterForm source="blog_list" />
                             <p className="text-[11px] text-brand-gray-dark mt-3">
                                 Join 2,400+ marketers &middot; Free forever
                             </p>

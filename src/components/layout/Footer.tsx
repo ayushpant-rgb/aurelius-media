@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const footerLinks = {
     company: [
@@ -60,15 +60,6 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-    const [email, setEmail] = useState('');
-
-    const handleNewsletterSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // TODO: Integrate with email service (Resend/SendGrid)
-        alert('Thank you for subscribing!');
-        setEmail('');
-    };
-
     return (
         <footer className="bg-brand-darker border-t border-brand-border-subtle">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -87,22 +78,7 @@ export default function Footer() {
                         </p>
 
                         {/* Newsletter */}
-                        <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-sm">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="your@email.com"
-                                required
-                                className="flex-1 px-4 py-2.5 bg-brand-card border border-brand-border rounded-lg text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent/50 transition-colors"
-                            />
-                            <button
-                                type="submit"
-                                className="px-4 py-2.5 bg-brand-accent hover:bg-brand-accent-hover text-white text-sm font-semibold rounded-lg transition-colors whitespace-nowrap"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
+                        <NewsletterForm source="footer" variant="inline" />
                     </div>
 
                     {/* Company Links */}
