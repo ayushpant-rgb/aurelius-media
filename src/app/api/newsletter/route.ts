@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { buildNewsletterWelcomeEmail } from '@/lib/emails';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -16,10 +20,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Check if already subscribed (skip welcome email for returning subscribers)
+    const { data: existing } = await supabase
+      .from('newsletter_subscribers')
+      .select('email')
+      .eq('email', normalizedEmail)
+      .limit(1);
+
+    const isNew = !existing || existing.length === 0;
+
     const { error: dbError } = await supabase
       .from('newsletter_subscribers')
       .upsert(
-        { email: email.trim().toLowerCase(), source: source || 'unknown' },
+        { email: normalizedEmail, source: source || 'unknown' },
         { onConflict: 'email' }
       );
 
@@ -29,6 +44,21 @@ export async function POST(request: NextRequest) {
         { error: 'Something went wrong. Please try again.' },
         { status: 500 }
       );
+    }
+
+    // Send welcome email only for new subscribers
+    if (isNew) {
+      const fromAddress = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+      const welcome = buildNewsletterWelcomeEmail();
+
+      resend.emails
+        .send({
+          from: `Aurelius Media <${fromAddress}>`,
+          to: normalizedEmail,
+          subject: welcome.subject,
+          html: welcome.html,
+        })
+        .catch((err) => console.error('Newsletter welcome email failed:', err));
     }
 
     return NextResponse.json({ success: true });

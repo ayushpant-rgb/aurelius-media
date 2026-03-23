@@ -50,6 +50,44 @@ export function buildConfirmationEmail(data: LeadEmailData): { subject: string; 
   };
 }
 
+export function buildNewsletterWelcomeEmail(): { subject: string; html: string } {
+  return {
+    subject: 'Welcome to the Aurelius newsletter',
+    html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#0B0B0D;font-family:Arial,sans-serif;">
+  <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
+    <div style="margin-bottom:32px;">
+      <strong style="color:#FFFFFF;font-size:18px;">AURELIUS MEDIA</strong>
+    </div>
+    <h1 style="color:#FFFFFF;font-size:24px;margin:0 0 16px;">
+      You&rsquo;re in. Welcome aboard.
+    </h1>
+    <p style="color:rgba(255,255,255,0.65);font-size:15px;line-height:1.7;margin:0 0 16px;">
+      Thanks for subscribing to the Aurelius newsletter. Every week, you&rsquo;ll get
+      actionable insights on performance marketing, AI-powered growth strategies,
+      and the tactics we use to scale brands across 25+ countries.
+    </p>
+    <p style="color:rgba(255,255,255,0.65);font-size:15px;line-height:1.7;margin:0 0 24px;">
+      While you&rsquo;re here &mdash; want a free audit of your current marketing setup?
+    </p>
+    <a href="https://cal.com/aureliusmedia/15min"
+       style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#FF6B2B,#E8550F);color:#FFFFFF;text-decoration:none;border-radius:20px;font-weight:600;font-size:14px;">
+      Book a Free Strategy Call &rarr;
+    </a>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:32px 0;" />
+    <p style="color:rgba(255,255,255,0.38);font-size:12px;margin:0;">
+      Aurelius Media &middot; AI-Powered Performance Marketing<br/>
+      You&rsquo;re receiving this because you subscribed at aureliusmedia.co
+    </p>
+  </div>
+</body>
+</html>`.trim(),
+  };
+}
+
 export function buildNotificationEmail(data: LeadEmailData): { subject: string; html: string } {
   const title = data.service_interest || data.source;
 

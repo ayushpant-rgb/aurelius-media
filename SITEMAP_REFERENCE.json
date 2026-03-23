@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-03-22",
-  "total_pages": 56,
+  "last_updated": "2026-03-24",
+  "total_pages": 57,
   "session_changes": [
+    {
+      "date": "2026-03-24",
+      "summary": "New BOFU blog post, Google Ads ebook, Cal.com embed fix, newsletter subscription system. Total pages: 56 → 57.",
+      "changes": [
+        "Added /blog/fix-meta-ads-roas — BOFU blog post 'Why Your Meta Ads ROAS Sucks (And How to Fix It)', 25 min read, hero image",
+        "Added $100K Google Ads Audit Checklist ebook PDF + registered in src/data/ebooks.ts (4th ebook)",
+        "Replaced Cal.com placeholder on /contact with live inline booking embed (https://cal.com/aureliusmedia/15min)",
+        "Added /api/newsletter endpoint with Supabase newsletter_subscribers table",
+        "Added NewsletterForm reusable client component (src/components/NewsletterForm.tsx)",
+        "Wired up newsletter forms in Footer, BlogListClient, BlogPostClient — all now functional with loading/success/error states",
+        "Added welcome email via Resend for new newsletter subscribers (only fires for first-time subscribers)",
+        "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
+      ]
+    },
     {
       "date": "2026-03-22",
       "summary": "Removed THREE.js WebGL shader from Hero component. Replaced with CSS-only animated gradient. Eliminates ~600KB JS and ~31s TBT on mobile.",
@@ -236,9 +250,9 @@
       "topic_cluster": "Core Operations",
       "page_type": "static",
       "status": "complete",
-      "internal_links_to": ["https://cal.com"],
+      "internal_links_to": ["https://cal.com/aureliusmedia/15min"],
       "internal_links_from": ["Header", "Footer"],
-      "notes": "Two-column layout: Cal.com booking placeholder (left) + lead capture form (right). Email: ayush@aureliusmedia.co. SVG social icons (LinkedIn, X, Instagram). Form submits to /api/leads with source 'contact'."
+      "notes": "Two-column layout: Cal.com inline booking embed via iframe (left) + lead capture form (right). Email: ayush@aureliusmedia.co. SVG social icons (LinkedIn, X, Instagram). Form submits to /api/leads with source 'contact'."
     },
     {
       "route": "/blog",
@@ -250,6 +264,7 @@
       "page_type": "static",
       "status": "complete",
       "internal_links_to": [
+        "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
         "/blog/performance-max-hero-or-villain",
@@ -964,8 +979,9 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 7,
+      "total_pages_generated": 8,
       "sample_urls": [
+        "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
         "/blog/performance-max-hero-or-villain",
