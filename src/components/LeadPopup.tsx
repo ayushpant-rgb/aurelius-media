@@ -224,7 +224,7 @@ export default function LeadPopup() {
                   />
                   <input
                     name="website"
-                    type="url"
+                    type="text"
                     value={formData.website}
                     onChange={handleChange}
                     placeholder="Website (optional)"
