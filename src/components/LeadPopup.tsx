@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
-const DELAY_MS = 8000;
+const DELAY_MS = 14000;
 
 const SPEND_OPTIONS = [
   'Not running ads yet',
