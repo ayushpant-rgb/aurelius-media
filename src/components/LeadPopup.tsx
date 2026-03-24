@@ -35,8 +35,6 @@ export default function LeadPopup() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    website: '',
     budget: '',
   });
 
@@ -105,8 +103,6 @@ export default function LeadPopup() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          company: formData.website || undefined,
           budget: formData.budget || undefined,
           source: 'popup' as const,
         }),
@@ -211,23 +207,6 @@ export default function LeadPopup() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email address"
-                    className={inputClass}
-                  />
-                  <input
-                    name="phone"
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone number"
-                    className={inputClass}
-                  />
-                  <input
-                    name="website"
-                    type="text"
-                    value={formData.website}
-                    onChange={handleChange}
-                    placeholder="Website (optional)"
                     className={inputClass}
                   />
                   <select

@@ -31,21 +31,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Popup leads require phone; all others require email
-    if (body.source === 'popup') {
-      if (!body.phone?.trim()) {
-        return NextResponse.json(
-          { error: 'Phone number is required.' },
-          { status: 400 }
-        );
-      }
-    } else {
-      if (!body.email?.trim() || !isValidEmail(body.email)) {
-        return NextResponse.json(
-          { error: 'Please provide a valid email address.' },
-          { status: 400 }
-        );
-      }
+    // All sources require a valid email
+    if (!body.email?.trim() || !isValidEmail(body.email)) {
+      return NextResponse.json(
+        { error: 'Please provide a valid email address.' },
+        { status: 400 }
+      );
     }
 
     // Insert into Supabase
