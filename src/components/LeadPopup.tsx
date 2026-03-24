@@ -1,132 +1,270 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
-const POPUP_DELAY = 8000; // 8 seconds
-const STORAGE_KEY = 'aurelius_popup_dismissed';
+const COOKIE_NAME = 'aurelius_popup_dismissed';
+const COOKIE_DAYS = 7;
+const DELAY_MS = 8000;
+
+const SPEND_OPTIONS = [
+  'Not running ads yet',
+  'Under $5K/month',
+  '$5K – $20K/month',
+  '$20K – $50K/month',
+  '$50K+/month',
+];
+
+function setCookie(name: string, value: string, days: number) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 86400000);
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+}
+
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+  return match ? match[2] : null;
+}
 
 export default function LeadPopup() {
-    const [visible, setVisible] = useState(false);
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState('');
+  const pathname = usePathname();
+  const [visible, setVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    website: '',
+    budget: '',
+  });
 
-    useEffect(() => {
-        // Don't show if already dismissed this session
-        if (sessionStorage.getItem(STORAGE_KEY)) return;
+  const dismiss = useCallback(() => {
+    setVisible(false);
+    setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+  }, []);
 
-        const timer = setTimeout(() => setVisible(true), POPUP_DELAY);
-        return () => clearTimeout(timer);
-    }, []);
+  const show = useCallback(() => {
+    if (pathname === '/contact' || pathname.startsWith('/admin')) return;
+    if (getCookie(COOKIE_NAME)) return;
+    setVisible(true);
+  }, [pathname]);
 
-    function dismiss() {
-        setVisible(false);
-        sessionStorage.setItem(STORAGE_KEY, '1');
+  useEffect(() => {
+    if (getCookie(COOKIE_NAME)) return;
+
+    let shown = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    // Time delay trigger
+    timer = setTimeout(() => {
+      if (!shown) {
+        shown = true;
+        show();
+      }
+    }, DELAY_MS);
+
+    // Exit intent trigger (desktop only)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !shown) {
+        shown = true;
+        show();
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [show]);
+
+  // Lock body scroll when popup is visible
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [visible]);
 
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        setError('');
-        setLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
 
-        try {
-            const res = await fetch('/api/leads', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, source: 'popup' }),
-            });
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.website || undefined,
+          budget: formData.budget || undefined,
+          source: 'popup' as const,
+        }),
+      });
 
-            if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || 'Something went wrong.');
-            }
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Something went wrong');
+      }
 
-            setSubmitted(true);
-            sessionStorage.setItem(STORAGE_KEY, '1');
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Something went wrong.');
-        } finally {
-            setLoading(false);
-        }
+      setSubmitted(true);
+      setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong.');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    if (!visible) return null;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={dismiss} />
+  if (!visible) return null;
 
-            {/* Modal */}
-            <div className="relative w-full max-w-sm bg-brand-darker border border-brand-border-subtle rounded-2xl p-6 shadow-2xl">
-                {/* Close button */}
-                <button
-                    onClick={dismiss}
-                    className="absolute top-3 right-3 text-brand-gray-dark hover:text-brand-white transition-colors"
-                    aria-label="Close"
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+  const inputClass =
+    'w-full px-4 py-3 bg-[#1C1C20] border border-[rgba(255,255,255,0.08)] rounded-xl text-white placeholder:text-[rgba(255,255,255,0.3)] focus:outline-none focus:border-[rgba(232,85,15,0.5)] transition-colors text-sm';
 
-                {submitted ? (
-                    <div className="text-center py-4">
-                        <div className="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <h3 className="text-lg font-bold text-brand-white mb-2">We&apos;ll be in touch!</h3>
-                        <p className="text-sm text-brand-gray">Expect a call from our team shortly.</p>
-                    </div>
-                ) : (
-                    <>
-                        <div className="mb-5">
-                            <p className="text-xs uppercase tracking-[0.12em] text-brand-accent font-semibold mb-2">Free Strategy Call</p>
-                            <h3 className="text-xl font-bold text-brand-white leading-tight">
-                                Want to 3x your leads in 90 days?
-                            </h3>
-                            <p className="text-sm text-brand-gray mt-2 leading-relaxed">
-                                Drop your details and we&apos;ll reach out with a custom growth plan.
-                            </p>
-                        </div>
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] animate-fade-in"
+        onClick={dismiss}
+      />
 
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                            <input
-                                type="text"
-                                placeholder="Your name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                className="w-full px-4 py-3 bg-brand-card border border-brand-border rounded-xl text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent/50 transition-colors"
-                            />
-                            <input
-                                type="tel"
-                                placeholder="Phone number"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                required
-                                className="w-full px-4 py-3 bg-brand-card border border-brand-border rounded-xl text-sm text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent/50 transition-colors"
-                            />
+      {/* Popup — center on desktop, bottom sheet on mobile */}
+      <div className="fixed z-[9999] inset-x-0 bottom-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-[440px] sm:w-full animate-fade-in-up">
+        <div className="bg-[#131316] border border-[rgba(255,255,255,0.08)] sm:rounded-[24px] rounded-t-[24px] overflow-hidden relative">
+          {/* Ambient glow */}
+          <div className="absolute -top-[80px] left-1/2 -translate-x-1/2 w-[300px] h-[160px] bg-[radial-gradient(ellipse,rgba(232,85,15,0.12)_0%,transparent_70%)] pointer-events-none" />
 
-                            {error && (
-                                <p className="text-xs text-red-400">{error}</p>
-                            )}
+          {/* Close button */}
+          <button
+            onClick={dismiss}
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] transition-colors text-[rgba(255,255,255,0.4)] hover:text-white z-10"
+            aria-label="Close"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full py-3 cta-primary text-white font-semibold rounded-xl text-sm disabled:opacity-50 transition-opacity"
-                            >
-                                {loading ? 'Sending...' : 'Get My Free Strategy Call'}
-                            </button>
-                        </form>
-                    </>
-                )}
-            </div>
+          <div className="relative p-6 sm:p-8">
+            {submitted ? (
+              <div className="text-center py-6">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[rgba(232,85,15,0.1)] border border-[rgba(232,85,15,0.2)] flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[#FF6B2B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white font-display mb-2">
+                  Application received.
+                </h3>
+                <p className="text-sm text-[rgba(255,255,255,0.5)] leading-relaxed">
+                  We&apos;ll review your details and reach out within 24 hours if there&apos;s a fit.
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* Badge */}
+                <div className="mb-5">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-[#FF6B2B] bg-[rgba(232,85,15,0.08)] border border-[rgba(232,85,15,0.15)] rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B2B] animate-pulse" />
+                    Limited availability
+                  </span>
+                </div>
+
+                {/* Headline */}
+                <h2 className="text-[22px] sm:text-[26px] font-display font-extrabold text-white tracking-[-0.03em] leading-[1.15] mb-2">
+                  We take on 3 new clients per quarter.
+                </h2>
+                <p className="text-sm text-[rgba(255,255,255,0.5)] leading-relaxed mb-6">
+                  See if you qualify for a partnership with our team.
+                </p>
+
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    className={inputClass}
+                  />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email address"
+                    className={inputClass}
+                  />
+                  <input
+                    name="phone"
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone number"
+                    className={inputClass}
+                  />
+                  <input
+                    name="website"
+                    type="url"
+                    value={formData.website}
+                    onChange={handleChange}
+                    placeholder="Website (optional)"
+                    className={inputClass}
+                  />
+                  <select
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    className={`${inputClass} appearance-none ${!formData.budget ? 'text-[rgba(255,255,255,0.3)]' : ''}`}
+                  >
+                    <option value="" className="bg-[#1C1C20]">Monthly ad spend...</option>
+                    {SPEND_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt} className="bg-[#1C1C20] text-white">
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+
+                  {error && (
+                    <p className="text-xs text-red-400 text-center">{error}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full px-6 py-3.5 cta-primary text-white font-semibold text-sm rounded-[16px] disabled:opacity-50 disabled:cursor-not-allowed mt-1"
+                  >
+                    {loading ? 'Submitting...' : 'See If You Qualify'}
+                  </button>
+                </form>
+
+                <p className="text-[11px] text-[rgba(255,255,255,0.25)] text-center mt-4">
+                  No spam. We&apos;ll only reach out if there&apos;s a genuine fit.
+                </p>
+              </>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </>
+  );
 }

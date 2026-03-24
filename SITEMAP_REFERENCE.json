@@ -13,6 +13,10 @@
         "Added NewsletterForm reusable client component (src/components/NewsletterForm.tsx)",
         "Wired up newsletter forms in Footer, BlogListClient, BlogPostClient — all now functional with loading/success/error states",
         "Added welcome email via Resend for new newsletter subscribers (only fires for first-time subscribers)",
+        "Unpublished /resources and /resources/[slug] pages (return 404) — pending redesign with cover art. Code, data, PDFs preserved.",
+        "Redesigned LeadPopup component: exit-intent + 8s delay triggers, 'We take on 3 new clients per quarter' scarcity positioning, fields: Name, Email, Phone, Website (optional), Monthly Ad Spend dropdown. Bottom sheet on mobile, centered modal on desktop. Suppressed on /contact and /admin, 7-day cookie. Submits to /api/leads (source: popup) with confirmation + notification emails via Resend.",
+        "Added LeadPopup to root layout.tsx",
+        "Removed /resources and ebook URLs from sitemap.ts",
         "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
       ]
     },

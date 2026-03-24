@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import LeadPopup from "@/components/LeadPopup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -129,6 +130,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <LeadPopup />
       </body>
     </html>
   );
