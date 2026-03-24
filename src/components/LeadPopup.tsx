@@ -5,14 +5,18 @@ import { usePathname } from 'next/navigation';
 
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
-const DELAY_MS = 14000;
+const DELAY_MS = 12000;
 
-const SPEND_OPTIONS = [
-  'Not running ads yet',
-  'Under $5K/month',
-  '$5K – $20K/month',
-  '$20K – $50K/month',
-  '$50K+/month',
+const INDUSTRY_OPTIONS = [
+  'E-commerce / D2C',
+  'Education / EdTech',
+  'Real Estate',
+  'SaaS / Tech',
+  'Books / Publishing',
+  'Professional Services',
+  'Healthcare / Wellness',
+  'Finance / FinTech',
+  'Other',
 ];
 
 function setCookie(name: string, value: string, days: number) {
@@ -35,7 +39,7 @@ export default function LeadPopup() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    budget: '',
+    industry: '',
   });
 
   const dismiss = useCallback(() => {
@@ -103,7 +107,7 @@ export default function LeadPopup() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          budget: formData.budget || undefined,
+          industry: formData.industry || undefined,
           source: 'popup' as const,
         }),
       });
@@ -210,13 +214,13 @@ export default function LeadPopup() {
                     className={inputClass}
                   />
                   <select
-                    name="budget"
-                    value={formData.budget}
+                    name="industry"
+                    value={formData.industry}
                     onChange={handleChange}
-                    className={`${inputClass} appearance-none ${!formData.budget ? 'text-[rgba(255,255,255,0.3)]' : ''}`}
+                    className={`${inputClass} appearance-none ${!formData.industry ? 'text-[rgba(255,255,255,0.3)]' : ''}`}
                   >
-                    <option value="" className="bg-[#1C1C20]">Monthly ad spend...</option>
-                    {SPEND_OPTIONS.map((opt) => (
+                    <option value="" className="bg-[#1C1C20]">Your industry...</option>
+                    {INDUSTRY_OPTIONS.map((opt) => (
                       <option key={opt} value={opt} className="bg-[#1C1C20] text-white">
                         {opt}
                       </option>
