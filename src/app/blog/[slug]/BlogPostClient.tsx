@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { type JSX } from 'react';
 import NewsletterForm from '@/components/NewsletterForm';
+import BlogPostTracker from '@/components/BlogPostTracker';
 
 const categoryTagClass: Record<string, string> = {
     'Performance Marketing': 'tag-orange',
@@ -133,6 +134,7 @@ interface BlogPostClientProps {
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
     return (
         <main className="bg-brand-dark text-brand-white">
+            <BlogPostTracker title={post.title} category={post.category} slug={post.slug} author={post.author} />
             {/* Article Header — centered */}
             <section className="relative overflow-hidden">
                 {/* Ambient glow */}

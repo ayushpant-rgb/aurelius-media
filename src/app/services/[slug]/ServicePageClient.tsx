@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ServiceData } from '@/data/servicePages';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import { useInView } from '@/lib/hooks';
+import { usePostHog } from 'posthog-js/react';
 import type { LucideIcon } from 'lucide-react';
 import {
     Sparkles, Target, BarChart3, GitBranch, Rocket, PiggyBank, RefreshCw,
@@ -299,7 +300,13 @@ interface Props {
 }
 
 export default function ServicePageClient({ service, relatedServices, relatedArticles = [] }: Props) {
+    const posthog = usePostHog();
     const { ref: heroRef, inView: heroInView } = useInView();
+
+    useEffect(() => {
+        posthog?.capture('service_page_viewed', { service: service.title, slug: service.slug });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     const { ref: socialRef, inView: socialInView } = useInView();
     const { ref: whatIsRef, inView: whatIsInView } = useInView();
     const { ref: personaRef, inView: personaInView } = useInView();

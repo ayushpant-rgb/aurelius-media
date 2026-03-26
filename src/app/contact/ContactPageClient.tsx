@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useInView } from '@/lib/hooks';
+import { usePostHog } from 'posthog-js/react';
 
 const serviceOptions = [
     'Google Ads Management',
@@ -21,6 +22,7 @@ const serviceOptions = [
 
 export default function ContactPageClient() {
     const { ref, inView } = useInView();
+    const posthog = usePostHog();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -65,6 +67,10 @@ export default function ContactPageClient() {
             }
 
             setSubmitted(true);
+            posthog?.capture('contact_form_submitted', {
+                source: 'contact',
+                service_interest: formData.service || undefined,
+            });
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
         } finally {

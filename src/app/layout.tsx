@@ -5,6 +5,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import LeadPopup from "@/components/LeadPopup";
+import PostHogProvider from "@/components/PostHogProvider";
+import PostHogPageView from "@/components/PostHogPageView";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -127,10 +129,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${jakarta.variable} ${jetbrains.variable} font-sans antialiased`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <LeadPopup />
+        <PostHogProvider>
+          <PostHogPageView />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <LeadPopup />
+        </PostHogProvider>
       </body>
     </html>
   );
