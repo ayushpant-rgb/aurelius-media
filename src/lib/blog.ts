@@ -15,6 +15,7 @@ export interface BlogPostMeta {
     authorRole: string;
     readTime: string;
     featured?: boolean;
+    published?: boolean;
     ogImage?: string;
     metaTitle?: string;
     metaDescription?: string;
@@ -46,14 +47,17 @@ export function getAllPosts(): BlogPostMeta[] {
             authorRole: data.authorRole || 'Founder, Aurelius Media',
             readTime: stats.text,
             featured: data.featured || false,
+            published: data.published !== undefined ? data.published : true,
             ogImage: data.ogImage || undefined,
             metaTitle: data.metaTitle || undefined,
             metaDescription: data.metaDescription || undefined,
         } as BlogPostMeta;
     });
 
-    // Sort by date, newest first
-    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Filter out unpublished posts, then sort by date newest first
+    return posts
+        .filter(p => p.published !== false)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
