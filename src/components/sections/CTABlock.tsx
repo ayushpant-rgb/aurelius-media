@@ -1,6 +1,9 @@
-import Link from 'next/link';
+'use client';
+
+import { usePostHog } from 'posthog-js/react';
 
 export default function CTABlock() {
+  const posthog = usePostHog();
     return (
         <section className="section-padding bg-brand-darker relative overflow-hidden">
             {/* Background Accents */}
@@ -29,6 +32,7 @@ export default function CTABlock() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto px-8 py-4 cta-primary text-white font-semibold rounded-[20px] text-base animate-pulse-glow"
+                                onClick={() => posthog?.capture('cta_clicked', { location: 'cta_block', text: 'Book a Strategy Call' })}
                             >
                                 Book a Strategy Call →
                             </a>

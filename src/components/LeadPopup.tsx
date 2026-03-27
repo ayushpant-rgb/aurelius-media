@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
+import { usePostHog } from 'posthog-js/react';
 
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
@@ -32,6 +33,7 @@ function getCookie(name: string): string | null {
 
 export default function LeadPopup() {
   const pathname = usePathname();
+  const posthog = usePostHog();
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -119,6 +121,10 @@ export default function LeadPopup() {
 
       setSubmitted(true);
       setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+      posthog?.capture('lead_form_submitted', {
+        source: 'popup',
+        industry: formData.industry || undefined,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {
