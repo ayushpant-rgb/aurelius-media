@@ -18,6 +18,7 @@ interface ServiceCategory {
     meta: string;
     subtitle: string;
     accentHex: string;
+    pillarHref?: string;
     items: BentoItem[];
 }
 
@@ -28,6 +29,7 @@ const categories: ServiceCategory[] = [
         meta: 'Ads & campaigns',
         subtitle: 'Google, Meta, LinkedIn, TikTok, YouTube ads and retargeting — managed with AI-augmented bidding.',
         accentHex: '#3B82F6',
+        pillarHref: '/services/performance-marketing',
         items: [
             {
                 title: 'Google Ads', meta: 'PPC', icon: <Search className="w-5 h-5 text-brand-accent" />,
@@ -67,6 +69,7 @@ const categories: ServiceCategory[] = [
         meta: 'Strategy & pipeline',
         subtitle: 'Strategy audits, lead gen, funnel building, CRO, programmatic SEO, analytics, lifecycle marketing, content strategy, and landing pages.',
         accentHex: '#10B981',
+        pillarHref: '/services/growth-marketing',
         items: [
             {
                 title: 'Strategy Audit', meta: 'Assessment', icon: <ClipboardCheck className="w-5 h-5 text-brand-accent" />,
@@ -121,6 +124,7 @@ const categories: ServiceCategory[] = [
         meta: 'Content & design',
         subtitle: 'Brand videos, reels & shorts, AI creatives, UGC ads, creative design, and pitch decks.',
         accentHex: '#A855F7',
+        pillarHref: '/services/creative-services',
         items: [
             {
                 title: 'AI Creative & Design', meta: 'AI', icon: <Wand2 className="w-5 h-5 text-brand-accent" />,
@@ -160,6 +164,7 @@ const categories: ServiceCategory[] = [
         meta: 'Tech & automation',
         subtitle: 'AI automation, custom AI agents, AI chatbots, web apps & MVPs, and hands-on AI workshops for teams.',
         accentHex: '#0EA5E9',
+        pillarHref: '/services/ai-marketing-automation',
         items: [
             {
                 title: 'AI Automation', meta: 'Workflows', icon: <Zap className="w-5 h-5 text-brand-accent" />,
@@ -209,6 +214,17 @@ function CategorySection({ category }: { category: ServiceCategory }) {
                 </div>
 
                 <BentoGrid items={category.items} />
+
+                {category.pillarHref && (
+                    <div className="mt-6 text-right">
+                        <Link
+                            href={category.pillarHref}
+                            className="text-sm text-brand-accent hover:underline"
+                        >
+                            View all {category.name} services →
+                        </Link>
+                    </div>
+                )}
             </div>
         </section>
     );
@@ -277,13 +293,16 @@ export default function ServicesHubClient() {
                             <h2 className="text-2xl font-medium text-brand-white">Industry verticals</h2>
                             <span className="text-[13px] text-brand-gray-dark">Specialized marketing</span>
                         </div>
-                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education & EdTech, and real estate.</p>
+                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education, EdTech, D2C & e-commerce, SaaS, and real estate.</p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {[
                             { title: 'Book & Author Marketing', href: '/services/book-marketing', desc: 'Launch campaigns, Amazon optimization, and audience building for authors.' },
                             { title: 'Education & EdTech', href: '/services/education-marketing', desc: 'Student acquisition, enrollment funnels, and brand positioning for education.' },
                             { title: 'Real Estate Marketing', href: '/services/real-estate-marketing', desc: 'Lead generation, virtual tours, and digital campaigns for real estate.' },
+                            { title: 'D2C & E-commerce Marketing', href: '/services/d2c-ecommerce-marketing', desc: 'Performance-driven campaigns, retention strategies, and scaling for D2C and e-commerce brands.' },
+                            { title: 'EdTech Marketing', href: '/services/edtech-marketing', desc: 'Growth marketing, user acquisition, and product-led strategies for EdTech companies.' },
+                            { title: 'SaaS Marketing', href: '/services/saas-marketing', desc: 'Demand generation, product-led growth, and pipeline acceleration for SaaS companies.' },
                         ].map((v) => (
                             <Link key={v.href} href={v.href} className="p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-colors">
                                 <h3 className="text-sm font-semibold text-brand-white mb-2">{v.title}</h3>
