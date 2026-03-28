@@ -10,10 +10,10 @@ const footerLinks = {
         { label: 'Contact', href: '/contact' },
     ],
     services: [
-        { label: 'Performance Marketing', href: '/services#performance-marketing' },
-        { label: 'Growth Marketing', href: '/services#growth-marketing' },
-        { label: 'Creative Services', href: '/services#creative-services' },
-        { label: 'AI Marketing & Automation', href: '/services#ai-automation' },
+        { label: 'Performance Marketing', href: '/services/performance-marketing' },
+        { label: 'Growth Marketing', href: '/services/growth-marketing' },
+        { label: 'Creative Services', href: '/services/creative-services' },
+        { label: 'AI Marketing & Automation', href: '/services/ai-marketing-automation' },
         { label: 'All Services', href: '/services' },
     ],
     verticals: [
@@ -26,6 +26,9 @@ const footerLinks = {
     ],
     resources: [
         { label: 'Blog', href: '/blog' },
+        { label: 'B2B Marketing', href: '/categories/b2b-marketing' },
+        { label: 'Full-Funnel Marketing', href: '/categories/full-funnel-marketing' },
+        { label: 'Marketing Collaterals', href: '/categories/marketing-collaterals' },
     ],
 };
 

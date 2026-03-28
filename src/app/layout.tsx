@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://aureliusmedia.co",
+    url: "https://www.aureliusmedia.co",
     siteName: "Aurelius Media",
     title: "Aurelius Media | AI-Powered Performance Marketing Agency",
     description:
@@ -105,8 +105,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Aurelius Media",
-              url: "https://aureliusmedia.co",
-              logo: "https://aureliusmedia.co/logo.png",
+              url: "https://www.aureliusmedia.co",
+              logo: "https://www.aureliusmedia.co/logo.png",
               description:
                 "AI-powered performance marketing agency with 20+ years of digital marketing experience.",
               founder: {

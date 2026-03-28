@@ -14,6 +14,7 @@ interface CategoryPageProps {
 interface ServiceItem {
     name: string;
     detail: string;
+    slug?: string;
 }
 interface ProcessStep {
     step: string;
@@ -135,11 +136,11 @@ const categories: Record<string, CategoryData> = {
         ],
         services: [
             { name: 'Account-Based Marketing (ABM)', detail: 'Hyper-targeted campaigns for high-value accounts at every funnel stage — awareness, engagement, and pipeline acceleration — using display, LinkedIn, and direct outreach.' },
-            { name: 'LinkedIn Lead Generation', detail: 'Sponsored content, InMail, conversation ads, and lead gen forms with precision targeting by job title, company, seniority, and industry segment.' },
-            { name: 'Outbound Email Sequencing', detail: 'Multi-touch, personalized cold outbound sequences with high deliverability — designed to book meetings, not just send emails.' },
-            { name: 'Demand Capture Campaigns', detail: 'Intent-based advertising that targets buyers actively researching solutions like yours — capturing demand at the moment of highest purchase intent.' },
-            { name: 'B2B Content Marketing', detail: 'Thought leadership articles, whitepapers, case study narratives, and pillar content that earns trust, ranks in search, and feeds your nurture sequences.' },
-            { name: 'Sales Funnel Automation', detail: 'CRM workflows, lead scoring models, and automated nurture sequences in HubSpot, Salesforce, or your CRM of choice — shortening the path from MQL to closed-won.' },
+            { name: 'LinkedIn Lead Generation', detail: 'Sponsored content, InMail, conversation ads, and lead gen forms with precision targeting by job title, company, seniority, and industry segment.', slug: 'linkedin-ads' },
+            { name: 'Outbound Email Sequencing', detail: 'Multi-touch, personalized cold outbound sequences with high deliverability — designed to book meetings, not just send emails.', slug: 'email-lifecycle' },
+            { name: 'Demand Capture Campaigns', detail: 'Intent-based advertising that targets buyers actively researching solutions like yours — capturing demand at the moment of highest purchase intent.', slug: 'google-ads' },
+            { name: 'B2B Content Marketing', detail: 'Thought leadership articles, whitepapers, case study narratives, and pillar content that earns trust, ranks in search, and feeds your nurture sequences.', slug: 'content-strategy' },
+            { name: 'Sales Funnel Automation', detail: 'CRM workflows, lead scoring models, and automated nurture sequences in HubSpot, Salesforce, or your CRM of choice — shortening the path from MQL to closed-won.', slug: 'funnel-building' },
             { name: 'Founder-Led Brand Building', detail: 'Strategic LinkedIn presence and thought leadership positioning for founders and executives — building authority that drives inbound pipeline.' },
         ],
         whoTitle: 'Who this is for',
@@ -192,13 +193,13 @@ const categories: Record<string, CategoryData> = {
             { step: '05', title: 'Performance Tracking', description: 'We track which creatives drive results and feed winners back into production — so every batch gets smarter over time.' },
         ],
         services: [
-            { name: 'Ad Creatives (Static & Animated)', detail: 'High-converting display ads, social ads, carousels, and animated creatives optimized for every platform — Facebook, Instagram, Google Display, LinkedIn, and TikTok.' },
-            { name: 'UGC Ad Production', detail: 'Creator-sourced authentic ad content — we manage the full pipeline from creator brief and casting to filming, editing, and platform-specific formatting.' },
-            { name: 'Brand Videos & AI Trailers', detail: 'Cinematic brand films, explainer videos, product demos, and AI-generated trailers — from scripting and storyboarding to post-production.' },
-            { name: 'Short-Form Content (Reels & Shorts)', detail: 'Hook-first vertical videos optimized for Instagram Reels, TikTok, and YouTube Shorts — designed for engagement, reach, and virality.' },
-            { name: 'Landing Page Design & Development', detail: 'High-converting landing pages built specifically for ad traffic — with fast load times, clear CTAs, and built-in A/B testing capability.' },
-            { name: 'Pitch Decks & Presentations', detail: 'Investor pitch decks, sales presentations, and partner proposals designed to persuade, impress, and close — not just inform.' },
-            { name: 'Brand Identity & Design Systems', detail: 'Logo design, visual identity, typography, color systems, and comprehensive brand guidelines that ensure consistency across every touchpoint.' },
+            { name: 'Ad Creatives (Static & Animated)', detail: 'High-converting display ads, social ads, carousels, and animated creatives optimized for every platform — Facebook, Instagram, Google Display, LinkedIn, and TikTok.', slug: 'ai-creative-design' },
+            { name: 'UGC Ad Production', detail: 'Creator-sourced authentic ad content — we manage the full pipeline from creator brief and casting to filming, editing, and platform-specific formatting.', slug: 'ugc-ads' },
+            { name: 'Brand Videos & AI Trailers', detail: 'Cinematic brand films, explainer videos, product demos, and AI-generated trailers — from scripting and storyboarding to post-production.', slug: 'brand-videos' },
+            { name: 'Short-Form Content (Reels & Shorts)', detail: 'Hook-first vertical videos optimized for Instagram Reels, TikTok, and YouTube Shorts — designed for engagement, reach, and virality.', slug: 'reels-editing' },
+            { name: 'Landing Page Design & Development', detail: 'High-converting landing pages built specifically for ad traffic — with fast load times, clear CTAs, and built-in A/B testing capability.', slug: 'landing-pages' },
+            { name: 'Pitch Decks & Presentations', detail: 'Investor pitch decks, sales presentations, and partner proposals designed to persuade, impress, and close — not just inform.', slug: 'pitch-decks' },
+            { name: 'Brand Identity & Design Systems', detail: 'Logo design, visual identity, typography, color systems, and comprehensive brand guidelines that ensure consistency across every touchpoint.', slug: 'creative-design' },
             { name: 'Social Media Template Systems', detail: 'Modular, on-brand templates for Instagram, LinkedIn, and Twitter/X — so your team can produce consistent social content at scale without a designer.' },
         ],
         whoTitle: 'Who this is for',
@@ -367,13 +368,13 @@ const categories: Record<string, CategoryData> = {
             { step: '05', title: 'Weekly Reporting & Optimization', description: 'Transparent weekly reports with full-funnel metrics, clear insights, and specific recommendations. Monthly strategy reviews to adjust course based on what the data shows.' },
         ],
         services: [
-            { name: 'Growth Strategy & 90-Day Roadmap', detail: 'A comprehensive growth plan covering channel strategy, budget allocation, creative direction, content calendar, and measurable KPIs — updated quarterly.' },
-            { name: 'Multi-Channel Paid Media', detail: 'Google, Meta, LinkedIn, TikTok, and YouTube campaigns — all managed as one coordinated system with unified attribution and cross-channel budget optimization.' },
-            { name: 'Email Marketing & Automation', detail: 'Lifecycle email programs, drip sequences, newsletter strategy, and automation workflows that drive repeat engagement and revenue — not just opens.' },
-            { name: 'Social Media Management', detail: 'Strategic content planning, community management, and cross-platform publishing — with content calendars, engagement tracking, and monthly reporting.' },
-            { name: 'Analytics & Attribution', detail: 'Custom dashboards in Looker/GA4, multi-touch attribution modeling, and weekly performance reports that connect marketing activity to business outcomes.' },
-            { name: 'Conversion Rate Optimization', detail: 'Systematic testing of landing pages, forms, checkout flows, and CTAs — using data to incrementally improve conversion rates across the entire funnel.' },
-            { name: 'Brand & Content Strategy', detail: 'Editorial planning, brand voice development, content pillar frameworks, and distribution strategy that builds long-term brand equity while driving near-term results.' },
+            { name: 'Growth Strategy & 90-Day Roadmap', detail: 'A comprehensive growth plan covering channel strategy, budget allocation, creative direction, content calendar, and measurable KPIs — updated quarterly.', slug: 'marketing-strategy-audit' },
+            { name: 'Multi-Channel Paid Media', detail: 'Google, Meta, LinkedIn, TikTok, and YouTube campaigns — all managed as one coordinated system with unified attribution and cross-channel budget optimization.', slug: 'google-ads' },
+            { name: 'Email Marketing & Automation', detail: 'Lifecycle email programs, drip sequences, newsletter strategy, and automation workflows that drive repeat engagement and revenue — not just opens.', slug: 'email-lifecycle' },
+            { name: 'Social Media Management', detail: 'Strategic content planning, community management, and cross-platform publishing — with content calendars, engagement tracking, and monthly reporting.', slug: 'content-strategy' },
+            { name: 'Analytics & Attribution', detail: 'Custom dashboards in Looker/GA4, multi-touch attribution modeling, and weekly performance reports that connect marketing activity to business outcomes.', slug: 'analytics-reporting' },
+            { name: 'Conversion Rate Optimization', detail: 'Systematic testing of landing pages, forms, checkout flows, and CTAs — using data to incrementally improve conversion rates across the entire funnel.', slug: 'cro' },
+            { name: 'Brand & Content Strategy', detail: 'Editorial planning, brand voice development, content pillar frameworks, and distribution strategy that builds long-term brand equity while driving near-term results.', slug: 'content-strategy' },
             { name: 'Fractional CMO Services', detail: 'Senior marketing leadership on demand — strategic oversight, team management, board reporting, and growth planning without the full-time executive hire.' },
         ],
         whoTitle: 'Who this is for',
@@ -575,7 +576,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                                     <span className="text-[11px] font-bold text-brand-accent">{String(i + 1).padStart(2, '0')}</span>
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-semibold text-brand-white mb-1.5">{service.name}</h3>
+                                    <h3 className="text-sm font-semibold mb-1.5">
+                                        {service.slug ? (
+                                            <Link href={`/services/${service.slug}`} className="text-brand-white hover:text-brand-accent-text transition-colors">
+                                                {service.name}
+                                            </Link>
+                                        ) : (
+                                            <span className="text-brand-white">{service.name}</span>
+                                        )}
+                                    </h3>
                                     <p className="text-xs text-brand-gray leading-relaxed">{service.detail}</p>
                                 </div>
                             </div>

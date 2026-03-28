@@ -43,11 +43,8 @@ const SERVICE_SLUGS = [
 ];
 
 const CATEGORY_SLUGS = [
-  'performance-marketing',
   'b2b-marketing',
   'marketing-collaterals',
-  'programmatic-seo',
-  'web-apps-mvps',
   'full-funnel-marketing',
 ];
 

@@ -46,6 +46,22 @@ const nextConfig: NextConfig = {
         destination: "/blog/performance-max-hero-or-villain",
         permanent: true,
       },
+      // Category → Service pillar redirects (keyword cannibalization fix)
+      {
+        source: "/categories/performance-marketing",
+        destination: "/services/performance-marketing",
+        permanent: true,
+      },
+      {
+        source: "/categories/programmatic-seo",
+        destination: "/services/programmatic-seo",
+        permanent: true,
+      },
+      {
+        source: "/categories/web-apps-mvps",
+        destination: "/services/no-code-development",
+        permanent: true,
+      },
     ];
   },
 };

@@ -22,7 +22,7 @@ const serviceCards: BentoItem[] = [
         icon: <TrendingUp className="w-5 h-5 text-brand-accent" />,
         tags: ['Google Ads', 'Meta Ads', 'LinkedIn', 'YouTube', 'TikTok', 'Retargeting'],
         cta: 'Explore →',
-        href: '/services#performance-marketing',
+        href: '/services/performance-marketing',
     },
     {
         title: 'Growth Marketing',
@@ -32,7 +32,7 @@ const serviceCards: BentoItem[] = [
         icon: <Briefcase className="w-5 h-5 text-brand-accent" />,
         tags: ['Lead Gen', 'CRO', 'SEO', 'Analytics', 'Content', 'Landing Pages'],
         cta: 'Explore →',
-        href: '/services#growth-marketing',
+        href: '/services/growth-marketing',
     },
     {
         title: 'Creative Services',
@@ -42,7 +42,7 @@ const serviceCards: BentoItem[] = [
         icon: <Palette className="w-5 h-5 text-brand-accent" />,
         tags: ['Video', 'AI Creatives', 'UGC', 'Design'],
         cta: 'Explore →',
-        href: '/services#creative-services',
+        href: '/services/creative-services',
     },
     {
         title: 'AI Marketing & Automation',
@@ -52,7 +52,7 @@ const serviceCards: BentoItem[] = [
         icon: <Zap className="w-5 h-5 text-brand-accent" />,
         tags: ['AI Automation', 'AI Agents', 'Chatbots', 'Web Apps', 'Workshops'],
         cta: 'Explore →',
-        href: '/services#ai-automation',
+        href: '/services/ai-marketing-automation',
     },
     {
         title: 'Industry Verticals',
@@ -62,7 +62,7 @@ const serviceCards: BentoItem[] = [
         icon: <Globe className="w-5 h-5 text-brand-accent" />,
         tags: ['Book Marketing', 'Education', 'Real Estate'],
         cta: 'Explore →',
-        href: '/services#verticals',
+        href: '/services/book-marketing',
     },
     {
         title: 'Full Funnel Marketing',
@@ -72,7 +72,7 @@ const serviceCards: BentoItem[] = [
         icon: <Activity className="w-5 h-5 text-brand-accent" />,
         tags: ['Strategy', 'Execution', 'Creative', 'Analytics'],
         cta: 'Explore →',
-        href: '/services/marketing-strategy-audit',
+        href: '/categories/full-funnel-marketing',
     },
 ];
 
