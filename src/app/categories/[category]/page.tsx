@@ -52,7 +52,7 @@ interface CategoryData {
 const categories: Record<string, CategoryData> = {
     'performance-marketing': {
         title: 'Performance Marketing',
-        metaTitle: 'Performance Marketing Agency | Aurelius Media',
+        metaTitle: 'Performance Marketing Agency',
         metaDescription: 'Full-funnel performance marketing across Google, Meta, LinkedIn, TikTok, and YouTube. AI-augmented bidding and real-time attribution.',
         eyebrow: 'Paid Media',
         headline: 'From ad spend to measurable revenue.',
@@ -111,7 +111,7 @@ const categories: Record<string, CategoryData> = {
     },
     'b2b-marketing': {
         title: 'B2B Marketing & Demand Gen',
-        metaTitle: 'B2B Marketing & Demand Gen Agency | Aurelius Media',
+        metaTitle: 'B2B Marketing & Demand Gen Agency',
         metaDescription: 'Account-based marketing, LinkedIn lead gen, outbound sequencing, and demand capture for B2B companies. Build qualified pipeline, not clicks.',
         eyebrow: 'B2B Growth',
         headline: 'Build pipeline. Not just traffic.',
@@ -169,7 +169,7 @@ const categories: Record<string, CategoryData> = {
     },
     'marketing-collaterals': {
         title: 'Marketing Collaterals',
-        metaTitle: 'Creative Production | UGC, Video & Design | Aurelius Media',
+        metaTitle: 'Creative Production | UGC, Video & Design',
         metaDescription: 'Ad creatives, brand videos, UGC ads, landing pages, pitch decks, and social assets — produced at 10x speed with AI-augmented tools.',
         eyebrow: 'Creative & Production',
         headline: 'Creative that earns attention and drives action.',
@@ -228,7 +228,7 @@ const categories: Record<string, CategoryData> = {
     },
     'programmatic-seo': {
         title: 'Programmatic SEO & AEO',
-        metaTitle: 'Programmatic SEO & AEO Agency | Aurelius Media',
+        metaTitle: 'Programmatic SEO & AEO Agency',
         metaDescription: 'Programmatic SEO that generates hundreds of keyword-optimized pages at scale. AI Engine Optimization for ChatGPT, Perplexity, and Google AI Overviews.',
         eyebrow: 'Organic Growth',
         headline: 'Own organic search. Win in the age of AI answers.',
@@ -286,7 +286,7 @@ const categories: Record<string, CategoryData> = {
     },
     'web-apps-mvps': {
         title: 'Web Apps & MVPs',
-        metaTitle: 'Web App & MVP Development | Aurelius Media',
+        metaTitle: 'Web App & MVP Development',
         metaDescription: 'Rapid web app and MVP development using Next.js and AI tools. From idea to working prototype in 2 weeks. SaaS products and marketing sites.',
         eyebrow: 'Product & Dev',
         headline: 'Ship fast. Learn faster.',
@@ -344,7 +344,7 @@ const categories: Record<string, CategoryData> = {
     },
     'full-funnel-marketing': {
         title: 'Full Funnel Marketing',
-        metaTitle: 'Full Funnel Marketing Agency | Aurelius Media',
+        metaTitle: 'Full Funnel Marketing Agency',
         metaDescription: 'End-to-end growth marketing — strategy, paid media, creative, email, SEO, and analytics. One team managing your entire stack.',
         eyebrow: 'Growth System',
         headline: 'Your entire growth engine. One team.',

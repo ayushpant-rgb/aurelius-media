@@ -54,7 +54,7 @@ export const ebooks: Ebook[] = [
       name: 'company',
       placeholder: 'Your company name',
     },
-    metaTitle: 'The Startup Growth Playbook — Free Ebook | Aurelius Media',
+    metaTitle: 'The Startup Growth Playbook — Free Ebook',
     metaDescription:
       'Download the free Startup Growth Playbook. A performance marketing blueprint for VC-backed startups covering paid media, creative strategy, attribution, and scaling.',
   },
@@ -94,7 +94,7 @@ export const ebooks: Ebook[] = [
       name: 'company',
       placeholder: 'Your company name',
     },
-    metaTitle: 'The Meta Andromeda Playbook — Free Ebook | Aurelius Media',
+    metaTitle: 'The Meta Andromeda Playbook — Free Ebook',
     metaDescription:
       'Download the free Meta Andromeda Playbook. Master Meta\'s AI ad engine for higher ROAS and lower CPAs with creative strategies, campaign architecture, and scaling tactics.',
   },
@@ -134,7 +134,7 @@ export const ebooks: Ebook[] = [
       name: 'company',
       placeholder: 'Your book title (published or upcoming)',
     },
-    metaTitle: 'The Author\'s Book Marketing Playbook — Free Ebook | Aurelius Media',
+    metaTitle: 'The Author\'s Book Marketing Playbook — Free Ebook',
     metaDescription:
       'Download the free Author\'s Book Marketing Playbook. Complete digital marketing guide covering Amazon Ads, social media strategy, launch campaigns, and discoverability for authors.',
   },
@@ -182,7 +182,7 @@ export const ebooks: Ebook[] = [
       name: 'company',
       placeholder: 'e.g. $10,000/month',
     },
-    metaTitle: 'The $100K Google Ads Audit Checklist — Free Ebook | Aurelius Media',
+    metaTitle: 'The $100K Google Ads Audit Checklist — Free Ebook',
     metaDescription:
       'Download the free Google Ads Audit Checklist. A complete framework for finding wasted spend and unlocking hidden revenue in accounts spending $5K-$100K+/month on Google Ads.',
   },
