@@ -151,6 +151,7 @@ const clientLogos = [
     { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: '' },
     { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: '' },
     { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: '' },
+    { src: '/logos/gl-bajaj-logo.png', alt: 'GL Bajaj Institute of Technology & Management' },
 ];
 
 /* ─── Per-service testimonial data (expanded to 3+ per service for carousel) ─── */

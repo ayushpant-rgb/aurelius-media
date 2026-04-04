@@ -10,6 +10,7 @@ export default function Hero() {
         { src: '/logos/RpYiFxOg6rv0PkJpWqCTpuk1M.avif', alt: 'Client Logo 3' },
         { src: '/logos/r2LD1VLblZdNiidmZQ8C6D9n3Q.avif', alt: 'Client Logo 4' },
         { src: '/logos/whBe115CG31bTuK1Kp6f0vYWVY.png', alt: 'Client Logo 5' },
+        { src: '/logos/gl-bajaj-logo.png', alt: 'GL Bajaj Institute of Technology & Management' },
     ];
 
     return (
