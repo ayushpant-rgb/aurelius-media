@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-03-24",
-  "total_pages": 57,
+  "last_updated": "2026-05-03",
+  "total_pages": 61,
   "session_changes": [
     {
       "date": "2026-03-24",
@@ -134,12 +134,30 @@
     "homepage_category_cards": {
       "file": "src/components/sections/ServicesOverview.tsx",
       "cards": [
-        {"title": "Performance Marketing", "href": "/services/google-ads"},
-        {"title": "Growth Marketing", "href": "/services/marketing-strategy-audit"},
-        {"title": "Creative Services", "href": "/services/creative-design"},
-        {"title": "AI Marketing & Automation", "href": "/services/ai-automation"},
-        {"title": "Industry Verticals", "href": "/services/book-marketing"},
-        {"title": "Full Funnel Marketing", "href": "/services/marketing-strategy-audit"}
+        {
+          "title": "Performance Marketing",
+          "href": "/services/google-ads"
+        },
+        {
+          "title": "Growth Marketing",
+          "href": "/services/marketing-strategy-audit"
+        },
+        {
+          "title": "Creative Services",
+          "href": "/services/creative-design"
+        },
+        {
+          "title": "AI Marketing & Automation",
+          "href": "/services/ai-automation"
+        },
+        {
+          "title": "Industry Verticals",
+          "href": "/services/book-marketing"
+        },
+        {
+          "title": "Full Funnel Marketing",
+          "href": "/services/marketing-strategy-audit"
+        }
       ]
     }
   },
@@ -182,7 +200,9 @@
       "meta_description": "Privacy Policy for Aurelius Media. Learn how we collect, use, and protect your personal information.",
       "page_type": "static",
       "status": "complete",
-      "internal_links_from": ["Footer"],
+      "internal_links_from": [
+        "Footer"
+      ],
       "notes": "Standard privacy policy covering data collection, third-party services (Vercel, Cal.com, Resend, Supabase, Google Analytics), cookies, data retention, user rights, security. Contact: hello@aureliusmedia.co."
     },
     {
@@ -192,7 +212,9 @@
       "meta_description": "Terms and Conditions for Aurelius Media. Read our terms of service, usage policies, and legal agreements.",
       "page_type": "static",
       "status": "complete",
-      "internal_links_from": ["Footer"],
+      "internal_links_from": [
+        "Footer"
+      ],
       "notes": "Standard T&C covering services description, IP, site usage, blog disclaimer, third-party links, consultations, liability, warranties, indemnification, governing law."
     },
     {
@@ -243,7 +265,11 @@
         "/services/ai-agents",
         "/services/ai-chatbots"
       ],
-      "internal_links_from": ["/", "Header", "Footer"]
+      "internal_links_from": [
+        "/",
+        "Header",
+        "Footer"
+      ]
     },
     {
       "route": "/contact",
@@ -254,8 +280,13 @@
       "topic_cluster": "Core Operations",
       "page_type": "static",
       "status": "complete",
-      "internal_links_to": ["https://cal.com/aureliusmedia/15min"],
-      "internal_links_from": ["Header", "Footer"],
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min"
+      ],
+      "internal_links_from": [
+        "Header",
+        "Footer"
+      ],
       "notes": "Two-column layout: Cal.com inline booking embed via iframe (left) + lead capture form (right). Email: ayush@aureliusmedia.co. SVG social icons (LinkedIn, X, Instagram). Form submits to /api/leads with source 'contact'."
     },
     {
@@ -276,7 +307,11 @@
         "/blog/is-programmatic-seo-dead",
         "/blog/marketing-trends"
       ],
-      "internal_links_from": ["/", "Header", "Footer"],
+      "internal_links_from": [
+        "/",
+        "Header",
+        "Footer"
+      ],
       "notes": "Redesigned per Blog Style Tile v1.0: 'Latest insights.' gradient header, category filter pills, featured 2-column hero card, 3-col card grid (20px radius, 200px image height, author photo avatars, orange hover glow), 'Load more' ghost button, warm-gradient newsletter CTA section."
     },
     {
@@ -296,7 +331,10 @@
         "/services/meta-ads",
         "/services/ai-automation"
       ],
-      "internal_links_from": ["/services", "/services/google-ads"],
+      "internal_links_from": [
+        "/services",
+        "/services/google-ads"
+      ],
       "notes": "V2 blueprint: Hero+LeadForm, Social Proof Bar, What Is, Personas, Approach, Benefits, Sub-Services, Comparison ('What sets Aurelius Media apart?'), Results, Testimonials (3-card), FAQ (8-10 Qs), Related Services, Related Articles, Final CTA (form + dual buttons), WhatsApp CTA. JSON-LD: FAQPage + Service + BreadcrumbList."
     },
     {
@@ -316,7 +354,10 @@
         "/services/marketing-strategy-audit",
         "/services/ai-creative-design"
       ],
-      "internal_links_from": ["/services", "/services/marketing-strategy-audit"],
+      "internal_links_from": [
+        "/services",
+        "/services/marketing-strategy-audit"
+      ],
       "notes": "V2 blueprint with all data fields populated. Hero value props flipped to positive outcomes. H3 titles keyword-optimized."
     },
     {
@@ -336,7 +377,10 @@
         "/services/ai-creative-design",
         "/services/reels-editing"
       ],
-      "internal_links_from": ["/services", "/services/marketing-strategy-audit"]
+      "internal_links_from": [
+        "/services",
+        "/services/marketing-strategy-audit"
+      ]
     },
     {
       "route": "/services/ai-creative-design",
@@ -355,7 +399,11 @@
         "/services/google-ads",
         "/services/creative-design"
       ],
-      "internal_links_from": ["/services", "/services/google-ads", "/services/meta-ads"]
+      "internal_links_from": [
+        "/services",
+        "/services/google-ads",
+        "/services/meta-ads"
+      ]
     },
     {
       "route": "/services/creative-design",
@@ -374,7 +422,10 @@
         "/services/reels-editing",
         "/services/meta-ads"
       ],
-      "internal_links_from": ["/services", "/services/ai-creative-design"]
+      "internal_links_from": [
+        "/services",
+        "/services/ai-creative-design"
+      ]
     },
     {
       "route": "/services/reels-editing",
@@ -393,7 +444,11 @@
         "/services/meta-ads",
         "/services/ai-creative-design"
       ],
-      "internal_links_from": ["/services", "/services/meta-ads", "/services/creative-design"]
+      "internal_links_from": [
+        "/services",
+        "/services/meta-ads",
+        "/services/creative-design"
+      ]
     },
     {
       "route": "/services/book-marketing",
@@ -412,7 +467,9 @@
         "/services/marketing-strategy-audit",
         "/services/reels-editing"
       ],
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/education-marketing",
@@ -431,7 +488,10 @@
         "/services/meta-ads",
         "/services/edtech-marketing"
       ],
-      "internal_links_from": ["/services", "Footer"]
+      "internal_links_from": [
+        "/services",
+        "Footer"
+      ]
     },
     {
       "route": "/services/edtech-marketing",
@@ -450,7 +510,10 @@
         "/services/meta-ads",
         "/services/education-marketing"
       ],
-      "internal_links_from": ["/services", "Footer"]
+      "internal_links_from": [
+        "/services",
+        "Footer"
+      ]
     },
     {
       "route": "/services/d2c-ecommerce-marketing",
@@ -469,7 +532,10 @@
         "/services/meta-ads",
         "/services/saas-marketing"
       ],
-      "internal_links_from": ["/services", "Footer"]
+      "internal_links_from": [
+        "/services",
+        "Footer"
+      ]
     },
     {
       "route": "/services/saas-marketing",
@@ -488,7 +554,10 @@
         "/services/meta-ads",
         "/services/d2c-ecommerce-marketing"
       ],
-      "internal_links_from": ["/services", "Footer"]
+      "internal_links_from": [
+        "/services",
+        "Footer"
+      ]
     },
     {
       "route": "/services/ai-automation",
@@ -507,7 +576,11 @@
         "/services/marketing-strategy-audit",
         "/services/ai-creative-design"
       ],
-      "internal_links_from": ["/services", "/services/marketing-strategy-audit", "/services/education-marketing"]
+      "internal_links_from": [
+        "/services",
+        "/services/marketing-strategy-audit",
+        "/services/education-marketing"
+      ]
     },
     {
       "route": "/services/no-code-development",
@@ -526,7 +599,10 @@
         "/services/marketing-strategy-audit",
         "/services/google-ads"
       ],
-      "internal_links_from": ["/services", "/services/ai-automation"]
+      "internal_links_from": [
+        "/services",
+        "/services/ai-automation"
+      ]
     },
     {
       "route": "/services/ai-workshops",
@@ -545,7 +621,9 @@
         "/services/marketing-strategy-audit",
         "/services/ai-creative-design"
       ],
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/real-estate-marketing",
@@ -564,7 +642,9 @@
         "/services/meta-ads",
         "/services/ai-automation"
       ],
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/linkedin-ads",
@@ -574,7 +654,9 @@
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/youtube-ads",
@@ -584,7 +666,9 @@
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/tiktok-ads",
@@ -594,7 +678,9 @@
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/retargeting",
@@ -604,7 +690,9 @@
       "topic_cluster": "Performance Advertising",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/lead-generation",
@@ -614,7 +702,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/funnel-building",
@@ -624,7 +714,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/cro",
@@ -634,7 +726,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/programmatic-seo",
@@ -644,7 +738,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/analytics-reporting",
@@ -654,7 +750,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/email-lifecycle",
@@ -664,7 +762,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/brand-videos",
@@ -674,7 +774,9 @@
       "topic_cluster": "Creative Production",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/ugc-ads",
@@ -684,7 +786,9 @@
       "topic_cluster": "Creative Production",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/landing-pages",
@@ -694,7 +798,9 @@
       "topic_cluster": "Creative Production",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/content-strategy",
@@ -704,7 +810,9 @@
       "topic_cluster": "Creative Production",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/pitch-decks",
@@ -714,7 +822,9 @@
       "topic_cluster": "Creative Production",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/ai-agents",
@@ -724,7 +834,9 @@
       "topic_cluster": "Growth Engineering",
       "page_type": "template",
       "status": "complete",
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/ai-chatbots",
@@ -743,7 +855,9 @@
         "/services/ai-agents",
         "/services/lead-generation"
       ],
-      "internal_links_from": ["/services"]
+      "internal_links_from": [
+        "/services"
+      ]
     },
     {
       "route": "/services/performance-marketing",
@@ -762,7 +876,9 @@
         "/services/tiktok-ads",
         "/services/retargeting"
       ],
-      "internal_links_from": ["/services"],
+      "internal_links_from": [
+        "/services"
+      ],
       "notes": "SEO pillar page for paid media category. Aggregates and links to all 6 paid media sub-service pages."
     },
     {
@@ -785,7 +901,9 @@
         "/services/content-strategy",
         "/services/landing-pages"
       ],
-      "internal_links_from": ["/services"],
+      "internal_links_from": [
+        "/services"
+      ],
       "notes": "SEO pillar page for growth engine category. Aggregates 9 sub-service pages. Content Strategy and Landing Pages moved here from Creative Studio."
     },
     {
@@ -805,7 +923,9 @@
         "/services/ugc-ads",
         "/services/pitch-decks"
       ],
-      "internal_links_from": ["/services"],
+      "internal_links_from": [
+        "/services"
+      ],
       "notes": "SEO pillar page for creative studio category. Aggregates 6 sub-service pages. Content Strategy and Landing Pages removed from this category and moved to Growth Engine."
     },
     {
@@ -824,7 +944,9 @@
         "/services/no-code-development",
         "/services/ai-workshops"
       ],
-      "internal_links_from": ["/services"],
+      "internal_links_from": [
+        "/services"
+      ],
       "notes": "SEO pillar page for AI & build category. Aggregates 5 sub-service pages."
     },
     {
@@ -837,7 +959,10 @@
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog", "/"],
+      "internal_links_from": [
+        "/blog",
+        "/"
+      ],
       "notes": "Rewritten March 2026 with in-depth research. Includes CPC/CPM/CPL benchmark tables, ROAS by industry (8 verticals), platform AI updates (Andromeda, AI Max, Demand Gen), budget allocation framework, full-funnel playbook. In a Nutshell + TOC + 11 sections + 7 FAQs. No explicit Sources section — inline links only."
     },
     {
@@ -850,7 +975,10 @@
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog", "/"]
+      "internal_links_from": [
+        "/blog",
+        "/"
+      ]
     },
     {
       "route": "/blog/performance-max-hero-or-villain",
@@ -862,7 +990,10 @@
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog", "/"],
+      "internal_links_from": [
+        "/blog",
+        "/"
+      ],
       "notes": "Rewritten March 2026 with benchmark data. 71% adoption, 51B impressions, attribution inflation deep-dive, 2025-2026 updates table (10 new controls), PMax vs Search vs Shopping comparison, setup framework (5 pillars). In a Nutshell + TOC + 11 sections + 7 FAQs."
     },
     {
@@ -875,7 +1006,9 @@
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog"],
+      "internal_links_from": [
+        "/blog"
+      ],
       "notes": "Rewritten March 2026. Removed all client references (genericized). In a Nutshell + TOC + 14 anchored sections + 6 FAQs. Bio optimization table, content pillar framework, Reels hook strategies."
     },
     {
@@ -888,8 +1021,30 @@
       "page_type": "template",
       "status": "complete",
       "internal_links_to": [],
-      "internal_links_from": ["/blog"],
+      "internal_links_from": [
+        "/blog"
+      ],
       "notes": "Complete rewrite March 2026 (previously dated Aug 2025 with 4 generic trends). Now covers 7 trends: agentic AI (Meta/Manus $2B acquisition), vibe coding (92% dev AI adoption), AI-native creative (50%+ AI-generated by EOY), AEO replacing SEO, Meta vs Google AI arms race, 10x marketer, AI UGC revolution. In a Nutshell + TOC + 9 sections + 7 FAQs. No explicit Sources — inline links to MarTech, Forbes, TechCrunch, Adweek, Tenjin, GitHub, Gartner, Fluency."
+    },
+    {
+      "route": "/blog/openai-ads-manager-launch",
+      "title": "OpenAI Just Launched an Ads Manager. Here's What It Means for Your Budget.",
+      "h1": "OpenAI Just Launched an Ads Manager. Here's What It Means for Your Budget.",
+      "meta_description": "OpenAI has quietly launched a self-serve ads manager with a $60 CPM and $100M in annualized revenue. Here's what it means for advertisers and how to think about your budget.",
+      "primary_keyword": "openai ads manager",
+      "topic_cluster": "AI Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/openai-ads-manager.jpg",
+      "internal_links_to": [
+        "/services/ai-creative-design",
+        "/services/meta-ads",
+        "/services/google-ads"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published April 2026. Covers OpenAI's ads manager launch: $60 CPM, $50K minimum spend, $100M annualized revenue, self-serve platform, implications for Google/Meta. In a Nutshell + TOC + 7 sections + 7 FAQs. Hero image: Unsplash digital billboards (Tanya Barrow, photo-1762417582156-e172b6db6d86)."
     },
     {
       "route": "/blog/is-programmatic-seo-dead",
@@ -901,9 +1056,90 @@
       "page_type": "template",
       "status": "complete",
       "ogImage": "/blog/programatic-seo.jpeg",
-      "internal_links_to": ["/categories/programmatic-seo"],
-      "internal_links_from": ["/blog"],
+      "internal_links_to": [
+        "/categories/programmatic-seo"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
       "notes": "Hero image added. FAQ section converted to collapsible <details>/<summary> accordion. Topical ecosystem architecture section rewritten with Wise case study (March 17, 2026)."
+    },
+    {
+      "route": "/blog/education-marketing-india",
+      "title": "Education Marketing in India: The 2026 Playbook for Schools, Universities, and Coaching Institutes",
+      "h1": "Education Marketing in India: The 2026 Playbook for Schools, Universities, and Coaching Institutes",
+      "meta_description": "Indian schools and universities waste 60% of marketing spend on the wrong months. Here's the year-round admissions engine — parent persona targeting, geo-fencing, and CRM nurture sequences that fill seats.",
+      "primary_keyword": "education marketing India",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/education-marketing",
+        "/blog/edtech-marketing",
+        "/blog/answer-engine-optimization-guide",
+        "/blog/what-works-on-instagram-2026",
+        "/contact"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Pillar piece for Education Marketing cluster (admissions side, distinct from EdTech SaaS post). Targets education marketing agency, school admissions marketing, university enrollment marketing, higher education marketing agency. India-specific: feeder-school geo-fencing, 9-stage enrollment funnel, cost-per-enrolled-student benchmarks, channel mix by institution type, AEO/AI Overview implications. ~3500 words. Published 2026-04-25. Created during April 2026 SEO Foundation Sprint."
+    },
+    {
+      "route": "/blog/edtech-marketing",
+      "title": "EdTech Marketing: The Practitioner's Guide to Scaling Users (Not Just Spend)",
+      "h1": "EdTech Marketing: The Practitioner's Guide to Scaling Users (Not Just Spend)",
+      "meta_description": "EdTech CAC ranges from $273 (B2C SaaS) to $1,424 (Higher Ed). Here's the full-lifecycle playbook — procurement cycles, retention math, and the metrics that drive user growth in 2026.",
+      "primary_keyword": "edtech marketing agency",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "/services/edtech-marketing"
+      ],
+      "internal_links_from": [
+        "/blog",
+        "/blog/education-marketing-india"
+      ],
+      "notes": "EdTech SaaS / online learning side of education vertical (distinct from K-12/admissions). 450 lines. Published 2026-04-25 (was drafted earlier as published:false). Targets edtech marketing agency, edtech growth marketing, edtech user acquisition, edtech SaaS marketing."
+    },
+    {
+      "route": "/blog/youtube-ads-subscriber-growth",
+      "title": "YouTube Ads for Subscriber Growth: The Playbook Brands Get Wrong",
+      "h1": "YouTube Ads for Subscriber Growth: The Playbook Brands Get Wrong",
+      "meta_description": "How to use YouTube ads to grow subscribers — campaign types, creative strategy, targeting, budget benchmarks (CPV under $0.05, CPS under $2), and a full-funnel integration guide for 2026.",
+      "primary_keyword": "youtube ads subscriber growth",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/youtube-ads-subscriber-growth.jpg",
+      "internal_links_to": [
+        "/services/youtube-ads"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-05-03. Covers YouTube subscriber growth campaigns, TrueView/bumper/Demand Gen formats, targeting strategy (channel + topic), creative principles, CPV/CPS benchmarks, full-funnel integration. Unique angle: treats subscribers as compounding media assets, not vanity metrics. Hero image: Higgsfield nano_banana_2 generated."
+    },
+    {
+      "route": "/blog/ai-seo-strategy",
+      "title": "AI SEO Strategy: How to Rank in ChatGPT, Perplexity & AI Search",
+      "h1": "AI SEO Strategy: How to Rank in ChatGPT, Perplexity & AI Search",
+      "meta_description": "Learn how to build an AI SEO strategy that gets your brand cited by ChatGPT, Perplexity, and Google AI. The 3-tier GEO framework, BOFU content strategy, and off-site signals that actually drive AI search visibility in 2026.",
+      "primary_keyword": "AI SEO strategy",
+      "topic_cluster": "AI Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/ai-seo-strategy.jpg",
+      "internal_links_to": [
+        "/services/ai-marketing-automation",
+        "/services/content-strategy",
+        "/services/programmatic-seo"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-05-03. Covers GEO Priorities Pyramid (3-tier framework), why llms.txt/FAQ schema/question headings don't work, BOFU content strategy for AI citations, off-site mention strategy (86% industry-specific vs 16% Reddit citation rate), broken attribution and measurement approaches. Based on research across 400+ keywords/16 clients. Unique angle vs GrowAndConvert source article. Hero image: Higgsfield nano_banana_2 generated."
     }
   ],
   "topic_clusters": [
@@ -983,7 +1219,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 8,
+      "total_pages_generated": 11,
       "sample_urls": [
         "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
@@ -992,7 +1228,10 @@
         "/blog/instagram-growth-strategy-for-authors",
         "/blog/is-programmatic-seo-dead",
         "/blog/marketing-trends",
-        "/blog/9-ai-tools-for-startup-founders"
+        "/blog/9-ai-tools-for-startup-founders",
+        "/blog/openai-ads-manager-launch",
+        "/blog/youtube-ads-subscriber-growth",
+        "/blog/ai-seo-strategy"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
@@ -1003,7 +1242,9 @@
       "file": "src/components/ui/FAQAccordion.tsx",
       "type": "client",
       "description": "Divider-based FAQ accordion with plus/minus icon animation. Accepts items array of {question, answer}, optional heading/eyebrow props.",
-      "used_in": ["All /services/[slug] pages"]
+      "used_in": [
+        "All /services/[slug] pages"
+      ]
     }
   ]
 }
