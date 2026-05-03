@@ -78,6 +78,8 @@ That's it. No black magic. No AI-specific metadata. The same factors that help y
 
 The implication is significant: **your AI SEO strategy is, in large part, your SEO strategy.** The fundamentals haven't changed. The stakes have gotten higher.
 
+![How AI search works: user asks ChatGPT, AI searches Google & Bing, cites ranked results](/blog/ai-seo-strategy-flow.jpg)
+
 ---
 
 <h2 id="wrong-advice">Why Most AI SEO Advice Is Wrong</h2>
@@ -102,11 +104,19 @@ Same category. The logic is that structured extraction helpers make it easier fo
 
 ### "Get on Reddit and Wikipedia"
 
-Infographics showing which domains AI tools cite most frequently have been circulating online, usually showing Reddit, Wikipedia, Forbes, and similar high-authority general sites at the top.
+Infographics showing which domains AI tools cite most frequently circulate constantly online, usually showing Reddit, Wikipedia, Forbes, and similar high-authority general sites at the top.
 
 The inference — that you should target these platforms for AI visibility — is based on a fundamental misunderstanding of how LLMs source responses.
 
-When someone asks ChatGPT for the best dispatch software for trucking companies, it doesn't pull from a universal list of most-cited domains. It searches the web for that specific query and cites whatever's most relevant. For product-specific queries, LLMs cite industry-specific review sites, comparison pages, and category-specific publications 86% of the time — and generic sites like Reddit only 16% of the time.
+But a more important finding emerged from a Semrush study analyzing **230,000 prompts and over 100 million AI citations** across ChatGPT, Google AI Mode, and Perplexity: Reddit's citation share on ChatGPT collapsed from ~60% of responses in August 2025 to ~10% by mid-September, after a single platform change. Wikipedia followed a similar trajectory, dropping from ~55% to under 20% in ChatGPT.
+
+The winners after that shift? PRNewsWire, Forbes, and Medium — not because of some strategic insight, but because ChatGPT actively diversified away from over-relying on any single source.
+
+![ChatGPT Reddit Citation Rate 2025: dropped from 60% in August to 10% in September after algorithm change](/blog/ai-seo-reddit-citations.jpg)
+
+The lesson isn't "don't target Reddit." It's that platform-specific citation behavior is volatile and unpredictable. A strategy built around getting onto Reddit because it's heavily cited today can be made irrelevant by a single model update tomorrow.
+
+For product-specific queries — where brand citations actually matter — LLMs cite industry-specific review sites, comparison pages, and category-specific publications 86% of the time, and generic sites like Reddit only 16% of the time. That ratio holds even as overall Reddit citation frequency fluctuates.
 
 Getting mentioned on Reddit is fine for brand awareness. It's not a reliable strategy for AI product visibility.
 
@@ -212,9 +222,18 @@ The mechanism is the same as Tier 1: LLMs search the web and cite what they find
 
 Here's where the common advice breaks down: it's not about getting onto high-authority generic sites. It's about getting onto the sites that rank for your specific target queries.
 
-Research on which domains LLMs cite for product-related queries found that **industry-specific review sites, comparison platforms, and category publications get cited 86% of the time** — while generic platforms like Reddit, Quora, and news aggregators get cited only 16% of the time for the same queries.
+Data from Profound's analysis of **680 million AI citations** across all three major platforms reveals the actual citation landscape:
 
-This makes intuitive sense. When someone asks ChatGPT for the best trucking dispatch software, the AI surfaces trucking-specific software review sites — not a Reddit thread about general productivity tools.
+- **Wikipedia** accounts for 7.8% of overall citations — but that drops below 3% on AI Mode and under 1% on Perplexity for product queries
+- **G2** (1.1%) and **Gartner** (0.7–1.0%) appear consistently for B2B software queries across all platforms
+- **NerdWallet**, **BusinessInsider**, and **Forbes** appear at 0.6–1.1% overall — but their share rises significantly for financial and SaaS-adjacent queries
+- **LinkedIn** is cited in nearly 15% of Google AI Mode responses — significantly higher than on ChatGPT or Perplexity
+
+The key insight: citation share is **query-type-specific**. When someone asks ChatGPT for the best trucking dispatch software, the AI surfaces trucking-specific software review sites, not Wikipedia or general news sites. For financial tools, NerdWallet dominates. For B2B software, G2 and Capterra are consistently cited.
+
+Research on product-related queries specifically found that **industry-specific review sites, comparison platforms, and category publications get cited 86% of the time** — while generic platforms like Reddit, Quora, and news aggregators get cited only 16% of the time.
+
+The takeaway: your citation targets should be derived from your specific target queries, not from a generic "high authority = good" framework.
 
 ### How to Identify Which Sites to Target
 
@@ -245,12 +264,12 @@ Once you know which sites LLMs are citing for your target queries, the outreach 
     <div className="blog-stat-label">Rate at which LLMs cite industry-specific sites for product queries</div>
   </div>
   <div className="blog-stat">
-    <div className="blog-stat-num">77%</div>
-    <div className="blog-stat-label">Overlap between first-page Google rankings and ChatGPT/Perplexity mentions</div>
+    <div className="blog-stat-num">680M</div>
+    <div className="blog-stat-label">AI citations analyzed by Profound across ChatGPT, AI Mode, and Perplexity</div>
   </div>
   <div className="blog-stat">
-    <div className="blog-stat-num">82%</div>
-    <div className="blog-stat-label">Overlap when ranking in Google's top 3 positions</div>
+    <div className="blog-stat-num">10%</div>
+    <div className="blog-stat-label">Reddit's ChatGPT citation rate after September 2025 — down from 60% in August</div>
   </div>
 </div>
 
@@ -294,7 +313,7 @@ In your analytics, that conversion shows up as branded organic search, or possib
 
 **Branded organic search growth:** If your AI visibility strategy is working, you should see branded search volume increase as more people who encounter your brand through AI later Google your name to learn more. This is a lagging indicator, but a reliable one.
 
-**Direct AI visibility tracking:** Tools designed specifically to track AI visibility — entering target queries into ChatGPT, Perplexity, and Google AI Overview and checking whether your brand is mentioned — give you the most direct signal. This is manual at small scale but can be automated with purpose-built tools.
+**Direct AI visibility tracking:** Purpose-built tools now exist specifically for this. [Profound](https://www.tryprofound.com) tracks brand mentions across ChatGPT, Perplexity, and Google AI Mode at scale — mapping which prompts surface your brand, how frequently, and with what sentiment. Other options include BrandMentions and manual weekly tracking using target queries. At small scale, manual tracking gives you the signal; at larger scale, purpose-built tools give you the pattern.
 
 **Overall organic trajectory:** Rather than trying to attribute every conversion to a specific channel, track organic traffic and conversion rates holistically. If your rankings are growing, your AI visibility is likely growing, and your organic conversions should reflect that over time.
 
@@ -315,7 +334,7 @@ If you take the GEO Priorities framework seriously, it reshapes several decision
 
 **Build a citation outreach function.** This is new for most marketing teams. Someone needs to own the process of identifying which sites LLMs cite for your target queries and systematically working to get your brand mentioned there. This looks like digital PR but with a specific methodology behind which publications to target.
 
-**Connect your [content strategy](/services/content-strategy) and [SEO](/services/programmatic-seo) efforts explicitly.** The fragmentation between "SEO content" and "brand storytelling" hurts AI visibility. Every piece of content you publish should serve both ranking and brand communication goals — ranking to get in front of AI's web searches, communication specificity to teach AI how to describe you.
+**Connect your [content strategy](/services/content-strategy), [SEO](/services/programmatic-seo), and [answer engine optimization](/blog/answer-engine-optimization-guide) efforts explicitly.** The fragmentation between "SEO content" and "brand storytelling" hurts AI visibility. Every piece of content you publish should serve both ranking and brand communication goals — ranking to get in front of AI's web searches, communication specificity to teach AI how to describe you.
 
 **Stop trying to game AI's input and start earning AI's outputs.** The brands chasing llms.txt and question-formatted headings are trying to influence how AI processes content. The brands building real AI visibility are focused on earning the underlying rankings and mentions that determine what content AI processes in the first place.
 
