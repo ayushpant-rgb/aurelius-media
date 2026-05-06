@@ -10,6 +10,7 @@ export interface BlogPostMeta {
     title: string;
     excerpt: string;
     date: string;
+    dateModified?: string;
     category: string;
     author: string;
     authorRole: string;
@@ -19,10 +20,12 @@ export interface BlogPostMeta {
     ogImage?: string;
     metaTitle?: string;
     metaDescription?: string;
+    keywords?: string[];
 }
 
 export interface BlogPost extends BlogPostMeta {
     content: string;
+    wordCount?: number;
 }
 
 export function getAllPosts(): BlogPostMeta[] {
@@ -42,6 +45,7 @@ export function getAllPosts(): BlogPostMeta[] {
             title: data.title || '',
             excerpt: data.excerpt || '',
             date: data.date || '',
+            dateModified: data.dateModified || undefined,
             category: data.category || '',
             author: data.author || 'Ayush Pant',
             authorRole: data.authorRole || 'Founder, Aurelius Media',
@@ -51,6 +55,7 @@ export function getAllPosts(): BlogPostMeta[] {
             ogImage: data.ogImage || undefined,
             metaTitle: data.metaTitle || undefined,
             metaDescription: data.metaDescription || undefined,
+            keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
         } as BlogPostMeta;
     });
 
@@ -73,6 +78,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
         title: data.title || '',
         excerpt: data.excerpt || '',
         date: data.date || '',
+        dateModified: data.dateModified || undefined,
         category: data.category || '',
         author: data.author || 'Ayush Pant',
         authorRole: data.authorRole || 'Founder, Aurelius Media',
@@ -81,7 +87,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
         ogImage: data.ogImage || undefined,
         metaTitle: data.metaTitle || undefined,
         metaDescription: data.metaDescription || undefined,
+        keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
         content,
+        wordCount: stats.words,
     };
 }
 

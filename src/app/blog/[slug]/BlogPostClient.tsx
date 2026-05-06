@@ -235,7 +235,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
                         />
                     </div>
                     <div className="flex-1">
-                        <div className="font-display text-[16px] font-bold text-brand-white mb-0.5">{post.author}</div>
+                        <Link href="/authors/ayush-pant" className="font-display text-[16px] font-bold text-brand-white hover:text-brand-accent-text transition-colors mb-0.5">{post.author}</Link>
                         <div className="text-[13px] text-brand-gray-dark mb-2">{post.authorRole}</div>
                         <p className="text-[13px] text-brand-gray leading-[1.6]">
                             20+ years in digital marketing. Google &amp; Meta certified. Managed $15M+ in ad spend across 150+ clients in 25+ countries. Passionate about Stoic philosophy and AI-powered marketing.

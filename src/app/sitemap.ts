@@ -60,6 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // { url: `${BASE_URL}/resources`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 }, // Unpublished — redesigning
     { url: `${BASE_URL}/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE_URL}/terms`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/authors/ayush-pant`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },
   ];
 
   // Service pages
@@ -74,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: post.date || now,
+    lastModified: post.dateModified || post.date || now,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));

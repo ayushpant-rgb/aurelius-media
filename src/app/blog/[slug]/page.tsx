@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '@/lib/blog';
-import { generateBreadcrumbSchema } from '@/lib/schema';
+import { generateBreadcrumbSchema, generateArticleSchema } from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
 interface Props {
@@ -54,23 +54,19 @@ export default async function BlogPostPage({ params }: Props) {
         { name: post.title, url: `https://www.aureliusmedia.co/blog/${slug}` },
     ]);
 
-    const articleSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: post.title,
-        description: post.excerpt,
-        datePublished: post.date,
-        image: post.ogImage ? `https://www.aureliusmedia.co${post.ogImage}` : undefined,
-        author: {
-            '@type': 'Person',
-            name: post.author,
-        },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aurelius Media',
-            url: 'https://www.aureliusmedia.co',
-        },
-    };
+    const articleSchema = generateArticleSchema({
+        title: post.title,
+        excerpt: post.excerpt,
+        date: post.date,
+        dateModified: post.dateModified,
+        slug,
+        author: post.author,
+        authorRole: post.authorRole,
+        ogImage: post.ogImage,
+        articleSection: post.category,
+        keywords: post.keywords,
+        wordCount: post.wordCount,
+    });
 
     // Get related posts: same category first, then recent, exclude current
     const allPosts = getAllPosts();
