@@ -36,6 +36,8 @@ const SERVICE_SLUGS = [
   'pitch-decks',
   'ai-agents',
   'ai-chatbots',
+  'meta-ads-management',
+  'google-ads-management',
   'performance-marketing',
   'growth-marketing',
   'creative-services',

@@ -10,6 +10,22 @@ export interface Service {
 export const services: Service[] = [
     // ─── PERFORMANCE MARKETING ───
     {
+        title: 'Google Ads Agency India',
+        slug: 'google-ads-management',
+        description: 'Certified Google Ads management for Indian businesses — Search, Shopping, Performance Max with India-specific attribution.',
+        icon: '🇮🇳',
+        category: 'performance_marketing',
+        keywords: ['Google ads agency India', 'Google ads management India', 'PPC agency India'],
+    },
+    {
+        title: 'Meta Ads Agency India',
+        slug: 'meta-ads-management',
+        description: 'Facebook and Instagram advertising for Indian brands — India-specific targeting, festive campaigns, and WhatsApp attribution.',
+        icon: '📱',
+        category: 'performance_marketing',
+        keywords: ['Meta ads agency India', 'Facebook ads agency India', 'Instagram ads India'],
+    },
+    {
         title: 'Google Ads Management',
         slug: 'google-ads',
         description: 'Search, Display, Shopping, YouTube, and Performance Max campaigns with ROAS-focused optimization.',
