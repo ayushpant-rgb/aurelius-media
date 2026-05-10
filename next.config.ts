@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.aureliusmedia.co",
+      },
+      {
+        protocol: "https",
+        hostname: "aureliusmedia.co",
+      },
     ],
   },
   async redirects() {
