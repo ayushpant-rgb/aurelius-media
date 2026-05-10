@@ -1,7 +1,27 @@
 {
-  "last_updated": "2026-05-03",
-  "total_pages": 61,
+  "last_updated": "2026-05-10",
+  "total_pages": 69,
+  "architecture_rules": {
+    "blog_images": {
+      "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
+      "why": "BlogPostClient.tsx uses post.ogImage directly as <Image src>. Next.js Image component requires absolute-URL domains in next.config.ts remotePatterns. Using relative paths avoids this entirely — images are served from /public locally.",
+      "correct": "ogImage: \"/blog/foo.jpeg\"",
+      "wrong": "ogImage: \"https://www.aureliusmedia.co/blog/foo.jpeg\"",
+      "recurrence_count": 3,
+      "last_broke": "2026-05-06 (Sprint 1 SEO commit changed all 19 ogImages to absolute URLs — broke every blog hero image on production)"
+    }
+  },
   "session_changes": [
+    {
+      "date": "2026-05-10",
+      "summary": "Traffic investigation + SEO fixes. Fixed broken blog images caused by Sprint 1 absolute ogImage URLs.",
+      "changes": [
+        "Reverted metaTitle on /blog/what-works-on-instagram-2026 back to 'What Actually Works on Instagram in 2026: The Definitive Guide' (Sprint 1 changed it to click-bait variant, causing Google impression collapse on #1 traffic page)",
+        "Reverted metaTitle on /blog/instagram-growth-strategy-for-authors back to 'Instagram Growth Strategy for Authors in 2026'",
+        "Deleted public/llms.txt — had wrong domain (aureliusmedia.com not .co), all URLs given to AI crawlers were dead links (ChatGPT referrals had dropped to zero)",
+        "Added www.aureliusmedia.co and aureliusmedia.co to next.config.ts remotePatterns — Sprint 1 changed all 19 ogImage paths to absolute URLs but never updated remotePatterns, breaking every blog hero image on production"
+      ]
+    },
     {
       "date": "2026-03-24",
       "summary": "New BOFU blog post, Google Ads ebook, Cal.com embed fix, newsletter subscription system. Total pages: 56 → 57.",
@@ -861,10 +881,10 @@
     },
     {
       "route": "/services/performance-marketing",
-      "title": "Performance Marketing Services | Aurelius Media",
-      "h1": "Performance Marketing That Drives Real Revenue.",
-      "meta_description": "Full-service paid media agency covering Google Ads, Meta Ads, LinkedIn Ads, YouTube Ads, TikTok Ads, and Retargeting. Data-driven campaigns built for scale.",
-      "primary_keyword": "performance marketing agency",
+      "title": "Performance Marketing Agency India | Aurelius Media",
+      "h1": "India's Performance Marketing Agency. Every Rupee Accountable.",
+      "meta_description": "Aurelius Media is a leading performance marketing agency in India. We manage Google Ads, Meta Ads, and LinkedIn campaigns for 84+ Indian businesses — delivering measurable ROAS and CAC reduction.",
+      "primary_keyword": "performance marketing agency India",
       "topic_cluster": "Performance Advertising",
       "page_type": "pillar",
       "status": "complete",
@@ -873,13 +893,15 @@
         "/services/meta-ads",
         "/services/linkedin-ads",
         "/services/youtube-ads",
-        "/services/tiktok-ads",
-        "/services/retargeting"
+        "/services/retargeting",
+        "/services/lead-generation"
       ],
       "internal_links_from": [
-        "/services"
+        "/services",
+        "/",
+        "/categories/performance-marketing"
       ],
-      "notes": "SEO pillar page for paid media category. Aggregates and links to all 6 paid media sub-service pages."
+      "notes": "SEO pillar page for paid media category, India-optimized. Primary kw: 'performance marketing agency India' (1K-2K/mo, medium difficulty). Targets Indian D2C, EdTech, B2B SaaS. Pricing in INR. Meta+Google+LinkedIn stack. Added festive season FAQ."
     },
     {
       "route": "/services/growth-marketing",
@@ -1122,6 +1144,31 @@
       "notes": "Published 2026-05-03. Covers YouTube subscriber growth campaigns, TrueView/bumper/Demand Gen formats, targeting strategy (channel + topic), creative principles, CPV/CPS benchmarks, full-funnel integration. Unique angle: treats subscribers as compounding media assets, not vanity metrics. Hero image: Higgsfield nano_banana_2 generated."
     },
     {
+      "route": "/blog/meta-ads-andromeda-update",
+      "title": "Meta Ads Andromeda Update: What Changed for Advertisers in 2026",
+      "h1": "Meta Ads Andromeda Update: What Changed for Advertisers in 2026",
+      "meta_description": "Meta's Andromeda update rebuilt how ads are selected and delivered. ROAS down 7%, conversion rates down 17%, creative fatigue accelerated. Here's the full breakdown and your 2026 action plan.",
+      "primary_keyword": "Meta Andromeda update",
+      "topic_cluster": "Performance Advertising",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/meta-ads-andromeda-update.png",
+      "internal_links_to": [
+        "/services/meta-ads",
+        "/services/ai-creative-design",
+        "/services/performance-marketing",
+        "/services/analytics-reporting",
+        "/services/retargeting",
+        "/blog/fix-meta-ads-roas",
+        "/blog/meta-ads-vs-google-ads-budget",
+        "/contact"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-05-05. Covers Meta Andromeda: 10,000x model complexity increase, rollout timeline (Dec 2024 announcement → Oct 2025 full deployment), three-system AI stack (Andromeda + Meta Lattice + GEM), Confect study data (3,014 advertisers, $834M spend, -7% ROAS, -17% conversion rate, -31% for top performers), creative-as-targeting framework, campaign structure simplification, CAPI signal quality impact, Catalog Ads advantage, GEM future. Hero image + 2 inline graphics generated via Higgsfield GPT Image 2."
+    },
+    {
       "route": "/blog/ai-seo-strategy",
       "title": "AI SEO Strategy: How to Rank in ChatGPT, Perplexity & AI Search",
       "h1": "AI SEO Strategy: How to Rank in ChatGPT, Perplexity & AI Search",
@@ -1140,6 +1187,181 @@
         "/blog"
       ],
       "notes": "Published 2026-05-03. Covers GEO Priorities Pyramid (3-tier framework), why llms.txt/FAQ schema/question headings don't work, BOFU content strategy for AI citations, off-site mention strategy (86% industry-specific vs 16% Reddit citation rate), broken attribution and measurement approaches. Based on research across 400+ keywords/16 clients. Unique angle vs GrowAndConvert source article. Hero image: Higgsfield nano_banana_2 generated."
+    },
+    {
+      "route": "/blog/what-works-on-instagram-2026",
+      "title": "What Actually Works on Instagram in 2026 (and How to Make It Work for You)",
+      "h1": "What Actually Works on Instagram in 2026 (and How to Make It Work for You)",
+      "meta_description": "Adam Mosseri rewrote the Instagram algorithm. We tracked 9 confirmed ranking signals across 50 brand accounts — DM shares, watch time, Reels SEO, and what Mosseri won't say out loud.",
+      "primary_keyword": "what works on Instagram 2026",
+      "topic_cluster": "Industry Insights",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/images/instagram-2026-guide.jpg",
+      "internal_links_to": [],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-04-04. Covers 9 Instagram ranking signals confirmed by Adam Mosseri — DM shares, watch time, Reels SEO. Data from 50 brand accounts, Sprout Social, Hootsuite, Buffer, Meta docs. No internal service page links — should add /services/reels-editing and /services/content-strategy."
+    },
+    {
+      "route": "/blog/youtube-seo-guide",
+      "title": "YouTube SEO in 2026: The Complete, Data-Backed Guide to Ranking Videos",
+      "h1": "YouTube SEO in 2026: The Complete, Data-Backed Guide to Ranking Videos",
+      "meta_description": "YouTube's algorithm is now an LLM-powered prediction engine. Here are the 7 ranking signals moving videos in 2026 — title formulas, retention thresholds, and the Shorts strategy nobody is using.",
+      "primary_keyword": "YouTube SEO 2026",
+      "topic_cluster": "SEO & Content Strategy",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/images/youtube-seo-hero.png",
+      "internal_links_to": [
+        "/blog/answer-engine-optimization-guide",
+        "/blog/marketing-trends",
+        "/contact",
+        "/services/ai-creative-design",
+        "/services/content-strategy",
+        "/services/performance-marketing"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-04-01. Covers YouTube LLM-powered algorithm, 7 ranking signals, Shorts strategy. Data-backed guide."
+    },
+    {
+      "route": "/blog/paid-social-playbook",
+      "title": "The Paid Social Playbook: A System for Scaling Meta and TikTok Ads in 2026",
+      "h1": "The Paid Social Playbook: A System for Scaling Meta and TikTok Ads in 2026",
+      "meta_description": "Meta rewards creative variation. TikTok scales concepts, not ads. A 2026 end-to-end system for campaign architecture, creative testing loops, and knowing exactly when to scale (and when not to).",
+      "primary_keyword": "paid social playbook",
+      "topic_cluster": "Performance Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/paid-social-playbook.png",
+      "internal_links_to": [
+        "/blog/fix-meta-ads-roas",
+        "/blog/meta-ads-vs-google-ads-budget",
+        "/blog/performance-marketing-guide",
+        "/services/ai-creative-design",
+        "/services/meta-ads"
+      ],
+      "internal_links_from": [
+        "/blog",
+        "/blog/performance-marketing-guide"
+      ],
+      "notes": "Published 2026-04-21. Featured post. End-to-end paid social system: campaign architecture, creative testing loops, scaling signals. BROKEN LINK: /services/meta-ads-management (invalid route — should be /services/meta-ads)."
+    },
+    {
+      "route": "/blog/answer-engine-optimization-guide",
+      "title": "Answer Engine Optimization (AEO): How to Become the Source AI Cites in 2026",
+      "h1": "Answer Engine Optimization (AEO): How to Become the Source AI Cites in 2026",
+      "meta_description": "60% of searches now end without a click. Here's the 7-part Answer Engine Optimization framework to make ChatGPT, Perplexity, Claude, and Google AI Overviews cite your brand in 2026.",
+      "primary_keyword": "answer engine optimization",
+      "topic_cluster": "SEO & Content Strategy",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/images/aeo-hero.svg",
+      "internal_links_to": [
+        "/blog/is-programmatic-seo-dead",
+        "/blog/marketing-trends",
+        "/contact",
+        "/services/analytics-reporting",
+        "/services/content-strategy",
+        "/services/programmatic-seo"
+      ],
+      "internal_links_from": [
+        "/blog",
+        "/blog/youtube-seo-guide",
+        "/blog/education-marketing-india"
+      ],
+      "notes": "Published 2026-03-28, last updated 2026-05-06. Featured post. 7-part AEO framework — how ChatGPT/Perplexity/Google AI Overviews choose sources, what makes content citable. dateModified set for freshness signals."
+    },
+    {
+      "route": "/blog/best-meta-ads-agency-india",
+      "title": "Best Meta Ads Agency India 2026: What to Look For (And What to Avoid)",
+      "h1": "Best Meta Ads Agency India 2026: What to Look For (And What to Avoid)",
+      "meta_description": "Looking for a Meta Ads agency in India? This guide covers what great agencies actually do — from creative testing to WhatsApp attribution — plus pricing benchmarks and red flags to avoid.",
+      "primary_keyword": "Meta Ads agency India",
+      "topic_cluster": "Performance Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/MetaROAS.png",
+      "internal_links_to": [
+        "/blog/fix-meta-ads-roas",
+        "/blog/performance-marketing-guide",
+        "/contact",
+        "/services/performance-marketing"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-05-06. India-specific Meta Ads agency hiring guide: criteria, pricing benchmarks, red flags. BROKEN LINKS: /services/meta-ads-management (should be /services/meta-ads), /services/google-ads-management (should be /services/google-ads)."
+    },
+    {
+      "route": "/blog/performance-marketing-guide",
+      "title": "The Complete Performance Marketing Guide (2026)",
+      "h1": "The Complete Performance Marketing Guide (2026)",
+      "meta_description": "The complete performance marketing guide for 2026: Meta, Google, YouTube, LinkedIn channels, global benchmarks, budget frameworks, and measurement strategy. 6,000+ words of practical playbook.",
+      "primary_keyword": "performance marketing guide 2026",
+      "topic_cluster": "Performance Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/paid-social-playbook.png",
+      "internal_links_to": [
+        "/blog/fix-meta-ads-roas",
+        "/blog/meta-ads-andromeda-update",
+        "/blog/meta-ads-vs-google-ads-budget",
+        "/blog/paid-social-playbook",
+        "/blog/performance-max-hero-or-villain",
+        "/contact",
+        "/services/google-ads",
+        "/services/linkedin-ads",
+        "/services/meta-ads",
+        "/services/performance-marketing",
+        "/services/youtube-ads"
+      ],
+      "internal_links_from": [
+        "/blog",
+        "/blog/paid-social-playbook",
+        "/blog/best-meta-ads-agency-india"
+      ],
+      "notes": "Published 2026-05-06. Featured post. 6,000+ word pillar guide covering Meta, Google, YouTube, LinkedIn channels, global benchmarks, budget frameworks, measurement strategy."
+    },
+    {
+      "route": "/blog/scarcity-brain-marketing-lessons",
+      "title": "7 Marketing Lessons Hidden in a Neuroscience Book",
+      "h1": "7 Marketing Lessons Hidden in a Neuroscience Book",
+      "meta_description": "Michael Easter's Scarcity Brain explains why humans crave what's rare — and why scarcity-based marketing works. Here are 7 consumer-psychology lessons every marketer should steal (ethically).",
+      "primary_keyword": "scarcity brain marketing",
+      "topic_cluster": "Growth Marketing",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/scarcity-brain-marketing-lessons.jpg",
+      "internal_links_to": [],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2026-04-06. Featured post. Consumer psychology piece based on Michael Easter's 'The Scarcity Brain' — 7 marketing lessons on scarcity loops, variable rewards, and behavioral triggers. No internal service page links — should add /services/content-strategy."
+    },
+    {
+      "route": "/blog/9-ai-tools-for-startup-founders",
+      "title": "9 AI Tools for Startups",
+      "h1": "9 AI Tools for Startups",
+      "meta_description": "We tested 40+ AI tools across PMF, pitch decks, fundraising, ops, and growth. Here are the 9 that earned their seat for early-stage founders in 2026.",
+      "primary_keyword": "AI tools for startup founders",
+      "topic_cluster": "AI Tools",
+      "page_type": "template",
+      "status": "complete",
+      "ogImage": "/blog/ai-tools-startups.jpeg",
+      "internal_links_to": [
+        "/blog/vibe-coding-explained-build-saas-weekend",
+        "/services/ai-creative-design",
+        "/services/ai-workshops",
+        "/services/brand-videos"
+      ],
+      "internal_links_from": [
+        "/blog"
+      ],
+      "notes": "Published 2025-03-24. Older post — was in blog template sample_urls but lacked a pages entry. Curated list of 9 AI tools tested across PMF, pitch decks, fundraising, ops, and growth."
     }
   ],
   "topic_clusters": [
@@ -1219,7 +1441,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 11,
+      "total_pages_generated": 19,
       "sample_urls": [
         "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
@@ -1231,7 +1453,15 @@
         "/blog/9-ai-tools-for-startup-founders",
         "/blog/openai-ads-manager-launch",
         "/blog/youtube-ads-subscriber-growth",
-        "/blog/ai-seo-strategy"
+        "/blog/ai-seo-strategy",
+        "/blog/meta-ads-andromeda-update",
+        "/blog/what-works-on-instagram-2026",
+        "/blog/youtube-seo-guide",
+        "/blog/paid-social-playbook",
+        "/blog/answer-engine-optimization-guide",
+        "/blog/best-meta-ads-agency-india",
+        "/blog/performance-marketing-guide",
+        "/blog/scarcity-brain-marketing-lessons"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
