@@ -27,6 +27,7 @@ export interface BlogPostMeta {
     metaDescription?: string;
     keywords?: string[];
     faqs?: BlogFAQ[];
+    speakable?: boolean;
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -63,6 +64,7 @@ export function getAllPosts(): BlogPostMeta[] {
             metaDescription: data.metaDescription || undefined,
             keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
             faqs: Array.isArray(data.faqs) ? data.faqs : undefined,
+            speakable: data.speakable === true,
         } as BlogPostMeta;
     });
 
@@ -96,6 +98,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
         metaDescription: data.metaDescription || undefined,
         keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
         faqs: Array.isArray(data.faqs) ? data.faqs : undefined,
+        speakable: data.speakable === true,
         content,
         wordCount: stats.words,
     };

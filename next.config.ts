@@ -54,6 +54,17 @@ const nextConfig: NextConfig = {
         destination: "/blog/performance-max-hero-or-villain",
         permanent: true,
       },
+      // /resources → /blog redirects (unused resource section)
+      {
+        source: '/resources',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/resources/:slug*',
+        destination: '/blog',
+        permanent: true,
+      },
       // Category → Service pillar redirects (keyword cannibalization fix)
       {
         source: "/categories/performance-marketing",

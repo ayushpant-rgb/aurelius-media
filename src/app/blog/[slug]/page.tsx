@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '@/lib/blog';
-import { generateBreadcrumbSchema, generateArticleSchema, generateFAQSchema } from '@/lib/schema';
+import { generateBreadcrumbSchema, generateArticleSchema, generateFAQSchema, generateSpeakableSchema } from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
 interface Props {
@@ -82,6 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
         .slice(0, 3);
 
     const faqSchema = post.faqs && post.faqs.length > 0 ? generateFAQSchema(post.faqs) : null;
+    const speakableSchema = post.speakable ? generateSpeakableSchema({ title: post.title, slug }) : null;
 
     return (
         <>
@@ -97,6 +98,12 @@ export default async function BlogPostPage({ params }: Props) {
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
+            {speakableSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }}
                 />
             )}
             <BlogPostClient post={post} relatedPosts={relatedPosts} />

@@ -182,6 +182,19 @@ export function generateHowToSchema(howTo: {
     };
 }
 
+export function generateSpeakableSchema(post: { title: string; slug: string }) {
+    return {
+        '@context': 'https://schema.org/',
+        '@type': 'WebPage',
+        name: post.title,
+        url: `${SITE_URL}/blog/${post.slug}`,
+        speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', '.blog-article h2'],
+        },
+    };
+}
+
 export function generateWebsiteSchema() {
     return {
         '@context': 'https://schema.org',
