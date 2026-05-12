@@ -298,6 +298,14 @@ export const services: Service[] = [
         category: 'ai_automation',
         keywords: ['AI marketing automation agency', 'AI marketing agency', 'marketing automation services'],
     },
+    {
+        title: 'Social Media Marketing',
+        slug: 'social-media-marketing',
+        description: 'Full-service social media marketing across Instagram, LinkedIn, Facebook, and YouTube — content strategy, production, community management, and paid amplification.',
+        icon: '',
+        category: 'growth_marketing',
+        keywords: ['social media marketing agency India', 'social media marketing agency', 'social media management India'],
+    },
 ];
 
 export const serviceCategories = [

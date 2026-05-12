@@ -42,6 +42,7 @@ const SERVICE_SLUGS = [
   'growth-marketing',
   'creative-services',
   'ai-marketing-automation',
+  'social-media-marketing',
 ];
 
 const CATEGORY_SLUGS = [
