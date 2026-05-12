@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CAL_URL = 'https://cal.com/aureliusmedia/15min';
 
@@ -47,6 +48,8 @@ interface CategoryData {
     faqs: FAQ[];
     ctaHeadline: string;
     ctaDescription: string;
+    heroImage?: string;
+    whyImage?: string;
 }
 
 const categories: Record<string, CategoryData> = {
@@ -76,14 +79,14 @@ const categories: Record<string, CategoryData> = {
             { step: '05', title: 'Measure & Scale', description: 'Weekly reporting with full-funnel attribution. We identify winning audiences and creatives, then systematically scale spend where ROAS is strongest.' },
         ],
         services: [
-            { name: 'Google Ads Management', detail: 'Search, Shopping, Display, and Performance Max campaigns with keyword strategy, bid management, and continuous optimization against revenue targets.' },
-            { name: 'Meta Ads (Facebook & Instagram)', detail: 'Creative-led campaigns with Advantage+ integration, dynamic creative optimization, lookalike audiences, and conversion API tracking for accurate attribution.' },
-            { name: 'YouTube Advertising', detail: 'In-stream, discovery, bumper, and Shorts ad campaigns designed to drive both brand awareness and measurable downstream conversions.' },
-            { name: 'TikTok Ads', detail: 'Native-first creative strategy for TikTok Spark Ads, TopView, and In-Feed placements — optimized for engagement and conversion at scale.' },
-            { name: 'LinkedIn Advertising', detail: 'Sponsored content, message ads, and lead gen forms with precision targeting by job title, company size, seniority, and industry vertical.' },
-            { name: 'Retargeting & Remarketing', detail: 'Cross-platform retargeting sequences across display, social, and email — designed to re-engage warm audiences and shorten the path to conversion.' },
-            { name: 'Shopping & E-Commerce Ads', detail: 'Product feed optimization, Smart Shopping campaigns, and dynamic product ads for DTC and e-commerce brands selling online.' },
-            { name: 'Conversion Rate Optimization', detail: 'Landing page A/B testing, UX analysis, and funnel optimization to ensure your ad traffic converts at the highest possible rate.' },
+            { name: 'Google Ads Management', detail: 'Search, Shopping, Display, and Performance Max campaigns with keyword strategy, bid management, and continuous optimization against revenue targets.', slug: 'google-ads' },
+            { name: 'Meta Ads (Facebook & Instagram)', detail: 'Creative-led campaigns with Advantage+ integration, dynamic creative optimization, lookalike audiences, and conversion API tracking for accurate attribution.', slug: 'meta-ads' },
+            { name: 'LinkedIn Advertising', detail: 'Sponsored content, message ads, and lead gen forms with precision targeting by job title, company size, seniority, and industry vertical.', slug: 'linkedin-ads' },
+            { name: 'YouTube Advertising', detail: 'In-stream, discovery, bumper, and Shorts ad campaigns designed to drive both brand awareness and measurable downstream conversions.', slug: 'youtube-ads' },
+            { name: 'TikTok Ads', detail: 'Native-first creative strategy for TikTok Spark Ads, TopView, and In-Feed placements — optimized for engagement and conversion at scale.', slug: 'tiktok-ads' },
+            { name: 'Retargeting & Remarketing', detail: 'Cross-platform retargeting sequences across display, social, and email — designed to re-engage warm audiences and shorten the path to conversion.', slug: 'retargeting' },
+            { name: 'Lead Generation', detail: 'Systematic performance-led acquisition programs designed to deliver a predictable, high-quality flow of leads matching your ideal customer profile.', slug: 'lead-generation' },
+            { name: 'Conversion Rate Optimization', detail: 'Landing page A/B testing, UX analysis, and funnel optimization to ensure your ad traffic converts at the highest possible rate.', slug: 'cro' },
         ],
         whoTitle: 'Who this is for',
         whoDescription: 'Performance marketing works best for businesses that have product-market fit and are ready to scale acquisition profitably.',
@@ -166,6 +169,8 @@ const categories: Record<string, CategoryData> = {
         ],
         ctaHeadline: 'Ready to build a repeatable pipeline engine?',
         ctaDescription: 'Book a free 15-minute call to discuss your ICP, target accounts, and how we can build a demand gen program around your revenue goals.',
+        heroImage: '/categories/b2b-marketing-hero.png',
+        whyImage: '/categories/b2b-marketing-why.png',
     },
     'marketing-collaterals': {
         title: 'Marketing Collaterals',
@@ -458,7 +463,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
                     backgroundSize: '60px 60px',
                 }} />
-                <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
+                <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
                     <nav className="flex items-center gap-2 text-xs text-brand-gray-dark mb-8">
                         <Link href="/" className="hover:text-brand-white transition-colors">Home</Link>
                         <span>/</span>
@@ -467,29 +472,47 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         <span className="text-brand-gray">{cat.title}</span>
                     </nav>
 
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-card/50 border border-brand-border-subtle text-[10px] font-semibold text-brand-accent uppercase tracking-widest mb-6">
-                        <span className="w-1.5 h-1.5 bg-brand-accent rounded-full" />
-                        {cat.eyebrow}
-                    </div>
+                    <div className={`grid grid-cols-1 ${cat.heroImage ? 'lg:grid-cols-2' : ''} gap-12 items-center`}>
+                        <div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-card/50 border border-brand-border-subtle text-[10px] font-semibold text-brand-accent uppercase tracking-widest mb-6">
+                                <span className="w-1.5 h-1.5 bg-brand-accent rounded-full" />
+                                {cat.eyebrow}
+                            </div>
 
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-4 max-w-4xl">
-                        {cat.headline}
-                    </h1>
-                    <p className="text-lg sm:text-xl text-brand-gray-light font-medium mb-4 max-w-3xl">
-                        {cat.subHeadline}
-                    </p>
-                    <p className="text-base text-brand-gray max-w-2xl leading-relaxed mb-10">
-                        {cat.description}
-                    </p>
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-4 max-w-4xl">
+                                {cat.headline}
+                            </h1>
+                            <p className="text-lg sm:text-xl text-brand-gray-light font-medium mb-4 max-w-3xl">
+                                {cat.subHeadline}
+                            </p>
+                            <p className="text-base text-brand-gray max-w-2xl leading-relaxed mb-10">
+                                {cat.description}
+                            </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
-                            Book a Strategy Call
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
-                        <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover text-brand-white rounded-lg font-semibold transition-all duration-200">
-                            All Services
-                        </Link>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
+                                    Book a Strategy Call
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                                </a>
+                                <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover text-brand-white rounded-lg font-semibold transition-all duration-200">
+                                    All Services
+                                </Link>
+                            </div>
+                        </div>
+
+                        {cat.heroImage && (
+                            <div className="hidden lg:block">
+                                <Image
+                                    src={cat.heroImage}
+                                    alt={cat.title}
+                                    width={600}
+                                    height={400}
+                                    className="w-full h-auto rounded-[20px] object-cover"
+                                    sizes="(max-width: 1024px) 0px, 50vw"
+                                    priority
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -514,6 +537,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {/* ─── WHY THIS MATTERS ─── */}
             <section className="py-20 sm:py-24 bg-brand-dark">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                    {cat.whyImage && (
+                        <div className="flex justify-center mb-12">
+                            <Image
+                                src={cat.whyImage}
+                                alt={cat.whyTitle}
+                                width={400}
+                                height={400}
+                                className="w-full max-w-[320px] h-auto rounded-[20px] object-cover opacity-90"
+                                sizes="320px"
+                            />
+                        </div>
+                    )}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">The Challenge</p>

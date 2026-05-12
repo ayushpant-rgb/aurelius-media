@@ -4,9 +4,10 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import LeadPopup from "@/components/LeadPopup";
 import PostHogProvider from "@/components/PostHogProvider";
 import PostHogPageView from "@/components/PostHogPageView";
+import LeadPopup from "@/components/LeadPopup";
+import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -101,40 +102,23 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Aurelius Media",
-              url: "https://www.aureliusmedia.co",
-              logo: "https://www.aureliusmedia.co/logo.png",
-              description:
-                "AI-powered performance marketing agency with 20+ years of digital marketing experience.",
-              founder: {
-                "@type": "Person",
-                name: "Ayush Pant",
-                jobTitle: "Founder & CMO",
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Gurgaon",
-                addressCountry: "IN",
-              },
-              sameAs: [
-                "https://www.linkedin.com/in/ayushpant/",
-                "https://x.com/FollowAurelius",
-                "https://www.instagram.com/aurelius.media",
-              ],
-            }),
+            __html: JSON.stringify(generateOrganizationSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateWebsiteSchema()),
           }}
         />
       </head>
       <body className={`${inter.variable} ${jakarta.variable} ${jetbrains.variable} font-sans antialiased`}>
         <PostHogProvider>
           <PostHogPageView />
+          <LeadPopup />
           <Header />
           <main>{children}</main>
           <Footer />
-          <LeadPopup />
         </PostHogProvider>
       </body>
     </html>

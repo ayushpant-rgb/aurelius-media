@@ -5,6 +5,11 @@ import readingTime from 'reading-time';
 
 const POSTS_DIR = path.join(process.cwd(), 'content/blog');
 
+export interface BlogFAQ {
+    question: string;
+    answer: string;
+}
+
 export interface BlogPostMeta {
     slug: string;
     title: string;
@@ -21,6 +26,7 @@ export interface BlogPostMeta {
     metaTitle?: string;
     metaDescription?: string;
     keywords?: string[];
+    faqs?: BlogFAQ[];
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -56,6 +62,7 @@ export function getAllPosts(): BlogPostMeta[] {
             metaTitle: data.metaTitle || undefined,
             metaDescription: data.metaDescription || undefined,
             keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
+            faqs: Array.isArray(data.faqs) ? data.faqs : undefined,
         } as BlogPostMeta;
     });
 
@@ -88,6 +95,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
         metaTitle: data.metaTitle || undefined,
         metaDescription: data.metaDescription || undefined,
         keywords: Array.isArray(data.keywords) ? data.keywords : undefined,
+        faqs: Array.isArray(data.faqs) ? data.faqs : undefined,
         content,
         wordCount: stats.words,
     };

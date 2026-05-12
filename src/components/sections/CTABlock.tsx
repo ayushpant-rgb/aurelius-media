@@ -22,7 +22,7 @@ export default function CTABlock() {
                             to <span className="gradient-text font-display">new heights?</span>
                         </h2>
                         <p className="text-brand-gray text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                            Book a free 15-minute strategy call. We will analyze your current setup, identify quick wins,
+                            Book a 15-minute strategy call. We will analyze your current setup, identify quick wins,
                             and show you exactly how we can accelerate your growth.
                         </p>
 

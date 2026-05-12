@@ -103,7 +103,7 @@ export default function Hero() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center px-8 py-4 cta-primary text-white font-semibold rounded-full text-base w-full sm:w-auto max-w-xs"
                     >
-                        Join the Client Waitlist
+                        Book a Strategy Call
                     </a>
                     <Link
                         href="/services"

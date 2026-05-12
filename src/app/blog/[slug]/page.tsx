@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllPosts, getAllSlugs, getPostBySlug } from '@/lib/blog';
-import { generateBreadcrumbSchema, generateArticleSchema } from '@/lib/schema';
+import { generateBreadcrumbSchema, generateArticleSchema, generateFAQSchema } from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
 interface Props {
@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = getPostBySlug(slug);
     if (!post) return {};
 
-    const ogImage = post.ogImage || '/logo.png';
+    const BASE_URL = 'https://www.aureliusmedia.co';
+    const ogImageRel = post.ogImage || '/logo.png';
+    const ogImage = ogImageRel.startsWith('http') ? ogImageRel : `${BASE_URL}${ogImageRel}`;
 
     return {
         title: post.metaTitle || post.title,
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: post.metaTitle || post.title,
             description: post.metaDescription || post.excerpt,
             type: 'article',
-            url: `https://www.aureliusmedia.co/blog/${slug}`,
+            url: `${BASE_URL}/blog/${slug}`,
             publishedTime: post.date,
             authors: [post.author],
             images: [{ url: ogImage, alt: post.title }],
@@ -79,6 +81,8 @@ export default async function BlogPostPage({ params }: Props) {
         })
         .slice(0, 3);
 
+    const faqSchema = post.faqs && post.faqs.length > 0 ? generateFAQSchema(post.faqs) : null;
+
     return (
         <>
             <script
@@ -89,6 +93,12 @@ export default async function BlogPostPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
             />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
             <BlogPostClient post={post} relatedPosts={relatedPosts} />
         </>
     );
