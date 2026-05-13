@@ -32,7 +32,11 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aureliusmedia.co"),
   alternates: {
-    canonical: "./",
+    canonical: "https://www.aureliusmedia.co",
+    languages: {
+      "en-IN": "https://www.aureliusmedia.co",
+      "x-default": "https://www.aureliusmedia.co",
+    },
   },
   title: {
     default: "Aurelius Media | AI-Powered Performance Marketing Agency",

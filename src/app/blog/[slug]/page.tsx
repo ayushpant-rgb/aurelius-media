@@ -21,9 +21,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const ogImageRel = post.ogImage || '/logo.png';
     const ogImage = ogImageRel.startsWith('http') ? ogImageRel : `${BASE_URL}${ogImageRel}`;
 
+    const canonicalUrl = `${BASE_URL}/blog/${slug}`;
+
     return {
         title: post.metaTitle || post.title,
         description: post.metaDescription || post.excerpt,
+        alternates: {
+            canonical: canonicalUrl,
+            languages: {
+                "en-IN": canonicalUrl,
+                "x-default": canonicalUrl,
+            },
+        },
         openGraph: {
             title: post.metaTitle || post.title,
             description: post.metaDescription || post.excerpt,

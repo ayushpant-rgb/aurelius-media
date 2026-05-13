@@ -48,9 +48,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const ogTitle = `${service.metaTitle} | Aurelius Media`;
 
+    const canonicalUrl = `https://www.aureliusmedia.co/services/${service.slug}`;
+
     return {
         title: service.metaTitle,
         description: service.metaDescription,
+        alternates: {
+            canonical: canonicalUrl,
+            languages: {
+                "en-IN": canonicalUrl,
+                "x-default": canonicalUrl,
+            },
+        },
         openGraph: {
             title: ogTitle,
             description: service.metaDescription,
