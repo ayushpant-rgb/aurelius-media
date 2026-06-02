@@ -33,7 +33,9 @@ Tasks complete with a **checkbox**, not a kanban board. See section 5 for the fu
   - a **due date**,
   - a **priority** flag (P1-P4 style),
   - a per-task **"client-visible"** toggle.
-- **Sections within a client** to group that client's tasks under headings (e.g. SEO, Ads).
+- **Sections within a client** to group that client's tasks under headings (e.g. SEO, Ads):
+  create, rename, reorder, and delete sections. Deleting a section keeps its tasks (they
+  become ungrouped), it never deletes tasks.
 - **Today** and **Upcoming** smart views aggregating tasks across all clients by due date.
 - Per-client freeform notes (timestamped).
 - Per-client file references stored as links (label + URL). No uploads.
@@ -129,7 +131,7 @@ exact column types and constraints are finalized in the implementation plan.
 - `id` (uuid, pk)
 - `name` (text) — contact or account name
 - `company` (text, nullable)
-- `status` (enum-like text: `active` | `paused` | `archived`), default `active`
+- `status` (enum-like text: `active` | `archived`), default `active`
 - `created_at` (timestamptz)
 
 ### `sections`
@@ -155,6 +157,7 @@ means done. `in_progress` only carries meaning while a task is open.
 - `client_visible` (boolean, default false) — controls whether this task would appear in the
   future client portal
 - `created_at` (timestamptz)
+- `updated_at` (timestamptz)
 
 Default task ordering within a list: open before done, then `priority` ascending (P1 first),
 then `due_date` ascending (nulls last). No manual drag-reorder in v1.
@@ -196,21 +199,24 @@ and redirects into Today.
 ### Today (`/app` — the default landing view)
 Open tasks across all clients that are due today or overdue, ordered by the default ordering
 (priority then due date). Overdue is clearly flagged. Each row shows a checkbox, title,
-priority flag, due date, and which client it belongs to. This is the daily driver and replaces
-the old "dashboard."
+priority flag, due date, a read-only **in-progress** indicator when set, and which client it
+belongs to. This is the daily driver and replaces the old "dashboard." The in-progress flag is
+toggled on the client view, not here.
 
 ### Upcoming (`/app/upcoming`)
 Open tasks across all clients with a future due date, grouped by date. Same row format as
-Today, including the client label.
+Today, including the client label and the read-only in-progress indicator.
 
 ### Client view (`/app/clients/[id]`)
 The workhorse, one client on one page, Todoist project style:
 - **Tasks:** a checklist, optionally grouped under **sections**. Tasks not in a section appear
   ungrouped. Each row: checkbox (complete), title, priority flag, due date, an "in progress"
   toggle, and the `client_visible` toggle. Inline quick-add of a task (plain title + due date
-  + priority; no natural-language parsing in v1). Add/rename/reorder sections. Default
-  ordering per section as defined in section 4; completed tasks collapse to the bottom or hide
-  behind a "show completed" control.
+  + priority; no natural-language parsing in v1). Add/rename/reorder/delete sections (deleting
+  a section reparents its tasks to ungrouped, never deletes them). Ungrouped tasks ("No
+  section") render as a leading group above the named sections, which follow `sort_order`. The
+  default task ordering from section 4 applies independently within each group. Completed tasks
+  collapse to the bottom of their group or hide behind a "show completed" control.
 - **Notes:** chronological notes, add/edit (in a secondary tab or panel on this page).
 - **Files:** list of links (label + URL), add/remove (same secondary area).
 
@@ -233,8 +239,10 @@ to Aurelius Media, not a generic admin panel:
 ## 7. Error handling and edge cases
 - All data writes go through server-side handlers using the service-role client; failures
   surface as explicit user-visible errors, never silent.
-- Deleting a client should handle dependent tasks/notes/files (cascade or block with a clear
-  message, decided in the plan). Default lean: archive over hard-delete for clients.
+- Deleting a client should handle dependent sections/tasks/notes/files (cascade or block with
+  a clear message, decided in the plan). Default lean: archive over hard-delete for clients.
+- Deleting a **section** never deletes its tasks: those tasks are reparented to ungrouped
+  (`section_id` set to NULL).
 - Unauthenticated access to any `/app` route is blocked at the server (middleware or per-page
   guard, per section 3) and redirected to the login **before any Supabase read**. Page HTML
   for `/app` routes must never reach an unauthenticated visitor.
@@ -244,7 +252,9 @@ to Aurelius Media, not a generic admin panel:
 - Auth gate: unauthenticated requests to `/app/*` are server-blocked and redirected to login
   (no client data in the response); valid `platform_token` cookie passes. Each `/api/platform`
   handler rejects unauthenticated requests with 401.
-- CRUD round-trips for clients, sections, tasks, notes, files against the Supabase project.
+- CRUD round-trips for clients, sections, tasks, notes, files against the Supabase project,
+  including section reorder and section delete reparenting tasks to ungrouped (not deleting
+  them).
 - Checkbox completion sets/clears `completed_at`; completed tasks leave the open lists and the
   sidebar counts. The `in_progress` flag is settable only while open and is ignored once done.
 - Today shows only open, due-today-or-overdue tasks; Upcoming shows only open, future-dated
