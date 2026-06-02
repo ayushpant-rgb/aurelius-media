@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-06-03",
-  "total_pages": 70,
+  "total_pages": 71,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -21,7 +21,9 @@
         "Added /blog/dark-funnel-buyer-journey — 'The Dark Funnel' (audit topic #30), original angle incl. AI assistants as the new dark funnel. Chalk cover.",
         "FIXED recurring bug: getAllSlugs() now derives from getAllPosts() and getPostBySlug() returns `published`, so published:false posts truly 404 (previously only hidden from listing/sitemap while the URL still rendered). The 4 drafts (meta-ads-andromeda-update, d2c-marketing-agency, ai-visibility-tools-2026, performance-marketing-agency-cost-india) now correctly return 404.",
         "Rewrote 6 live posts' internal links that pointed at the meta-ads-andromeda-update draft (kept as draft) so no live 404s.",
-        "Deployed the previously-uncommitted May 20 work (5 deleted posts + 308 redirects + PostHog host .trim() fix) to production."
+        "Deployed the previously-uncommitted May 20 work (5 deleted posts + 308 redirects + PostHog host .trim() fix) to production.",
+        "Added /blog/how-to-measure-ai-search-visibility — distinct measurement-focused companion to the ai-seo-strategy pillar (avoids cannibalization; cross-linked). Flat-vector explainer thumbnail in the edtech-marketing.webp style (Higgsfield reference image).",
+        "Replaced the cover image on the high-traffic /blog/what-works-on-instagram-2026 with a chalk-style cover featuring the real Instagram logo (Higgsfield reference). Title/slug/meta unchanged to protect rankings. Total blog posts: 26."
       ]
     },
     {
@@ -1413,8 +1415,9 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 25,
+      "total_pages_generated": 26,
       "sample_urls": [
+        "/blog/how-to-measure-ai-search-visibility",
         "/blog/chatgpt-ads-vs-google-ads-vs-meta-ads",
         "/blog/content-marketing-funnel-stages",
         "/blog/dark-funnel-buyer-journey",
