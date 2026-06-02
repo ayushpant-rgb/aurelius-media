@@ -20,19 +20,33 @@ without rework.
 
 ## 2. Scope
 
+### Interaction model: Todoist-like
+The platform follows a Todoist-style structure: a left sidebar of smart date views plus
+clients (which act like Todoist "projects"), and a main pane that is a clean checklist.
+Tasks complete with a **checkbox**, not a kanban board. See section 5 for the full layout.
+
 ### In scope (v1)
 - Signed-in internal workspace (single user: Ayush).
-- Manage clients (create, edit, archive).
-- Per-client tasks with status, due date, and a per-task "client-visible" toggle.
+- Manage clients (create, edit, archive). Clients appear in the sidebar like Todoist projects.
+- Per-client tasks that complete via **checkbox** (open / done), with:
+  - an optional **"in progress"** flag (set while a task is open, to signal active work),
+  - a **due date**,
+  - a **priority** flag (P1-P4 style),
+  - a per-task **"client-visible"** toggle.
+- **Sections within a client** to group that client's tasks under headings (e.g. SEO, Ads).
+- **Today** and **Upcoming** smart views aggregating tasks across all clients by due date.
 - Per-client freeform notes (timestamped).
 - Per-client file references stored as links (label + URL). No uploads.
-- A cross-client dashboard surfacing due-soon and overdue work plus active clients.
 
 ### Explicitly out of scope (v1, deferred)
 - Client logins and the read-only client portal (Phase 2).
+- Sub-tasks / nested checklists (Phase 3).
+- Natural-language quick-add date parsing (v1 uses a plain title + date picker) (Phase 3).
+- Manual drag-to-reorder of tasks (v1 orders by priority then due date) (Phase 3).
+- Labels / tags across clients (Phase 3).
 - Real file uploads / storage (Phase 3).
 - Client approvals or comments / two-way feedback (Phase 3).
-- Projects or retainers as a grouping layer above tasks (Phase 3).
+- Projects or retainers as a grouping layer above clients (Phase 3).
 - Full calendar UI and kanban drag-and-drop (Phase 3).
 
 The data model anticipates these so they can be added without restructuring.
@@ -108,7 +122,7 @@ either path.
 
 ## 4. Data model
 
-Four tables in the existing Supabase (Postgres) project. Field lists are the intended shape;
+Five tables in the existing Supabase (Postgres) project. Field lists are the intended shape;
 exact column types and constraints are finalized in the implementation plan.
 
 ### `clients`
@@ -118,17 +132,32 @@ exact column types and constraints are finalized in the implementation plan.
 - `status` (enum-like text: `active` | `paused` | `archived`), default `active`
 - `created_at` (timestamptz)
 
-### `tasks`
+### `sections`
+Optional groupings of tasks within one client (Todoist-style sections).
 - `id` (uuid, pk)
 - `client_id` (uuid, fk -> clients.id)
+- `name` (text) — e.g. "SEO", "Ads", "Creative"
+- `sort_order` (int, default 0) — order of section headings within the client
+- `created_at` (timestamptz)
+
+### `tasks`
+A task is **open or done** (checkbox model). `completed_at IS NULL` means open; a timestamp
+means done. `in_progress` only carries meaning while a task is open.
+- `id` (uuid, pk)
+- `client_id` (uuid, fk -> clients.id)
+- `section_id` (uuid, fk -> sections.id, nullable) — null = ungrouped/"no section"
 - `title` (text)
 - `description` (text, nullable)
-- `status` (enum-like text: `todo` | `in_progress` | `done`), default `todo`
+- `completed_at` (timestamptz, nullable) — the checkbox: null = open, set = done
+- `in_progress` (boolean, default false) — optional "actively working" flag (open tasks only)
+- `priority` (smallint, default 4) — 1 = highest (P1) ... 4 = none/normal (P4), Todoist-style
 - `due_date` (date, nullable)
 - `client_visible` (boolean, default false) — controls whether this task would appear in the
   future client portal
 - `created_at` (timestamptz)
-- `completed_at` (timestamptz, nullable)
+
+Default task ordering within a list: open before done, then `priority` ascending (P1 first),
+then `due_date` ascending (nulls last). No manual drag-reorder in v1.
 
 ### `notes`
 - `id` (uuid, pk)
@@ -144,35 +173,51 @@ exact column types and constraints are finalized in the implementation plan.
 - `url` (text) — link to Drive / Figma / Dropbox / etc.
 - `created_at` (timestamptz)
 
-**Future tables (not built in v1):** `projects` (grouping layer above tasks), `client_users`
-(maps a portal login to a `client_id`).
+**Future tables (not built in v1):** `subtasks` (or self-referential `parent_task_id`),
+`labels` + `task_labels`, `projects` (grouping layer above clients), `client_users` (maps a
+portal login to a `client_id`).
 
 ## 5. Screens
 
-All under the `/app` route group, behind the signed-cookie login.
+All under the `/app` route group, behind the server-side auth gate. The shell is a
+**persistent two-pane Todoist layout**: a left sidebar (navigation) and a main pane (the
+current view). The sidebar is part of the `(platform)` layout, so it shows on every screen.
 
 ### Login
-Reuses the existing admin login flow/UI pattern. On success, sets the signed cookie and
-redirects into the dashboard.
+Reuses the existing admin login flow/UI pattern. On success, sets the `platform_token` cookie
+and redirects into Today.
 
-### Dashboard (`/app`)
-The daily driver. Two regions:
-- **Due soon / overdue:** tasks across all clients ordered by due date, with overdue clearly
-  flagged. Answers "what needs attention today?"
-- **Active clients:** a compact list of active clients with their open-task counts, linking
-  into each client's detail page.
+### Sidebar (persistent)
+- **Smart views (top):** **Today** and **Upcoming**.
+- **Clients (below):** active clients listed like Todoist projects, each with an open-task
+  count badge. A "+ Add client" action. Archived clients are tucked into a collapsed/secondary
+  area, not in the main list.
 
-### Clients list (`/app/clients`)
-Every client with status and open-task count. Create a new client. Filter or separate
-archived clients from active.
+### Today (`/app` — the default landing view)
+Open tasks across all clients that are due today or overdue, ordered by the default ordering
+(priority then due date). Overdue is clearly flagged. Each row shows a checkbox, title,
+priority flag, due date, and which client it belongs to. This is the daily driver and replaces
+the old "dashboard."
 
-### Client detail (`/app/clients/[id]`)
-The workhorse, one client on one page, with three areas:
-- **Tasks:** listed grouped by status (`todo` / `in_progress` / `done`). Each task shows
-  title, due date, and the `client_visible` toggle. Inline create/edit/complete. v1 uses
-  status-grouped lists, not drag-and-drop kanban.
-- **Notes:** chronological notes, add/edit.
-- **Files:** list of links (label + URL), add/remove.
+### Upcoming (`/app/upcoming`)
+Open tasks across all clients with a future due date, grouped by date. Same row format as
+Today, including the client label.
+
+### Client view (`/app/clients/[id]`)
+The workhorse, one client on one page, Todoist project style:
+- **Tasks:** a checklist, optionally grouped under **sections**. Tasks not in a section appear
+  ungrouped. Each row: checkbox (complete), title, priority flag, due date, an "in progress"
+  toggle, and the `client_visible` toggle. Inline quick-add of a task (plain title + due date
+  + priority; no natural-language parsing in v1). Add/rename/reorder sections. Default
+  ordering per section as defined in section 4; completed tasks collapse to the bottom or hide
+  behind a "show completed" control.
+- **Notes:** chronological notes, add/edit (in a secondary tab or panel on this page).
+- **Files:** list of links (label + URL), add/remove (same secondary area).
+
+### Client management
+Create / edit / archive a client is handled inline from the sidebar ("+ Add client") and the
+client view header (rename, change status, archive). No separate clients-list page is needed
+in v1, since the sidebar is the project list.
 
 ## 6. Design system
 
@@ -199,17 +244,24 @@ to Aurelius Media, not a generic admin panel:
 - Auth gate: unauthenticated requests to `/app/*` are server-blocked and redirected to login
   (no client data in the response); valid `platform_token` cookie passes. Each `/api/platform`
   handler rejects unauthenticated requests with 401.
-- CRUD round-trips for clients, tasks, notes, files against the Supabase project.
-- Dashboard correctly classifies overdue vs due-soon and counts open tasks per client.
+- CRUD round-trips for clients, sections, tasks, notes, files against the Supabase project.
+- Checkbox completion sets/clears `completed_at`; completed tasks leave the open lists and the
+  sidebar counts. The `in_progress` flag is settable only while open and is ignored once done.
+- Today shows only open, due-today-or-overdue tasks; Upcoming shows only open, future-dated
+  tasks; both label the owning client. Sidebar counts equal open-task counts per client.
+- Task ordering follows priority then due date as specified.
 - `client_visible` defaults to false and persists correctly (it gates Phase 2, so correctness
   matters early).
 
 ## 9. Phasing
 
-- **Phase 1 (build now):** schema + login + clients + client-detail (tasks, notes, file links)
-  + cross-client dashboard. A working internal tool.
+- **Phase 1 (build now):** schema + login + server auth gate + the Todoist shell (sidebar with
+  Today/Upcoming and clients) + client view (sectioned checklist with priority, due dates,
+  in-progress and client-visible toggles, plus notes and file links). A working internal tool.
 - **Phase 2 (designed for, built when ready):** client logins + read-only progress portal
   (auth approach decided then; scoping by `client_id`, only `client_visible` tasks shown).
+  The portal presents those tasks as done / in progress / coming-up (by `completed_at`,
+  `in_progress`, and `due_date`), no checkboxes for the client.
 - **Phase 3 (later):** real file uploads, approvals/comments, projects/retainers, full
   calendar, kanban.
 
