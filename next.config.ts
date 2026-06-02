@@ -65,6 +65,32 @@ const nextConfig: NextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      // Deleted blog posts → most relevant surviving page
+      {
+        source: "/blog/linkedin-marketing-india",
+        destination: "/services/linkedin-ads",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-to-choose-performance-marketing-agency",
+        destination: "/services/performance-marketing",
+        permanent: true,
+      },
+      {
+        source: "/blog/edtech-marketing-agency",
+        destination: "/blog/edtech-marketing",
+        permanent: true,
+      },
+      {
+        source: "/blog/best-meta-ads-agency-india",
+        destination: "/services/meta-ads",
+        permanent: true,
+      },
+      {
+        source: "/blog/performance-marketing-guide",
+        destination: "/services/performance-marketing",
+        permanent: true,
+      },
       // Category → Service pillar redirects (keyword cannibalization fix)
       {
         source: "/categories/performance-marketing",

@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-10",
-  "total_pages": 69,
+  "last_updated": "2026-05-20",
+  "total_pages": 67,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -12,6 +12,19 @@
     }
   },
   "session_changes": [
+    {
+      "date": "2026-05-20",
+      "summary": "PostHog production fix + bulk deletion of 5 underperforming/duplicate blog posts. Total pages: 69 → 67.",
+      "changes": [
+        "Fixed PostHog analytics on production — Vercel env vars (NEXT_PUBLIC_POSTHOG_KEY, NEXT_PUBLIC_POSTHOG_HOST) had trailing newlines baked into the bundle, causing PostHog to POST events to https://us.i.posthog.com\\n/i/v0/e/ (invalid URL). No events ever reached the ingestion endpoint, even though /array/.../config.js loaded successfully (assets are GET'd from a different subdomain).",
+        "PostHogProvider.tsx now defensively .trim() both NEXT_PUBLIC_POSTHOG_KEY and NEXT_PUBLIC_POSTHOG_HOST at runtime so trailing whitespace in env vars can no longer break ingestion.",
+        "Redeployed to production — confirmed /i/v0/e/ and /s/ (session recording) endpoints now return 200.",
+        "Deleted 5 blog MDX files: linkedin-marketing-india, how-to-choose-performance-marketing-agency, edtech-marketing-agency, best-meta-ads-agency-india, performance-marketing-guide. Files were sitting in content/blog/ as real .mdx files — no auto-generation script involved.",
+        "Stripped dead-link callouts to /blog/performance-marketing-guide from 6 posts: fix-meta-ads-roas, meta-ads-vs-google-ads-budget, meta-ads-andromeda-update, paid-social-playbook, performance-max-hero-or-villain, youtube-ads-subscriber-growth.",
+        "Removed 2 inline links to /blog/edtech-marketing-agency from performance-marketing-agency-cost-india (kept prose intact).",
+        "Added 5 permanent 308 redirects in next.config.ts: /blog/linkedin-marketing-india → /services/linkedin-ads, /blog/how-to-choose-performance-marketing-agency → /services/performance-marketing, /blog/edtech-marketing-agency → /blog/edtech-marketing, /blog/best-meta-ads-agency-india → /services/meta-ads, /blog/performance-marketing-guide → /services/performance-marketing. Preserves SEO equity from any indexed URLs/backlinks."
+      ]
+    },
     {
       "date": "2026-05-10",
       "summary": "Traffic investigation + SEO fixes. Fixed broken blog images caused by Sprint 1 absolute ogImage URLs.",
@@ -1240,13 +1253,11 @@
       "internal_links_to": [
         "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
-        "/blog/performance-marketing-guide",
         "/services/ai-creative-design",
         "/services/meta-ads"
       ],
       "internal_links_from": [
-        "/blog",
-        "/blog/performance-marketing-guide"
+        "/blog"
       ],
       "notes": "Published 2026-04-21. Featured post. End-to-end paid social system: campaign architecture, creative testing loops, scaling signals. BROKEN LINK: /services/meta-ads-management (invalid route — should be /services/meta-ads)."
     },
@@ -1274,57 +1285,6 @@
         "/blog/education-marketing-india"
       ],
       "notes": "Published 2026-03-28, last updated 2026-05-06. Featured post. 7-part AEO framework — how ChatGPT/Perplexity/Google AI Overviews choose sources, what makes content citable. dateModified set for freshness signals."
-    },
-    {
-      "route": "/blog/best-meta-ads-agency-india",
-      "title": "Best Meta Ads Agency India 2026: What to Look For (And What to Avoid)",
-      "h1": "Best Meta Ads Agency India 2026: What to Look For (And What to Avoid)",
-      "meta_description": "Looking for a Meta Ads agency in India? This guide covers what great agencies actually do — from creative testing to WhatsApp attribution — plus pricing benchmarks and red flags to avoid.",
-      "primary_keyword": "Meta Ads agency India",
-      "topic_cluster": "Performance Marketing",
-      "page_type": "template",
-      "status": "complete",
-      "ogImage": "/blog/MetaROAS.png",
-      "internal_links_to": [
-        "/blog/fix-meta-ads-roas",
-        "/blog/performance-marketing-guide",
-        "/contact",
-        "/services/performance-marketing"
-      ],
-      "internal_links_from": [
-        "/blog"
-      ],
-      "notes": "Published 2026-05-06. India-specific Meta Ads agency hiring guide: criteria, pricing benchmarks, red flags. BROKEN LINKS: /services/meta-ads-management (should be /services/meta-ads), /services/google-ads-management (should be /services/google-ads)."
-    },
-    {
-      "route": "/blog/performance-marketing-guide",
-      "title": "The Complete Performance Marketing Guide (2026)",
-      "h1": "The Complete Performance Marketing Guide (2026)",
-      "meta_description": "The complete performance marketing guide for 2026: Meta, Google, YouTube, LinkedIn channels, global benchmarks, budget frameworks, and measurement strategy. 6,000+ words of practical playbook.",
-      "primary_keyword": "performance marketing guide 2026",
-      "topic_cluster": "Performance Marketing",
-      "page_type": "template",
-      "status": "complete",
-      "ogImage": "/blog/paid-social-playbook.png",
-      "internal_links_to": [
-        "/blog/fix-meta-ads-roas",
-        "/blog/meta-ads-andromeda-update",
-        "/blog/meta-ads-vs-google-ads-budget",
-        "/blog/paid-social-playbook",
-        "/blog/performance-max-hero-or-villain",
-        "/contact",
-        "/services/google-ads",
-        "/services/linkedin-ads",
-        "/services/meta-ads",
-        "/services/performance-marketing",
-        "/services/youtube-ads"
-      ],
-      "internal_links_from": [
-        "/blog",
-        "/blog/paid-social-playbook",
-        "/blog/best-meta-ads-agency-india"
-      ],
-      "notes": "Published 2026-05-06. Featured post. 6,000+ word pillar guide covering Meta, Google, YouTube, LinkedIn channels, global benchmarks, budget frameworks, measurement strategy."
     },
     {
       "route": "/blog/scarcity-brain-marketing-lessons",
@@ -1441,7 +1401,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 19,
+      "total_pages_generated": 22,
       "sample_urls": [
         "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
@@ -1459,8 +1419,6 @@
         "/blog/youtube-seo-guide",
         "/blog/paid-social-playbook",
         "/blog/answer-engine-optimization-guide",
-        "/blog/best-meta-ads-agency-india",
-        "/blog/performance-marketing-guide",
         "/blog/scarcity-brain-marketing-lessons"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
