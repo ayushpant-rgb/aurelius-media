@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-20",
-  "total_pages": 67,
+  "last_updated": "2026-06-03",
+  "total_pages": 70,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -12,6 +12,18 @@
     }
   },
   "session_changes": [
+    {
+      "date": "2026-06-03",
+      "summary": "Published 3 new research-backed blog posts from the MarketerMilk content audit + fixed the recurring 'drafts keep getting published' bug. Total blog posts: 25.",
+      "changes": [
+        "Added /blog/chatgpt-ads-vs-google-ads-vs-meta-ads — BOFU comparison (ChatGPT Ads vs Google Ads vs Meta Ads). Chalk-style cover with real OpenAI/Google Ads/Meta logos generated via Higgsfield reference images. featured: true.",
+        "Added /blog/content-marketing-funnel-stages — 'Marketing Funnel Stages' content-mapping guide (audit topic #10, title reworked off competitor's low-volume term). Chalk funnel cover.",
+        "Added /blog/dark-funnel-buyer-journey — 'The Dark Funnel' (audit topic #30), original angle incl. AI assistants as the new dark funnel. Chalk cover.",
+        "FIXED recurring bug: getAllSlugs() now derives from getAllPosts() and getPostBySlug() returns `published`, so published:false posts truly 404 (previously only hidden from listing/sitemap while the URL still rendered). The 4 drafts (meta-ads-andromeda-update, d2c-marketing-agency, ai-visibility-tools-2026, performance-marketing-agency-cost-india) now correctly return 404.",
+        "Rewrote 6 live posts' internal links that pointed at the meta-ads-andromeda-update draft (kept as draft) so no live 404s.",
+        "Deployed the previously-uncommitted May 20 work (5 deleted posts + 308 redirects + PostHog host .trim() fix) to production."
+      ]
+    },
     {
       "date": "2026-05-20",
       "summary": "PostHog production fix + bulk deletion of 5 underperforming/duplicate blog posts. Total pages: 69 → 67.",
@@ -1401,8 +1413,11 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 22,
+      "total_pages_generated": 25,
       "sample_urls": [
+        "/blog/chatgpt-ads-vs-google-ads-vs-meta-ads",
+        "/blog/content-marketing-funnel-stages",
+        "/blog/dark-funnel-buyer-journey",
         "/blog/fix-meta-ads-roas",
         "/blog/meta-ads-vs-google-ads-budget",
         "/blog/vibe-coding-explained-build-saas-weekend",
