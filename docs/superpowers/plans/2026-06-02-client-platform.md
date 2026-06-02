@@ -11,7 +11,9 @@
 **Spec:** `docs/superpowers/specs/2026-06-02-client-platform-design.md`
 
 ## Key decisions locked for this plan
-- **Auth gate = per-page + per-route server guard, NOT middleware.** Next.js middleware runs on the Edge runtime, which cannot use Node's `crypto.createHmac` (the primitive the token relies on). Each `(platform)` page server component and each `/api/platform/*` handler calls a guard that verifies the `platform_token` cookie and `redirect()`s / returns 401 before any Supabase read. This matches how `/api/admin/leads` already guards itself.
+- **Auth gate = per-page + per-route server guard, NOT middleware.** Each `(platform)` page server component and each `/api/platform/*` handler calls a guard that verifies the `platform_token` cookie and `redirect()`s / returns 401 before any Supabase read. Rationale: this is consistent with how `/api/admin/leads` already guards itself (an early 401 inside the handler), keeps the auth check co-located with the code it protects, and avoids introducing a separate middleware choke point and its runtime config. (Middleware is a viable alternative in Next 16, but it is unnecessary here and a per-route guard is the lower-churn, more consistent choice.)
+- **Marketing chrome isolation.** The single root layout (`src/app/layout.tsx`) renders the marketing `Header`, `<main>`, and `Footer` around all children, and a nested route-group layout cannot replace it. So the platform must opt out of that chrome explicitly. Task 8 introduces a `ConditionalChrome` client wrapper in the root layout that renders the marketing header/footer only when the path is not under `/app`. On `/app/*` it renders children bare, and the platform shell layout supplies its own full-screen two-pane container. (`LeadPopup` already self-suppresses on `/app` from Task 5; PostHog stays global, which is harmless.)
+- **Clients are archived, never hard-deleted in v1.** The UI only offers Archive (PATCH `status:'archived'`). The schema's `ON DELETE CASCADE` FKs mean a manual SQL delete would clean up dependents, but the app exposes no hard-delete. This is the spec §7 resolution.
 - **Auth module = new `src/lib/platform/auth.ts`**, reusing the same HMAC primitives as `src/lib/admin-auth.ts` but with `COOKIE_NAME = 'platform_token'`. `admin-auth.ts` is left untouched (lower risk). Single source of truth for both the guard and the route handlers, resolving the reviewer's "one verifier" note.
 - **Password:** reuse the existing `ADMIN_PASSWORD` env var for v1 (shared password, distinct cookie). No new env var.
 - **Section delete reparents tasks automatically** via `tasks.section_id ... ON DELETE SET NULL`.
@@ -26,6 +28,7 @@
 
 **Files:**
 - Modify: `package.json` (add devDeps + `test` script)
+- Modify: `tsconfig.json` (exclude test files from the build type-check)
 - Create: `vitest.config.ts`
 
 - [ ] **Step 1: Install Vitest as a dev dependency**
@@ -57,15 +60,23 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 4: Verify the runner works (no tests yet is fine)**
+- [ ] **Step 4: Exclude test files from the Next/TS build**
+
+`tsconfig.json` includes `**/*.ts`, so `next build` would type-check the co-located `*.test.ts` files (which import `vitest`). A test-only type error must not break the production build. Add an `exclude` entry to `tsconfig.json` (merge with any existing `exclude`; `node_modules` is excluded by default but list it to be safe):
+```json
+"exclude": ["node_modules", "src/**/*.test.ts"]
+```
+Tests still run under Vitest (which uses its own config), so coverage is unaffected.
+
+- [ ] **Step 5: Verify the runner works (no tests yet is fine)**
 
 Run: `npm run test`
 Expected: Vitest runs and reports "No test files found" (exit 0) or runs 0 tests. Either is acceptable.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
-git add package.json package-lock.json vitest.config.ts
+git add package.json package-lock.json vitest.config.ts tsconfig.json
 git commit -m "chore: add vitest for platform unit tests"
 ```
 
@@ -239,6 +250,7 @@ Mirror `src/lib/admin-auth.ts` exactly, changing only the cookie name. The signi
 Create `src/lib/platform/auth.test.ts`:
 ```ts
 import { describe, it, expect, beforeAll } from 'vitest';
+import { createHmac } from 'crypto';
 import { generatePlatformToken, verifyPlatformToken } from './auth';
 
 beforeAll(() => {
@@ -264,7 +276,6 @@ describe('verifyPlatformToken', () => {
   it('rejects a token older than 24h', () => {
     const old = (Date.now() - 25 * 60 * 60 * 1000).toString();
     // Re-sign an old timestamp the same way auth.ts does, to prove age is checked.
-    const { createHmac } = require('crypto');
     const hmac = createHmac('sha256', 'test-signing-key').update(old).digest('hex');
     expect(verifyPlatformToken(`${old}.${hmac}`)).toBe(false);
   });
@@ -707,15 +718,76 @@ git commit -m "feat(platform): add server-side data access layer"
 
 ---
 
-### Task 8: Platform layout (shell) + sidebar
+### Task 8: Isolate marketing chrome, then build the platform shell + sidebar
 
 **Files:**
-- Create: `src/app/(platform)/app/layout.tsx`
-- Create: `src/app/(platform)/app/Sidebar.tsx`
+- Create: `src/components/ConditionalChrome.tsx`
+- Modify: `src/app/layout.tsx:119-127` (wrap Header/main/Footer in `ConditionalChrome`)
+- Create: `src/app/(platform)/app/(shell)/layout.tsx`
+- Create: `src/app/(platform)/app/(shell)/Sidebar.tsx`
 
-The layout is a server component: it sets `noindex` metadata, runs the page guard for everything except `/app/login`, fetches sidebar data, and renders the two-pane shell. Because `/app/login` shares this layout, the guard must NOT redirect on the login route. Simplest robust approach: the layout does NOT guard; each *page* guards (Task 9, 10, 15). The layout only renders the shell + sidebar. The login page renders its own full-screen form and ignores the sidebar by being a sibling route — to keep the login visually clean, the login page uses its own minimal markup and the shared layout simply renders `{children}` plus the sidebar; on the login route the sidebar is harmless but undesirable. To avoid the sidebar on login, place login OUTSIDE this layout: see Step 1.
+**Why the chrome step first:** the root layout (`src/app/layout.tsx`) renders `<Header/>`, `<main>{children}</main>`, `<Footer/>` for ALL routes, and a nested route-group layout cannot replace it. Without this step, every `/app` page would show the marketing nav and footer, violating spec §3. We hide the marketing chrome on `/app/*` with a small client wrapper, passing Header/Footer as server-rendered props so they do not become client components.
 
-- [ ] **Step 1: Move login out of the shell**
+- [ ] **Step 1: Create `ConditionalChrome`**
+
+Create `src/components/ConditionalChrome.tsx`:
+```tsx
+'use client';
+
+import { usePathname } from 'next/navigation';
+import type { ReactNode } from 'react';
+
+export default function ConditionalChrome({
+  header, footer, children,
+}: { header: ReactNode; footer: ReactNode; children: ReactNode }) {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/app')) return <>{children}</>;
+  return (
+    <>
+      {header}
+      <main>{children}</main>
+      {footer}
+    </>
+  );
+}
+```
+
+- [ ] **Step 2: Wire it into the root layout**
+
+In `src/app/layout.tsx`, import it (`import ConditionalChrome from "@/components/ConditionalChrome";`) and replace the body content block:
+```tsx
+// before
+<PostHogProvider>
+  <PostHogPageView />
+  <LeadPopup />
+  <Header />
+  <main>{children}</main>
+  <Footer />
+</PostHogProvider>
+// after
+<PostHogProvider>
+  <PostHogPageView />
+  <LeadPopup />
+  <ConditionalChrome header={<Header />} footer={<Footer />}>
+    {children}
+  </ConditionalChrome>
+</PostHogProvider>
+```
+
+- [ ] **Step 3: Verify the marketing site is visually unchanged**
+
+Run: `npm run build` (expected: succeeds), then `npm run dev` and load `/` and `/blog` → Header and Footer still render exactly as before. (On `/app` they will be gone once the shell exists.)
+
+- [ ] **Step 4: Commit the isolation change**
+
+```bash
+git add src/components/ConditionalChrome.tsx src/app/layout.tsx
+git commit -m "feat(platform): hide marketing header/footer on /app via ConditionalChrome"
+```
+
+Now build the platform shell. The shell layout is a server component: it sets `noindex`, runs the page guard, fetches sidebar data, and renders the two-pane shell. Login must NOT sit inside this shell (no sidebar on the login screen), so login lives directly under `app/` while the views live under a `(shell)` group.
+
+- [ ] **Step 5: Confirm the route structure (login outside the shell)**
 
 The shell layout should wrap the app views but not the login. Restructure so the shell layout lives at `src/app/(platform)/app/(shell)/layout.tsx` and the real views (`page.tsx` for Today, `upcoming/`, `clients/[id]/`) live under `(shell)/`, while `login/page.tsx` stays directly under `app/` (no shell). Final structure:
 ```
@@ -730,7 +802,7 @@ src/app/(platform)/app/
 ```
 Note: route groups `(shell)` do not add a URL segment, so Today is still `/app`.
 
-- [ ] **Step 2: Create the shell layout**
+- [ ] **Step 6: Create the shell layout**
 
 Create `src/app/(platform)/app/(shell)/layout.tsx`:
 ```tsx
@@ -759,7 +831,7 @@ export default async function ShellLayout({ children }: { children: React.ReactN
 }
 ```
 
-- [ ] **Step 3: Create the sidebar**
+- [ ] **Step 7: Create the sidebar**
 
 Create `src/app/(platform)/app/(shell)/Sidebar.tsx`:
 ```tsx
@@ -829,12 +901,12 @@ function NewClientButton() {
 ```
 Note: `NewClientButton` depends on the clients POST route from Task 11; until then the button errors. That is acceptable within the chunk; it is wired and verified in Chunk 3.
 
-- [ ] **Step 4: Build**
+- [ ] **Step 8: Build**
 
 Run: `npm run build`
 Expected: compiles. `/app`, `/app/upcoming`, `/app/clients/[id]` may not exist yet, so build only requires the layout + login to compile. If Next complains about an empty `(shell)` group with no page, proceed to Task 9 which adds `/app` `page.tsx`, then build.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 9: Commit**
 
 ```bash
 git add "src/app/(platform)/app/(shell)/layout.tsx" "src/app/(platform)/app/(shell)/Sidebar.tsx"
@@ -938,7 +1010,9 @@ export default async function UpcomingPage() {
   const byDate = new Map<string, typeof tasks>();
   for (const t of tasks) {
     const key = t.due_date as string;
-    (byDate.get(key) ?? byDate.set(key, []).get(key)!).push(t);
+    let arr = byDate.get(key);
+    if (!arr) { arr = []; byDate.set(key, arr); }
+    arr.push(t);
   }
   const dates = [...byDate.keys()].sort();
   return (
@@ -1425,11 +1499,144 @@ export default function ClientView(props: {
   );
 }
 
-// TaskGroup, AddSection, NotesTab, FilesTab: implement with the same `api()` + `onDone/refresh`
-// pattern. TaskGroup sorts open tasks with compareTasks, hides completed behind a toggle,
-// renders a checkbox (onToggle), priority <select>, due <input type="date"> (onPatch),
-// in-progress + client-visible checkboxes (onPatch), and a quick-add input (onAdd).
+function TaskGroup({
+  group, today, onToggle, onPatch, onAdd,
+}: {
+  group: { id: string | null; name: string; tasks: Task[] };
+  today: string;
+  onToggle: (t: Task) => void;
+  onPatch: (id: string, patch: Record<string, unknown>) => void;
+  onAdd: (title: string) => void;
+}) {
+  const [showDone, setShowDone] = useState(false);
+  const [newTitle, setNewTitle] = useState('');
+  const open = group.tasks.filter((t) => !t.completed_at).sort(compareTasks);
+  const done = group.tasks.filter((t) => t.completed_at);
+
+  return (
+    <section>
+      <h2 className="text-sm uppercase tracking-wider text-brand-gray-dark mb-3">{group.name}</h2>
+      <div className="flex flex-col">
+        {open.map((t) => (
+          <div key={t.id} className="flex items-center gap-3 py-2 border-b border-brand-border-subtle">
+            <input type="checkbox" checked={false} onChange={() => onToggle(t)} className="accent-brand-accent" />
+            <span className="flex-1 min-w-0 truncate">{t.title}</span>
+            <select value={t.priority} onChange={(e) => onPatch(t.id, { priority: Number(e.target.value) })}
+              className="bg-brand-input border border-brand-border rounded-[8px] text-xs px-1 py-0.5">
+              {[1, 2, 3, 4].map((p) => <option key={p} value={p}>P{p}</option>)}
+            </select>
+            <input type="date" value={t.due_date ?? ''} onChange={(e) => onPatch(t.id, { due_date: e.target.value || null })}
+              className={`bg-brand-input border border-brand-border rounded-[8px] text-xs px-1 py-0.5 ${
+                t.due_date && t.due_date < today ? 'text-red-400' : ''}`} />
+            <label className="text-xs text-brand-gray-dark flex items-center gap-1">
+              <input type="checkbox" checked={t.in_progress} onChange={(e) => onPatch(t.id, { in_progress: e.target.checked })} />
+              wip
+            </label>
+            <label className="text-xs text-brand-gray-dark flex items-center gap-1">
+              <input type="checkbox" checked={t.client_visible} onChange={(e) => onPatch(t.id, { client_visible: e.target.checked })} />
+              client
+            </label>
+          </div>
+        ))}
+        <div className="flex gap-2 py-2">
+          <input value={newTitle} onChange={(e) => setNewTitle(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') { onAdd(newTitle); setNewTitle(''); } }}
+            placeholder="+ Add task (Enter)"
+            className="flex-1 bg-transparent text-sm outline-none placeholder:text-brand-gray-dark" />
+        </div>
+        {done.length > 0 && (
+          <button onClick={() => setShowDone((s) => !s)} className="text-xs text-brand-gray-dark text-left py-1">
+            {showDone ? 'Hide' : 'Show'} completed ({done.length})
+          </button>
+        )}
+        {showDone && done.map((t) => (
+          <div key={t.id} className="flex items-center gap-3 py-2 opacity-50 border-b border-brand-border-subtle">
+            <input type="checkbox" checked readOnly onClick={() => onToggle(t)} className="accent-brand-accent" />
+            <span className="flex-1 min-w-0 truncate line-through">{t.title}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AddSection({ clientId, onDone, count }: { clientId: string; onDone: () => void; count: number }) {
+  async function add() {
+    const name = window.prompt('New section name');
+    if (!name) return;
+    if (await api('/api/platform/sections', 'POST', { client_id: clientId, name, sort_order: count })) onDone();
+  }
+  return (
+    <button onClick={add} className="text-sm text-brand-accent-text text-left">+ Add section</button>
+  );
+}
+
+function NotesTab({ clientId, notes, onDone }: { clientId: string; notes: Note[]; onDone: () => void }) {
+  const [body, setBody] = useState('');
+  async function add() {
+    if (!body.trim()) return;
+    if (await api('/api/platform/notes', 'POST', { client_id: clientId, body })) { setBody(''); onDone(); }
+  }
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="New note"
+          className="bg-brand-input border border-brand-border rounded-[12px] px-3 py-2 text-sm min-h-20" />
+        <button onClick={add} className="cta-primary self-start text-sm">Add note</button>
+      </div>
+      {notes.map((n) => (
+        <div key={n.id} className="bg-brand-card border border-brand-border-subtle rounded-[12px] p-3">
+          <p className="text-sm whitespace-pre-wrap">{n.body}</p>
+          <div className="flex gap-3 mt-2 text-xs text-brand-gray-dark">
+            <span>{n.created_at.slice(0, 10)}</span>
+            <button onClick={async () => {
+              const next = window.prompt('Edit note', n.body);
+              if (next != null && await api('/api/platform/notes', 'PATCH', { id: n.id, body: next })) onDone();
+            }}>Edit</button>
+            <button onClick={async () => {
+              if (confirm('Delete note?') && await api('/api/platform/notes', 'DELETE', { id: n.id })) onDone();
+            }}>Delete</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FilesTab({ clientId, files, onDone }: { clientId: string; files: FileLink[]; onDone: () => void }) {
+  const [label, setLabel] = useState('');
+  const [url, setUrl] = useState('');
+  async function add() {
+    if (!label.trim() || !url.trim()) return;
+    if (await api('/api/platform/files', 'POST', { client_id: clientId, label, url })) {
+      setLabel(''); setUrl(''); onDone();
+    } else {
+      alert('Could not add link. URL must start with http:// or https://');
+    }
+  }
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="Label"
+          className="bg-brand-input border border-brand-border rounded-[12px] px-3 py-2 text-sm" />
+        <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://…"
+          className="flex-1 bg-brand-input border border-brand-border rounded-[12px] px-3 py-2 text-sm" />
+        <button onClick={add} className="cta-primary text-sm">Add link</button>
+      </div>
+      {files.map((f) => (
+        <div key={f.id} className="flex items-center gap-3 py-2 border-b border-brand-border-subtle">
+          <a href={f.url} target="_blank" rel="noopener noreferrer" className="text-brand-accent-text text-sm flex-1 truncate">{f.label}</a>
+          <button onClick={async () => {
+            if (confirm('Remove link?') && await api('/api/platform/files', 'DELETE', { id: f.id })) onDone();
+          }} className="text-xs text-brand-gray-dark">Remove</button>
+        </div>
+      ))}
+    </div>
+  );
+}
 ```
+
+Note on section rename/reorder: the above ships add + delete (the spec's required behaviors plus the section→ungrouped guarantee). Rename and up/down reorder are small additions using the same `api('/api/platform/sections', 'PATCH', { id, name })` / `{ id, sort_order }` calls; add them as controls on each section heading if desired. They are in scope (spec §2) so include them: render a small "edit"/"↑"/"↓" control next to each `group.name` when `group.id !== null`, calling PATCH then `refresh()`. This is the one place to use judgment on exact placement; the API and data already support it.
 
 - [ ] **Step 3: Build**
 
