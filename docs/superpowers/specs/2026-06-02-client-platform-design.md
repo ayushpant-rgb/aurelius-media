@@ -44,9 +44,13 @@ separate project or repository.
 
 - **Route group:** new route group at `/app` (e.g. `src/app/(platform)/app/...`) with its
   **own layout**, so it does not inherit the marketing site's header, footer, or SEO.
-- **Indexing:** the section is `noindex` (robots index:false, follow:false), matching the
-  existing `/admin` convention. The lead-capture popup is suppressed here, as it already is
-  on `/admin`.
+- **Indexing:** the section is `noindex`. Set `robots: { index: false, follow: false }` in
+  the `(platform)` **layout** metadata so every child route inherits it, rather than relying
+  on a per-page export (the `/admin` pages set it per-page, which is easy to forget on new
+  routes).
+- **Lead popup:** `LeadPopup.tsx` suppresses on `/admin` and `/contact` via an explicit path
+  check. It will fire on `/app` until `/app` is added to that suppression list. This is a
+  required task in the plan, not automatic.
 - **Separation:** kept distinct from `/admin` (which stays leads-only). `/admin` is a poor
   name for URLs a client will eventually touch; `/app` lines up with a future
   `app.aureliusmedia.co`.
@@ -59,17 +63,38 @@ separate project or repository.
 ### Reuse of existing patterns (important)
 The codebase already contains the patterns this needs. v1 is largely assembling them.
 
-- **Auth (v1):** reuse the existing signed-cookie login in `src/lib/admin-auth.ts` — an
-  HMAC token cookie, one password, 24h expiry. This is the same mechanism guarding `/admin`
+- **Auth mechanism (v1):** reuse the existing signed-cookie login in `src/lib/admin-auth.ts`
+  — an HMAC token, one password, 24h expiry. This is the same token scheme guarding `/admin`
   today. No new auth dependency is introduced.
-  - Note: the platform may use a separate cookie name / password from the leads admin so the
-    two areas can have independent access, to be decided in the plan. Default assumption:
-    reuse the same admin login for v1 simplicity.
+  - **Distinct cookie:** the platform uses its own cookie name, `platform_token`, not the
+    leads admin's `admin_token`. The password may be shared in v1, but a separate cookie lets
+    the two surfaces diverge and be revoked independently later (important once client logins
+    arrive) without a cookie migration. `admin-auth.ts` is lightly parameterized to accept a
+    cookie name, or a small `platform-auth.ts` wraps the same HMAC primitives.
+  - **Login route:** a new route handler issues the platform cookie (e.g.
+    `/api/platform/verify`), mirroring `/api/admin/verify`.
+- **Auth enforcement (v1) — IMPORTANT, this is a real change, not a reuse:** the existing
+  `/admin` section does **not** gate at the server. `admin/leads/page.tsx` renders
+  unconditionally and protection is client-side (a password form) plus 401s from the API
+  routes; the page HTML is served to anyone. That model is unsafe for the platform, because
+  `/app` pages are **server-rendered and read client data from Supabase directly**, so an
+  ungated page would ship that data to any visitor. Therefore the platform **must** enforce
+  auth on the server **before any Supabase read**, via one of:
+  1. a `middleware.ts` matching `/app/:path*` that calls `verifyAdminToken` on the
+     `platform_token` cookie and redirects unauthenticated requests to the login (preferred,
+     single choke point), or
+  2. a per-page server guard: each `(platform)` server component calls
+     `isPlatformAuthenticated()` and `redirect()`s before fetching.
+  The implementation plan picks one; middleware is the default recommendation.
+- **Mutations (v1):** use **route handlers** under `/api/platform/...`, reusing the existing
+  pattern (`/api/admin/leads` PATCH, `/api/leads` POST). Not server actions, to stay
+  consistent with the codebase and keep auth checks in one well-understood place. Every
+  handler re-verifies the `platform_token` before touching Supabase.
 - **Database access (v1):** add new tables to the **existing Supabase project**, accessed
   server-side through the existing `src/lib/supabase.ts` service-role client, with scoping
   enforced in app code. This is identical to how `/api/leads` and the leads dashboard work
   today. No row-level security is required for v1 because all access is server-side and
-  single-user.
+  single-user. (RLS becomes relevant only if Phase 2 adopts Supabase Auth.)
 
 ### Client logins (Phase 2 decision, not now)
 When client logins are built, there are two viable paths, chosen at that time:
@@ -102,7 +127,6 @@ exact column types and constraints are finalized in the implementation plan.
 - `due_date` (date, nullable)
 - `client_visible` (boolean, default false) — controls whether this task would appear in the
   future client portal
-- `sort_order` (int, nullable) — for manual ordering within a status
 - `created_at` (timestamptz)
 - `completed_at` (timestamptz, nullable)
 
@@ -166,11 +190,15 @@ to Aurelius Media, not a generic admin panel:
   surface as explicit user-visible errors, never silent.
 - Deleting a client should handle dependent tasks/notes/files (cascade or block with a clear
   message, decided in the plan). Default lean: archive over hard-delete for clients.
-- Unauthenticated access to any `/app` route redirects to the login.
+- Unauthenticated access to any `/app` route is blocked at the server (middleware or per-page
+  guard, per section 3) and redirected to the login **before any Supabase read**. Page HTML
+  for `/app` routes must never reach an unauthenticated visitor.
 - Due-date logic (overdue vs due-soon) uses the app's timezone consistently.
 
 ## 8. Testing
-- Auth gate: unauthenticated requests to `/app/*` redirect to login; valid cookie passes.
+- Auth gate: unauthenticated requests to `/app/*` are server-blocked and redirected to login
+  (no client data in the response); valid `platform_token` cookie passes. Each `/api/platform`
+  handler rejects unauthenticated requests with 401.
 - CRUD round-trips for clients, tasks, notes, files against the Supabase project.
 - Dashboard correctly classifies overdue vs due-soon and counts open tasks per client.
 - `client_visible` defaults to false and persists correctly (it gates Phase 2, so correctness
