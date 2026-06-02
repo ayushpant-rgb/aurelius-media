@@ -93,6 +93,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
         authorRole: data.authorRole || 'Founder, Aurelius Media',
         readTime: stats.text,
         featured: data.featured || false,
+        published: data.published !== undefined ? data.published : true,
         ogImage: data.ogImage || undefined,
         metaTitle: data.metaTitle || undefined,
         metaDescription: data.metaDescription || undefined,
@@ -105,10 +106,10 @@ export function getPostBySlug(slug: string): BlogPost | null {
 }
 
 export function getAllSlugs(): string[] {
-    if (!fs.existsSync(POSTS_DIR)) return [];
-    return fs.readdirSync(POSTS_DIR)
-        .filter(f => f.endsWith('.mdx'))
-        .map(f => f.replace('.mdx', ''));
+    // Drive off getAllPosts() so published:false posts are never statically
+    // generated. The detail route (page.tsx) also guards on post.published as
+    // a second layer for any direct/on-demand hit.
+    return getAllPosts().map(p => p.slug);
 }
 
 export function getPostsByCategory(category: string): BlogPostMeta[] {
