@@ -1551,7 +1551,7 @@ function TaskGroup({
         )}
         {showDone && done.map((t) => (
           <div key={t.id} className="flex items-center gap-3 py-2 opacity-50 border-b border-brand-border-subtle">
-            <input type="checkbox" checked readOnly onClick={() => onToggle(t)} className="accent-brand-accent" />
+            <input type="checkbox" checked onChange={() => onToggle(t)} className="accent-brand-accent" />
             <span className="flex-1 min-w-0 truncate line-through">{t.title}</span>
           </div>
         ))}
