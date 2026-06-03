@@ -24,7 +24,7 @@
         "Deployed the previously-uncommitted May 20 work (5 deleted posts + 308 redirects + PostHog host .trim() fix) to production.",
         "Added /blog/how-to-measure-ai-search-visibility — distinct measurement-focused companion to the ai-seo-strategy pillar (avoids cannibalization; cross-linked). Flat-vector explainer thumbnail in the edtech-marketing.webp style (Higgsfield reference image).",
         "Replaced the cover image on the high-traffic /blog/what-works-on-instagram-2026 with a chalk-style cover featuring the real Instagram logo (Higgsfield reference). Title/slug/meta unchanged to protect rankings.",
-        "Added /blog/product-led-content — 'How to Create Product-Led Content (Without Sounding Like Sales)' (audit topic #41). Paper-collage thumbnail in the instagram-authors.jpeg style (Higgsfield reference image). Total blog posts: 27.",
+        "Added /blog/product-led-marketing — 'Product-Led Marketing: How to Sell Without Sounding Like Sales' (audit topic #41). Retitled from 'product-led content' (the source-blog title was already taken); framed as PLM = umbrella, PLC = engine. Slug renamed product-led-content → product-led-marketing with a 308 redirect. Paper-collage thumbnail in the instagram-authors.jpeg style (Higgsfield reference image). Total blog posts: 27.",
         "Note: when the Higgsfield MCP drops mid-generation, retrieve finished jobs via the `higgsfield` CLI (`higgsfield generate get <id> --json` → .result_url) — jobs persist on the account."
       ]
     },
@@ -1419,7 +1419,7 @@
       "data_source": "content/blog/*.mdx",
       "total_pages_generated": 27,
       "sample_urls": [
-        "/blog/product-led-content",
+        "/blog/product-led-marketing",
         "/blog/how-to-measure-ai-search-visibility",
         "/blog/chatgpt-ads-vs-google-ads-vs-meta-ads",
         "/blog/content-marketing-funnel-stages",
