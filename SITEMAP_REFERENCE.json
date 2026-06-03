@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-06-03",
-  "total_pages": 72,
+  "total_pages": 73,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -25,7 +25,8 @@
         "Added /blog/how-to-measure-ai-search-visibility — distinct measurement-focused companion to the ai-seo-strategy pillar (avoids cannibalization; cross-linked). Flat-vector explainer thumbnail in the edtech-marketing.webp style (Higgsfield reference image).",
         "Replaced the cover image on the high-traffic /blog/what-works-on-instagram-2026 with a chalk-style cover featuring the real Instagram logo (Higgsfield reference). Title/slug/meta unchanged to protect rankings.",
         "Added /blog/product-led-marketing — 'Product-Led Marketing: How to Sell Without Sounding Like Sales' (audit topic #41). Retitled from 'product-led content' (the source-blog title was already taken); framed as PLM = umbrella, PLC = engine. Slug renamed product-led-content → product-led-marketing with a 308 redirect. Paper-collage thumbnail in the instagram-authors.jpeg style (Higgsfield reference image). Total blog posts: 27. Then expanded ~2.5k → ~4.6k words (SERP-synthesized: PLM vs PLG, freemium/free-trial/reverse-trial models, product-led funnel, PQLs, metrics, real examples, when-it-fails, TL;DR) to target rankings; category moved Content Strategy → Growth Marketing.",
-        "Note: when the Higgsfield MCP drops mid-generation, retrieve finished jobs via the `higgsfield` CLI (`higgsfield generate get <id> --json` → .result_url) — jobs persist on the account."
+        "Note: when the Higgsfield MCP drops mid-generation, retrieve finished jobs via the `higgsfield` CLI (`higgsfield generate get <id> --json` → .result_url) — jobs persist on the account.",
+        "Added /blog/how-to-get-recommended-by-chatgpt — BOFU/AEO post 'How to Get Your Brand Recommended by ChatGPT' (~3.3k words, SERP-synthesized: the consensus factor, the 9% problem, comparison queries, entity recognition, per-platform differences, audit playbook). Positioned as a cluster page under the ai-seo-strategy pillar (cross-linked, not duplicating it). Chalk cover with the ChatGPT/OpenAI logo via Higgsfield reference. Total blog posts: 28."
       ]
     },
     {
@@ -1417,8 +1418,9 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 27,
+      "total_pages_generated": 28,
       "sample_urls": [
+        "/blog/how-to-get-recommended-by-chatgpt",
         "/blog/product-led-marketing",
         "/blog/how-to-measure-ai-search-visibility",
         "/blog/chatgpt-ads-vs-google-ads-vs-meta-ads",
