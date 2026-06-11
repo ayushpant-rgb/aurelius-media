@@ -33,6 +33,7 @@ const heroIconMap: Record<string, LucideIcon[]> = {
     'no-code-development':     [Code2, Rocket, Globe],
     'ai-workshops':            [GraduationCap, Brain, Users],
     'real-estate-marketing':   [Home, Target, TrendingUp],
+    'real-estate-marketing-dubai': [Home, Globe, TrendingUp],
     'book-marketing':          [BookOpen, Megaphone, TrendingUp],
     'education-marketing':     [GraduationCap, Target, BarChart3],
     'performance-marketing':       [Target, BadgeDollarSign, TrendingUp],
@@ -141,6 +142,7 @@ const serviceIconMap: Record<string, LucideIcon> = {
     'no-code-development':     Code2,
     'ai-workshops':            GraduationCap,
     'real-estate-marketing':   Home,
+    'real-estate-marketing-dubai': Home,
     'book-marketing':          BookOpen,
     'education-marketing':     GraduationCap,
 };
@@ -233,6 +235,7 @@ const serviceTestimonialKeys: Record<string, string[]> = {
     'no-code-development': ['james', 'arjun', 'karan'],
     'ai-workshops': ['priya', 'karan', 'arjun'],
     'real-estate-marketing': ['sara', 'cameron', 'tom'],
+    'real-estate-marketing-dubai': ['sara', 'cameron', 'tom'],
 };
 
 /* ─── Common FAQ questions (appended to each service's FAQs) ─── */

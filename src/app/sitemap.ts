@@ -16,6 +16,7 @@ const SERVICE_SLUGS = [
   'no-code-development',
   'ai-workshops',
   'real-estate-marketing',
+  'real-estate-marketing-dubai',
   'edtech-marketing',
   'd2c-ecommerce-marketing',
   'saas-marketing',

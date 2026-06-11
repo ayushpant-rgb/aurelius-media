@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-03",
-  "total_pages": 74,
+  "last_updated": "2026-06-11",
+  "total_pages": 75,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -123,6 +123,19 @@
         "Category reassignment: Content Strategy and Landing Pages moved from Creative Studio to Growth Engine",
         "Updated total_pages from 51 to 55",
         "Updated PROJECT_CONTEXT.md and SITEMAP_REFERENCE.json"
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "summary": "Added Dubai Real Estate Marketing vertical landing page (/services/real-estate-marketing-dubai) targeting 'real estate marketing agency dubai'. Wired into footer, sitemap, blog category map, icon/testimonial maps, and services data. Generic real-estate-marketing page re-targeted to 'real estate marketing agency' and cross-linked to the Dubai page.",
+      "changes": [
+        "New ServiceData entry real-estate-marketing-dubai in servicePages.ts (full V2 blueprint: whatIs, personas, problems, benefits, subServices, comparisonRows, resultHighlights, differentiators, 6 FAQs)",
+        "Footer.tsx: added 'Dubai Real Estate Marketing' under Industries",
+        "sitemap.ts: added real-estate-marketing-dubai to SERVICE_SLUGS",
+        "page.tsx: serviceBlogCategoryMap entries for real-estate-marketing-dubai; education/edtech/d2c/real-estate entries now also match their vertical blog categories",
+        "ServicePageClient.tsx: heroIconMap, serviceIconMap, serviceTestimonialKeys entries for the Dubai slug",
+        "services.ts: Dubai Real Estate Marketing vertical entry",
+        "real-estate-marketing relatedSlugs now leads with real-estate-marketing-dubai"
       ]
     }
   ],
@@ -299,6 +312,7 @@
         "/services/no-code-development",
         "/services/ai-workshops",
         "/services/real-estate-marketing",
+        "/services/real-estate-marketing-dubai",
         "/services/linkedin-ads",
         "/services/youtube-ads",
         "/services/tiktok-ads",
@@ -682,7 +696,7 @@
       "title": "Real Estate Marketing System | Aurelius Media",
       "h1": "Generate High-Quality Property Leads.",
       "meta_description": "End-to-end performance marketing for real estate developers and top-tier brokerages. Consistent, qualified lead generation across UAE and India.",
-      "primary_keyword": "real estate marketing agency dubai",
+      "primary_keyword": "real estate marketing agency",
       "topic_cluster": "Industry Specialized",
       "page_type": "template",
       "status": "complete",
@@ -692,10 +706,32 @@
         "/services",
         "/services/google-ads",
         "/services/meta-ads",
-        "/services/ai-automation"
+        "/services/ai-automation",
+        "/services/real-estate-marketing-dubai"
       ],
       "internal_links_from": [
         "/services"
+      ]
+    },
+    {
+      "route": "/services/real-estate-marketing-dubai",
+      "title": "Real Estate Marketing Agency in Dubai | Aurelius Media",
+      "h1": "Qualified Buyers for Dubai Property. From Launch to Sold Out.",
+      "meta_description": "Dubai real estate marketing agency for developers and brokerages. Off-plan launch campaigns, international investor targeting, and qualified buyer leads.",
+      "primary_keyword": "real estate marketing agency dubai",
+      "topic_cluster": "Industry Specialized",
+      "page_type": "template",
+      "status": "complete",
+      "internal_links_to": [
+        "https://cal.com/aureliusmedia/15min",
+        "/",
+        "/services",
+        "/services/real-estate-marketing",
+        "/services/google-ads",
+        "/services/meta-ads"
+      ],
+      "internal_links_from": [
+        "/services/real-estate-marketing"
       ]
     },
     {
@@ -1395,12 +1431,14 @@
       "supporting_pages": [
         "/services/book-marketing",
         "/services/education-marketing",
-        "/services/real-estate-marketing"
+        "/services/real-estate-marketing",
+        "/services/real-estate-marketing-dubai"
       ],
       "target_keywords": [
         "book marketing agency",
         "edtech marketing agency",
-        "real estate marketing agency dubai"
+        "real estate marketing agency dubai",
+        "dubai real estate marketing"
       ]
     }
   ],

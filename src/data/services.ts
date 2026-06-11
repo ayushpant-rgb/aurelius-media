@@ -155,6 +155,14 @@ export const services: Service[] = [
         category: 'vertical',
         keywords: ['real estate marketing agency', 'property ads', 'real estate lead generation'],
     },
+    {
+        title: 'Dubai Real Estate Marketing',
+        slug: 'real-estate-marketing-dubai',
+        description: 'Lead generation for Dubai developers and brokerages. Off-plan launch campaigns and international investor targeting that deliver qualified buyers.',
+        icon: '🏙️',
+        category: 'vertical',
+        keywords: ['real estate marketing agency dubai', 'dubai real estate marketing', 'real estate lead generation dubai'],
+    },
 
     // ─── CREATIVE SERVICES ───
     {

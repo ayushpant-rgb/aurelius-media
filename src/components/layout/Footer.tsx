@@ -23,6 +23,7 @@ const footerLinks = {
         { label: 'D2C & E-commerce', href: '/services/d2c-ecommerce-marketing' },
         { label: 'SaaS Marketing', href: '/services/saas-marketing' },
         { label: 'Real Estate Marketing', href: '/services/real-estate-marketing' },
+        { label: 'Dubai Real Estate Marketing', href: '/services/real-estate-marketing-dubai' },
     ],
     resources: [
         { label: 'Blog', href: '/blog' },
