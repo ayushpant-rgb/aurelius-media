@@ -1,0 +1,281 @@
+---
+title: "Google Ads for EdTech: Campaign Structures That Scale"
+excerpt: "Most edtech Google Ads accounts hit a ceiling because they were built to spend, not to scale. Here is the campaign architecture that grows signups and demos without your cost per acquisition blowing up: how edtech intent differs, how to structure Search by intent tier, where Performance Max and Demand Gen help versus hurt, the bidding and conversion tracking that ties to real revenue, and how to scale budget while protecting efficiency."
+date: "2026-06-29"
+dateModified: "2026-06-29"
+category: "EdTech Marketing"
+author: "Ayush Pant"
+authorRole: "Founder, Aurelius Media"
+featured: false
+published: true
+ogImage: "/blog/google-ads-for-edtech-cover.jpg"
+metaTitle: "Google Ads for EdTech: Structures That Scale"
+metaDescription: "The campaign architecture for edtech Google Ads that scales signups and demos without CAC blowing up: Search by intent tier, Performance Max, bidding, and tracking."
+keywords:
+  - google ads for edtech
+  - edtech google ads
+  - edtech campaign structure
+  - google ads for saas edtech
+  - edtech ppc
+  - edtech customer acquisition
+  - target cpa edtech
+  - performance max edtech
+faqs:
+  - question: "How should an edtech company structure its Google Ads account?"
+    answer: "Structure by intent, not by product. Split Search into separate campaigns for brand, competitor, high-intent non-brand (people searching for exactly what you sell), and problem-aware or category terms higher up the funnel. Keep brand and non-brand apart so brand's cheap conversions never hide weak non-brand performance, and so you can budget and bid each one to its real value. That separation is what lets you read the account honestly and scale the parts that actually work, instead of pouring budget into a blended average that looks fine and quietly bleeds money."
+  - question: "Should edtech use Performance Max or stick to Search?"
+    answer: "Start with Search, add Performance Max once you have clean conversion tracking and enough monthly conversions for it to learn. Search is where high-intent demand lives and where you keep the most control, so it should be the backbone of an edtech account. Performance Max can scale once the fundamentals are working, but it tends to absorb your brand and easy converters and report them as new wins, which inflates results. If you run it, exclude brand, feed it strong audience signals and real downstream conversions, and watch the search-terms and placement data closely so it does not quietly cannibalize cheaper channels."
+  - question: "What is a realistic target CPA for edtech?"
+    answer: "There is no universal number, because it depends entirely on what you are paying for and what that converts into later. A free-trial signup, a demo request, and an enrolled student have wildly different values, so you set a target cost for each conversion action based on how often it turns into paid revenue. The discipline that matters is tying your target back to trial-to-paid or lead-to-enrollment rates, not to a signup count. A cheap cost per signup means nothing if those signups never become customers, which is exactly the trap that blows up edtech CAC at scale."
+  - question: "Why does my edtech cost per acquisition rise as I increase budget?"
+    answer: "Because the cheapest, highest-intent demand is finite. Your first dollars capture people searching for exactly what you sell and your own brand, which convert cheaply. As you add budget, Google has to reach further into broader, less-ready audiences, so the marginal cost per real customer climbs. The fix is not to stop spending, it is to scale in the right order: max out high-intent and brand first, expand into category and problem-aware terms deliberately, hold each campaign to its own target, and judge new spend on trial-to-paid revenue rather than raw signup volume."
+  - question: "What conversions should edtech track in Google Ads?"
+    answer: "Track the full chain, not just the signup. A free-trial start or demo request is a useful early signal, but the conversion that should drive bidding is the one tied to revenue: trial-to-paid, qualified demo, or enrollment. Import those downstream events back into Google Ads, ideally with values, so the system optimizes toward customers instead of toward whoever fills a form. Use enhanced conversions and offline conversion import for B2B and high-ticket programs where the real conversion happens days or weeks later in your CRM, not instantly on the site."
+  - question: "How is Google Ads for B2C edtech different from B2B edtech?"
+    answer: "The intent and the conversion are different, so the account is different. B2C course and app businesses optimize toward free-trial starts and signups with short, fast funnels, and they live or die on trial-to-paid conversion, so consumer demand and Demand Gen can play a real role. B2B and institutional edtech sell to schools, districts, and companies through demo requests and long sales cycles, where the real conversion is a qualified lead that closes weeks later. That means heavier reliance on high-intent Search, offline conversion import from a CRM, and bidding to lead quality rather than lead volume."
+  - question: "Do I need separate landing pages for each Google Ads campaign?"
+    answer: "You need landing pages that match the intent tier, which usually means more than one. Someone searching your brand or a competitor is close to deciding and should land on a focused page that closes, with the trial or demo front and centre. Someone on a problem-aware or category search is still learning and needs a page that teaches before it asks. Sending every click to your generic homepage is the most common reason edtech ads with healthy click-through rates still fail to convert, because the page answers a different question than the one the searcher asked."
+  - question: "How many keywords should an edtech ad group have?"
+    answer: "Keep ad groups tight, grouped by a single intent rather than stuffed with everything loosely related. A focused set of five to fifteen keywords that share one intent lets you write ads and point to a landing page that match what the searcher actually wants, which lifts relevance and lowers cost. With smart bidding and broad match now doing more of the matching, the lever that matters most is not adding more keywords, it is disciplined negative keywords and a clean account structure that keeps each campaign aimed at the demand it was built for."
+speakable: true
+---
+
+You are running Google Ads for an edtech product. The early results looked great. Your first campaigns pulled in trial signups at a cost that made the spreadsheet smile, so you did the obvious thing and turned the budget up. And somewhere on the way up, the math quietly broke. The cost per signup crept higher. The signups that did come in converted to paid at a lower rate. The blended cost per customer that looked so healthy at five thousand a month looks alarming at fifty thousand, and nobody can point to exactly where it went wrong.
+
+This is the single most common failure in edtech paid search, and it almost never gets diagnosed as what it is. It is not a creative problem, a bidding problem, or a "we need better keywords" problem. It is an architecture problem. The account was built to spend money, not to scale it. It captured the cheap, high-intent demand that exists in any category, reported a great number, and then had nowhere efficient to grow into. So growth came from broader, colder, worse-converting traffic that the account structure could not see clearly enough to control.
+
+The fix is not a clever tactic. It is the way you wire the account together: how you separate intent, where you let Google's automation run and where you keep it on a leash, what you actually count as a conversion, and the order in which you add budget. Get that architecture right and Google Ads becomes a controllable customer-acquisition engine for edtech. Get it wrong and you will keep hitting the same ceiling at a higher and higher cost. This is the campaign-architecture guide, with practical account blueprints, not theory. It sits inside our wider [EdTech Paid Media Playbook](/blog/edtech-paid-media-playbook), and it is the Google half of the channel mix.
+
+---
+
+## In a Nutshell
+
+- **Scaling problems in edtech are usually structure problems.** The account captured cheap demand, reported a great number, and had nowhere efficient to grow.
+- **EdTech intent splits two ways.** B2C course and app signups and free trials run fast, short funnels. B2B and institutional demo requests run long, CRM-driven ones. The account has to match the funnel.
+- **Structure Search by intent tier,** not by product: brand, competitor, high-intent non-brand, and category or problem-aware terms, each in its own campaign so you can budget and bid it to its real value.
+- **Keep brand and non-brand separate,** always. Blending them hides weak non-brand performance behind brand's cheap conversions and is how CAC quietly bloats.
+- **Performance Max and Demand Gen are scale tools, not starter tools.** They help once tracking and Search are solid. They hurt when they absorb brand and easy converters and call it new growth.
+- **Bid to a target cost per real conversion,** and define "real" as trial-to-paid or enrollment, not a raw signup. A cheap signup that never pays is the trap that blows up edtech CAC.
+- **Scale in order.** Max high-intent and brand first, expand into category and problem-aware demand deliberately, and judge every new dollar on downstream revenue.
+
+---
+
+## Table of Contents
+
+1. [Why EdTech Accounts Hit a Scaling Ceiling](#scaling-ceiling)
+2. [How EdTech Intent Differs: B2C Signups vs B2B Demos](#intent-differs)
+3. [The Account Structure That Scales](#account-structure)
+4. [Search by Intent Tier: The Blueprint](#intent-tiers)
+5. [Keyword and Negative Keyword Discipline](#keyword-discipline)
+6. [Performance Max and Demand Gen: Hero or Villain](#pmax-demandgen)
+7. [Bidding to a Real Cost Per Acquisition](#bidding)
+8. [Conversion Tracking That Ties to Revenue](#conversion-tracking)
+9. [Creative and Landing Pages Per Intent Tier](#creative-landing)
+10. [How to Scale Budget Without Wrecking Efficiency](#scaling-budget)
+11. [The Bottom Line](#bottom-line)
+12. [Frequently Asked Questions](#faq)
+
+---
+
+<h2 id="scaling-ceiling">Why EdTech Accounts Hit a Scaling Ceiling</h2>
+
+Every category has a small pool of demand that is cheap to convert. It is the people searching for exactly what you sell, and the people searching for you by name. In edtech that might be "data analytics bootcamp," "best IELTS prep app," or your own brand. These searchers are at the bottom of the funnel with their decision mostly made. They convert at a low cost because you are not persuading them of anything, you are just showing up.
+
+A new account captures this pool first, because it is the easiest money in the auction. The early dashboard looks fantastic. A low cost per signup, a healthy conversion rate, and a founder who reasonably concludes that the channel works and should get more money. So the budget goes up.
+
+Here is the problem. That cheap pool is finite. There are only so many people searching "data analytics bootcamp" this month, and you were probably already showing for most of them. When you double the budget, those searches do not double. Google has to spend the new money somewhere, so it reaches further out: broader keywords, looser matches, colder audiences, people earlier in their thinking who are comparing five options or just curious. Those clicks cost real money and convert far worse. Your average cost per acquisition rises, not because you got worse at advertising, but because you ran out of the good stuff and started buying the mediocre stuff at the same blended budget.
+
+A badly structured account makes this invisible. When brand, high-intent, and broad exploratory traffic all sit in the same campaign or get judged on one blended number, you cannot see that your non-brand cost per customer tripled, because your brand conversions are still dragging the average down to something that looks acceptable. You feel the pain in the bank account long before you can see the cause in the dashboard. The whole point of the architecture in this guide is to make the cause visible and controllable, so you can scale into the next tier of demand on purpose instead of being shoved into it by your own budget.
+
+<h2 id="intent-differs">How EdTech Intent Differs: B2C Signups vs B2B Demos</h2>
+
+Before you structure anything, you have to be honest about what you are actually selling and to whom, because edtech is not one business model. It is at least two, and they want different accounts.
+
+**B2C edtech** sells directly to learners: a course platform, a language app, an exam-prep tool, a coding bootcamp paid for by the individual. The conversion is usually a free-trial start, an app install, or a signup, and the funnel is fast. Someone can search, click, start a trial, and decide within days. The economics live or die on trial-to-paid conversion and retention, so the number that matters is not how many people signed up but how many turned into paying, sticking users. Because the audience is consumers, top-of-funnel demand creation has a real role here, which is where formats beyond Search start to matter. This is also where your Google strategy has to sit alongside [Meta Ads for EdTech](/blog/meta-ads-for-edtech), because consumer learners are discoverable on feeds in a way institutional buyers are not.
+
+**B2B and institutional edtech** sells to organisations: a learning platform sold to schools and districts, a training tool sold to companies, a curriculum product sold to administrators. The conversion is a demo request, a "talk to sales" form, or a pilot, and the funnel is long. The person who fills the form is rarely the person who signs the contract, and the real decision happens weeks or months later in meetings you never see. The economics live on lead quality and close rate, not lead volume. A hundred demo requests from the wrong job titles are worth less than ten from the right ones. That means the real conversion you optimise toward is not the form fill at all, it is the qualified opportunity or closed deal that shows up later in your CRM.
+
+These two models break in opposite directions when you scale. B2C breaks when you chase signup volume and your trial-to-paid rate quietly collapses because the new signups are lower-intent. B2B breaks when you optimise toward form fills and your sales team drowns in unqualified leads while real pipeline stays flat. Same platform, same product category, completely different definition of success. A surprising number of edtech companies sit somewhere in between, selling both a self-serve product and an enterprise version, and they need to keep those two motions in genuinely separate campaigns so the cheap, fast B2C conversions never set the bid for the slow, valuable B2B ones. If you are still mapping your overall approach, our broader take on [edtech marketing](/blog/edtech-marketing) covers how these models shape every channel, not just paid search.
+
+<h2 id="account-structure">The Account Structure That Scales</h2>
+
+There is one principle underneath everything that follows: structure by intent, not by product. The instinct is to build the account around your catalogue, one campaign per course or per product line, because that is how the business is organised internally. It feels tidy. It also makes the account impossible to scale efficiently, because a single product is bought by people at wildly different stages of intent, and lumping them together means you bid the same way for a ready-to-buy searcher and a curious browser.
+
+The accounts that scale are organised around how close the searcher is to a decision and how they are looking for you. At the top sits the strategic split that matters most in all of paid search, and doubly so in edtech: brand versus non-brand. Brand searches are people who already know you and are most of the way to converting. Non-brand searches are everyone else. These two behave so differently in cost, conversion rate, and what they actually mean for growth that mixing them is the original sin of account structure. Keep them in separate campaigns, always, so you can budget them separately, bid them separately, and read them separately.
+
+Inside that split, you layer in the other intent tiers: competitor terms, high-intent non-brand, and category or problem-aware terms. Each gets its own campaign because each deserves its own budget, its own target cost, and its own honest scorecard. Then, and only then, do automated campaign types like Performance Max and Demand Gen come in as a deliberate scaling layer on top of a working Search foundation, not as a substitute for it.
+
+The reason this structure scales is simple. When every tier is separated, you can see exactly which pools of demand are still profitable and which have hit diminishing returns, and you can move budget toward the former and cap the latter. A blended account forces you to scale everything at the average. A tiered account lets you scale the parts that deserve it.
+
+<h2 id="intent-tiers">Search by Intent Tier: The Blueprint</h2>
+
+Here is the practical blueprint. Think of Search as four campaigns, ordered from warmest to coldest, each with its own job.
+
+- **Brand.** People searching your company or product name. This is the cheapest, highest-converting traffic you have, and you run it for two reasons: to capture demand you have already created elsewhere, and to defend against competitors bidding on your name. Conversion rates are high and cost per acquisition is low, which is exactly why you must keep it separate. If brand sits in the same campaign as anything else, its great numbers will mask weak performance everywhere they are mixed. A common debate is whether you even need to pay for your own brand if you rank first organically. In competitive edtech categories where rivals bid on your name, usually yes, but you run it as its own line item so you can measure that decision honestly.
+
+- **Competitor.** People searching for a rival product. These searchers are in-market and high-intent, they just have not chosen you yet. Bidding here is more expensive and converts worse than brand, because you are interrupting an existing preference, but it can be some of the most valuable traffic in edtech when your product genuinely beats the alternative on something a switcher cares about. Keep it separate because the economics are different and the messaging has to do real persuasion work.
+
+- **High-intent non-brand.** People searching for exactly the category of thing you sell: "python course online," "GMAT prep app," "LMS for schools." This is the core of a non-brand account and usually where the biggest scalable opportunity lives. Intent is clear, the searcher wants what you offer, and your job is to be the most relevant, most compelling result. This tier deserves the most attention because it is where efficient growth comes from once brand is maxed.
+
+- **Category and problem-aware.** People who have the problem your product solves but are not yet searching for the product: "how to learn data analysis," "how to teach coding to kids," "improve employee training." Intent is softer, conversion rates are lower, and the cost per signup or lead is higher. This tier is genuinely useful for growth, because it reaches demand before your competitors do, but it is also where budgets get wasted fastest if you treat it like the high-intent tier. It needs its own campaign, its own lower target, its own teaching-first landing pages, and patience.
+
+A B2C account might run all four as standard Search campaigns optimising toward trial starts, with the problem-aware tier feeding signups that you fully expect to convert to paid at a lower rate. A B2B account runs the same four tiers but optimises toward qualified demo requests, leans harder on high-intent and competitor terms where buying signals are strongest, and treats problem-aware traffic as pipeline-building that will close much later. Same skeleton, different muscles. The structure is what gives you the visibility to fund each tier to its real worth instead of a blended guess. For the deeper mechanics of how this Search foundation works generally, our [Google Ads](/services/google-ads) service breakdown covers the platform fundamentals that this edtech architecture builds on.
+
+<h2 id="keyword-discipline">Keyword and Negative Keyword Discipline</h2>
+
+With smart bidding and broad match now doing far more of the matching work than they used to, keyword strategy has shifted. The old game of building enormous keyword lists and single-keyword ad groups has largely given way to tighter, intent-grouped ad groups paired with strong negative keyword discipline and clean structure. The lever that moves results in a modern edtech account is less about adding keywords and more about controlling what you do not want to show for.
+
+Keep ad groups focused. A tight set of five to fifteen keywords that share a single intent lets you write an ad and point to a landing page that genuinely match what the searcher wants. That relevance is what earns you cheaper clicks and better positions. The moment an ad group tries to cover three different intents, your ad copy goes generic, your landing page stops matching, and your costs climb. One intent per ad group is the rule that keeps relevance high.
+
+Then comes the discipline that actually protects an edtech budget: negative keywords. Education searches are riddled with intent that looks relevant and is not, and every one of those clicks is money you will never get back. The big ones to watch in edtech:
+
+- **"Free."** Unless you are running a freemium funnel where free users reliably convert, searches with "free," "no cost," or "without paying" tend to attract people who will never pay. Block them as a negative phrase if your model depends on paid conversion.
+- **Jobs and careers.** "Teaching jobs," "instructor salary," "is X a good career." These are job seekers, not buyers. They are everywhere in education searches and they drain budget fast.
+- **The wrong audience.** A platform sold to institutions getting clicks from individual learners, or a consumer app getting clicks from administrators looking for an enterprise tool. The search looks on-topic but the person is in the wrong segment.
+- **Adjacent categories.** Your bootcamp is not a degree, your app is not a tutor, your tool is not a textbook. Searches that name the thing you are not waste spend and confuse your conversion data.
+
+The workflow that keeps this clean is unglamorous and non-negotiable: read your search terms report regularly. It shows you the actual queries that triggered your ads, including everything broad match dragged in. The queries that spent money with no conversions become negatives. The queries that converted well become candidates to break out and bid on deliberately. This single habit, done every week or two, is the cheapest efficiency gain in the whole account, and it is precisely what stops a scaling budget from leaking into searches that were never going to become students.
+
+<h2 id="pmax-demandgen">Performance Max and Demand Gen: Hero or Villain</h2>
+
+This is where edtech accounts most often go wrong, because the automated campaign types are sold as easy scale and they are genuinely powerful, but they are powerful in a way that can quietly destroy your ability to read the account.
+
+**Performance Max** is Google's goal-based, AI-driven campaign that runs across every channel at once: Search, Shopping, YouTube, Display, Gmail, Maps, Discover. You give it a goal, a budget, creative assets, and audience signals, and it decides the rest. Its strength is that it can find converting demand in places you would never have targeted manually. Its danger, especially for edtech, is twofold. First, it works well only when you have solid conversion tracking and enough monthly conversions for the system to learn from, which many early-stage edtech accounts simply do not have yet. Second, and more insidiously, Performance Max loves to absorb your brand traffic and your easiest converters and report them as fresh wins. It will happily claim the people who were going to convert anyway, show you a brilliant cost per acquisition, and obscure the fact that your incremental, genuinely new customers are costing far more.
+
+If you run Performance Max in edtech, run it with guardrails. Exclude your brand terms so it cannot take credit for demand you already own. Feed it strong audience signals built from your real customers, not guesses. Make sure the conversion it optimises toward is a real downstream event, not a soft signup, or it will flood you with cheap, worthless conversions. And watch the search-terms and placement insights closely to confirm it is finding new demand rather than cannibalising your cheaper Search campaigns. Treated as a scaling layer on top of a working account, it can be a hero. Treated as a substitute for structure, it is a villain that makes your numbers look good while your CAC climbs underneath. We go deep on exactly this tension in [Performance Max: hero or villain](/blog/performance-max-hero-or-villain), and the edtech version of the answer is "hero, but only once the foundation is solid and the brand is fenced off."
+
+**Demand Gen** is the other automated type, built for visual, feed-style ads across YouTube, Shorts, Gmail, and Discover, designed to reach people before they search. For B2C edtech this can be a legitimate demand-creation channel, putting your course or app in front of the right learner audiences earlier in their journey, complementing the Search campaigns that catch them later. For B2B and institutional edtech it is far less useful, because institutional buying is not an impulse driven by a feed ad, and the audiences are too narrow and too senior to reach efficiently this way. Use Demand Gen as a top-of-funnel complement when your model is consumer and your trial-to-paid economics can absorb the lower intent. Skip it when your real demand is high-intent and institutional, and put that money into Search instead.
+
+The honest framing for both: automation is a multiplier of whatever foundation it sits on. Layer it onto a tiered, well-tracked account and it scales your wins. Layer it onto a blended mess and it scales your confusion.
+
+<h2 id="bidding">Bidding to a Real Cost Per Acquisition</h2>
+
+Modern Google Ads runs on smart bidding, which means you are no longer setting individual keyword bids by hand. You are telling the system what a conversion is worth to you and letting it bid toward that in real time. Which makes the entire game come down to one question: what are you telling it to optimise for, and is that number honest?
+
+The starting point is usually to let a campaign run on Maximize Conversions while it gathers data, then move to Target CPA once you have enough conversions to set a sensible target. Target CPA tells Google the cost you are willing to pay for one conversion, and it bids up or down to hit it. For higher-ticket or value-variable edtech, Target ROAS optimises toward conversion value instead, which matters when a six-month bootcamp enrollment is worth ten times a single course purchase and you do not want the system treating them as equal.
+
+But the target is only as good as the conversion behind it, and this is exactly where edtech CAC quietly explodes. If your conversion action is "free trial started" and your target CPA is twenty dollars, Google will brilliantly, relentlessly optimise toward cheap trial starts. It does not know or care whether those trials ever convert to paid. So it will find you the cheapest possible signups, which are very often the lowest-intent ones, and your cost per signup will look wonderful while your cost per actual customer goes through the roof. You optimised the machine toward the wrong finish line and it did its job perfectly.
+
+The discipline that protects you is to set targets against the conversion that ties to money, and to set different targets for different intent tiers. Your brand campaign can carry a low target because that traffic converts cheaply. Your high-intent non-brand campaign carries a higher one. Your problem-aware campaign carries a higher one still, because you know those signups convert to paid at a lower rate and you are deliberately paying more per signup for traffic that is worth less individually but still profitable in aggregate. Setting one blanket target across all tiers forces the system to either starve your valuable colder tiers or overpay for your warm ones. Tiered targets, tied to tiered real-world value, are how you keep the whole account efficient as it grows. The next section is about making the conversion behind those targets actually true.
+
+<h2 id="conversion-tracking">Conversion Tracking That Ties to Revenue</h2>
+
+Everything above depends on one thing being right, and it is the thing edtech most often gets wrong: what you count as a conversion. Smart bidding optimises toward whatever you feed it. Feed it a vanity event and it will optimise your budget straight into vanity.
+
+The chain you care about in edtech is longer than the signup. For B2C it runs signup, to trial start, to trial-to-paid, to retained subscriber. For B2B it runs form fill, to qualified lead, to opportunity, to closed deal. The early steps are useful as signals, but the step that should drive your bidding is the one tied to revenue. If you only track and optimise toward the first step, you are flying the whole account on a number that does not correlate with money.
+
+Here is what tracking that ties to revenue looks like in practice:
+
+- **Track the whole funnel, but optimise toward the deep event.** Record signups and trial starts so you can see the funnel, but set your smart bidding to optimise toward trial-to-paid, qualified demo, or enrollment wherever you have enough volume. Where you do not have the volume for the system to learn on the deep event, optimise toward the closest reliable proxy and watch the deeper rate like a hawk.
+- **Assign values, do not just count.** A demo request from an enterprise account is not worth the same as one from a single teacher. A bootcamp enrollment is not worth the same as a single-course purchase. Passing conversion values, not just conversion counts, lets value-based bidding chase revenue instead of volume, which is what stops the account drifting toward cheap-but-worthless conversions.
+- **Use enhanced conversions and offline conversion import.** For B2B and high-ticket edtech, the real conversion happens later, in your CRM, when sales qualifies the lead or closes the deal. Importing those offline events back into Google Ads, tied to the original click, is what lets the system learn which clicks become customers rather than which become form fills. Enhanced conversions improve measurement accuracy as cookies and tracking degrade, and they are increasingly essential rather than optional. This CRM-to-ads loop is the single biggest difference between a B2B edtech account that scales profitably and one that buys a mountain of junk leads.
+- **Get consent and tagging right.** With privacy rules tightening and third-party data eroding, accurate measurement now depends on proper tagging, consent handling, and first-party data being wired up correctly. Sloppy tracking does not just cost you reporting accuracy, it starves the bidding algorithm of the signal it needs to optimise, which directly raises your costs.
+
+The closer the conversion you optimise toward sits to actual revenue, the more the entire account, every bid, every budget decision, every automated campaign, pulls in the direction of customers instead of signups. This is not a reporting nicety. It is the mechanism that keeps CAC under control as you scale, and tying paid spend back to real outcomes is exactly the kind of work that proper [analytics and reporting](/services/analytics-reporting) is built to support.
+
+<h2 id="creative-landing">Creative and Landing Pages Per Intent Tier</h2>
+
+Structure and bidding get the right person to click. The ad and the landing page decide whether that click becomes a customer, and the most common reason edtech ads with healthy click-through rates still fail to convert is that every click lands on the same generic homepage, which answers a different question than the one the searcher asked.
+
+Match the message to the tier. A searcher and a page are having a conversation, and the page has to answer the actual question.
+
+- **Brand and competitor tiers** are talking to people close to a decision. The ad should be confident and specific, and the landing page should close: the trial or demo clearly front and centre, the proof a switcher needs, the friction stripped out. These people do not need educating, they need a reason to act now and a path with no obstacles.
+- **High-intent non-brand** searchers know what category they want and are choosing between options. The ad needs to signal that you are the best-fit answer to their exact search, and the landing page needs to match that search precisely. Someone who searched "GMAT prep app" should land on a page about GMAT prep, not a generic platform overview, with the relevant outcomes, format, and proof for that specific need.
+- **Category and problem-aware** searchers are still learning and are not ready for a hard ask. The ad should lead with the problem and the promise, and the landing page should teach before it sells: explain the approach, build trust, and then offer a low-friction next step. Hitting these visitors with an aggressive "buy now" converts worse than guiding them, because they have not yet decided they need what you sell.
+
+The principle is that landing page intent must match search intent. Responsive search ads give you room to test multiple headlines and descriptions per ad group, so use that to align copy tightly with each tier rather than running one generic ad everywhere. And the page is not a set-and-forget asset. The same systematic testing you apply to ads belongs on the pages, because a two-point lift in landing page conversion drops your cost per acquisition across every campaign pointing at it. For edtech specifically, the pages that convert tend to lead with a concrete outcome (a skill, a score, a job, a measurable result), back it with proof, and make the trial or demo the obvious next click. Sending every tier to the homepage wastes the most expensive part of the funnel.
+
+<h2 id="scaling-budget">How to Scale Budget Without Wrecking Efficiency</h2>
+
+Now the part the whole guide was built for: adding budget without watching your cost per customer climb. The tiered, well-tracked account you have built is what makes controlled scaling possible, because it lets you see exactly which pools of demand still have efficient room and which have tapped out. Scale in order, not all at once.
+
+The order that protects efficiency:
+
+- **Max out brand and high-intent first.** These are your cheapest, best-converting tiers. Before you spend a dollar reaching colder audiences, make sure you are capturing all the demand that already exists and already converts. Check your impression share on brand and high-intent non-brand. If you are losing impressions to budget, that is the cheapest growth available and you should fund it before anything else.
+- **Expand into category and problem-aware deliberately.** Once the warm tiers are maxed, real growth comes from reaching demand earlier, in the problem-aware tier. Fund it knowing the cost per signup will be higher and the conversion rate lower, and hold it to its own target so it stays profitable in aggregate. This is deliberate expansion into colder demand, with eyes open, not budget being shoved there by accident.
+- **Hold each campaign to its own target as you grow.** The instinct when scaling is to loosen targets to spend more. Resist it on the warm tiers. Loosen targets only where the downstream economics genuinely support a higher cost, and let the data, not the pressure to spend, decide where that is.
+- **Layer automation on top once the foundation holds.** With strong tracking and a profitable Search base, this is the point where Performance Max and Demand Gen can responsibly add incremental reach, brand excluded and optimised toward real conversions. Add them as a scaling layer, watch them for cannibalisation, and keep them honest against the Search baseline.
+- **Judge every new dollar on downstream revenue.** As you scale, signup volume will keep looking good long after the new signups have stopped converting to paid. Watch trial-to-paid and lead-to-close, not raw conversions, and pull back the moment the deep metric softens. This is the discipline that separates scaling from spending.
+
+The reason CAC blows up at scale is almost always that one of these steps got skipped: colder traffic got funded before warm traffic was maxed, targets got loosened across the board to hit a spend number, or the team kept watching signups while the trial-to-paid rate quietly fell. A tiered account watched on revenue-tied metrics lets you grow into each new pool of demand on purpose, at a cost you chose, instead of being dragged into worse traffic by a budget the structure could not steer. Doing that consistently, across a real budget, is the core of how we run [edtech marketing](/services/edtech-marketing) at Aurelius.
+
+---
+
+<h2 id="bottom-line">The Bottom Line</h2>
+
+EdTech accounts do not hit a scaling ceiling because the channel stops working. They hit it because they were built to capture cheap demand and report a good number, with no architecture for growing into the next tier of demand efficiently. So growth came from colder, worse traffic that the structure could not see clearly enough to control, and the cost per real customer climbed while the dashboard stayed calm.
+
+The accounts that scale do something more deliberate:
+
+- **Match the account to the funnel,** because B2C signups and B2B demos are different businesses that want different campaigns and different definitions of success.
+- **Structure Search by intent tier,** brand, competitor, high-intent non-brand, and category or problem-aware, each in its own campaign with its own budget, target, and honest scorecard.
+- **Keep brand and non-brand separate,** always, so cheap brand conversions never hide weak non-brand performance.
+- **Use Performance Max and Demand Gen as a scaling layer,** brand excluded and pointed at real conversions, never as a substitute for a tracked, tiered foundation.
+- **Bid to a target that ties to revenue,** trial-to-paid or enrollment, not a raw signup, with different targets for different tiers.
+- **Scale in order,** maxing warm demand first, expanding into cold demand deliberately, and judging every new dollar on downstream revenue rather than signup volume.
+
+Do that and Google Ads stops being a channel that looks great small and breaks when you push it. It becomes a controllable customer-acquisition engine that you can grow on purpose, one tier of demand at a time, with the cost per real customer staying where you decided it should be.
+
+---
+
+*Aurelius Media runs Google Ads as part of full-funnel [edtech marketing](/services/edtech-marketing) for course platforms, apps, and institutional sellers: intent-tiered account architecture, conversion tracking that ties to trial-to-paid and real revenue, and budget scaling that protects efficiency as you grow. You build the product. We make sure the right learners and buyers find it at a cost that actually works. If you want us to audit where your edtech account is leaking budget and capping its own growth, [book a free strategy call](/contact).*
+
+---
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<details>
+<summary>How should an edtech company structure its Google Ads account?</summary>
+
+Structure by intent, not by product. Split Search into separate campaigns for brand, competitor, high-intent non-brand (people searching for exactly what you sell), and problem-aware or category terms higher up the funnel. Keep brand and non-brand apart so brand's cheap conversions never hide weak non-brand performance, and so you can budget and bid each one to its real value. That separation is what lets you read the account honestly and scale the parts that actually work, instead of pouring budget into a blended average that looks fine and quietly bleeds money.
+
+</details>
+
+<details>
+<summary>Should edtech use Performance Max or stick to Search?</summary>
+
+Start with Search, add Performance Max once you have clean conversion tracking and enough monthly conversions for it to learn. Search is where high-intent demand lives and where you keep the most control, so it should be the backbone of an edtech account. Performance Max can scale once the fundamentals are working, but it tends to absorb your brand and easy converters and report them as new wins, which inflates results. If you run it, exclude brand, feed it strong audience signals and real downstream conversions, and watch the search-terms and placement data closely so it does not quietly cannibalize cheaper channels.
+
+</details>
+
+<details>
+<summary>What is a realistic target CPA for edtech?</summary>
+
+There is no universal number, because it depends entirely on what you are paying for and what that converts into later. A free-trial signup, a demo request, and an enrolled student have wildly different values, so you set a target cost for each conversion action based on how often it turns into paid revenue. The discipline that matters is tying your target back to trial-to-paid or lead-to-enrollment rates, not to a signup count. A cheap cost per signup means nothing if those signups never become customers, which is exactly the trap that blows up edtech CAC at scale.
+
+</details>
+
+<details>
+<summary>Why does my edtech cost per acquisition rise as I increase budget?</summary>
+
+Because the cheapest, highest-intent demand is finite. Your first dollars capture people searching for exactly what you sell and your own brand, which convert cheaply. As you add budget, Google has to reach further into broader, less-ready audiences, so the marginal cost per real customer climbs. The fix is not to stop spending, it is to scale in the right order: max out high-intent and brand first, expand into category and problem-aware terms deliberately, hold each campaign to its own target, and judge new spend on trial-to-paid revenue rather than raw signup volume.
+
+</details>
+
+<details>
+<summary>What conversions should edtech track in Google Ads?</summary>
+
+Track the full chain, not just the signup. A free-trial start or demo request is a useful early signal, but the conversion that should drive bidding is the one tied to revenue: trial-to-paid, qualified demo, or enrollment. Import those downstream events back into Google Ads, ideally with values, so the system optimizes toward customers instead of toward whoever fills a form. Use enhanced conversions and offline conversion import for B2B and high-ticket programs where the real conversion happens days or weeks later in your CRM, not instantly on the site.
+
+</details>
+
+<details>
+<summary>How is Google Ads for B2C edtech different from B2B edtech?</summary>
+
+The intent and the conversion are different, so the account is different. B2C course and app businesses optimize toward free-trial starts and signups with short, fast funnels, and they live or die on trial-to-paid conversion, so consumer demand and Demand Gen can play a real role. B2B and institutional edtech sell to schools, districts, and companies through demo requests and long sales cycles, where the real conversion is a qualified lead that closes weeks later. That means heavier reliance on high-intent Search, offline conversion import from a CRM, and bidding to lead quality rather than lead volume.
+
+</details>
+
+<details>
+<summary>Do I need separate landing pages for each Google Ads campaign?</summary>
+
+You need landing pages that match the intent tier, which usually means more than one. Someone searching your brand or a competitor is close to deciding and should land on a focused page that closes, with the trial or demo front and centre. Someone on a problem-aware or category search is still learning and needs a page that teaches before it asks. Sending every click to your generic homepage is the most common reason edtech ads with healthy click-through rates still fail to convert, because the page answers a different question than the one the searcher asked.
+
+</details>
+
+<details>
+<summary>How many keywords should an edtech ad group have?</summary>
+
+Keep ad groups tight, grouped by a single intent rather than stuffed with everything loosely related. A focused set of five to fifteen keywords that share one intent lets you write ads and point to a landing page that match what the searcher actually wants, which lifts relevance and lowers cost. With smart bidding and broad match now doing more of the matching, the lever that matters most is not adding more keywords, it is disciplined negative keywords and a clean account structure that keeps each campaign aimed at the demand it was built for.
+
+</details>

@@ -163,6 +163,14 @@ export const services: Service[] = [
         category: 'vertical',
         keywords: ['real estate marketing agency dubai', 'dubai real estate marketing', 'real estate lead generation dubai'],
     },
+    {
+        title: 'Podcast Marketing',
+        slug: 'podcast-marketing',
+        description: 'Discoverability-first podcast growth: keyword research, episode SEO, content repurposing, and guest scheduling that get your show found and compound your audience.',
+        icon: '🎙️',
+        category: 'vertical',
+        keywords: ['podcast marketing agency', 'podcast growth agency', 'podcast seo'],
+    },
 
     // ─── CREATIVE SERVICES ───
     {

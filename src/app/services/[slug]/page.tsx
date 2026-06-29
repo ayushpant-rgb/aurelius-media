@@ -18,6 +18,7 @@ const serviceBlogCategoryMap: Record<string, string[]> = {
     'creative-design': ['Performance Marketing'],
     'reels-editing': ['Book Marketing', 'Performance Marketing'],
     'book-marketing': ['Book Marketing'],
+    'podcast-marketing': ['Podcast Marketing'],
     'education-marketing': ['Education Marketing', 'Performance Marketing'],
     'edtech-marketing': ['EdTech Marketing', 'Performance Marketing', 'Vibe Coding & MVPs'],
     'd2c-ecommerce-marketing': ['D2C Marketing', 'Performance Marketing'],

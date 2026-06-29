@@ -293,7 +293,7 @@ export default function ServicesHubClient() {
                             <h2 className="text-2xl font-medium text-brand-white">Industry verticals</h2>
                             <span className="text-[13px] text-brand-gray-dark">Specialized marketing</span>
                         </div>
-                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, education, EdTech, D2C & e-commerce, SaaS, and real estate.</p>
+                        <p className="text-sm text-brand-gray max-w-[500px] ml-[15px]">Deep expertise in book marketing, podcasts, education, EdTech, D2C & e-commerce, SaaS, and real estate.</p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {[
@@ -303,6 +303,7 @@ export default function ServicesHubClient() {
                             { title: 'D2C & E-commerce Marketing', href: '/services/d2c-ecommerce-marketing', desc: 'Performance-driven campaigns, retention strategies, and scaling for D2C and e-commerce brands.' },
                             { title: 'EdTech Marketing', href: '/services/edtech-marketing', desc: 'Growth marketing, user acquisition, and product-led strategies for EdTech companies.' },
                             { title: 'SaaS Marketing', href: '/services/saas-marketing', desc: 'Demand generation, product-led growth, and pipeline acceleration for SaaS companies.' },
+                            { title: 'Podcast Marketing', href: '/services/podcast-marketing', desc: 'Discoverability-first growth: episode SEO, keyword research, repurposing, and guest scheduling.' },
                         ].map((v) => (
                             <Link key={v.href} href={v.href} className="p-5 rounded-xl bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-colors">
                                 <h3 className="text-sm font-semibold text-brand-white mb-2">{v.title}</h3>

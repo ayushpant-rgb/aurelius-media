@@ -44,6 +44,7 @@ const SERVICE_SLUGS = [
   'creative-services',
   'ai-marketing-automation',
   'social-media-marketing',
+  'podcast-marketing',
 ];
 
 const CATEGORY_SLUGS = [

@@ -35,6 +35,7 @@ const heroIconMap: Record<string, LucideIcon[]> = {
     'real-estate-marketing':   [Home, Target, TrendingUp],
     'real-estate-marketing-dubai': [Home, Globe, TrendingUp],
     'book-marketing':          [BookOpen, Megaphone, TrendingUp],
+    'podcast-marketing':       [Mic, Search, TrendingUp],
     'education-marketing':     [GraduationCap, Target, BarChart3],
     'performance-marketing':       [Target, BadgeDollarSign, TrendingUp],
     'growth-marketing':            [Rocket, LineChart, Layers],
@@ -144,6 +145,7 @@ const serviceIconMap: Record<string, LucideIcon> = {
     'real-estate-marketing':   Home,
     'real-estate-marketing-dubai': Home,
     'book-marketing':          BookOpen,
+    'podcast-marketing':       Mic,
     'education-marketing':     GraduationCap,
 };
 
@@ -224,6 +226,7 @@ const allTestimonials: Record<string, ServiceTestimonial> = {
 
 const serviceTestimonialKeys: Record<string, string[]> = {
     'book-marketing': ['nidhi', 'tom', 'ira'],
+    'podcast-marketing': ['karan', 'tom', 'cameron'],
     'education-marketing': ['karan', 'cameron', 'tom'],
     'google-ads': ['cameron', 'karan', 'tom'],
     'meta-ads': ['cameron', 'arjun', 'priya'],

@@ -24,6 +24,7 @@ const footerLinks = {
         { label: 'SaaS Marketing', href: '/services/saas-marketing' },
         { label: 'Real Estate Marketing', href: '/services/real-estate-marketing' },
         { label: 'Dubai Real Estate Marketing', href: '/services/real-estate-marketing-dubai' },
+        { label: 'Podcast Marketing', href: '/services/podcast-marketing' },
     ],
     resources: [
         { label: 'Blog', href: '/blog' },
