@@ -50,7 +50,7 @@ export default function LeadPopup() {
   }, []);
 
   const show = useCallback(() => {
-    if (pathname === '/contact' || pathname.startsWith('/admin')) return;
+    if (pathname === '/contact' || pathname.startsWith('/admin') || pathname.startsWith('/app')) return;
     if (getCookie(COOKIE_NAME)) return;
     setVisible(true);
   }, [pathname]);
