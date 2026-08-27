@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 
 interface NewsletterFormProps {
   source: string;
@@ -11,6 +12,7 @@ export default function NewsletterForm({ source, variant = 'stacked' }: Newslett
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const { website, setWebsite, spamFields } = useSpamGuard();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ export default function NewsletterForm({ source, variant = 'stacked' }: Newslett
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, ...spamFields }),
       });
 
       if (!res.ok) {
@@ -49,6 +51,7 @@ export default function NewsletterForm({ source, variant = 'stacked' }: Newslett
 
   return (
     <form onSubmit={handleSubmit} className={`flex ${isInline ? 'flex-row' : 'flex-col sm:flex-row'} gap-2 ${isInline ? 'max-w-sm' : 'max-w-[420px] mx-auto'}`}>
+      <HoneypotField value={website} onChange={setWebsite} />
       <input
         type="email"
         value={email}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ServiceData } from '@/data/servicePages';
 import FAQAccordion from '@/components/ui/FAQAccordion';
+import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 import { useInView } from '@/lib/hooks';
 import { usePostHog } from 'posthog-js/react';
 import type { LucideIcon } from 'lucide-react';
@@ -353,6 +354,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formLoading, setFormLoading] = useState(false);
     const [formError, setFormError] = useState('');
+    const { website, setWebsite, spamFields } = useSpamGuard();
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -367,6 +369,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     ...formData,
                     source: 'service_hero' as const,
                     service_interest: service.slug,
+                    ...spamFields,
                 }),
             });
 
@@ -498,6 +501,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                         </p>
 
                                         <form onSubmit={handleFormSubmit} className="space-y-4">
+                                            <HoneypotField value={website} onChange={setWebsite} />
                                             <div>
                                                 <input
                                                     type="text"
@@ -1102,6 +1106,8 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                                         phone: fd.get('phone'),
                                         source: 'service_cta',
                                         service_interest: service.slug,
+                                        website: fd.get('website'),
+                                        form_ts: spamFields.form_ts,
                                     }),
                                 });
                             } catch {
@@ -1114,6 +1120,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                         }}
                         className="flex flex-col sm:flex-row items-stretch gap-3 max-w-2xl mx-auto mb-5"
                     >
+                        <HoneypotField />
                         <input
                             type="text"
                             name="name"

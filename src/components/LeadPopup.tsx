@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
+import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
@@ -43,6 +44,7 @@ export default function LeadPopup() {
     email: '',
     industry: '',
   });
+  const { website, setWebsite, spamFields } = useSpamGuard();
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -111,6 +113,7 @@ export default function LeadPopup() {
           email: formData.email,
           industry: formData.industry || undefined,
           source: 'popup' as const,
+          ...spamFields,
         }),
       });
 
@@ -201,6 +204,7 @@ export default function LeadPopup() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-3">
+                  <HoneypotField value={website} onChange={setWebsite} />
                   <input
                     name="name"
                     type="text"

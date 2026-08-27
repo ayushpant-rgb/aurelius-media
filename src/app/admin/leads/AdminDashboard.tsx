@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import type { Lead, LeadStatus, LeadSource } from '@/types/lead';
 
 const STATUS_OPTIONS: LeadStatus[] = ['new', 'contacted', 'qualified', 'closed'];
-const SOURCE_OPTIONS: LeadSource[] = ['service_hero', 'service_cta', 'contact'];
+const SOURCE_OPTIONS: LeadSource[] = ['service_hero', 'service_cta', 'contact', 'popup', 'ebook'];
 
 const STATUS_COLORS: Record<LeadStatus, string> = {
   new: 'bg-blue-500/20 text-blue-400',
@@ -18,7 +18,14 @@ const SOURCE_LABELS: Record<LeadSource, string> = {
   service_cta: 'Service CTA',
   contact: 'Contact Page',
   popup: 'Popup',
+  ebook: 'Ebook',
 };
+
+const SPAM_VIEWS = [
+  { value: '', label: 'Real leads' },
+  { value: 'only', label: 'Spam' },
+  { value: 'all', label: 'All' },
+];
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -41,12 +48,14 @@ export default function AdminDashboard() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [filterSource, setFilterSource] = useState<string>('');
+  const [filterSpam, setFilterSpam] = useState<string>('');
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams();
     if (filterStatus) params.set('status', filterStatus);
     if (filterSource) params.set('source', filterSource);
+    if (filterSpam) params.set('spam', filterSpam);
 
     const res = await fetch(`/api/admin/leads?${params}`);
     if (res.status === 401) {
@@ -57,7 +66,7 @@ export default function AdminDashboard() {
     const data = await res.json();
     setLeads(data.leads || []);
     setLoading(false);
-  }, [filterStatus, filterSource]);
+  }, [filterStatus, filterSource, filterSpam]);
 
   // Check auth on mount
   useEffect(() => {
@@ -103,14 +112,17 @@ export default function AdminDashboard() {
     setAuthLoading(false);
   };
 
-  const updateLead = async (id: string, updates: { status?: LeadStatus; notes?: string }) => {
+  const updateLead = async (id: string, updates: { status?: LeadStatus; notes?: string; is_spam?: boolean }) => {
     await fetch('/api/admin/leads', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, ...updates }),
     });
     setLeads((prev) =>
-      prev.map((l) => (l.id === id ? { ...l, ...updates, updated_at: new Date().toISOString() } : l))
+      prev
+        .map((l) => (l.id === id ? { ...l, ...updates, updated_at: new Date().toISOString() } : l))
+        // Drop rows the current view no longer shows after a spam toggle
+        .filter((l) => filterSpam === 'all' || (l.is_spam ?? false) === (filterSpam === 'only'))
     );
   };
 
@@ -152,6 +164,15 @@ export default function AdminDashboard() {
             <p className="text-sm text-brand-gray-dark">{leads.length} total</p>
           </div>
           <div className="flex gap-3">
+            <select
+              value={filterSpam}
+              onChange={(e) => setFilterSpam(e.target.value)}
+              className="px-3 py-2 bg-brand-card border border-brand-border-subtle rounded-lg text-sm text-brand-white focus:outline-none"
+            >
+              {SPAM_VIEWS.map((v) => (
+                <option key={v.value} value={v.value}>{v.label}</option>
+              ))}
+            </select>
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
@@ -209,10 +230,15 @@ export default function AdminDashboard() {
                           <span className="text-xs text-brand-gray-dark">{SOURCE_LABELS[lead.source]}</span>
                         </div>
                         <div className="px-4 py-3 text-brand-gray truncate hidden md:block">{lead.service_interest || '—'}</div>
-                        <div className="px-4 py-3">
+                        <div className="px-4 py-3 flex items-center gap-1.5">
                           <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${STATUS_COLORS[lead.status]}`}>
                             {lead.status}
                           </span>
+                          {lead.is_spam && (
+                            <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-medium bg-red-500/20 text-red-400">
+                              spam
+                            </span>
+                          )}
                         </div>
                         <div className="px-4 py-3 text-brand-gray-dark text-xs hidden lg:block">{formatDate(lead.created_at)}</div>
                       </div>
@@ -234,6 +260,24 @@ export default function AdminDashboard() {
                               <p className="text-sm text-brand-gray leading-relaxed">{lead.message}</p>
                             </div>
                           )}
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                            {(lead.is_spam || (lead.spam_score ?? 0) > 0) && (
+                              <p className="text-xs text-brand-gray-dark">
+                                Spam score {lead.spam_score ?? 0}
+                                {lead.spam_reasons?.length ? ` · ${lead.spam_reasons.join(', ')}` : ''}
+                              </p>
+                            )}
+                            <button
+                              onClick={() => updateLead(lead.id, { is_spam: !lead.is_spam })}
+                              className={`self-start px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                                lead.is_spam
+                                  ? 'border-green-500/30 text-green-400 hover:bg-green-500/10'
+                                  : 'border-red-500/30 text-red-400 hover:bg-red-500/10'
+                              }`}
+                            >
+                              {lead.is_spam ? 'Not spam — restore' : 'Mark as spam'}
+                            </button>
+                          </div>
                           <div className="flex flex-col sm:flex-row gap-4">
                             <div>
                               <p className="text-[10px] uppercase tracking-wider text-brand-gray-dark mb-1">Status</p>

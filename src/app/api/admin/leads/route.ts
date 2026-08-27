@@ -10,16 +10,30 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const status = searchParams.get('status');
   const source = searchParams.get('source');
+  // spam=only → quarantine view; spam=all → everything; default → real leads only
+  const spam = searchParams.get('spam');
 
-  let query = supabase
-    .from('leads')
-    .select('*')
-    .order('created_at', { ascending: false });
+  const buildQuery = (withSpamFilter: boolean) => {
+    let query = supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-  if (status) query = query.eq('status', status);
-  if (source) query = query.eq('source', source);
+    if (status) query = query.eq('status', status);
+    if (source) query = query.eq('source', source);
+    if (withSpamFilter) {
+      if (spam === 'only') query = query.eq('is_spam', true);
+      else if (spam !== 'all') query = query.eq('is_spam', false);
+    }
+    return query;
+  };
 
-  const { data, error } = await query;
+  let { data, error } = await buildQuery(true);
+
+  // Pre-migration DBs don't have is_spam yet — retry without the filter
+  if (error && (error.code === '42703' || /column/i.test(error.message || ''))) {
+    ({ data, error } = await buildQuery(false));
+  }
 
   if (error) {
     console.error('Admin leads fetch error:', error);
@@ -35,15 +49,16 @@ export async function PATCH(request: NextRequest) {
   }
 
   try {
-    const { id, status, notes } = await request.json();
+    const { id, status, notes, is_spam } = await request.json();
 
     if (!id) {
       return NextResponse.json({ error: 'Lead ID is required' }, { status: 400 });
     }
 
-    const updates: Record<string, string> = {};
+    const updates: Record<string, string | boolean> = {};
     if (status) updates.status = status;
     if (notes !== undefined) updates.notes = notes;
+    if (typeof is_spam === 'boolean') updates.is_spam = is_spam;
 
     if (Object.keys(updates).length === 0) {
       return NextResponse.json({ error: 'Nothing to update' }, { status: 400 });

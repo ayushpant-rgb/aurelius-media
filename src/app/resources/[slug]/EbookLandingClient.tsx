@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 import { useInView } from '@/lib/hooks';
 import type { Ebook } from '@/data/ebooks';
 
@@ -23,6 +24,7 @@ export default function EbookLandingClient({ ebook }: Props) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const { website, setWebsite, spamFields } = useSpamGuard();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,6 +46,7 @@ export default function EbookLandingClient({ ebook }: Props) {
           company: formData.extra || undefined,
           service_interest: ebook.title,
           source: 'ebook' as const,
+          ...spamFields,
         }),
       });
 
@@ -186,6 +189,7 @@ export default function EbookLandingClient({ ebook }: Props) {
                   )}
 
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <HoneypotField value={website} onChange={setWebsite} />
                     <div>
                       <label htmlFor="name" className="block text-sm text-brand-gray mb-1.5">
                         Full Name <span className="text-brand-accent">*</span>

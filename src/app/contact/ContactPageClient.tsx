@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useInView } from '@/lib/hooks';
 import { usePostHog } from 'posthog-js/react';
+import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 
 const serviceOptions = [
     'Google Ads Management',
@@ -34,6 +35,7 @@ export default function ContactPageClient() {
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const { website, setWebsite, spamFields } = useSpamGuard();
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -58,6 +60,7 @@ export default function ContactPageClient() {
                     service_interest: formData.service || undefined,
                     message: formData.message,
                     source: 'contact' as const,
+                    ...spamFields,
                 }),
             });
 
@@ -149,6 +152,7 @@ export default function ContactPageClient() {
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-4">
+                                    <HoneypotField value={website} onChange={setWebsite} />
                                     {/* Name */}
                                     <div>
                                         <label htmlFor="name" className="block text-sm font-medium text-brand-gray mb-1.5">
