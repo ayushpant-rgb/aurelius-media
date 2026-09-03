@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-11",
-  "total_pages": 75,
+  "last_updated": "2026-09-03",
+  "total_pages": 76,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -136,6 +136,15 @@
         "ServicePageClient.tsx: heroIconMap, serviceIconMap, serviceTestimonialKeys entries for the Dubai slug",
         "services.ts: Dubai Real Estate Marketing vertical entry",
         "real-estate-marketing relatedSlugs now leads with real-estate-marketing-dubai"
+      ]
+    },
+    {
+      "date": "2026-09-03",
+      "summary": "Published /blog/why-meta-ads-stop-working — 'Why Your Meta Ads Stop Working After a Few Days (It's Not Ad Fatigue)' (~6k words). Also added a dev-only gate in blog/[slug]/page.tsx so published:false drafts render on next dev for local preview (still 404 in production).",
+      "changes": [
+        "Added /blog/why-meta-ads-stop-working — Performance Marketing. Argues the 3-day drop on new ads is post-learning normalisation (warm-audience over-sampling) plus over-launching (the 'relaunch loop'), not fatigue. Consolidated from Meta help docs (learning phase, significant edits, ad auction), the Andromeda engineering post, Jon Loomer, AdLibrary, Flighted, Cometly, AdsUploader, Cropink, Logical Position. Prescribes five roles (3 openers + 2 closers), 3:2:2 multi-asset ads (Flexible media toggle in Advantage+ creative since March 2026), one CBO with Control/Test/Test ad sets, a half-margin-capped-at-20% scaling rule and a two-question weekly diagnostic. Distinct from and cross-linked to fix-meta-ads-roas, meta-ads-bad-quality-leads, paid-social-playbook. Chalk cover with the Meta logo via Higgsfield reference. No em dashes. Total blog posts: 37.",
+        "src/app/blog/[slug]/page.tsx: drafts (published: false) now render when NODE_ENV === 'development' so they can be previewed on localhost before publishing; production behaviour unchanged.",
+        ".claude/launch.json: registered 'aurelius-media' dev server (npm run dev, port 3000)."
       ]
     }
   ],
@@ -1458,7 +1467,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 29,
+      "total_pages_generated": 30,
       "sample_urls": [
         "/blog/meta-ads-bad-quality-leads",
         "/blog/how-to-get-recommended-by-chatgpt",
@@ -1483,7 +1492,8 @@
         "/blog/youtube-seo-guide",
         "/blog/paid-social-playbook",
         "/blog/answer-engine-optimization-guide",
-        "/blog/scarcity-brain-marketing-lessons"
+        "/blog/scarcity-brain-marketing-lessons",
+        "/blog/why-meta-ads-stop-working"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
