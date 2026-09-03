@@ -55,7 +55,10 @@ export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
     const post = getPostBySlug(slug);
 
-    if (!post || post.published === false) {
+    // Drafts (published: false) 404 in production; allow them on a local
+    // `next dev` server so they can be previewed before publishing.
+    const isDev = process.env.NODE_ENV === 'development';
+    if (!post || (post.published === false && !isDev)) {
         notFound();
     }
 

@@ -1,0 +1,445 @@
+---
+title: "Why Your Meta Ads Stop Working After a Few Days (It's Not Ad Fatigue)"
+excerpt: "A new ad crushes it for three days, then falls off a cliff. You call it ad fatigue, kill it, launch three more, and the whole account gets worse. That's the relaunch loop, and it's the most common reason Meta accounts stop scaling. Here's what's actually happening inside Meta's delivery system, why \"more creative\" makes it worse, and the five-role structure that gets you out."
+date: "2026-09-03"
+dateModified: "2026-09-03"
+category: "Performance Marketing"
+author: "Ayush Pant"
+authorRole: "Founder, Aurelius Media"
+featured: false
+published: true
+ogImage: "/blog/why-meta-ads-stop-working-cover.jpg"
+metaTitle: "Why Meta Ads Stop Working After a Few Days (Not Ad Fatigue)"
+metaDescription: "Meta ads working for a few days then dying? It's rarely ad fatigue. It's the relaunch loop. How the learning phase and over-launching cause the drop, and the five-role account structure that fixes it."
+keywords:
+  - meta ads stopped working
+  - facebook ads stop working after a few days
+  - meta ads performance drop
+  - ad fatigue vs learning phase
+  - meta ads learning phase
+  - facebook ads not working anymore
+  - meta ads account structure
+  - meta ads relaunch loop
+  - too many ads meta
+speakable: true
+faqs:
+  - question: "Why do my Meta ads work for a few days and then stop?"
+    answer: "In most accounts it isn't the ad dying. A new ad enters the learning phase with zero history, and Meta's delivery system explores aggressively, often leaning on your warmest, most responsive people first. Early results look great, then the ad moves out to colder reach as it stabilises, and cost per result rises to its real level. If you launched several new ads at once, they also pull that warm audience away from your existing ads, which makes everything look worse at the same time."
+  - question: "How do I tell ad fatigue from a learning-phase dip?"
+    answer: "Look at age, frequency and the Delivery column together. A dip in the first 3–7 days on an ad with rising reach and falling frequency is normal post-learning normalisation. True fatigue shows up on older ads: frequency climbing past roughly 2.5–3.5 on prospecting, CTR down 15%+ against its 7-day baseline, CPM rising without any audience change, and Meta's own 'Creative fatigue' or 'Creative limited' flag in the Delivery column."
+  - question: "Does launching new ads hurt my existing ads on Meta?"
+    answer: "It can. Every new ad or ad set starts a fresh exploration period, and Meta's own guidance warns that high ad volumes mean the system learns less about each ad. Inside one campaign budget, new ads compete for delivery and for your most responsive users, so existing ads can lose their best audience temporarily. Launch fewer, more distinct ads and give each a clear job instead of adding volume."
+  - question: "How many ads should I run in a Meta ad set?"
+    answer: "Fewer than most people think. Meta's help documentation explicitly says to avoid high ad volumes because the delivery system learns less about each one. In practice 4–8 genuinely different ads per ad set (different concepts, formats and funnel jobs, not six versions of the same idea) gives the system enough diversity without fragmenting data. Use multi-asset (flexible media) ads to add variation inside one ad rather than multiplying ads."
+  - question: "When should I increase my Meta ads budget?"
+    answer: "Only when the campaign is beating your target over a stable window, typically 7 days out of learning, and then in small steps. Meta treats large budget jumps as significant edits that can restart learning; most practitioners keep increases to roughly 20% or less and wait 48–72 hours between changes. A useful rule: if you're 10% better than target CPA, raise budget by 5% or less, at the campaign level, and touch nothing else."
+---
+
+The pattern is so common we can describe it before a client opens Ads Manager.
+
+A new ad goes live on Monday. By Wednesday it's the best thing in the account: cheap results, great ROAS, the Slack channel is celebrating. By the weekend the cost per result has doubled. Someone says "ad fatigue," pauses it, and briefs three replacements. Those three ads do the exact same thing. Two weeks later there are fourteen active ads, four of them in *Learning limited*, and the account is spending more for less than it was before anyone touched anything.
+
+We call this the **relaunch loop**, and if you're in it, the problem isn't your creative, the algorithm, or the economy. It's a misdiagnosis, and it's causing you to actively dismantle the parts of your account that were working while adding the one thing Meta's delivery system handles worst: volume.
+
+This post is the counter-argument to "test more creative." It explains what's actually happening inside Meta's delivery system when a new ad "dies" after a few days, why it's usually not fatigue, how to tell the two apart in Ads Manager, why every extra launch makes the account more expensive, and the deliberately simple five-role structure that gets you out of the loop. It consolidates Meta's own documentation on the learning phase and the ad auction, the engineering notes behind the Andromeda retrieval engine, and the current thinking of practitioners we rate, plus what we've seen managing Meta accounts across D2C, education, real estate and publishing.
+
+---
+
+## In a Nutshell
+
+- **Most "my ads stopped working" cases are a launch effect, not a death.** Every new ad starts with zero history. Meta explores aggressively during the [learning phase](https://www.facebook.com/business/help/112167992830700), and early delivery tends to over-index on your most responsive people. Results look artificially good, then normalise as the ad reaches colder users. That normalisation is what you're calling fatigue.
+- **New ads make old ads look worse.** Inside a shared campaign budget, every launch competes for delivery and for the same warm pool. Meta's own guidance is blunt: high ad volumes mean the system learns *less* about each ad. Launching five things at once guarantees that everything, including your proven performers, wobbles.
+- **The relaunch loop compounds the damage.** Operators pause the ads that "died," which are often the upper-funnel ads feeding everyone else, then launch more, restarting learning again. Each cycle adds complexity and shrinks the audience the account is actually building.
+- **The auction punishes this structurally.** Ads win on [total value](https://www.facebook.com/business/help/430291176997542): bid × estimated action rate + ad quality. Fresh ads have no action-rate history; a fragmented account has no concentrated signal. You pay more per impression for the privilege of confusing the system.
+- **Andromeda made "more ads" the wrong answer.** Meta's retrieval engine collapses near-duplicate creative into one entity. Twelve variations of the same concept is one ad with twelve budgets.
+- **The fix is fewer, more distinct ads with defined jobs, one consolidated campaign, multi-asset ads for variation, and a two-question weekly diagnostic.** Simple accounts scale. Complex accounts get day-traded.
+
+---
+
+## Table of Contents
+
+1. [What Actually Happens When You Launch a New Meta Ad](#launch-effect)
+2. [How to Tell a Learning Dip From Real Ad Fatigue](#dip-vs-fatigue)
+3. [The Relaunch Loop: How Operators Break Working Accounts](#relaunch-loop)
+4. [Why the Auction Punishes Complexity](#auction)
+5. [Andromeda and the "More Ads" Trap](#andromeda)
+6. [The Fix, Part 1: Give Every Ad a Job](#ad-jobs)
+7. [The Fix, Part 2: Variation Inside the Ad, Not Across the Account](#multi-asset)
+8. [The Fix, Part 3: One Campaign, Three Ad Sets](#structure)
+9. [Scaling Without Restarting Learning](#scaling)
+10. [The Two-Question Weekly Diagnostic](#diagnostic)
+11. [The Bottom Line](#bottom-line)
+12. [TL;DR Cheat Sheet](#tldr)
+13. [Frequently Asked Questions](#faq)
+
+---
+
+<h2 id="launch-effect">What Actually Happens When You Launch a New Meta Ad</h2>
+
+Start with what Meta says, because it's clearer than most of the folklore around it.
+
+When you create a new ad or ad set, it enters the **learning phase**: the period where, in Meta's words, the delivery system is still exploring the best way to deliver it. Exiting learning usually requires about **50 optimisation events in the seven days after the last significant edit**. Until then, Meta's own help page notes that ad sets are "less stable and usually have a higher CPA."
+
+That's the official version. Here's the part practitioners see every week that the help centre doesn't spell out.
+
+A brand-new ad has no performance history, so the system has nothing to base an *estimated action rate* on. To build that estimate fast, exploration doesn't happen evenly across your target audience. It leans on the users most likely to respond (people who've engaged with you before, recent site visitors, high-intent lookalike overlap) because that's the cheapest way to generate signal. In the first two or three days you're effectively getting a preview of the ad's performance against your warmest slice of the market.
+
+You can see this in your own account. Look at **frequency** on a new ad over its first 72 hours. A frequency of 1.5 in day one means a meaningful chunk of people saw the ad more than once in a single day. The system is hammering a small, responsive pool while it learns. Then, as the ad stabilises, two things happen together: spend goes up and frequency comes down. The ad is reaching genuinely new people for the first time.
+
+**That's not the ad dying. That's the ad growing up.** The cost per result you see on day seven is the real cost per result. The one you saw on day two was a subsidised preview.
+
+The fatigue-tracking data backs this up. AdLibrary's [2026 analysis of creative lifecycles](https://adlibrary.com/posts/ad-fatigue) charts the typical Meta prospecting ad as *peak* on days 1–3 at a frequency of roughly 0.8–1.5, *warning* on days 4–7, and *decay* from day 8 onward, with the warning stage marked by CTR softening 5–15% and CPM ticking up. Notice the shape. Almost every ad "declines" from its opening days, because the opening days weren't representative of anything.
+
+<div className="blog-callout">
+  <p className="blog-callout-title">Why day-two ROAS is a lie</p>
+  <p>Early-learning delivery over-samples your most responsive users. The metrics you see in the first 48–72 hours reflect that sample, not your market. Judging any ad, or comparing it to your existing ads, before it exits learning is comparing a subsidised number to a real one. Meta's guidance is explicit: results during learning "aren't necessarily indicative of future performance."</p>
+</div>
+
+---
+
+<h2 id="dip-vs-fatigue">How to Tell a Learning Dip From Real Ad Fatigue</h2>
+
+None of this means creative fatigue isn't real. It is, and in the Andromeda era it can arrive fast. But fatigue and a post-learning dip are different problems with opposite fixes, and Ads Manager gives you enough to tell them apart if you look at three things together.
+
+| Signal | Post-learning normalisation | Genuine creative fatigue |
+|---|---|---|
+| **Age of the ad** | Under 7–10 days, still in or just out of learning | Weeks old, well past 50 events |
+| **Frequency trend** | *Falling* as reach expands | *Rising*, above ~2.5–3.0 on prospecting, higher on retargeting |
+| **Reach** | Growing daily | Flat; the same people, again |
+| **CTR vs its own 7-day baseline** | Settles at a new, lower-but-stable level | Drops 15%+ and keeps sliding |
+| **CPM** | Roughly stable | Rising 10%+ with no audience or placement change |
+| **Delivery column** | "Learning" or blank | "Creative fatigue" / "Creative limited" flag |
+| **Negative feedback** | Normal | Hides and "see less" ticking up |
+| **Correct action** | Leave it alone | Retire that ad; replace it with a genuinely new angle |
+
+Two practical notes.
+
+First, Meta's own fatigue flag can mislead you. As Atria's [diagnostic guide](https://www.tryatria.com/blog/meta-creative-fatigue-diagnose-and-fix-2026) points out, *Creative limited* can appear on new ads that are still ramping. If you see it inside the first 48 hours of a launch, wait.
+
+Second, real fatigue is about repetition against the *same* people. AdLibrary cites a Meta-internal finding that CTR drops around **45% by the fourth repetition** of the same creative. That is a frequency problem on an established ad. It is not what's happening to an ad that's three days old with a frequency that's going *down*.
+
+If you get one thing from this section: **an ad whose reach is rising and whose frequency is falling is not fatigued.** It's doing what it should. Killing it is the mistake.
+
+---
+
+<h2 id="relaunch-loop">The Relaunch Loop: How Operators Break Working Accounts</h2>
+
+Here's how the misdiagnosis turns into a structural problem.
+
+**Step 1: The new ad "dies."** Its numbers normalise. The operator, comparing day-seven results to day-two results, sees a decline and pauses it.
+
+**Step 2: The old ads look worse too, so they get paused.** This part is real, not imagined. When you launch new ads into a campaign, the new ads borrow the warmest audience while they learn. Your existing ads lose access to that pool for a few days. Their performance genuinely dips. Meta's learning-phase documentation warns directly against this: when you create many ads and ad sets, the system "learns less about each ad and ad set than when you create fewer." So the operator now sees *two* problems (a new ad that faded and old ads that are slipping) and often pauses the old ads as well.
+
+And which old ads look worst on a last-click view? The upper-funnel ones. The awareness and first-touch creative that never gets credited for the sale but built the warm audience everything else converts. Those get cut first.
+
+**Step 3: More launches.** With "nothing working," the answer is obviously more creative. Five new ads go live. Five new learning periods begin. Five new ads compete for the same warm pool. Everything wobbles again.
+
+**Step 4: The account gets more complex and more bottom-heavy.** Each round pushes spend further down the funnel, chasing the conversions that are easiest to attribute and least incremental. The audience the account is *building* shrinks. CPMs climb because a fragmented account has no concentrated signal. The operator works harder every week to hold the line.
+
+Charley Tichenor, who manages significant Meta spend and teaches this to media buyers, calls this the "doom cycle," and it's a fair name. Practitioner writing across the board describes the same pattern from different angles: AdLibrary's [structure guide](https://adlibrary.com/posts/meta-campaign-structure-confusing) notes that an account "cycling through new ad creatives every 5–7 days is almost certainly stuck in learning," and cites IAB measurement work showing campaigns that hold a stable learning phase for four or more consecutive weeks outperform those that reset it more than once a month.
+
+The trap is that every individual decision in the loop feels rational. It's the sequence that's destructive.
+
+<div className="blog-tip">
+<div className="blog-tip-title">THE ONE RULE THAT BREAKS THE LOOP</div>
+
+Never judge a new ad against your existing ads, or your existing ads against their pre-launch numbers, until the new ad has exited learning. Set a calendar reminder for seven days after launch and do nothing before it. The hardest part of running a stable Meta account is not building it. It's not touching it.
+
+</div>
+
+---
+
+<h2 id="auction">Why the Auction Punishes Complexity</h2>
+
+To see why "more ads" makes everything more expensive rather than just noisier, you need one piece of Meta's mechanics.
+
+Every time there's an opportunity to show someone an ad, an auction decides which one wins. Per Meta's [documentation on ad auctions](https://www.facebook.com/business/help/430291176997542), the winner is the ad with the highest **total value**, built from three inputs:
+
+- **Bid:** what you're willing to pay for the outcome.
+- **Estimated action rate:** Meta's prediction that showing *this* ad to *this* person produces the outcome you want.
+- **Ad quality:** signals like hides, feedback, and low-quality attributes in the creative.
+
+Meta states outright that estimated action rate and ad quality together measure relevance, and that a more relevant ad can beat a higher bid. Which means the estimated action rate is doing most of the work, and it is learned, per ad, from history.
+
+Now think about what a fragmented account does to that number. A brand-new ad starts with no history, so the system is guessing. Twelve ads splitting one budget each accumulate a twelfth of the events, so the system is guessing for longer on all of them. The concentrated, confident prediction that wins auctions cheaply never forms. You end up bidding higher to win the same impressions a simpler account wins on relevance.
+
+This is the mechanical reason simplification isn't just tidiness. Fewer ads with more data each produce stronger action-rate estimates, which win more auctions at lower cost. It's the same reason [Meta's guidance on learning-limited ad sets](https://www.facebook.com/business/help/112167992830700) is to *combine* ad sets rather than optimise them individually. Pooled events exit learning; fragmented events never do.
+
+<div className="blog-stats">
+  <div className="blog-stat"><div className="blog-stat-num">~50</div><div className="blog-stat-label">optimisation events in 7 days to exit learning, per ad set (Meta)</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">10×</div><div className="blog-stat-label">daily budget vs target CPA, the practitioner floor for exiting learning on time</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">−45%</div><div className="blog-stat-label">CTR by the 4th repetition of the same creative (Meta internal study, via AdLibrary)</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">20%</div><div className="blog-stat-label">the budget-change threshold most practitioners treat as a learning-phase reset risk</div></div>
+</div>
+
+---
+
+<h2 id="andromeda">Andromeda and the "More Ads" Trap</h2>
+
+The advice to "test more creative" got a lot louder after Meta's Andromeda rollout, and it's worth being precise about what Andromeda actually changed, because it made volume-for-its-own-sake *worse*, not better.
+
+Andromeda is Meta's retrieval engine: the first stage of ad selection, which narrows the field from tens of millions of candidate ads down to a few thousand before ranking and the auction even begin. Meta's [engineering write-up](https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/) reports a 10,000× increase in model capacity, +6% recall and +8% ad quality on selected segments. The practical point: if your ad isn't retrieved, your bid and budget are irrelevant.
+
+What gets retrieved? Distinct creative. Logical Position's [2026 playbook](https://www.logicalposition.com/blog/the-2026-paid-social-playbook) describes the "Entity ID trap" well: upload thirty ads that share the same background, creator and structure and the system treats them as one entity. In Andromeda's eyes, you have one ad, and you've split its budget thirty ways.
+
+Jon Loomer, who has tracked Meta's ad product longer than almost anyone, [makes the same argument](https://www.jonloomer.com/meta-andromeda-creative-diversification/): most Andromeda advice focuses on making *more* ads, when the real lever is making *different* ones: different visuals, different formats, different angles, different placements-first sizing.
+
+So "creative diversity" in the Andromeda era is not a volume metric. It's a distinctness metric. Five ads that each say something different, in a different format, to a different person at a different point in their journey, give the retrieval system five real options. Twenty variations of one idea give it one option and a fragmented budget.
+
+That's the reframe that makes everything below work.
+
+---
+
+<h2 id="ad-jobs">The Fix, Part 1: Give Every Ad a Job</h2>
+
+If the problem is too many ads competing for the same audience with no defined role, the solution has to be the reverse: a small number of genuinely distinct ads, each with a specific job, that don't compete with each other.
+
+The cleanest way we've found to force this discipline is to think in **five roles across two funnel stages**. Several practitioners describe versions of this; Tichenor's "Olympic rings" framing is the most memorable, and we've adapted it to how we build accounts.
+
+**The opening ads (cold, upper funnel): three distinct ways to start a conversation**
+
+| Role | Job | What it usually looks like |
+|---|---|---|
+| **Opener A** | Earn attention from a stranger with your strongest angle | UGC or founder video, a bold claim, the problem stated plainly |
+| **Opener B** | Reach the people Opener A didn't land with, using a different format and a different reason to care | A demonstration, a comparison, a contrarian take |
+| **Opener C** | A third door in for people who ignored both | Testimonial, before/after, a specific use case |
+
+**The closing ads (warm, lower funnel): two ways to finish it**
+
+| Role | Job | What it usually looks like |
+|---|---|---|
+| **Closer A** | Second touch for people who saw Opener A or B; move them to a decision | Static image with the offer, an objection handled, urgency |
+| **Closer B** | Second touch for people who saw B or C | A different offer frame, social proof, risk reversal |
+
+Three things make this different from "run five ads":
+
+1. **Every role is distinct**, not in copy but in *concept*. If you can't explain how Opener B reaches someone Opener A can't, it's not a second opener; it's a variation, and Andromeda will treat it as one.
+2. **Nobody competes for the same person.** Openers are built for cold reach; closers are built as a logical next message. The sequencing is the personalisation, which is what Meta means when it talks about delivering the right message to the right person, rather than a different ad for every person.
+3. **You can diagnose it.** When performance drops, you don't ask "what should I try?" You ask "which role isn't doing its job?" That's a much smaller, much more answerable question, and it's the basis of the [weekly diagnostic](#diagnostic) below.
+
+It also gives you a sane creative brief. Instead of "we need ten new ads by Friday," the brief becomes "Opener B is our weakest role. Bring me two different ways to open a conversation with someone who ignored a founder video." That is a brief a [creative team](/services/ai-creative-design) can actually execute.
+
+---
+
+<h2 id="multi-asset">The Fix, Part 2: Variation Inside the Ad, Not Across the Account</h2>
+
+"But I still need to test." You do. The question is *where* the variation lives.
+
+The wrong place is across the account: twelve separate ads, twelve learning periods, twelve data buckets. The right place is **inside one ad**, using Meta's multi-asset formats, so the variation shares a single learning pool.
+
+Here's the current state of that tooling, because it moved recently:
+
+- Meta retired **Dynamic Creative** for Sales and App Promotion objectives in June 2024 and replaced it with the **Flexible** ad format.
+- In **March 2026**, Meta removed Flexible as a standalone option in Ad setup. The same behaviour now lives as the **Flexible media** toggle under *Format display options* inside Advantage+ creative, and AdsUploader's [walkthrough](https://adsuploader.com/blog/meta-flexible-ads) notes a newer API-level construct, *multi-media ads*, that adds per-asset customisation. Existing Flexible ads keep delivering; you can't edit them into the new controls, so duplicate and rebuild.
+- The container still takes **up to 10 images or videos, plus up to 5 primary texts, 5 headlines and 5 descriptions**, and Meta assembles and delivers the combinations it predicts will work for each person and placement.
+
+Meta's own [description of the format](https://www.facebook.com/business/help/835561738423867) lists "help prevent ad fatigue" as an explicit benefit, which is exactly the job we want it doing.
+
+**The practical build we recommend: 3 : 2 : 2.** Three creatives, two primary texts, two headlines. Twelve combinations, one ad, one learning pool. Cropink's [DCO guide](https://cropink.com/dco-tips-solutions-for-meta) lands on the same ratio as the sweet spot between "enough for Meta to optimise" and "too many combinations to ever get signal." A few rules that matter:
+
+- **Same format, same aspect ratio within one ad.** Three videos or three statics, not a mix. Mixing asks the system to answer two questions at once.
+- **The two texts and two headlines must be *different arguments*, not rewordings.** "Save 8 hours a week" vs "Stop paying for three tools", not "Save time" vs "Save more time."
+- **One multi-asset ad per role.** Opener A is a 3:2:2. Opener B is a different 3:2:2. That's how a five-role account becomes the equivalent of 60 creative combinations in five data buckets instead of 60.
+
+**How to read it.** This is where people get stuck. Per-combination reporting for Flexible ads was unreliable for most of the format's life; Meta began rolling out a per-asset "Media" breakdown in 2026, but don't build your process around it. Loomer's [position](https://www.jonloomer.com/flexible-ad-format/) is the right one: these formats are not for finding a winning permutation. They exist to give the algorithm options and to limit fatigue. Judge the *ad* (is the whole 3:2:2 hitting target or not?) and let Meta run the meritocracy inside it.
+
+And if one combination is a genuine outlier, you'll know without a dashboard: a disproportionate share of comments, shares and DMs lands on one version. That's your signal to pull its post ID into your proven set, which brings us to structure.
+
+<div className="blog-inline-cta">
+<p className="blog-inline-cta-title">Not sure which of your ads are actually fatigued and which are just settling?</p>
+<p className="blog-inline-cta-desc">We'll go through your account's last 30 days of launches, learning states and frequency curves and tell you exactly what to pause, what to leave alone, and what to build next. Free, 15 minutes.</p>
+<a href="https://cal.com/aureliusmedia/15min" target="_blank" rel="noopener noreferrer" className="blog-inline-cta-btn">Book a Free Meta Ads Diagnosis →</a>
+</div>
+
+---
+
+<h2 id="structure">The Fix, Part 3: One Campaign, Three Ad Sets</h2>
+
+Now put the roles and the multi-asset ads into a structure that stays simple as it grows.
+
+We build most accounts as **one CBO (Advantage+ campaign budget) campaign with three ad sets**. Not because three is magic, but because it's the smallest structure that gives you a stable control, a real test, and a second test to compare against.
+
+| Ad set | What's in it | Job |
+|---|---|---|
+| **Control** | 4–8 proven ads (post IDs) covering all five roles | The stable environment. Nothing enters without earning it. Starting out, this is simply your best-performing current ads. |
+| **Test 1** | One 3:2:2 multi-asset ad built for the weakest role | Find something better than what's in Control |
+| **Test 2** | One 3:2:2 built for the same role, different concept | Run in parallel so the question is "which is better," not "does this work" |
+
+That's a maximum of 24 active combinations across the two test ad sets, competing against a proven control, inside one budget. It's the scientific method with guardrails.
+
+**Why CBO.** Meta's [documentation on Advantage+ campaign budget](https://www.facebook.com/business/help/316478108955072) confirms that ad sets don't re-enter learning as the campaign redistributes budget, and that adding an ad set doesn't reset the others. Budget flows to what's working without you day-trading it. ABO, a budget per ad set, is functionally a folder of one-ad-set campaigns: more to manage, no additional benefit at this stage.
+
+**The low-budget version.** If your account can't get multiple ad sets out of learning (and the [maths](https://adlibrary.com/posts/meta-campaign-structure-confusing) is unforgiving: 50 events × your target CPA is the minimum weekly budget *per ad set*), collapse everything into **one ad set with 4–8 ads** that still cover all five roles. Same principle, one container. Cometly's [learning-phase guide](https://www.cometly.com/post/facebook-ads-learning-phase-stuck) puts it as "fewer, bigger, better": one ad set at $500/day beats five at $100/day almost every time.
+
+**How it evolves.** The weekly rhythm is:
+
+<ol className="blog-numbered">
+<li><strong>Test</strong>
+Your two test ads run. Learning pools inside each 3:2:2. You don't touch anything for at least seven days.</li>
+<li><strong>Harvest (occasionally)</strong>
+Every few months, one combination inside a test ad becomes an obvious outlier: spend concentrates on it, and your inbox and comments tell you so. Copy its post ID and add it as a new ad in Control. Two rules: don't turn off the 3:2:2 it came from (it's working; that's why you harvested), and don't expect the standalone post ID to perform identically. Inside the multi-asset ad it had the benefit of shared data; alone, it's one player joining a team.</li>
+<li><strong>Scale</strong>
+This does not depend on harvesting. If the campaign is beating target, raise the budget. Details below.</li>
+</ol>
+
+<div className="blog-callout">
+  <p className="blog-callout-title">Where this structure fits with the rest of your account</p>
+  <p>This is the prospecting-and-conversion engine, and for most accounts under roughly $1,000/day it's the whole account. Dedicated retargeting campaigns are usually unnecessary at that scale. The closer roles inside Control already do the job, and a separate retargeting build mostly re-buys people the CBO would have reached anyway. Add retention or catalogue campaigns on top only when spend and product range justify them. For the wider campaign architecture and measurement stack, see our <a href="/blog/paid-social-playbook">paid social playbook</a>.</p>
+</div>
+
+---
+
+<h2 id="scaling">Scaling Without Restarting Learning</h2>
+
+The second most common way accounts break, after the relaunch loop, is scaling too hard. Meta's guidance on [significant edits](https://www.facebook.com/business/help/316478108955072) gives the example directly: going from $100 to $101 won't reset learning; going from $100 to $1,000 may. The exact threshold isn't published, but nearly every practitioner source converges on the same working rule: **budget changes of roughly 20% or more in one step risk a reset**, and you should wait 48–72 hours between changes.
+
+Here's the scaling logic we use, which is deliberately conservative because the cost of a reset is far higher than the cost of scaling a day late:
+
+- **Trigger:** the campaign has been *out of learning* and beating your target over the last seven days. Not one good day. Seven.
+- **Step size:** half your margin over target, capped at 20%. If target CPA is $50 and you're at $45, which is 10% better, raise budget by 5% or less. Even if the extra spend produced zero incremental conversions, you'd still be under target. You bank the extra reach without risking the efficiency you already have.
+- **Where:** at the campaign level. This is CBO; don't touch ad set budgets.
+- **Then:** nothing else. No new ads, no audience edits, no bid changes in the same window. Compounding edits is how you end up unable to tell which change did what.
+
+One thing to expect: when you raise budget by less than your average cost per result, cost per result will *appear* to rise for a day or two. That's arithmetic, not a signal. You didn't add enough spend to buy a whole extra conversion, so the average looks worse until you do. Give it time.
+
+And keep the creative ratio in mind. Flighted's [2026 structure guide](https://www.flighted.co/blog/best-meta-ads-account-structure-2026) uses roughly two active creatives per $1,000 of daily spend as a floor; below that, spend concentrates on too few ads and frequency spikes. For a five-role account built on multi-asset ads, that floor is comfortably covered until you're well into four figures a day.
+
+---
+
+<h2 id="diagnostic">The Two-Question Weekly Diagnostic</h2>
+
+Every account hits a point where performance drops and the instinct is to *do something*: launch, restructure, rebuild. Almost every one of those instincts reintroduces the complexity that caused the problem.
+
+Replace them with two questions, asked once a week.
+
+**Question 1: Can I spend more money right now and stay profitable?**
+
+If **yes**: raise the budget per the rule above and *touch nothing else.* This is the most important rule in the system, and the one most consistently violated. When the answer is yes, launching new ads, changing structure or "just testing one thing" is the single worst move available to you. If it's working, let it work.
+
+If **no**: move to Question 2.
+
+**Question 2: Which role is taking the most spend with the worst performance?**
+
+You're looking for one of two things:
+
+- An **opener** (cold-facing role) that's absorbing a disproportionate share of spend while delivering the worst results relative to target, or
+- An **ad set** that's receiving the most budget across all five roles but performing worst.
+
+That's your weakest link, and it's the *only* thing you work on this week. You don't rebuild the account. You don't launch ten ideas. You build **one new 3:2:2 for that one role**, designed to do that role's job better, and put it in a test ad set.
+
+Then the question isn't "what should I try?" It's "what specifically is this role failing to do, and what's one change that might fix it?" A different hook. A stronger proof point. A better offer in the close. One change, one test.
+
+**How to read the result:** watch spend, not just CPA. Inside a CBO, if the new 3:2:2 earns budget *away* from the underperformer, it's doing the job better. If it doesn't, try the next variable. Give it the full seven days.
+
+A worked example from the account type we see most:
+
+<div className="blog-compare">
+<div className="blog-compare-dont">
+
+#### ✕ What most operators do
+
+- Day 3: new ad "peaks," then normalises. Paused.
+- Day 4: old ads look soft too. Two paused, both upper-funnel.
+- Day 5: four new ads launched. Four new learning periods.
+- Day 9: everything in learning or learning-limited. CPMs up. Budget cut "until it stabilises."
+- Day 14: account has 11 active ads, none out of learning. Blame creative. Brief the agency for "more volume."
+
+</div>
+<div className="blog-compare-do">
+
+#### ✓ What the system does
+
+- Day 3: new 3:2:2 in Test 1 "peaks." Nothing touched. Calendar reminder set for day 7.
+- Day 7: campaign beating target CPA by 12%. Budget +6% at campaign level. Nothing else changed.
+- Day 14: still beating target. Budget +5%. Comments cluster on one combination inside Test 1. Post ID copied into Control.
+- Day 21: campaign now under target. Question 2: Opener B is taking 34% of spend at the worst CPA. One new 3:2:2 built for the Opener B job, placed in Test 2.
+- Day 28: new Opener B is earning spend away from the old one. Old one retired. Back to Question 1.
+
+</div>
+</div>
+
+Same budget. Same creative capacity. The second account gets stronger every week; the first gets more complicated.
+
+---
+
+<h2 id="bottom-line">The Bottom Line</h2>
+
+Most Meta ads that "stop working after a few days" never worked as well as you thought. They were previewing against your warmest audience while the system learned. The decline you see is the ad finding its real cost, and the dip in your other ads is the price of launching on top of them. Neither is fatigue. Both get worse when you respond by launching more.
+
+Meta's delivery system rewards concentrated signal: fewer ads with more data each, so that estimated action rates get confident and auctions get cheaper. Andromeda rewards *distinct* creative, not *more* creative. The account structure that satisfies both is deliberately boring: five roles, multi-asset ads for variation, one campaign, three ad sets, small budget steps, and a two-question diagnostic that keeps you from touching what's working.
+
+Simple scales. Complex gets day-traded. If your ROAS problem is bigger than a structural one (tracking, offer, landing page), start with our [ROAS diagnosis](/blog/fix-meta-ads-roas); if you're generating volume but the leads are junk, that's a [different set of fixes](/blog/meta-ads-bad-quality-leads). And if you'd rather have someone build this structure into your account and run it, that's exactly what our [Meta Ads management](/services/meta-ads) does.
+
+---
+
+<h2 id="tldr">TL;DR Cheat Sheet</h2>
+
+- **The drop after 3 days is usually normalisation, not fatigue.** New ads over-sample your warmest users during learning. Day-two ROAS is a preview; day-seven is real.
+- **New launches make old ads look worse** by borrowing the same warm pool. Don't compare anything until the new ad exits learning (~50 events / 7 days).
+- **Real fatigue = old ad + rising frequency (2.5–3.5+ prospecting) + CTR down 15%+ vs baseline + CPM up + Meta's fatigue flag.** A young ad with rising reach and falling frequency is fine.
+- **Never kill upper-funnel ads on last-click numbers.** They build the audience the closers convert.
+- **Auction maths:** total value = bid × estimated action rate + quality. Fragmented accounts never build confident action rates and pay more per impression.
+- **Andromeda collapses near-duplicates into one entity.** Diversity means distinct concepts, not more variations.
+- **Structure:** 5 roles (3 openers, 2 closers) → each a 3:2:2 multi-asset ad (Flexible media toggle in Advantage+ creative since March 2026) → 1 CBO campaign, 3 ad sets (Control + Test 1 + Test 2). Under budget? One ad set, 4–8 ads.
+- **Scale:** only after 7 stable days beating target; step = half your margin, max 20%; campaign level; nothing else changes.
+- **Weekly:** Q1: can I spend more profitably? Yes → raise budget, touch nothing. No → Q2: which role has the most spend and the worst result? Fix only that, with one new 3:2:2.
+
+---
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<details>
+<summary>Why do my Meta ads work for a few days and then stop?</summary>
+
+In most accounts it isn't the ad dying. A new ad enters the learning phase with zero history, and Meta's delivery system explores aggressively, leaning on your warmest, most responsive people first. Early results look great, then the ad moves out to colder reach as it stabilises and cost per result rises to its real level. If you launched several ads at once, they also pull that warm audience away from your existing ads, so everything looks worse at the same time. Wait until the ad exits learning (about 50 optimisation events in 7 days) before judging it.
+
+</details>
+
+<details>
+<summary>How do I tell ad fatigue from a learning-phase dip?</summary>
+
+Look at age, frequency and the Delivery column together. A dip in the first 3–7 days on an ad whose reach is rising and whose frequency is falling is normal normalisation. Genuine fatigue appears on older ads: frequency climbing past roughly 2.5–3.5 on prospecting, CTR down 15% or more against its own 7-day baseline, CPM rising with no audience change, negative feedback ticking up, and Meta's "Creative fatigue" or "Creative limited" flag, though that flag can also appear on brand-new ads still ramping, so ignore it in the first 48 hours.
+
+</details>
+
+<details>
+<summary>Does launching new ads hurt my existing ads on Meta?</summary>
+
+It can, temporarily. Every new ad starts a fresh exploration period, and Meta's own learning-phase guidance says high ad volumes mean the system learns less about each ad. Inside one campaign budget, new ads compete for delivery and for your most responsive users, so existing ads can lose their best audience for a few days. The fix is to launch fewer, more distinct ads, each with a defined job, and to add variation inside multi-asset ads rather than across the account.
+
+</details>
+
+<details>
+<summary>How many ads should I run in a Meta ad set?</summary>
+
+Fewer than most people run. Meta explicitly recommends avoiding high ad volumes. In practice 4–8 genuinely different ads per ad set (different concepts, formats and funnel jobs, not six versions of one idea) gives the retrieval system real diversity without fragmenting data. Use multi-asset ads (the Flexible media toggle in Advantage+ creative) to hold up to 10 creatives and 5 text variations inside a single ad with one shared learning pool.
+
+</details>
+
+<details>
+<summary>What replaced Meta's Flexible ad format in 2026?</summary>
+
+In March 2026 Meta removed "Flexible" as a standalone format in Ad setup and moved the same behaviour to the Flexible media toggle under Format display options inside Advantage+ creative. It still accepts up to 10 images or videos plus multiple text and headline options, and Meta assembles the combinations it predicts will perform. Existing Flexible ads keep delivering but can't be edited into the new controls, so duplicate and rebuild them in the Advantage+ creative workflow. Meta also documented a Marketing API construct called multi-media ads that adds per-asset customisation.
+
+</details>
+
+<details>
+<summary>When should I increase my Meta ads budget, and by how much?</summary>
+
+Only when the campaign has been out of learning and beating your target for about seven days, and then in small steps. Meta treats large budget jumps as significant edits that can restart learning; practitioners converge on roughly 20% as the risk threshold, with 48–72 hours between changes. Our rule: raise by half your margin over target, capped at 20%. If you're 10% better than target CPA, add 5% or less, at the campaign level, and change nothing else in the same window.
+
+</details>
+
+<details>
+<summary>Should I use CBO or ABO for this structure?</summary>
+
+CBO (Advantage+ campaign budget). Meta confirms that budget redistribution between ad sets doesn't reset learning, and adding an ad set doesn't reset the others, so the campaign can shift spend to what's working without manual intervention. ABO, a budget per ad set, behaves like a folder of one-ad-set campaigns: more to manage for no benefit at this stage. ABO can still make sense for isolated tests where you need equal spend per hypothesis.
+
+</details>
+
+<details>
+<summary>What if my budget is too small for three ad sets?</summary>
+
+Collapse to one ad set with 4–8 ads that still cover all five roles. The learning maths is unforgiving: roughly 50 optimisation events per ad set per week, which means 50 × your target CPA is the minimum weekly budget per ad set. If you can't fund that for three ad sets, one well-funded ad set will outperform three starved ones. You can also choose a higher-frequency optimisation event (add to cart, lead form view) until purchase volume supports the purchase event.
+
+</details>
