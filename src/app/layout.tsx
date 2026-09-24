@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import PostHogProvider from "@/components/PostHogProvider";
 import PostHogPageView from "@/components/PostHogPageView";
 import LeadPopup from "@/components/LeadPopup";
+import ConditionalChrome from "@/components/ConditionalChrome";
 import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/schema";
 
 const inter = Inter({
@@ -120,9 +121,9 @@ export default function RootLayout({
         <PostHogProvider>
           <PostHogPageView />
           <LeadPopup />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <ConditionalChrome header={<Header />} footer={<Footer />}>
+            {children}
+          </ConditionalChrome>
         </PostHogProvider>
       </body>
     </html>
