@@ -1,0 +1,418 @@
+---
+title: "What Is the Meta Ads Minimum Daily Budget? (The Official Number and the Real Floor)"
+excerpt: "Meta will let most ad sets run on $0.50 to $1 a day, which in India is roughly ₹48 at October 2026 exchange rates. That number keeps an ad set live. It does not get it out of learning. Here are Meta's current minimums by currency, the 50-results formula that sets your real floor, worked examples in rupees and dollars, and what to do when you can't afford either."
+date: "2026-10-08"
+dateModified: "2026-10-08"
+category: "Performance Marketing"
+author: "Ayush Pant"
+authorRole: "Founder, Aurelius Media"
+featured: false
+published: true
+ogImage: "/blog/meta-ads-minimum-budget-cover.jpg"
+metaTitle: "Meta Ads Minimum Daily Budget 2026: Official vs Real Floor"
+metaDescription: "Meta's minimum daily budget is $0.50 to $1 for most ad sets, about ₹48 in India. The real floor is 50 results a week. Minimums by currency, formula and fixes."
+keywords:
+  - meta ads minimum daily budget
+  - meta ads minimum budget per day
+  - meta ads minimum budget in india
+  - minimum daily budget for meta ads in india
+  - facebook ads minimum daily budget
+  - facebook ads minimum budget india
+  - minimum budget to run meta ads
+  - meta ads manager minimum budget
+  - meta ads minimum spend
+  - meta ads low budget
+speakable: true
+faqs:
+  - question: "What is the minimum daily budget for Meta ads?"
+    answer: "Meta's Marketing API documentation (updated September 2026) sets the minimum daily budget for an ad set charged per impression at $0.50 a day, or $1 a day for ad accounts in 24 higher-cost countries including the US, UK, Canada, Australia, Germany and France. If you're charged per click, like or video view it is $2.50 or $5, and low-frequency events such as app installs need $40 everywhere. Meta adds that these amounts can change with your settings, so the figure in Ads Manager's 'budget is too low' alert is your actual minimum."
+  - question: "What is the minimum budget for Meta ads in India?"
+    answer: "India is not on Meta's list of higher-cost countries, so the base minimum applies: $0.50 a day for an ad set charged per impression, which is roughly ₹48 at the 7 October 2026 exchange rate (our conversion), and $2.50 (about ₹242) if you're charged per click. Meta converts the dollar figure into rupees when you create the ad set. On top of whatever you spend, Meta India adds GST at the applicable rate, which is 18% for advertising services, so ₹500 of ad spend costs about ₹590."
+  - question: "How much should I spend per day to get out of the learning phase?"
+    answer: "Meta says ad sets usually exit learning after about 50 results in the week after the last significant edit. So the daily budget per ad set is roughly your expected cost per result multiplied by 50, divided by 7. At a $20 cost per result that is about $143 a day; at ₹300 per lead it is about ₹2,143 a day, or about ₹2,529 including GST. Meta's own troubleshooting rule of thumb is higher still: a daily budget of at least 10 times the cost of your performance goal."
+  - question: "What is the minimum lifetime budget on Meta?"
+    answer: "Meta calculates minimums as a daily amount and applies them to lifetime budgets too, so a lifetime budget has to be at least the daily minimum multiplied by the number of days the ad set runs. A five-day ad set with a $5 daily minimum needs at least $25. If you lower a lifetime budget mid-flight, Meta requires the new amount to be at least what you've spent so far plus 10% of the last two days' spend."
+  - question: "Why did Meta spend more than my daily budget?"
+    answer: "Because a Meta daily budget is a weekly average, not a daily cap. Meta's Help Center says it can spend up to 75% over your daily budget on a day with better opportunities (175% in total) and less on other days, but it won't spend more than 7 times the daily budget in a Sunday-to-Saturday week. With ad set budget sharing on, an ad set can reach 210% on a single day. Meta says it may consider refunds for spend above those limits."
+  - question: "Do Meta ad budgets include GST or other taxes?"
+    answer: "No. The budget you set in Ads Manager is ad spend before tax. In India, Meta India adds GST and TDS to every charge, and GST on advertising services is 18%. In Brazil, from January 2026 Meta passes on PIS/Cofins (9.25%) and ISS (2.9%), so a R$100 budget is charged as R$113.83. Plan your cash on the budget plus tax, not on the budget alone."
+  - question: "Is it worth running Meta ads on ₹500 or $10 a day?"
+    answer: "Yes, if you pick a goal the budget can feed. ₹500 a day is ₹3,500 a week, so 50 results a week means each result must cost ₹70 or less, which rules out purchases for most businesses but can work for landing page views, messages or retargeting warm visitors. Run one campaign with one ad set and two or three genuinely different ads, and judge it over 7 to 14 days rather than daily."
+---
+
+You type ₹30 into the budget field and Ads Manager shows a red alert. So what is the minimum, exactly?
+
+**Meta's minimum daily budget for an ad set charged per impression is $0.50 a day, or $1 a day if your ad account is in one of 24 higher-cost countries such as the US, UK, Canada, Australia, Germany or France.** If you're charged per click, like or video view, it's $2.50 or $5. Low-frequency events like app installs need $40 a day everywhere. Those figures come from Meta's own [Marketing API ad set reference](https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/ad-campaign), last updated 23 September 2026, and Meta converts them into your account currency when you create the ad set. At the 7 October 2026 exchange rate, that works out to roughly ₹48 a day in India.
+
+That number keeps an ad set technically alive. It does almost nothing else. The budget that actually matters is the one that buys Meta's delivery system about 50 results a week. For a ₹300 lead, that is about 44 times the official minimum. This post gives you both numbers, a currency table Meta itself doesn't publish, the maths in rupees and dollars, and the specific moves we make when a budget can't reach the real floor.
+
+---
+
+## In a Nutshell
+
+- **The official floor is tiny.** $0.50 or $1 a day for impression-charged ad sets (most of them), $2.50 or $5 for click-charged, $40 for low-frequency events. Ads Manager tells you if you're below yours.
+- **Meta's Help Center doesn't print a fixed number,** and the $1 / $5 / $40 figures in most articles are the higher-cost-country tier, not the minimum for India, Brazil or the UAE.
+- **The real floor is 50 results a week per ad set.** Daily budget ≈ (cost per result × 50) ÷ 7. At ₹300 per lead that is about ₹2,143 a day; at $20 per purchase, about $143.
+- **Meta's own multipliers bracket it:** at least 5x your cost per result goal if you use that bid strategy, and at least 10x the cost of your performance goal as a troubleshooting rule of thumb.
+- **Taxes sit on top.** In India, Meta adds GST (18% for advertising services) to every charge. Brazil adds about 13.8% on top of the budget from January 2026. Neither shows up in Ads Manager's spend column.
+- **Low budgets waste money through structure.** Split ad sets, frequent edits and too many ads keep everything in learning.
+- **If you can't fund the floor, change the goal, not just the budget.** Optimise for a cheaper, more frequent event, consolidate to one ad set and give it two weeks.
+
+---
+
+## Table of Contents
+
+1. [Meta's Official Minimum Daily Budget, Verified](#official-minimum)
+2. [Minimum Daily Budget by Currency](#currency-table)
+3. [Lifetime Budgets, Campaign Budgets and Advantage+](#lifetime-and-campaign)
+4. [The Real Floor: Budgeting for 50 Results a Week](#learning-floor)
+5. [When You Can't Afford the Floor](#cant-afford)
+6. [Budget Mechanics That Waste Money at Low Budgets](#budget-mechanics)
+7. [Country Notes: India, Brazil, the UK, EU and UAE](#country-notes)
+8. [How to Set Your Meta Daily Budget in Six Steps](#budget-steps)
+9. [What We'd Do With ₹500, ₹2,000 or ₹5,000 a Day](#what-we-would-do)
+10. [The Bottom Line](#bottom-line)
+11. [TL;DR Cheat Sheet](#tldr)
+12. [Frequently Asked Questions](#faq)
+
+---
+
+<h2 id="official-minimum">Meta's Official Minimum Daily Budget, Verified</h2>
+
+Meta's advertiser help pages don't give a number. The current [Best practices for minimum budgets](https://www.facebook.com/business/help/203183363050448) article says Meta sets the minimum from your "business vertical, budget type, buying type, bid strategy, optimization, currency and schedule," and that Ads Manager alerts you if you fall short. Accurate, but not an answer.
+
+The answer lives in Meta's developer documentation. The [ad set reference](https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/ad-campaign) has a "Bid/Budget Validations" section, updated 23 September 2026, that sets out the figures Meta validates against. All values are in US dollars.
+
+**If you use the default highest volume bid strategy (lowest cost, no cap):**
+
+| What you're charged for | Minimum daily budget (most countries) | Minimum daily budget (24 higher-cost countries) |
+|---|---|---|
+| Impressions | $0.50 | $1.00 |
+| Clicks, likes or video views | $2.50 | $5.00 |
+| Low-frequency actions (app installs, offer claims) | $40 | $40 (same everywhere) |
+
+**If you use a bid cap:** the minimum is at least your bid amount for impression billing (a $10 bid needs a $10 daily budget) and 5x your bid amount for click or action billing (a $5 bid needs $25), doubled in the 24 countries below.
+
+The 24 countries that get the doubled minimum are Australia, Austria, Belgium, Canada, Denmark, Finland, France, Germany, Greece, Hong Kong, Israel, Italy, Japan, the Netherlands, New Zealand, Norway, Singapore, South Korea, Spain, Sweden, Switzerland, Taiwan, the United Kingdom and the United States. India, Brazil, the UAE, Mexico, Indonesia and every other market not on that list get the base tier.
+
+Three details matter more than the table:
+
+- **"What you're charged for" is not your objective.** It's the billing event. Meta's help centre notes that [for many optimization goals, you pay for impressions](https://www.facebook.com/business/help/189320824449558), even when you optimise for leads or purchases. So most conversion and lead ad sets sit in the impressions row, not the clicks row.
+- **New accounts can't pick another billing event straight away.** Per Meta's [About getting charged](https://www.facebook.com/business/help/146070805942156) page, a new ad account must spend at least $10 being charged for impressions before it can switch to paying for anything else.
+- **The table is a floor, not a promise.** Meta's note says the amounts "are for illustrative purposes only and can change based on situation," and non-USD budgets "will be converted and validated upon time of ad set creation." Some setups are asked for more.
+
+So to find *your* minimum, enter a budget and read the alert. Meta's [Budget is too low](https://www.facebook.com/business/help/1870791083202806) article explains the error ("your budget must be at least" followed by an amount), and that amount is the official number for your settings.
+
+<div className="blog-stats">
+  <div className="blog-stat"><div className="blog-stat-num">$0.50</div><div className="blog-stat-label">minimum daily budget for impression-charged ad sets in most countries, including India, Brazil and the UAE</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">$1</div><div className="blog-stat-label">the same minimum in 24 higher-cost countries, including the US, UK and Australia</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">$40</div><div className="blog-stat-label">minimum daily budget for low-frequency events like app installs, in every country</div></div>
+  <div className="blog-stat"><div className="blog-stat-num">~50</div><div className="blog-stat-label">results in a week that Meta says an ad set usually needs to exit learning</div></div>
+</div>
+
+---
+
+<h2 id="currency-table">Minimum Daily Budget by Currency</h2>
+
+Meta does not publish a minimum-budget table by currency. Its [currency codes page](https://developers.facebook.com/documentation/ads-commerce/marketing-api/currencies), updated June 2026, lists the supported currencies and their decimal offsets and nothing else. The minimum is defined in US dollars, tiered by the ad account's *country*, and converted at Meta's rate when you create the ad set.
+
+So the table below is our conversion, not Meta's. We used [ECB reference rates via Frankfurter](https://api.frankfurter.dev/v1/latest?base=USD) for 7 October 2026 (1 USD = ₹96.73, R$5.0061, £0.7573, €0.8947, A$1.4386) and the dirham's fixed peg of 3.6725 per dollar from [ExchangeRate-API](https://www.exchangerate-api.com/). Your Ads Manager figure can differ by a few percent depending on the rate Meta applies that day.
+
+| Currency (account country) | Meta's tier | Charged per impression | Charged per click, like or video view | Low-frequency events |
+|---|---|---|---|---|
+| **USD** (United States) | Higher-cost | $1.00 | $5.00 | $40 |
+| **GBP** (United Kingdom) | Higher-cost | ~£0.76 | ~£3.79 | ~£30.29 |
+| **EUR** (Germany, France, Italy, Spain, Netherlands, Belgium, Austria, Finland, Greece) | Higher-cost | ~€0.89 | ~€4.47 | ~€35.79 |
+| **AUD** (Australia) | Higher-cost | ~A$1.44 | ~A$7.19 | ~A$57.54 |
+| **INR** (India) | Base | ~₹48 | ~₹242 | ~₹3,869 |
+| **BRL** (Brazil) | Base | ~R$2.50 | ~R$12.52 | ~R$200.24 |
+| **AED** (United Arab Emirates) | Base | ~AED 1.84 | ~AED 9.18 | ~AED 146.90 |
+
+**Meta's list names ad account countries, not currencies.** So a UAE business billing in US dollars should still be on the base tier, and so should a euro account in a eurozone country missing from the list, such as Ireland or Portugal. The old ₹40 figure on Indian forums is most likely the same $0.50 floor at the roughly ₹80 dollar of a few years ago.
+
+<div className="blog-callout">
+  <p className="blog-callout-title">Why most "minimum budget" articles are wrong for India and Brazil</p>
+  <p>Nearly every article on this query repeats "$1 a day for impressions, $5 for clicks, $40 for app installs." Those are the higher-cost-country figures. For every country not on Meta's list of 24, the base is half that: $0.50 and $2.50. Your technical floor in India, Brazil or the Gulf is lower than you've been told. It also matters far less than the next number in this post.</p>
+</div>
+
+---
+
+<h2 id="lifetime-and-campaign">Lifetime Budgets, Campaign Budgets and Advantage+</h2>
+
+The daily minimum carries over to every other budget type, with a few rules of its own.
+
+**Lifetime budgets.** Meta calculates minimums as a daily amount and applies them to lifetime budgets too. Its [Budget is too low](https://www.facebook.com/business/help/1870791083202806) article is explicit: a lifetime budget for a five-day ad set must be at least five times the daily minimum. The [ad set reference](https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/ad-campaign) gives the same example ($5 a day for 5 days needs $25) and adds that the minimum "takes the total spent budget into account." If you lower a lifetime budget mid-flight, Meta's [minimum budgets page](https://www.facebook.com/business/help/203183363050448) requires the new amount to be at least what you've already spent plus 10% of the last two days' spend: $300 spent with $100 in the last two days means a floor of $310.
+
+**Daily budgets on short runs.** A daily budget can't be used for an ad set scheduled for less than a day; Meta's [About daily budgets](https://www.facebook.com/business/help/190490051321426) page says you'll need a lifetime budget instead.
+
+**Campaign budget (Advantage+ campaign budget).** Meta says the minimum requirements for campaign budgets "may also be slightly different depending on your settings," and that the risk of under-delivery is lower because budget moves freely across ad sets. Meta does not publish a separate per-ad-set floor inside a campaign budget. In practice the campaign budget has to be high enough for every active ad set to clear its own minimum, and Ads Manager will tell you at the campaign level if it isn't. A few documented rules apply:
+
+- Sales, Leads and App promotion campaigns have Advantage+ campaign budget switched on by default, according to Meta's [setup guide](https://www.facebook.com/business/help/343242619559352). All ad sets must share the same budget type, bid strategy and (on highest volume) optimisation event, and there's a two-hour wait before you can switch campaign budget off again.
+- [Ad set spend limits](https://www.facebook.com/business/help/454681230514942) let you set a minimum or maximum per ad set. Meta calls the minimum "a target range, not a guarantee," it must be no more than the campaign budget, and a maximum spend limit must be at least $1 when you're on a daily budget, highest volume or impression billing. Meta recommends using as few spend limits as possible.
+- A campaign spend cap, if you set one, has a minimum of $100 (or the approximate local equivalent), per the [campaign reference](https://developers.facebook.com/documentation/ads-commerce/marketing-api/reference/ad-campaign-group).
+
+Meta says Advantage+ campaign budget is [best suited](https://www.facebook.com/business/help/153514848493595) to campaigns with at least two ad sets, and at low budgets the ad set count is exactly what you want to keep down.
+
+---
+
+<h2 id="learning-floor">The Real Floor: Budgeting for 50 Results a Week</h2>
+
+Meta's [learning phase](https://www.facebook.com/business/help/112167992830700) page puts it plainly: an ad set exits learning "as soon as they can deliver stably," which "usually occurs after about 50 results in the week after the ad set's last significant edit." During learning, ad sets are "less stable and usually have a higher CPA." If an ad set isn't getting enough events to exit, the Delivery column reads [Learning limited](https://www.facebook.com/business/help/269269737396981); Meta's listed causes are small audiences, low budget, low bids or cost controls, auction overlap, an infrequent optimisation event and too many ads.
+
+We checked Meta's help pages for any 2025 or 2026 change to that threshold and found none. The wording is still "about 50," and the one documented exception is Shops ads, which need at least 17 website purchases and 5 purchases through Meta. Practitioner write-ups agree: AdsGo's [2026 guide](https://www.adsgo.ai/blog/facebook-ads-learning-limited-fix/) calls 50 "an observed threshold, not a hard rule," and AdLibrary's [50-events explainer](https://adlibrary.com/posts/meta-ads-learning-phase-50-events-guide) notes the count includes pixel, Conversions API and modelled events at ad set level.
+
+That gives you the formula every serious answer to this query uses:
+
+**Daily budget per ad set ≈ (expected cost per result × 50) ÷ 7**
+
+Which is just your cost per result multiplied by about 7.1. Here it is worked through in dollars:
+
+| Expected cost per result | Weekly spend for 50 results | Daily budget per ad set |
+|---|---|---|
+| $5 (landing page view, message) | $250 | ~$36 |
+| $10 (instant-form lead) | $500 | ~$71 |
+| $20 (site lead, low-AOV purchase) | $1,000 | ~$143 |
+| $40 (purchase) | $2,000 | ~$286 |
+| $80 (high-ticket lead or purchase) | $4,000 | ~$571 |
+
+And in rupees, with the 18% GST an Indian advertiser actually pays on top (more on that in the [country notes](#country-notes)):
+
+| Expected cost per result | Weekly spend for 50 results | Daily budget per ad set | Daily cash outlay with 18% GST |
+|---|---|---|---|
+| ₹50 | ₹2,500 | ~₹357 | ~₹421 |
+| ₹150 | ₹7,500 | ~₹1,071 | ~₹1,264 |
+| ₹300 | ₹15,000 | ~₹2,143 | ~₹2,529 |
+| ₹800 | ₹40,000 | ~₹5,714 | ~₹6,743 |
+| ₹2,000 | ₹1,00,000 | ~₹14,286 | ~₹16,857 |
+
+In monthly terms the ₹300 row is about ₹64,290 of ad spend, or ₹75,862 with GST. A long way from ₹48.
+
+**Meta's own multipliers bracket the formula.** Two help pages give rules of thumb that sit either side of the 7.1x the learning maths implies:
+
+- If you use the cost per result goal bid strategy, Meta's [minimum budgets page](https://www.facebook.com/business/help/203183363050448) says your daily budget should be **at least 5x** that goal ($5 goal, $25 a day).
+- Meta's [under-delivery troubleshooting guide](https://www.facebook.com/business/help/1725302974308722) calls it "a good general rule" that your daily budget should be **at least 10x** the average cost of your performance goal ($5 link click, $50 a day).
+
+So for a $20 cost per result, Meta's guidance points to $100 to $200 a day and the learning maths lands at $143. For ₹300 per lead it's ₹1,500 to ₹3,000, with the formula at ₹2,143.
+
+<div className="blog-callout">
+  <p className="blog-callout-title">Use your expected cost, not your target</p>
+  <p>The formula breaks when people plug in the cost they <em>want</em>. If you hope for ₹150 leads but your first fortnight runs at ₹280, the budget you need is set by ₹280. Start with a realistic estimate, run two weeks, then recalculate with what Meta actually charged.</p>
+</div>
+
+---
+
+<h2 id="cant-afford">When You Can't Afford the Floor</h2>
+
+Most small accounts can't fund 50 purchases a week. Running below the floor doesn't stop ads working; it means paying exploration prices for longer, so design around it. Here are the levers, in the order we'd reach for them.
+
+**1. Optimise for a more frequent event.** This is the biggest lever and the one Meta names first in its [minimum budgets guidance](https://www.facebook.com/business/help/203183363050448): if you don't want to raise the budget, optimise for an event that's "easier and cheaper to achieve." Purchases to add-to-cart, add-to-cart to landing page views, site leads to instant-form leads or conversations. Meta's learning-limited page gives "move from purchases to add to cart" as its example. The trade-off is that a cheaper event is a weaker signal of buying intent, so watch what happens downstream (sales, qualified leads), not just the cost per result in Ads Manager.
+
+**2. Consolidate to one ad set.** Fifty events in one ad set exit learning; fifty events spread across three ad sets never do. Meta's [learning phase](https://www.facebook.com/business/help/112167992830700) guidance recommends combining similar ad sets because "you also combine learnings." AdsGo's worked example shows the effect: six ad sets on a $300-a-day campaign budget get about $50 a day each, roughly one or two purchases at a $30 cost; consolidated to two, each gets $150 and about five a day.
+
+**3. Use a campaign budget when you do need more than one ad set.** Meta's [significant edits page](https://www.facebook.com/business/help/316478108955072) confirms that redistributing a campaign budget across ad sets doesn't push them back into learning, and adding an ad set doesn't reset the others.
+
+**4. Broaden the audience.** "The larger the audience, the more opportunities," per Meta's [learning-limited fixes](https://www.facebook.com/business/help/269269737396981). Narrow interest stacks at ₹500 a day are a common reason an ad set can't find 50 of anything.
+
+**5. Run fewer ads.** Meta says to "avoid high ad volumes" because the system learns less about each ad. At low budgets, two to four genuinely different ads per ad set is plenty, and adding an ad is itself a significant edit.
+
+**6. Accept a longer window, deliberately.** If your cost per result means 50 events takes three weeks, the ad set will show Learning limited. Meta says that status "isn't a penalty." It means results are noisier, so judge over 14 days rather than 7, and don't edit during that window. Our post on [why Meta ads stop working after a few days](/blog/why-meta-ads-stop-working) covers what early-learning numbers do and don't tell you.
+
+**7. Consider instant forms for lead generation.** In the lead accounts we run, on-platform forms usually produce leads more cheaply than a landing page because they remove a step, which helps you reach 50 events. The catch is lead quality, which we cover in detail in [how to fix bad-quality Meta leads](/blog/meta-ads-bad-quality-leads): add qualifying questions or a higher-intent form type so volume doesn't come at the cost of junk. If leads are the whole point of your ads, our [lead generation](/services/lead-generation) work starts from exactly this trade-off.
+
+<div className="blog-tip">
+<div className="blog-tip-title">THE ONE-LINE TEST</div>
+
+Divide your weekly budget by 50. That's the most each result can cost for the ad set to exit learning on schedule. ₹3,500 a week means ₹70 per result. $350 a week means $7. If your optimisation event costs more than that, change the event or the structure before you change anything else.
+
+</div>
+
+---
+
+<h2 id="budget-mechanics">Budget Mechanics That Waste Money at Low Budgets</h2>
+
+At ₹500 a day, four budget mechanics decide whether the account works at all.
+
+**Daily budget is a weekly average, not a daily cap.** Meta's [About daily budgets](https://www.facebook.com/business/help/190490051321426) page is precise about this. Your daily budget is "a daily spending target over the course of a calendar week." On days with better opportunities, Meta "may spend up to 75% over your daily budget," so daily spend can reach 175%, but "for every week ending Saturday at midnight, spending won't be more than 7 times your daily budget." On ₹500 a day that means up to ₹875 on a good day and no more than ₹3,500 for the week. If you turn on ad set budget sharing (not available with campaign budgets), an ad set can share up to 20% with others and reach 210% on a single day. One caveat: Meta's developer [budgets page](https://developers.facebook.com/documentation/ads-commerce/marketing-api/bidding/overview/budgets), updated June 2026, still says 25% over. The Help Center is the advertiser-facing source and its 175% and 7x limits match Meta's refund policy, so plan cash on those.
+
+**Starting mid-week changes the weekly cap.** Meta prorates: start at noon on Wednesday with ₹500 a day and the limit to Saturday is 3.5 days × ₹500 plus 25% of one day's budget, ₹1,875. A Wednesday launch isn't underspending.
+
+**Budget edits can reset learning.** Meta lists budget changes as edits that "may or may not be significant, depending on the magnitude," and its [significant edits page](https://www.facebook.com/business/help/316478108955072) adds that adjusting a campaign budget can push several ad sets back into learning at once. We cover safe step sizes in [scaling without restarting learning](/blog/why-meta-ads-stop-working#scaling). Meta also warns against cutting budgets late in the day, because the system may already have spent past the new figure.
+
+**Minimum-budget ad sets that never leave learning.** Meta's [learning phase page](https://www.facebook.com/business/help/112167992830700) says a "very small" budget gives the delivery system "an inaccurate indicator" of who to optimise for. An ad set sitting on ₹100 a day for a ₹300 lead isn't a cheap test; it's a permanently exploring one. You pay learning-phase prices for every result it ever gets.
+
+<div className="blog-compare">
+<div className="blog-compare-dont">
+
+#### ✕ How small budgets get wasted
+
+- ₹3,000 a day split across three ad sets of ₹1,000 each, all optimising for purchases
+- Each ad set gets ₹7,000 a week, so 50 events needs a ₹140 cost per purchase
+- Eight ads per ad set "to test more"
+- Budget nudged up or down every two days based on yesterday's ROAS
+- Two ad sets paused after four days for "not converting"
+
+</div>
+<div className="blog-compare-do">
+
+#### ✓ The same ₹3,000, set up to learn
+
+- One ad set at ₹3,000 a day (₹21,000 a week), so 50 events works up to ₹420 each
+- Optimising for the deepest event that clears ₹420, even if that's add-to-cart rather than purchase
+- Three genuinely different ads, not eight variations
+- No edits for 7 days, then budget changes of 20% or less
+- Judged on the week, not the day
+
+</div>
+</div>
+
+Same spend. Only one version can exit learning.
+
+---
+
+<h2 id="country-notes">Country Notes: India, Brazil, the UK, EU and UAE</h2>
+
+The budget you type into Ads Manager is ad spend before tax. What leaves your bank account depends on where the account is billed.
+
+### India
+
+- **Who bills you.** Since October 2018, Meta ads for accounts with India as the business country are sold by Meta India (Facebook India), billed in rupees, and subject to GST and TDS, per Meta's [India GST page](https://www.facebook.com/business/help/1273346946097087). Meta's [taxes on ads page](https://www.facebook.com/business/help/133076073434794) says it adds GST "at the applicable local tax rate" to the cost of every purchase.
+- **The rate.** Meta doesn't state it. CBIC's [services rate notification](https://cbic-gst.gov.in/hindi/pdf/central-tax-rate/Notification11-CGST.pdf) taxes heading 9983 services, other than print-media ad space, at 9% central plus 9% state GST: 18% in total. Online ad space is code 998365 in the [CBIC services classification](https://cbic-gst.gov.in/hindi/pdf/central-tax-rate/Notification11-CGST-Annexure.pdf). So ₹500 of daily ad spend costs about ₹590, and the learning-phase budgets in the table above cost 18% more in cash.
+- **Getting the GST back.** Adding your GSTIN in Payment settings is optional, but it's what lets a GST-registered business claim input tax credit. Meta also issues [e-invoices](https://www.facebook.com/business/help/625877188208524) to accounts with a valid GSTIN. Without one, the 18% is a straight cost.
+- **TDS.** Meta's page says the amount charged includes TDS that you're still required to deposit with the government; once you send Meta the TDS certificate, the refund comes back as ad credit. Talk to your accountant about the right section and rate for your business.
+- **Paying.** Prepaid "available funds" accounts can top up by [UPI or Netbanking](https://www.facebook.com/business/help/311330675698510), with a minimum top-up shown if you go under. Top-ups through the Facebook or Instagram iOS app run through the Apple App Store, which keeps a service fee, so use a browser.
+
+### Brazil
+
+From 1 January 2026, Meta [passes on PIS/Cofins (9.25%) and ISS (2.9%)](https://www.facebook.com/business/help/471651647527469) for customers invoiced by Facebook Serviços Online do Brasil, taxes it previously absorbed. Meta's own worked example: a R$100 budget is charged as **R$113.83** on a card, and R$100 prepaid by PIX, boleto or Mercado Pago buys **R$87.85** of delivery. Ads Manager budgets and spend exclude these taxes "regardless of the payment method used." CBS and IBS lines on 2026 e-invoices are test entries and aren't charged. Sigu's [planning note](https://www.sigu.com.br/blog/post/mudancas-tributacao-meta-2026-faturas-orcamento) puts it in finance terms: about 13.8% more outlay for the same delivery. As E-commerce Planet [points out](https://ecommerceplanet.com.br/imposto-meta-ads-brasil-guia-anunciantes/), none of this shows in Ads Manager's CPA or CPC; by our arithmetic, true ROAS is about 12% below the reported figure. And if your tax country is Brazil but your account currency isn't BRL, Meta's [currency page](https://www.facebook.com/business/help/151451521590943) says charges are still processed in reais.
+
+### UK and EU
+
+Per Meta's [taxes page](https://www.facebook.com/business/help/133076073434794), business advertisers billed by a local Meta entity (Germany, France, Spain, the Netherlands, the UK and others) have VAT added and can usually recover it; those billed by Meta Platforms Ireland self-assess VAT instead.
+
+### UAE
+
+UAE accounts are on the base tier: about AED 1.84 a day for impression billing. For high-ticket offers that's irrelevant next to the learning floor; a AED 300 lead implies roughly AED 2,143 a day per ad set.
+
+---
+
+<h2 id="budget-steps">How to Set Your Meta Daily Budget in Six Steps</h2>
+
+<ol className="blog-numbered">
+<li><strong>Pick the event before the budget.</strong>
+Purchase, site lead, instant-form lead, conversation or landing page view. The event sets the cost per result, which sets everything else.</li>
+<li><strong>Estimate a realistic cost per result.</strong>
+Use your account's history for that event. Without it, run a cheaper event for two weeks first.</li>
+<li><strong>Multiply by 50, divide by 7.</strong>
+That's the daily budget one ad set needs to exit learning on schedule. Sense-check it against Meta's 5x and 10x rules. If you're in India, add 18% GST to get the cash figure; in Brazil, add about 13.8%.</li>
+<li><strong>Decide how many ad sets you can actually fund.</strong>
+Divide your real daily budget by the figure from step 3. If the answer is less than 2, you have one ad set. If it's less than 1, go back to step 1 and choose a more frequent event.</li>
+<li><strong>Confirm you clear the official minimum.</strong>
+Enter the budget in Ads Manager and check for the "budget is too low" alert. For lifetime budgets, remember the minimum is multiplied by the number of days.</li>
+<li><strong>Lock it for seven days, then move in steps of 20% or less.</strong>
+No budget edits, new ads or audience changes in week one. After that, change one thing at a time.</li>
+</ol>
+
+---
+
+<h2 id="what-we-would-do">What We'd Do With ₹500, ₹2,000 or ₹5,000 a Day</h2>
+
+General guidance, not anyone's results. Costs vary by market, offer and creative; the arithmetic doesn't: weekly budget ÷ 50 is the most a result can cost to exit learning in a week.
+
+| Daily budget | Weekly spend | Max cost per result for 50 a week | What we'd optimise for | Structure |
+|---|---|---|---|---|
+| ₹500 (about $5) | ₹3,500 | ₹70 | Landing page views, conversations, or retargeting recent site visitors | 1 campaign, 1 ad set, 2 to 3 ads |
+| ₹2,000 (about $20) | ₹14,000 | ₹280 | Instant-form or site leads with qualifying questions; add-to-cart for ecommerce | 1 campaign, 1 ad set, 3 to 4 ads |
+| ₹5,000 (about $50) | ₹35,000 | ₹700 | Leads, or purchases for low-to-mid order values | 1 campaign, 1 to 2 ad sets under a campaign budget |
+| $10 | $70 | $1.40 | Landing page views, video views, or warm retargeting | 1 ad set, 2 ads |
+| $50 | $350 | $7 | Leads at the cheaper end; add-to-cart rather than purchase for most stores | 1 ad set, 3 to 4 ads |
+| $150 | $1,050 | $21 | Purchases for most low-AOV ecommerce; site leads | 1 to 2 ad sets under a campaign budget |
+
+**At ₹500 or $10 a day**, we'd skip cold purchase campaigns entirely. Two routes make sense: an upper-funnel event that's cheap enough to reach 50 a week and builds a warm audience, or a small retargeting ad set aimed at people who already visited a key page. Jon Loomer has made the case for the second route on [very small budgets](https://www.jonloomer.com/qvt/how-to-get-sales-with-a-low-budget/): a specific message to a small group that was close to buying, rather than broad targeting the budget can't feed.
+
+**At ₹2,000 or $20 to $50 a day**, a single lead or add-to-cart ad set can usually learn, and fragmentation is where the money goes. One ad set, two weeks, no edits.
+
+**At ₹5,000 or $150 a day**, purchases become realistic for many stores and a second ad set becomes affordable. Put both under a campaign budget so spend can move without resets. Flighted's [2026 account-structure guide](https://www.flighted.co/blog/best-meta-ads-account-structure-2026) makes the same point at higher spend levels: simple, consolidated structures beat many thinly funded ad sets, and dedicated retargeting campaigns can wait until spend is much larger.
+
+If you're deciding how much of a fixed marketing budget should go to Meta in the first place versus Google, that's a different question, and we've covered it in [Meta Ads vs Google Ads: where your budget should go](/blog/meta-ads-vs-google-ads-budget).
+
+<div className="blog-inline-cta">
+<p className="blog-inline-cta-title">Not sure what your budget can actually support on Meta?</p>
+<p className="blog-inline-cta-desc">Bring your daily budget, your offer and your last 30 days of costs. In 15 minutes we'll tell you which event to optimise for, how many ad sets you can fund, and what a realistic weekly result looks like. Free.</p>
+<a href="https://cal.com/aureliusmedia/15min" target="_blank" rel="noopener noreferrer" className="blog-inline-cta-btn">Book a Free 15-Minute Budget Check →</a>
+</div>
+
+---
+
+<h2 id="bottom-line">The Bottom Line</h2>
+
+Meta's minimum daily budget is a technicality: $0.50 or $1 a day for most ad sets, roughly ₹48 in India at October 2026 rates, converted from dollars when you create the ad set and shown in Ads Manager if you're under it.
+
+The number that decides whether your ads work is the learning floor: about 50 results a week per ad set, which works out to your cost per result multiplied by roughly seven, every day. Meta's own 5x and 10x rules of thumb land in the same range. In India, add 18% GST; in Brazil, add about 13.8%. If the result is more than you can spend, don't shave the budget and hope. Change the event, collapse the structure to one ad set, run fewer ads, and give it two weeks.
+
+Small budgets can work on Meta; small budgets split six ways can't. If your problem is returns rather than budget, start with our [ROAS diagnosis](/blog/fix-meta-ads-roas). If you'd rather have someone set the floor and structure for you, that's what our [Meta Ads management](/services/meta-ads) does.
+
+---
+
+<h2 id="tldr">TL;DR Cheat Sheet</h2>
+
+- **Official minimum (highest volume bidding):** $0.50 a day per impression-charged ad set, $2.50 if click-charged, $40 for low-frequency events. $1 and $5 in 24 higher-cost countries. With a bid cap: 1x the bid (impressions) or 5x (clicks, actions), also doubled in those 24 countries.
+- **By currency (our conversion, 7 Oct 2026):** India ~₹48, Brazil ~R$2.50, UAE ~AED 1.84, UK ~£0.76, eurozone (listed countries) ~€0.89, Australia ~A$1.44 for impression billing.
+- **Lifetime budgets:** daily minimum × days.
+- **Learning floor:** (cost per result × 50) ÷ 7 per ad set per day. $20 → ~$143. ₹300 → ~₹2,143 (~₹2,529 with GST).
+- **Meta's rules of thumb:** at least 5x your cost per result goal; at least 10x the cost of your performance goal.
+- **Pacing (Help Center):** up to 175% of the daily budget on a given day, never more than 7x in a Sunday-to-Saturday week.
+- **Taxes:** India +18% GST (plus TDS handling); Brazil ~+13.8% on top of budget since January 2026. Ads Manager shows neither.
+- **Can't afford it:** cheaper event, one ad set, broader audience, 2 to 4 ads, judge over 14 days.
+
+---
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<details>
+<summary>What is the minimum daily budget for Meta ads?</summary>
+
+Meta's Marketing API documentation (updated September 2026) sets the minimum daily budget for an ad set charged per impression at $0.50 a day, or $1 a day for ad accounts in 24 higher-cost countries including the US, UK, Canada, Australia, Germany and France. If you're charged per click, like or video view it is $2.50 or $5, and low-frequency events such as app installs need $40 everywhere. Meta adds that these amounts can change with your settings, so the figure in Ads Manager's 'budget is too low' alert is your actual minimum.
+
+</details>
+
+<details>
+<summary>What is the minimum budget for Meta ads in India?</summary>
+
+India is not on Meta's list of higher-cost countries, so the base minimum applies: $0.50 a day for an ad set charged per impression, which is roughly ₹48 at the 7 October 2026 exchange rate (our conversion), and $2.50 (about ₹242) if you're charged per click. Meta converts the dollar figure into rupees when you create the ad set. On top of whatever you spend, Meta India adds GST at the applicable rate, which is 18% for advertising services, so ₹500 of ad spend costs about ₹590.
+
+</details>
+
+<details>
+<summary>How much should I spend per day to get out of the learning phase?</summary>
+
+Meta says ad sets usually exit learning after about 50 results in the week after the last significant edit. So the daily budget per ad set is roughly your expected cost per result multiplied by 50, divided by 7. At a $20 cost per result that is about $143 a day; at ₹300 per lead it is about ₹2,143 a day, or about ₹2,529 including GST. Meta's own troubleshooting rule of thumb is higher still: a daily budget of at least 10 times the cost of your performance goal.
+
+</details>
+
+<details>
+<summary>What is the minimum lifetime budget on Meta?</summary>
+
+Meta calculates minimums as a daily amount and applies them to lifetime budgets too, so a lifetime budget has to be at least the daily minimum multiplied by the number of days the ad set runs. A five-day ad set with a $5 daily minimum needs at least $25. If you lower a lifetime budget mid-flight, Meta requires the new amount to be at least what you've spent so far plus 10% of the last two days' spend.
+
+</details>
+
+<details>
+<summary>Why did Meta spend more than my daily budget?</summary>
+
+Because a Meta daily budget is a weekly average, not a daily cap. Meta's Help Center says it can spend up to 75% over your daily budget on a day with better opportunities (175% in total) and less on other days, but it won't spend more than 7 times the daily budget in a Sunday-to-Saturday week. With ad set budget sharing on, an ad set can reach 210% on a single day. Meta says it may consider refunds for spend above those limits.
+
+</details>
+
+<details>
+<summary>Do Meta ad budgets include GST or other taxes?</summary>
+
+No. The budget you set in Ads Manager is ad spend before tax. In India, Meta India adds GST and TDS to every charge, and GST on advertising services is 18%. In Brazil, from January 2026 Meta passes on PIS/Cofins (9.25%) and ISS (2.9%), so a R$100 budget is charged as R$113.83. Plan your cash on the budget plus tax, not on the budget alone.
+
+</details>
+
+<details>
+<summary>Is it worth running Meta ads on ₹500 or $10 a day?</summary>
+
+Yes, if you pick a goal the budget can feed. ₹500 a day is ₹3,500 a week, so 50 results a week means each result must cost ₹70 or less, which rules out purchases for most businesses but can work for landing page views, messages or retargeting warm visitors. Run one campaign with one ad set and two or three genuinely different ads, and judge it over 7 to 14 days rather than daily.
+
+</details>
