@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-03",
-  "total_pages": 76,
+  "last_updated": "2026-10-08",
+  "total_pages": 80,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -145,6 +145,17 @@
         "Added /blog/why-meta-ads-stop-working — Performance Marketing. Argues the 3-day drop on new ads is post-learning normalisation (warm-audience over-sampling) plus over-launching (the 'relaunch loop'), not fatigue. Consolidated from Meta help docs (learning phase, significant edits, ad auction), the Andromeda engineering post, Jon Loomer, AdLibrary, Flighted, Cometly, AdsUploader, Cropink, Logical Position. Prescribes five roles (3 openers + 2 closers), 3:2:2 multi-asset ads (Flexible media toggle in Advantage+ creative since March 2026), one CBO with Control/Test/Test ad sets, a half-margin-capped-at-20% scaling rule and a two-question weekly diagnostic. Distinct from and cross-linked to fix-meta-ads-roas, meta-ads-bad-quality-leads, paid-social-playbook. Chalk cover with the Meta logo via Higgsfield reference. No em dashes. Total blog posts: 37.",
         "src/app/blog/[slug]/page.tsx: drafts (published: false) now render when NODE_ENV === 'development' so they can be previewed on localhost before publishing; production behaviour unchanged.",
         ".claude/launch.json: registered 'aurelius-media' dev server (npm run dev, port 3000)."
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "summary": "Published 4 research-backed posts: /blog/how-to-promote-a-podcast, /blog/youtube-ads-for-podcasts (both Podcast Marketing, cross-linked, feeding /services/podcast-marketing), /blog/meta-ads-updates and /blog/meta-ads-minimum-budget (both Performance Marketing, feeding /services/meta-ads).",
+      "changes": [
+        "Added /blog/how-to-promote-a-podcast: channel-by-channel podcast promotion (release sequence, Spotify for Creators and Apple Marketing Tools, YouTube basics, social, Reddit/newsletters, cross-promotion, paid placements with 8 Oct 2026 Overcast/Pocket Casts/Spotify Ads Manager prices, when to hire a promotion service and red flags, measurement vs Buzzsprout benchmarks). Target query 'how to promote a podcast' (Google autocomplete). Distinct from how-to-grow-your-podcast (discoverability/SEO).",
+        "Added /blog/youtube-ads-for-podcasts: video-podcast playbook for Google Ads (Promote vs Video views vs Demand Gen YouTube engagements vs Video reach, clips vs episodes, custom segments/placements/lookalikes, sourced CPV and cost-per-subscriber, earned/engaged/follow-on views after YouTube's 24 Aug 2026 view-count change, setup steps, 30-day test). Distinct from youtube-ads-subscriber-growth (brand subscriber asset).",
+        "Added /blog/meta-ads-updates: dated 2026 changelog of Meta ads changes (top five ranked, then October back to January, plus announced-not-shipped and reported-only sections), sourced to Meta Newsroom, Meta for Business, Help Center, API/WhatsApp changelogs and Q2 2026 earnings. Target query 'meta ads updates' (Google autocomplete). Evergreen slug for future refreshes.",
+        "Added /blog/meta-ads-minimum-budget: backlog B005 ('meta ads minimum daily budget', GSC). Official minimums from the Marketing API ad set reference ($0.50/$2.50/$40 base tier, doubled in 24 higher-cost countries), currency table (dated conversions), lifetime/campaign budget rules, the 50-results learning floor with INR/USD worked examples, pacing (75%/7x), India GST and Brazil tax notes.",
+        "All four: Firecrawl research consolidated from 12 to 47 sources each, independent fact-check pass per post, chalk-style Higgsfield covers (Nano Banana Pro) with real Spotify/Apple Podcasts/YouTube/Google Ads/Meta logos as references, faqs[] mirroring <details>, no em dashes. Live blog posts on origin/main: 39."
       ]
     }
   ],
@@ -1467,7 +1478,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 30,
+      "total_pages_generated": 34,
       "sample_urls": [
         "/blog/meta-ads-bad-quality-leads",
         "/blog/how-to-get-recommended-by-chatgpt",
@@ -1493,7 +1504,11 @@
         "/blog/paid-social-playbook",
         "/blog/answer-engine-optimization-guide",
         "/blog/scarcity-brain-marketing-lessons",
-        "/blog/why-meta-ads-stop-working"
+        "/blog/why-meta-ads-stop-working",
+        "/blog/how-to-promote-a-podcast",
+        "/blog/youtube-ads-for-podcasts",
+        "/blog/meta-ads-updates",
+        "/blog/meta-ads-minimum-budget"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
