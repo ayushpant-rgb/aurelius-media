@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-08",
-  "total_pages": 80,
+  "last_updated": "2026-10-12",
+  "total_pages": 83,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -156,6 +156,16 @@
         "Added /blog/meta-ads-updates: dated 2026 changelog of Meta ads changes (top five ranked, then October back to January, plus announced-not-shipped and reported-only sections), sourced to Meta Newsroom, Meta for Business, Help Center, API/WhatsApp changelogs and Q2 2026 earnings. Target query 'meta ads updates' (Google autocomplete). Evergreen slug for future refreshes.",
         "Added /blog/meta-ads-minimum-budget: backlog B005 ('meta ads minimum daily budget', GSC). Official minimums from the Marketing API ad set reference ($0.50/$2.50/$40 base tier, doubled in 24 higher-cost countries), currency table (dated conversions), lifetime/campaign budget rules, the 50-results learning floor with INR/USD worked examples, pacing (75%/7x), India GST and Brazil tax notes.",
         "All four: Firecrawl research consolidated from 12 to 47 sources each, independent fact-check pass per post, chalk-style Higgsfield covers (Nano Banana Pro) with real Spotify/Apple Podcasts/YouTube/Google Ads/Meta logos as references, faqs[] mirroring <details>, no em dashes. Live blog posts on origin/main: 39."
+      ]
+    },
+    {
+      "date": "2026-10-12",
+      "summary": "Published 3 Real Estate Marketing posts: /blog/meta-ads-for-real-estate, /blog/google-ads-for-real-estate and /blog/real-estate-marketing-trends (cross-linked, feeding /services/real-estate-marketing and /services/real-estate-marketing-dubai).",
+      "changes": [
+        "Added /blog/meta-ads-for-real-estate: Housing Special Ad Category by advertiser and audience country (US, Canada, UK, EU/EEA; UAE and India not listed), what it locks and what still works, instant form types and WhatsApp, qualifying questions Meta allows, the qualified-leads goal via Conversions API for CRM (200 leads/month, 1-40% stage rate, April/August 2026 CAPI requirement), Advantage+ leads, property creative, speed to lead (NAR 2025, Pied Piper 2026), compliance in the US, Dubai, India and UK, WordStream 2026 benchmarks. Target query 'meta ads for real estate' (Google autocomplete).",
+        "Added /blog/google-ads-for-real-estate: LocaliQ 2026 real estate search benchmarks, product fit table, intent-tier keyword structure with Keyword Planner volumes and top-of-page bids for the US, UAE, India and UK (pulled 12 Oct 2026 via GoMarble on the Aurelius account, approved by Ayush), negatives and portal brand terms, enhanced conversions for leads and the 15 Jun 2026 Data Manager move, AI Max and Performance Max controls, LSA and Home Listings ads, market rules. Target query 'google ads for real estate'.",
+        "Added /blog/real-estate-marketing-trends: ten 2026 trends with evidence and invest/test/watch/skip verdicts for agents vs developers across the US, UK, UAE and India, a regulation table and a section on unsourced industry statistics. Target query 'real estate marketing trends 2026' (Google autocomplete); slug has no year.",
+        "All three: Firecrawl research (29 to 51 domains each), independent fact-check pass per post, chalk-style Higgsfield covers based on the EdTech pair, faqs[] mirroring <details>, no em dashes. Live blog posts on origin/main: 42."
       ]
     }
   ],
@@ -1478,7 +1488,7 @@
       "template_name": "Blog Post Dynamic Router",
       "route_pattern": "/blog/[slug]",
       "data_source": "content/blog/*.mdx",
-      "total_pages_generated": 34,
+      "total_pages_generated": 37,
       "sample_urls": [
         "/blog/meta-ads-bad-quality-leads",
         "/blog/how-to-get-recommended-by-chatgpt",
@@ -1508,7 +1518,10 @@
         "/blog/how-to-promote-a-podcast",
         "/blog/youtube-ads-for-podcasts",
         "/blog/meta-ads-updates",
-        "/blog/meta-ads-minimum-budget"
+        "/blog/meta-ads-minimum-budget",
+        "/blog/meta-ads-for-real-estate",
+        "/blog/google-ads-for-real-estate",
+        "/blog/real-estate-marketing-trends"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
     }
