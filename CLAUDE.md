@@ -27,7 +27,7 @@ Changes to service pages, blog posts, or layout do NOT justify touching homepage
 Always push sections/assets BEFORE templates/layout. Pushing templates first strips settings.
 
 ### Keyword research: real data only
-Never brainstorm keywords. Use Search Console, Ahrefs, or GA4 data. Speculative phrases waste content effort.
+Never brainstorm keywords. Use Search Console, Ahrefs, GA4 or Google Ads Keyword Planner data (official Google Ads MCP where it can; GoMarble for Keyword Planner, which the official MCP can't reach; Aurelius account only, never a client's). Speculative phrases waste content effort.
 
 ### URL slugs: no years or numbers
 Never add years (2026, 2025) or sequential numbers to URL slugs. Creates SEO debt when content is revisited.
