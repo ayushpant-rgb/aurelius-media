@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
-import { buildNewsletterWelcomeEmail } from '@/lib/emails';
+import { buildNewsletterNotificationEmail, buildNewsletterWelcomeEmail } from '@/lib/emails';
 import { scoreSignals, SPAM_THRESHOLD } from '@/lib/spam';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const NOT_SAVED_NOTE = 'NOT saved to Supabase (insert failed): this email is the only record of the sign-up.';
+
+/** Resend reports API errors in the result rather than throwing; returns whether it was accepted. */
+async function sendEmail(label: string, payload: Parameters<typeof resend.emails.send>[0]): Promise<boolean> {
+  try {
+    const { error } = await resend.emails.send(payload);
+    if (error) {
+      console.error(`${label} email failed:`, error);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error(`${label} email failed:`, err);
+    return false;
+  }
+}
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -45,28 +62,52 @@ export async function POST(request: NextRequest) {
         { onConflict: 'email' }
       );
 
+    // A database outage must not lose the sign-up: it goes to NOTIFICATION_EMAIL instead.
+    const savedToDb = !dbError;
     if (dbError) {
-      console.error('Newsletter subscribe error:', dbError);
+      console.error('Newsletter subscribe error (sign-up goes by email only):', dbError);
+    }
+
+    // Suspicious sign-ups are stored but never emailed (welcome or notification)
+    if (spam.score >= SPAM_THRESHOLD) {
+      if (!savedToDb) console.warn(`Newsletter sign-up NOT saved (DB down), dropped as spam (score ${spam.score})`);
+      return NextResponse.json({ success: true });
+    }
+
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    const notificationEmail = process.env.NOTIFICATION_EMAIL;
+
+    // Welcome only new subscribers (unknown when the DB is down, so they get it)
+    const welcome = buildNewsletterWelcomeEmail();
+    const alert = buildNewsletterNotificationEmail(
+      { email: normalizedEmail, source: source || 'unknown' },
+      NOT_SAVED_NOTE
+    );
+    const [, notified] = await Promise.all([
+      isNew
+        ? sendEmail('Newsletter welcome', {
+            from: `Aurelius Media <${fromAddress}>`,
+            to: normalizedEmail,
+            subject: welcome.subject,
+            html: welcome.html,
+          })
+        : Promise.resolve(false),
+      !savedToDb && notificationEmail
+        ? sendEmail('Newsletter notification', {
+            from: `Aurelius Media <${fromAddress}>`,
+            to: notificationEmail,
+            subject: alert.subject,
+            html: alert.html,
+          })
+        : Promise.resolve(false),
+    ]);
+
+    if (!savedToDb && !notified) {
+      console.error('NEWSLETTER SIGN-UP LOST (not saved, notification not sent):', normalizedEmail, source || 'unknown');
       return NextResponse.json(
         { error: 'Something went wrong. Please try again.' },
         { status: 500 }
       );
-    }
-
-    // Send welcome email only for new subscribers that don't look like bots
-    // (suspicious ones are still stored — just not emailed)
-    if (isNew && spam.score < SPAM_THRESHOLD) {
-      const fromAddress = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-      const welcome = buildNewsletterWelcomeEmail();
-
-      resend.emails
-        .send({
-          from: `Aurelius Media <${fromAddress}>`,
-          to: normalizedEmail,
-          subject: welcome.subject,
-          html: welcome.html,
-        })
-        .catch((err) => console.error('Newsletter welcome email failed:', err));
     }
 
     return NextResponse.json({ success: true });

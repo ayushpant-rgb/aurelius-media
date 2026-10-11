@@ -9,4 +9,12 @@ if (!url || !key) {
   );
 }
 
-export const supabase = createClient(url, key);
+// Fail fast when the database is slow or unreachable, so the lead routes can
+// fall back to email instead of hanging until the function times out.
+const DB_TIMEOUT_MS = 5000;
+
+export const supabase = createClient(url, key, {
+  global: {
+    fetch: (input, init) => fetch(input, { ...init, signal: init?.signal ?? AbortSignal.timeout(DB_TIMEOUT_MS) }),
+  },
+});

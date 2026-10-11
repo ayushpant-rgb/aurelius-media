@@ -133,10 +133,56 @@ export function buildNewsletterWelcomeEmail(): { subject: string; html: string }
   };
 }
 
-export function buildNotificationEmail(data: LeadEmailData): { subject: string; html: string } {
+/** Escapes visitor-typed text for the internal notification emails. */
+function esc(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Red banner for leads the database didn't store: the email is the only record. */
+function noteBanner(note?: string): string {
+  if (!note) return '';
+  return `<p style="background:#3A1210;border:1px solid #E5484D;color:#FFFFFF;font-size:14px;line-height:1.6;border-radius:12px;padding:14px 16px;margin:0 0 20px;">${esc(note)}</p>`;
+}
+
+function notificationRows(rows: [string, string | undefined][]): string {
+  return rows
+    .filter(([, val]) => val)
+    .map(
+      ([label, val]) =>
+        `<tr><td style="padding:8px 12px;color:rgba(255,255,255,0.5);font-size:13px;white-space:nowrap;vertical-align:top;">${label}</td><td style="padding:8px 12px;color:#FFFFFF;font-size:14px;white-space:pre-wrap;word-break:break-word;">${esc(val as string)}</td></tr>`
+    )
+    .join('');
+}
+
+function notificationShell(heading: string, note: string | undefined, rows: string): string {
+  return `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#0B0B0D;font-family:Arial,sans-serif;">
+  <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
+    <h1 style="color:#FF7A3D;font-size:20px;margin:0 0 24px;">${heading}</h1>
+    ${noteBanner(note)}
+    <table style="width:100%;border-collapse:collapse;background:#131316;border-radius:12px;overflow:hidden;">
+      ${rows}
+    </table>
+    <p style="color:rgba(255,255,255,0.38);font-size:12px;margin:24px 0 0;">
+      ${new Date().toISOString()}
+    </p>
+  </div>
+</body>
+</html>`.trim();
+}
+
+/** `note` flags a lead the database didn't store (subject gets a NOT SAVED prefix). */
+export function buildNotificationEmail(data: LeadEmailData, note?: string): { subject: string; html: string } {
   const title = data.service_interest || data.source;
 
-  const rows = [
+  const rows = notificationRows([
     ['Name', data.name],
     ['Email', data.email],
     ['Phone', data.phone],
@@ -146,31 +192,28 @@ export function buildNotificationEmail(data: LeadEmailData): { subject: string; 
     ['Service Interest', data.service_interest],
     ['Source', data.source],
     ['Message', data.message],
-  ]
-    .filter(([, val]) => val)
-    .map(
-      ([label, val]) =>
-        `<tr><td style="padding:8px 12px;color:rgba(255,255,255,0.5);font-size:13px;white-space:nowrap;vertical-align:top;">${label}</td><td style="padding:8px 12px;color:#FFFFFF;font-size:14px;">${val}</td></tr>`
-    )
-    .join('');
+  ]);
 
   return {
-    subject: `New Lead: ${data.name} — ${title}`,
-    html: `
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#0B0B0D;font-family:Arial,sans-serif;">
-  <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
-    <h1 style="color:#FF7A3D;font-size:20px;margin:0 0 24px;">New Lead Received</h1>
-    <table style="width:100%;border-collapse:collapse;background:#131316;border-radius:12px;overflow:hidden;">
-      ${rows}
-    </table>
-    <p style="color:rgba(255,255,255,0.38);font-size:12px;margin:24px 0 0;">
-      ${new Date().toISOString()}
-    </p>
-  </div>
-</body>
-</html>`.trim(),
+    subject: `${note ? '[NOT SAVED] ' : ''}New Lead: ${data.name} — ${title}`,
+    html: notificationShell('New Lead Received', note, rows),
+  };
+}
+
+/** Sent only when a newsletter sign-up couldn't be stored, so the subscriber isn't lost. */
+export function buildNewsletterNotificationEmail(
+  data: { email: string; source: string },
+  note: string
+): { subject: string; html: string } {
+  return {
+    subject: `[NOT SAVED] Newsletter sign-up: ${data.email}`,
+    html: notificationShell(
+      'Newsletter Sign-up',
+      note,
+      notificationRows([
+        ['Email', data.email],
+        ['Source', data.source],
+      ])
+    ),
   };
 }

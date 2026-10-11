@@ -19,6 +19,24 @@ function getClientIp(request: NextRequest): string | null {
   return request.headers.get('x-real-ip');
 }
 
+/** Shown in the notification when the insert failed: the email is then the only record. */
+const NOT_SAVED_NOTE = 'NOT saved to Supabase (insert failed): this email is the only record of the lead.';
+
+/** Resend reports API errors in the result rather than throwing; returns whether it was accepted. */
+async function sendEmail(label: string, payload: Parameters<typeof resend.emails.send>[0]): Promise<boolean> {
+  try {
+    const { error } = await resend.emails.send(payload);
+    if (error) {
+      console.error(`${label} email failed:`, error);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error(`${label} email failed:`, err);
+    return false;
+  }
+}
+
 /** Pre-spam-migration rows/columns may not exist yet; detect and fall back. */
 function isMissingColumnError(error: { code?: string; message?: string }): boolean {
   return error.code === 'PGRST204' || error.code === '42703' || /column/i.test(error.message || '');
@@ -123,19 +141,20 @@ export async function POST(request: NextRequest) {
       ({ error: dbError } = await supabase.from('leads').insert(leadRow));
     }
 
+    // A database outage must not lose the lead: carry on, and the notification
+    // email below carries every field and says it wasn't saved.
+    const savedToDb = !dbError;
     if (dbError) {
-      console.error('Supabase insert error:', dbError);
-      return NextResponse.json(
-        { error: 'Something went wrong. Please try again.' },
-        { status: 500 }
-      );
+      console.error('Supabase insert error (lead goes by email only):', dbError);
     }
 
     // Spam: quarantined in the DB, no emails, and a normal success response so
     // bots can't tell they were caught. Duplicates: stored but not re-emailed.
     if (assessment.isSpam || isDuplicate) {
       if (assessment.isSpam) {
-        console.warn(`Lead quarantined as spam (score ${assessment.score}): ${assessment.reasons.join(', ')}`);
+        console.warn(
+          `Lead ${savedToDb ? 'quarantined' : 'NOT saved (DB down), dropped'} as spam (score ${assessment.score}): ${assessment.reasons.join(', ')}`
+        );
       }
       return NextResponse.json({ success: true });
     }
@@ -157,30 +176,35 @@ export async function POST(request: NextRequest) {
     const notificationEmail = process.env.NOTIFICATION_EMAIL;
 
     const confirmation = buildConfirmationEmail(emailData);
-    const notification = buildNotificationEmail(emailData);
+    const notification = buildNotificationEmail(emailData, savedToDb ? undefined : NOT_SAVED_NOTE);
 
-    // Fire emails concurrently, catch errors individually
-    const emailPromises: Promise<unknown>[] = [
-      resend.emails.send({
+    // Fire emails concurrently; each logs its own failure
+    const [, notified] = await Promise.all([
+      sendEmail('Confirmation', {
         from: `Aurelius Media <${fromAddress}>`,
         to: email,
         subject: confirmation.subject,
         html: confirmation.html,
-      }).catch((err) => console.error('Confirmation email failed:', err)),
-    ];
+      }),
+      notificationEmail
+        ? sendEmail('Notification', {
+            from: `Aurelius Media <${fromAddress}>`,
+            to: notificationEmail,
+            subject: notification.subject,
+            html: notification.html,
+          })
+        : Promise.resolve(false),
+    ]);
 
-    if (notificationEmail) {
-      emailPromises.push(
-        resend.emails.send({
-          from: `Aurelius Media <${fromAddress}>`,
-          to: notificationEmail,
-          subject: notification.subject,
-          html: notification.html,
-        }).catch((err) => console.error('Notification email failed:', err))
+    // Neither stored nor delivered: the log is the last record, and the visitor
+    // is told to retry rather than shown a false success.
+    if (!savedToDb && !notified) {
+      console.error('LEAD LOST (not saved, notification not sent):', JSON.stringify(emailData));
+      return NextResponse.json(
+        { error: 'Something went wrong. Please try again.' },
+        { status: 500 }
       );
     }
-
-    await Promise.allSettled(emailPromises);
 
     return NextResponse.json({ success: true });
   } catch (err) {
