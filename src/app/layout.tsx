@@ -32,9 +32,9 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
-// Runs before first paint: picks the saved theme, else the OS preference,
-// so the page never flashes the wrong palette.
-const themeScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}d.dataset.theme=t}catch(e){d.dataset.theme='dark'}})();`;
+// Runs before first paint: picks the saved theme, else light (the OS preference
+// is not used), so the page never flashes the wrong palette.
+const themeScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t='light'}d.dataset.theme=t}catch(e){d.dataset.theme='light'}})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aureliusmedia.co"),
@@ -97,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" className={`${archivo.variable} ${archivoBlack.variable} ${spaceMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${archivo.variable} ${archivoBlack.variable} ${spaceMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* GA loads only on the production domain, so local and preview builds don't send hits */}
