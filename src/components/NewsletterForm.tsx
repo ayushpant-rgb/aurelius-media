@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 
+// Shown when the server or the network fails (a server error page is not JSON).
+const SIGNUP_FAILED = "We couldn't sign you up just now. Please try again in a minute.";
+
 interface NewsletterFormProps {
   source: string;
   variant?: 'inline' | 'stacked';
@@ -27,15 +30,16 @@ export default function NewsletterForm({ source, variant = 'stacked' }: Newslett
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Something went wrong');
+        // the server's own message when it sent one; never a raw parse error
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || SIGNUP_FAILED);
       }
 
       setStatus('success');
       setEmail('');
     } catch (err) {
       setStatus('error');
-      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setErrorMsg(err instanceof Error && !(err instanceof TypeError) ? err.message : SIGNUP_FAILED);
     }
   };
 

@@ -22,6 +22,9 @@ import {
 } from 'lucide-react';
 import '@/app/styles/services.css';
 
+// Shown when the server or the network fails (a server error page is not JSON).
+const SEND_FAILED = "We couldn't send that just now. Please try again, or email ayush@aureliusmedia.co.";
+
 const CAL_URL = 'https://cal.com/aureliusmedia/15min';
 
 /* ─── Icon mappings ─── */
@@ -327,8 +330,9 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
             });
 
             if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || 'Something went wrong');
+                // the server's own message when it sent one; never a raw parse error
+                const data = await res.json().catch(() => null);
+                throw new Error(data?.error || SEND_FAILED);
             }
 
             setFormSubmitted(true);
@@ -336,7 +340,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                 window.open(CAL_URL, '_blank');
             }, 500);
         } catch (err) {
-            setFormError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+            setFormError(err instanceof Error && !(err instanceof TypeError) ? err.message : SEND_FAILED);
         } finally {
             setFormLoading(false);
         }

@@ -6,6 +6,9 @@ import { usePostHog } from 'posthog-js/react';
 import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
 import '@/app/styles/pages.css';
 
+// Shown when the server or the network fails (a server error page is not JSON).
+const SEND_FAILED = "We couldn't send that just now. Please try again, or email ayush@aureliusmedia.co.";
+
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
 const DELAY_MS = 12000;
@@ -117,8 +120,9 @@ export default function LeadPopup() {
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Something went wrong');
+        // the server's own message when it sent one; never a raw parse error
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || SEND_FAILED);
       }
 
       setSubmitted(true);
@@ -128,7 +132,7 @@ export default function LeadPopup() {
         industry: formData.industry || undefined,
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong.');
+      setError(err instanceof Error && !(err instanceof TypeError) ? err.message : SEND_FAILED);
     } finally {
       setLoading(false);
     }
