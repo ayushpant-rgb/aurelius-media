@@ -11,11 +11,18 @@
   --panel: #1c1813;
   --bone: #ece7da;
   --soft: #b0a897;
-  --dim: #776f5f;
+  --dim: #8a816e;
   --hair: rgba(236, 231, 218, 0.14);
   --hair2: rgba(236, 231, 218, 0.34);
   --acc: #ff4400;
-  --acc-hover: #d43a00;
+  /* large display text and charts: 3:1 is the bar there, so light mode keeps a brighter orange */
+  --acc-big: #ff4400;
+  /* filled accent (buttons, active chips) and the text on it: 4.5:1 or better */
+  --acc-fill: #d93a00;
+  --on-acc: #ffffff;
+  --acc-hover: #b83100;
+  /* accent text on the bone .paper-card */
+  --acc-paper: #b83100;
   --ink: #16140f;
   /* text that sits on a --bone fill (hover inversions, paper cards) */
   --on-bone: #16140f;
@@ -39,7 +46,12 @@
   --panel: #e9e5d8;
   --bone: #16140f;
   --soft: #57534a;
-  --dim: #8a857a;
+  --dim: #6a665e;
+  --acc: #bf3300;
+  --acc-big: #ee4000;
+  --acc-fill: #bf3300;
+  --acc-hover: #9c2900;
+  --acc-paper: #bf3300;
   --hair: rgba(22, 20, 15, 0.14);
   --hair2: rgba(22, 20, 15, 0.38);
   --on-bone: #f2efe7;
@@ -140,8 +152,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background-color: var(--acc);
-  color: #ffffff;
+  background-color: var(--acc-fill);
+  color: var(--on-acc);
 }
 
 :focus-visible {
@@ -235,9 +247,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-primary {
-  background: var(--acc);
-  color: #ffffff;
-  border: 2px solid var(--acc);
+  background: var(--acc-fill);
+  color: var(--on-acc);
+  border: 2px solid var(--acc-fill);
   font-family: var(--fm);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -281,8 +293,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline-or:hover {
-  background: var(--acc);
-  color: #ffffff;
+  background: var(--acc-fill);
+  border-color: var(--acc-fill);
+  color: var(--on-acc);
 }
 
 .section-padding {
@@ -721,9 +734,9 @@ article details > p {
   align-items: center;
   gap: 10px;
   padding: 14px 24px;
-  background: var(--acc);
-  border: 2px solid var(--acc);
-  color: #ffffff !important;
+  background: var(--acc-fill);
+  border: 2px solid var(--acc-fill);
+  color: var(--on-acc) !important;
   font-family: var(--fm);
   font-weight: 700;
   font-size: 12px;
@@ -752,8 +765,8 @@ article details > p {
   position: absolute;
   top: -10px;
   left: 18px;
-  background: var(--acc);
-  color: #ffffff;
+  background: var(--acc-fill);
+  color: var(--on-acc);
   padding: 2px 10px;
   font-family: var(--fm);
   font-size: 10px;
@@ -874,8 +887,8 @@ article details > p {
   justify-content: center;
   width: 26px;
   height: 26px;
-  background: var(--acc);
-  color: #ffffff;
+  background: var(--acc-fill);
+  color: var(--on-acc);
   font-weight: 700;
   font-size: 12px;
   font-family: var(--fm);

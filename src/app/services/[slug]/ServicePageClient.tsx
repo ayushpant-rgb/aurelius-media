@@ -425,7 +425,7 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                             ) : (
                                 <>
                                     <h3>
-                                        We use <span style={{ color: 'var(--acc)' }}>AI-Driven</span> {service.title} Strategies
+                                        We use <span style={{ color: 'var(--acc-paper)' }}>AI-Driven</span> {service.title} Strategies
                                     </h3>
                                     <p className="fnote" style={{ margin: '10px 0 22px' }}>
                                         Get your free strategy call and discover how to scale your growth.

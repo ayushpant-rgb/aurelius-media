@@ -49,7 +49,7 @@
 .pg-form .pg-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .pg-form .btn { width: 100%; }
 .pg-sent { border: 2px solid var(--bone); background: var(--bg2); padding: 48px 32px; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
-.pg-sent .pg-tick { width: 56px; height: 56px; background: var(--acc); color: #fff; display: grid; place-items: center; margin-bottom: 6px; }
+.pg-sent .pg-tick { width: 56px; height: 56px; background: var(--acc-fill); color: var(--on-acc); display: grid; place-items: center; margin-bottom: 6px; }
 .pg-sent .pg-tick svg { width: 26px; height: 26px; }
 .pg-sent h3 { font-family: var(--fd); font-size: 24px; text-transform: uppercase; }
 .pg-sent p { font-size: 15px; line-height: 1.6; color: var(--soft); max-width: 360px; }
@@ -84,7 +84,7 @@
 .pg-lp form .btn { width: 100%; margin-top: 4px; }
 .pg-lp .fnote { text-align: center; margin-top: 16px; font-size: 11.5px; }
 .pg-lp .pg-lp-done { text-align: center; padding: 18px 0 10px; }
-.pg-lp .pg-lp-done .pg-tick { width: 56px; height: 56px; background: var(--acc); color: #fff; display: grid; place-items: center; margin: 0 auto 18px; }
+.pg-lp .pg-lp-done .pg-tick { width: 56px; height: 56px; background: var(--acc-fill); color: var(--on-acc); display: grid; place-items: center; margin: 0 auto 18px; }
 .pg-lp .pg-lp-done .pg-tick svg { width: 26px; height: 26px; }
 .pg-lp .pg-lp-done h3 { font-size: 24px; margin-bottom: 10px; color: #16140f; }
 .pg-lp .pg-lp-done p { font-size: 14px; line-height: 1.6; color: #57534a; }
