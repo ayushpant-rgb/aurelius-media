@@ -617,7 +617,6 @@ html.rv-on .statband:not(.in) .st::after { transform: scaleX(0); }
 .cscard::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12, 10, 7, 0.94) 0%, rgba(12, 10, 7, 0.72) 30%, rgba(12, 10, 7, 0.12) 62%, rgba(12, 10, 7, 0) 100%); pointer-events: none; }
 .cscard:hover { border-color: var(--acc); box-shadow: 10px 10px 0 var(--shadow); transform: translateY(-4px); }
 .cscard:hover img { transform: scale(1.05); }
-.cs-no { position: absolute; top: 16px; left: 16px; z-index: 2; font-family: var(--fm); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #ece7da; background: rgba(12, 10, 7, 0.6); padding: 5px 9px; }
 .cs-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 8px; }
 .cs-body h3, .cs-body .cs-title { font-family: var(--fd); font-weight: 400; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.02; text-transform: uppercase; color: #ece7da; }
 .cs-body p { font-size: 14px; line-height: 1.5; color: #c9c2b2; }
