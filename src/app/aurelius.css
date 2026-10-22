@@ -604,7 +604,13 @@ html.rv-on .statband:not(.in) .st::after { transform: scaleX(0); }
 
 /* Case-study photo cards (homepage). Text sits on a dark scrim over the photo,
    so it stays ink-on-photo in both themes. */
-.csgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+/* The row glides right to left like the live site's (about 115px a second:
+   one set of four 380px slots in 13s), pausing on hover. Each card carries
+   its own right margin so -50% lands exactly on the start of the copy. */
+.csmq { overflow: hidden; padding: 6px 0 16px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
+.cstrk { display: flex; width: max-content; animation: amq 13s linear infinite; }
+.csmq:hover .cstrk { animation-play-state: paused; }
+.cstrk .cscard { flex: none; width: 360px; margin-right: 20px; }
 .cscard { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--hair2); background: var(--panel); transition: opacity 0.5s, border-color 0.2s, box-shadow 0.2s, transform 0.3s; }
 .cscard img { object-fit: cover; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .cscard::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12, 10, 7, 0.94) 0%, rgba(12, 10, 7, 0.72) 30%, rgba(12, 10, 7, 0.12) 62%, rgba(12, 10, 7, 0) 100%); pointer-events: none; }
@@ -612,19 +618,21 @@ html.rv-on .statband:not(.in) .st::after { transform: scaleX(0); }
 .cscard:hover img { transform: scale(1.05); }
 .cs-no { position: absolute; top: 16px; left: 16px; z-index: 2; font-family: var(--fm); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #ece7da; background: rgba(12, 10, 7, 0.6); padding: 5px 9px; }
 .cs-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 8px; }
-.cs-body h3 { font-family: var(--fd); font-weight: 400; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.02; text-transform: uppercase; color: #ece7da; }
+.cs-body h3, .cs-body .cs-title { font-family: var(--fd); font-weight: 400; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.02; text-transform: uppercase; color: #ece7da; }
 .cs-body p { font-size: 14px; line-height: 1.5; color: #c9c2b2; }
 .cs-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .cs-chips span { font-family: var(--fm); font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--acc); padding: 6px 10px; }
 .cs-chips span + span { background: rgba(236, 231, 218, 0.14); border: 1px solid rgba(236, 231, 218, 0.35); color: #ece7da; }
-@media (max-width: 1100px) {
-  .csgrid { grid-template-columns: 1fr 1fr; }
-}
 @media (max-width: 760px) {
-  /* phones: swipe through the cards */
-  .csgrid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: clamp(20px, 5.5vw, 80px); gap: 14px; margin: 0 calc(-1 * clamp(20px, 5.5vw, 80px)); padding: 0 clamp(20px, 5.5vw, 80px) 6px; scrollbar-width: none; }
-  .csgrid::-webkit-scrollbar { display: none; }
-  .cscard { flex: 0 0 82%; scroll-snap-align: start; }
+  /* phones: same pace with 300px cards (four 314px slots in 11s) */
+  .cstrk { animation-duration: 11s; }
+  .cstrk .cscard { width: 300px; margin-right: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* no gliding: one copy of the cards in a row that can be swiped */
+  .cstrk { animation: none; }
+  .cstrk .cscard[aria-hidden] { display: none; }
+  .csmq { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; }
 }
 
 /* Homepage services: roomier index rows */

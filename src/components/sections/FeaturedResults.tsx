@@ -49,27 +49,35 @@ export default function FeaturedResults() {
                     </p>
                 </div>
 
-                <div className="csgrid gs">
-                    {caseStudies.map((study, i) => (
-                        <article className="cscard" key={study.title}>
-                            <Image
-                                src={study.image}
-                                alt={study.title}
-                                fill
-                                sizes="(max-width: 760px) 82vw, (max-width: 1100px) 45vw, 330px"
-                            />
-                            <span className="cs-no">CS—0{i + 1}</span>
-                            <div className="cs-body">
-                                <h3>{study.title}</h3>
-                                <p>{study.subtitle}</p>
-                                <div className="cs-chips">
-                                    {study.tags.map((tag) => (
-                                        <span key={tag}>{tag}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        </article>
-                    ))}
+                {/* Cards glide right to left at the live site's pace and pause on
+                    hover. The second copy makes the loop seamless; it is hidden
+                    from screen readers and its titles are not headings. */}
+                <div className="csmq rv">
+                    <div className="cstrk">
+                        {[...caseStudies, ...caseStudies].map((study, i) => {
+                            const clone = i >= caseStudies.length;
+                            return (
+                                <article className="cscard" key={i} aria-hidden={clone || undefined}>
+                                    <Image
+                                        src={study.image}
+                                        alt={clone ? '' : study.title}
+                                        fill
+                                        sizes="(max-width: 760px) 300px, 360px"
+                                    />
+                                    <span className="cs-no">CS—0{(i % caseStudies.length) + 1}</span>
+                                    <div className="cs-body">
+                                        {clone ? <div className="cs-title">{study.title}</div> : <h3>{study.title}</h3>}
+                                        <p>{study.subtitle}</p>
+                                        <div className="cs-chips">
+                                            {study.tags.map((tag) => (
+                                                <span key={tag}>{tag}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
                 </div>
 
                 <div className="rv" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 34 }}>
