@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
+import '@/app/styles/services.css';
 
 export interface FAQItem {
     question: string;
@@ -15,6 +16,8 @@ interface FAQAccordionProps {
     defaultOpenCount?: number;
 }
 
+// Design-system FAQ (.faq / .q / .qh / .qa). Several answers can be open at once;
+// the first `defaultOpenCount` start open.
 export default function FAQAccordion({
     items,
     heading = 'Frequently asked',
@@ -22,6 +25,7 @@ export default function FAQAccordion({
     eyebrow = 'FAQ',
     defaultOpenCount = 0,
 }: FAQAccordionProps) {
+    const uid = useId();
     const [openIndices, setOpenIndices] = useState<Set<number>>(
         () => new Set(Array.from({ length: Math.min(defaultOpenCount, items.length) }, (_, i) => i))
     );
@@ -40,43 +44,39 @@ export default function FAQAccordion({
 
     return (
         <div>
-            {/* Header */}
-            {eyebrow && (
-                <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-4 font-mono">
-                    {eyebrow}
-                </p>
-            )}
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 tracking-tight">
-                {heading}{' '}
-                <span className="gradient-text font-display">{headingAccent}</span>
-            </h2>
+            <div className="shead rv">
+                <div>
+                    {eyebrow && <span className="k">— {eyebrow} —</span>}
+                    <h2>
+                        {heading}{' '}
+                        <em className="acc-em">{headingAccent}</em>
+                    </h2>
+                </div>
+            </div>
 
-            {/* Accordion */}
-            <div className="space-y-0 divide-y divide-brand-border-subtle border-y border-brand-border-subtle">
+            <div className="faq">
                 {items.map((item, i) => {
                     const isOpen = openIndices.has(i);
+                    const panelId = `${uid}-a${i}`;
                     return (
-                        <div key={i} className="group">
+                        <div key={i} className={`q${isOpen ? ' open' : ''}`}>
                             <button
+                                type="button"
+                                className="qh"
                                 onClick={() => toggle(i)}
-                                className="w-full flex items-center justify-between py-6 sm:py-7 text-left cursor-pointer transition-colors duration-200"
+                                aria-expanded={isOpen}
+                                aria-controls={panelId}
                             >
-                                <span className={`text-lg sm:text-xl font-medium pr-8 transition-colors duration-200 ${isOpen ? 'text-brand-white' : 'text-brand-white/80 group-hover:text-brand-white'}`}>
-                                    {item.question}
-                                </span>
-                                <span className="relative w-7 h-7 shrink-0 flex items-center justify-center rounded-full border border-brand-border-subtle transition-colors duration-300">
-                                    <span className={`absolute w-3.5 h-[1.5px] rounded-full transition-colors duration-300 ${isOpen ? 'bg-brand-accent' : 'bg-brand-white/60'}`} />
-                                    <span className={`absolute w-3.5 h-[1.5px] rounded-full transition-all duration-300 ${isOpen ? 'rotate-0 opacity-0 bg-brand-accent' : 'rotate-90 opacity-100 bg-brand-white/60'}`} />
-                                </span>
+                                <span className="qt">{item.question}</span>
+                                <span className="pm" aria-hidden="true">{isOpen ? '−' : '+'}</span>
                             </button>
                             <div
-                                className="grid transition-[grid-template-rows] duration-400 ease-in-out"
+                                id={panelId}
+                                className="qwrap"
                                 style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
                             >
-                                <div className="overflow-hidden">
-                                    <p className="pb-7 sm:pb-8 pr-12 text-base sm:text-[17px] text-brand-gray leading-[1.75] max-w-3xl">
-                                        {item.answer}
-                                    </p>
+                                <div>
+                                    <p className="qa">{item.answer}</p>
                                 </div>
                             </div>
                         </div>

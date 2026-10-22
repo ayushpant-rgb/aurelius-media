@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useInView } from '@/lib/hooks';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface Capability {
     id: string;
@@ -191,83 +189,52 @@ const capabilities: Capability[] = [
 
 export default function CapabilitiesPanel() {
     const [activeId, setActiveId] = useState<string | null>(null);
-    const { ref, inView } = useInView();
-
     const activeCapability = capabilities.find(c => c.id === activeId);
 
     return (
-        <section ref={ref} className="bg-brand-dark py-16 sm:py-24 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                {/* Section Header */}
-                <div className={`text-center mb-12 sm:mb-16 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Your Digital CMO</p>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-                        Everything a growth team needs —{' '}
-                        <span className="gradient-text font-display">in one agency.</span>
-                    </h2>
-                    <p className="text-brand-gray text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+        <section className="sec">
+            <div className="wrap">
+                <div className="shead rv">
+                    <div>
+                        <span className="k">— Your Digital CMO —</span>
+                        <h2>Everything a growth team needs —{' '}<br /><em className="acc-em">in one agency.</em></h2>
+                    </div>
+                    <p>
                         28 specialized capabilities across paid media, creative, AI, and growth. Click any to learn more.
                     </p>
                 </div>
 
-                {/* Responsive Grid */}
-                <div className={`${inView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
-                    <div className="rounded-[20px] border border-brand-border-subtle overflow-hidden bg-brand-card/20">
-                        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7">
-                            {capabilities.map((cap) => {
-                                const isActive = activeId === cap.id;
-                                return (
-                                    <button
-                                        key={cap.id}
-                                        onClick={() => setActiveId(isActive ? null : cap.id)}
-                                        className={`flex flex-col items-center justify-center gap-2 py-5 sm:py-7 px-2 sm:px-3 border-b border-r border-brand-border-subtle transition-all duration-200 cursor-pointer ${
-                                            isActive
-                                                ? 'bg-brand-accent/8 text-brand-accent'
-                                                : 'hover:bg-white/[0.03] text-brand-gray-dark hover:text-brand-gray'
-                                        }`}
-                                    >
-                                        <div className={`transition-colors duration-200 ${isActive ? 'text-brand-accent' : ''}`}>
-                                            {cap.icon}
-                                        </div>
-                                        <span className={`text-[9px] sm:text-[10px] font-medium text-center leading-tight transition-colors duration-200 ${
-                                            isActive ? 'text-brand-white' : ''
-                                        }`}>
-                                            {cap.label}
-                                        </span>
-                                    </button>
-                                );
-                            })}
-                        </div>
+                <div className="rv">
+                    <div className="capgrid gs">
+                        {capabilities.map((cap) => {
+                            const isActive = activeId === cap.id;
+                            return (
+                                <button
+                                    key={cap.id}
+                                    type="button"
+                                    onClick={() => setActiveId(isActive ? null : cap.id)}
+                                    className={`cap${isActive ? ' on' : ''}`}
+                                    aria-pressed={isActive}
+                                    aria-controls="capability-detail"
+                                >
+                                    {cap.icon}
+                                    <span>{cap.label}</span>
+                                </button>
+                            );
+                        })}
                     </div>
 
-                    {/* Detail Panel */}
-                    <AnimatePresence mode="wait">
+                    <div id="capability-detail" aria-live="polite">
                         {activeCapability && (
-                            <motion.div
-                                key={activeCapability.id}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.2, ease: 'easeOut' }}
-                            >
-                                <div className="mt-4 p-5 sm:p-6 rounded-xl border border-brand-accent/20 bg-brand-accent/5">
-                                    <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 p-2.5 rounded-lg bg-brand-accent/10 text-brand-accent">
-                                            {activeCapability.icon}
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="text-base sm:text-lg font-bold text-brand-white mb-1">
-                                                {activeCapability.label}
-                                            </h3>
-                                            <p className="text-sm text-brand-gray leading-relaxed">
-                                                {activeCapability.description}
-                                            </p>
-                                        </div>
-                                    </div>
+                            <div className="capdetail" key={activeCapability.id}>
+                                <span className="ic">{activeCapability.icon}</span>
+                                <div>
+                                    <h3>{activeCapability.label}</h3>
+                                    <p>{activeCapability.description}</p>
                                 </div>
-                            </motion.div>
+                            </div>
                         )}
-                    </AnimatePresence>
+                    </div>
                 </div>
             </div>
         </section>

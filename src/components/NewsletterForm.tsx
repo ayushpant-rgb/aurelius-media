@@ -40,36 +40,28 @@ export default function NewsletterForm({ source, variant = 'stacked' }: Newslett
   };
 
   if (status === 'success') {
-    return (
-      <p className="text-sm text-green-400 font-medium py-2">
-        You&apos;re in! Check your inbox.
-      </p>
-    );
+    return <p className="formmsg ok" role="status">You&apos;re in! Check your inbox.</p>;
   }
 
-  const isInline = variant === 'inline';
-
   return (
-    <form onSubmit={handleSubmit} className={`flex ${isInline ? 'flex-row' : 'flex-col sm:flex-row'} gap-2 ${isInline ? 'max-w-sm' : 'max-w-[420px] mx-auto'}`}>
-      <HoneypotField value={website} onChange={setWebsite} />
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        required
-        className={`flex-1 px-4 ${isInline ? 'py-2.5 text-sm rounded-lg' : 'py-[11px] text-[14px] rounded-xl'} bg-brand-card-hover border border-brand-border text-brand-white placeholder:text-brand-gray-dark focus:outline-none focus:border-brand-accent/50 transition-colors`}
-      />
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className={`${isInline ? 'px-4 py-2.5 bg-brand-accent hover:bg-brand-accent-hover text-white text-sm font-semibold rounded-lg' : 'cta-primary text-white font-semibold rounded-xl px-5 py-[11px] text-[14px]'} transition-colors whitespace-nowrap disabled:opacity-50`}
-      >
-        {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-      </button>
+    <div style={variant === 'stacked' ? { maxWidth: 440, margin: '0 auto' } : undefined}>
+      <form onSubmit={handleSubmit} className="sub" style={variant === 'stacked' ? { maxWidth: 'none' } : undefined}>
+        <HoneypotField value={website} onChange={setWebsite} />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email"
+          aria-label="Email address"
+          required
+        />
+        <button type="submit" disabled={status === 'loading'}>
+          {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
+        </button>
+      </form>
       {status === 'error' && (
-        <p className="text-xs text-red-400 col-span-full">{errorMsg}</p>
+        <p className="formmsg err" role="alert" style={{ marginTop: 10 }}>{errorMsg}</p>
       )}
-    </form>
+    </div>
   );
 }

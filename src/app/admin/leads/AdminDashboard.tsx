@@ -2,15 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import type { Lead, LeadStatus, LeadSource } from '@/types/lead';
+import '@/app/styles/pages.css';
 
 const STATUS_OPTIONS: LeadStatus[] = ['new', 'contacted', 'qualified', 'closed'];
 const SOURCE_OPTIONS: LeadSource[] = ['service_hero', 'service_cta', 'contact', 'popup', 'ebook'];
 
+// Theme-aware pill colours (see .pg-adm-pill in styles/pages.css)
 const STATUS_COLORS: Record<LeadStatus, string> = {
-  new: 'bg-blue-500/20 text-blue-400',
-  contacted: 'bg-yellow-500/20 text-yellow-400',
-  qualified: 'bg-green-500/20 text-green-400',
-  closed: 'bg-brand-gray-dark/20 text-brand-gray-dark',
+  new: 'new',
+  contacted: 'contacted',
+  qualified: 'qualified',
+  closed: 'closed',
 };
 
 const SOURCE_LABELS: Record<LeadSource, string> = {
@@ -89,6 +91,8 @@ export default function AdminDashboard() {
 
   // Refetch when filters change
   useEffect(() => {
+    // Pre-existing fetch-on-filter-change pattern; the redesign leaves this logic as is.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (authenticated) fetchLeads();
   }, [authenticated, fetchLeads]);
 
@@ -129,10 +133,10 @@ export default function AdminDashboard() {
   // ─── Login Screen ───
   if (!authenticated) {
     return (
-      <main className="min-h-screen bg-brand-dark flex items-center justify-center px-4">
+      <div className="pg-adm min-h-screen bg-brand-dark flex items-center justify-center px-4">
         <form onSubmit={handleLogin} className="w-full max-w-sm">
           <h1 className="text-2xl font-bold text-brand-white mb-6 text-center">Admin Access</h1>
-          {authError && <p className="text-red-400 text-sm text-center mb-4">{authError}</p>}
+          {authError && <p className="pg-adm-err text-sm text-center mb-4">{authError}</p>}
           <input
             type="password"
             value={password}
@@ -149,13 +153,13 @@ export default function AdminDashboard() {
             {authLoading ? 'Verifying...' : 'Login'}
           </button>
         </form>
-      </main>
+      </div>
     );
   }
 
   // ─── Dashboard ───
   return (
-    <main className="min-h-screen bg-brand-dark text-brand-white">
+    <div className="pg-adm min-h-screen bg-brand-dark text-brand-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -231,11 +235,11 @@ export default function AdminDashboard() {
                         </div>
                         <div className="px-4 py-3 text-brand-gray truncate hidden md:block">{lead.service_interest || '—'}</div>
                         <div className="px-4 py-3 flex items-center gap-1.5">
-                          <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-medium ${STATUS_COLORS[lead.status]}`}>
+                          <span className={`pg-adm-pill ${STATUS_COLORS[lead.status]}`}>
                             {lead.status}
                           </span>
                           {lead.is_spam && (
-                            <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-medium bg-red-500/20 text-red-400">
+                            <span className="pg-adm-pill spam">
                               spam
                             </span>
                           )}
@@ -271,8 +275,8 @@ export default function AdminDashboard() {
                               onClick={() => updateLead(lead.id, { is_spam: !lead.is_spam })}
                               className={`self-start px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                                 lead.is_spam
-                                  ? 'border-green-500/30 text-green-400 hover:bg-green-500/10'
-                                  : 'border-red-500/30 text-red-400 hover:bg-red-500/10'
+                                  ? 'pg-adm-btn-ok'
+                                  : 'pg-adm-btn-bad'
                               }`}
                             >
                               {lead.is_spam ? 'Not spam — restore' : 'Mark as spam'}
@@ -312,7 +316,7 @@ export default function AdminDashboard() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

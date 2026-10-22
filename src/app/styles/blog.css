@@ -1,0 +1,144 @@
+/* Blog listing, article view and /categories landing pages.
+   Built on the shared design system in aurelius.css; everything here is
+   prefixed (bl- listing, ar- article, ct- category) so it can't clash. */
+
+/* ===== Blog listing (frames 31/32) ===== */
+.bl-top { padding-top: clamp(40px, 5vw, 66px); padding-bottom: clamp(56px, 7vw, 90px); }
+.bl-head { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 50px; align-items: start; margin-bottom: 44px; }
+.bl-head h1 { font-size: clamp(44px, 4.6vw, 56px); line-height: 0.98; }
+.bl-head .bl-intro { font-size: 14.5px; line-height: 1.6; color: var(--soft); margin-top: 18px; max-width: 440px; }
+.catchip:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+@media (max-width: 1000px) {
+  .bl-head { grid-template-columns: 1fr; gap: 28px; margin-bottom: 36px; }
+}
+/* On phones the 15+ chips become one swipeable row instead of eight wrapped rows. */
+@media (max-width: 680px) {
+  .bl-head .catbar {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    margin: 0 calc(-1 * clamp(20px, 5.5vw, 80px)); padding: 2px clamp(20px, 5.5vw, 80px) 6px;
+  }
+  .bl-head .catbar::-webkit-scrollbar { display: none; }
+  .bl-head .catchip { flex: none; white-space: nowrap; }
+}
+.bl-feat { margin-bottom: 44px; }
+.bl-feat .tagpill.mute { color: var(--soft); border-color: var(--hair2); }
+.bl-feat .bl-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.bl-feat .bl-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.bl-feat .byline b, .bl-feat .byline .readt { display: block; }
+.bl-feat p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 900px) { .bl-feat .img { min-height: 0; aspect-ratio: 1200 / 630; } }
+.bl-empty { text-align: center; padding: 64px 0; color: var(--soft); border: 1px solid var(--hair); }
+.bl-noimg { position: absolute; inset: 0; display: grid; place-items: center; }
+
+/* Newsletter band (listing + article) */
+.bl-newssec { padding-bottom: clamp(64px, 8vw, 90px); }
+.bl-news { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 32px 60px; align-items: center; border: 1px solid var(--hair2); background: var(--bg2); padding: clamp(28px, 4vw, 48px) clamp(22px, 4vw, 56px); }
+.bl-news h2 { font-size: clamp(28px, 3.2vw, 40px); margin-top: 14px; }
+.bl-news .bl-newsp { font-size: 15px; line-height: 1.6; color: var(--soft); margin-top: 12px; max-width: 520px; }
+.bl-news .mininote { margin-top: 12px; }
+@media (max-width: 900px) {
+  .bl-news { grid-template-columns: 1fr; }
+  .bl-news .bl-newsform > div { margin: 0 !important; }
+}
+
+/* ===== Article view (frames 33/34) ===== */
+.ar-top { padding-top: clamp(36px, 4.5vw, 56px); }
+.ar-crumb { text-align: center; }
+.ar-crumb > span { color: var(--soft); }
+.ar-top .arthead { margin-top: 26px; }
+.ar-top .arthead h1 { font-size: clamp(32px, 4.6vw, 56px); line-height: 1.02; margin: 22px 0 26px; overflow-wrap: break-word; }
+.ar-meta { display: flex; align-items: center; justify-content: center; gap: 10px 16px; flex-wrap: wrap; }
+.ar-meta .byline .av { width: 40px; height: 40px; }
+.ar-meta .byline b { display: block; font-size: 14px; text-align: left; }
+.ar-meta .byline .readt { display: block; text-align: left; }
+.ar-when { display: inline-flex; align-items: center; gap: 16px; }
+@media (max-width: 560px) {
+  .ar-meta { flex-direction: column; gap: 12px; }
+  .ar-when .ar-dot { display: none; }
+}
+.ar-top .arthero { margin: 44px auto 0; }
+.ar-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 32px; text-align: center; }
+.ar-fallback .fd { font-size: clamp(22px, 3vw, 36px); line-height: 1.05; max-width: 640px; color: var(--bone); }
+.ar-body { padding-top: clamp(40px, 5vw, 64px); }
+/* In-page TOC links jump to h2[id]; keep the heading clear of the sticky header. */
+.blog-article [id] { scroll-margin-top: 100px; }
+/* MDX "Table of Contents" lists (an <ol> whose items are lone #anchor links)
+   get the design system's .toc treatment. */
+.blog-article ol:has(> li > a[href^="#"]:only-child) { list-style: none; margin: 0 0 22px; padding: 22px 24px; border: 1px solid var(--hair2); background: var(--bg2); counter-reset: artoc; display: flex; flex-direction: column; gap: 10px; }
+.blog-article ol:has(> li > a[href^="#"]:only-child) > li { counter-increment: artoc; display: flex; gap: 12px; margin: 0; font-size: 15px; line-height: 1.45; }
+.blog-article ol:has(> li > a[href^="#"]:only-child) > li::before { content: counter(artoc, decimal-leading-zero); font-family: var(--fm); font-size: 11px; color: var(--acc); padding-top: 3px; flex: none; }
+.blog-article ol:has(> li > a[href^="#"]:only-child) a { color: var(--soft); text-decoration: none; }
+.blog-article ol:has(> li > a[href^="#"]:only-child) a:hover { color: var(--bone); }
+.ar-tablewrap { overflow-x: auto; margin: 28px 0; -webkit-overflow-scrolling: touch; }
+.ar-tablewrap table { margin: 0; }
+@media (max-width: 600px) {
+  .blog-article .ar-tablewrap td { font-size: 14px; padding-right: 12px; }
+}
+.ar-code { margin: 28px 0; border: 1px solid var(--hair2); background: var(--bg2); }
+.ar-code .ar-codehead { padding: 9px 16px; border-bottom: 1px solid var(--hair); font-family: var(--fm); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.ar-code pre { margin: 0; border: 0; }
+.ar-narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
+.ar-share { margin: 64px auto 40px; }
+.ar-share .chip { cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+.ar-share .chip:hover { border-color: var(--acc); color: var(--acc); }
+@media (max-width: 520px) { .ar-share { gap: 10px; } .ar-share > span { flex-basis: 100%; text-align: center; } }
+.ar-bioname { font-family: var(--fd); font-size: 18px; text-transform: uppercase; color: var(--bone); line-height: 1.2; }
+.ar-bioname:hover { color: var(--acc); }
+.authorbio .ar-biorole { font-family: var(--fm); font-size: 11px; letter-spacing: 0.06em; color: var(--dim); margin-top: 4px; }
+.ar-hr { max-width: 760px; margin-left: auto; margin-right: auto; }
+.ar-rel { max-width: 1120px; margin: 0 auto; }
+.ar-cta { max-width: 1120px; margin: 0 auto; }
+.ar-cta h3 { font-family: var(--fd); font-weight: 400; font-size: clamp(30px, 3.6vw, 44px); text-transform: uppercase; line-height: 1; margin-top: 18px; }
+.ar-news { max-width: 1120px; margin: clamp(48px, 6vw, 70px) auto 0; }
+.ar-end { padding-bottom: clamp(64px, 8vw, 90px); }
+
+/* ===== /categories/[category] ===== */
+.ct-hero { padding-top: clamp(36px, 4.5vw, 56px); padding-bottom: clamp(56px, 7vw, 80px); }
+.ct-herogrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; align-items: center; margin-top: clamp(28px, 4vw, 44px); }
+.ct-herogrid.has-img { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); }
+.ct-hero h1 { margin: 22px 0 22px; max-width: 980px; }
+.ct-sub { font-family: var(--fb); font-size: clamp(17px, 1.6vw, 20px); font-weight: 600; line-height: 1.45; color: var(--bone); max-width: 760px; margin-bottom: 16px; }
+.ct-hero .lede { max-width: 720px; margin-bottom: 32px; }
+.ct-heroimg { position: relative; border: 2px solid var(--bone); box-shadow: 12px 12px 0 var(--shadow); background: var(--panel); aspect-ratio: 3 / 2; overflow: hidden; }
+.ct-heroimg img { object-fit: cover; }
+.ct-herogrid.has-img:not(:has(.ct-heroimg)) { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 1100px) {
+  .ct-herogrid.has-img { grid-template-columns: 1fr; }
+  .ct-heroimg { display: none; }
+}
+.ct-stats { margin-top: clamp(48px, 6vw, 70px); }
+.ct-stats .statband { background: var(--bg); }
+.ct-stats .statband b { font-size: clamp(36px, 4vw, 52px); }
+.ct-stats .statband .lb { color: var(--soft); }
+.ct-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 80px; align-items: start; }
+@media (max-width: 960px) { .ct-split { grid-template-columns: 1fr; } }
+.ct-h2 { font-family: var(--fd); font-size: clamp(30px, 3.6vw, 44px); text-transform: uppercase; line-height: 1; margin: 14px 0 18px; }
+.ct-whyimg { position: relative; margin-top: 28px; max-width: 320px; aspect-ratio: 1; border: 1px solid var(--hair2); background: var(--panel); overflow: hidden; }
+.ct-whyimg img { object-fit: cover; }
+.ct-points { list-style: none; border-top: 2px solid var(--bone); }
+.ct-points li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; padding: 20px 4px; border-bottom: 1px solid var(--hair); }
+.ct-points .pn { font-family: var(--fd); font-size: 24px; line-height: 1; color: transparent; -webkit-text-stroke: 1.2px var(--acc); }
+.ct-points p { font-size: 15px; line-height: 1.6; color: var(--soft); }
+.ct-proc .pstep h3 { font-family: var(--fd); font-weight: 400; font-size: 17px; text-transform: uppercase; color: var(--bone); transition: color 0.18s; }
+.ct-proc .pstep:hover h3 { color: #fff; }
+.ct-pcta { background: var(--bg); justify-content: flex-end; }
+.ct-pcta:hover { background: var(--bg); }
+.ct-pcta .btn { align-self: flex-start; }
+.ct-svc .srow { position: relative; }
+.ct-svc .srow h3 a::after { content: ''; position: absolute; inset: 0; }
+.ct-svc .srow h3 a:focus-visible { outline: none; }
+.ct-svc .srow:has(a:focus-visible) { outline: 2px solid var(--acc); outline-offset: -2px; }
+.ct-svc .srow.ct-static:hover { background: transparent; }
+.ct-svc .srow.ct-static:hover h3 { color: var(--bone); }
+.ct-svc .srow.ct-static:hover p { color: var(--soft); }
+.ct-svc .srow.ct-static:hover .tag { color: var(--dim); }
+.ct-who > div { padding-bottom: 12px; border-bottom: 1px solid var(--hair); line-height: 1.6; }
+.ct-who > div:last-child { border-bottom: 0; }
+.ct-faq summary { list-style: none; }
+.ct-faq summary::-webkit-details-marker { display: none; }
+.ct-faq summary::marker { content: ''; }
+.ct-faq .ct-q { font-family: var(--fb); font-size: 17px; font-weight: 600; line-height: 1.4; transition: color 0.15s; }
+.ct-faq .pm::before { content: '+'; }
+.ct-faq details[open] .pm::before { content: '\2212'; }
+.ct-faq details[open] .ct-q, .ct-faq summary:hover .ct-q { color: var(--acc); }
+.ct-404 { padding: clamp(80px, 12vw, 140px) 0; text-align: center; }

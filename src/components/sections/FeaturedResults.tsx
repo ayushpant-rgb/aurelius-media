@@ -1,117 +1,83 @@
-'use client';
-
 import Image from 'next/image';
-import { useInView } from '@/lib/hooks';
 
+const CAL_URL = 'https://cal.com/aureliusmedia/15min';
+
+// Photo case-study cards — the live homepage's layout (photo, title, subtitle,
+// result chips), restyled in the new system. The last three are the live copy.
 const caseStudies = [
     {
-        title: 'Stealth Health Tech\nStartup',
+        // Meta website subscriptions on the subscriber ad sets: $2.28 per
+        // subscriber in Jun–Jul 2026 (previous agency), $1.07 in our first
+        // 30 days (20 Aug–19 Sep), $0.97 on 1–7 Oct. Photo: our 2I ad.
+        title: 'Provoked Magazine',
+        subtitle: 'Cost per subscriber halved within 30 days',
+        image: '/case-studies/provoked-magazine.webp',
+        tags: ['50%+ Lower Cost per Subscriber', '$2.28 → $0.97 per Subscriber'],
+    },
+    {
+        title: 'Stealth Health Tech Startup',
         subtitle: 'Successful MVP Testing',
         image: '/case-studies/qblDLWSIdCrrJBd83Cjf6xh6HM.avif',
         tags: ['84% Response Rate', '300+ Qualified Leads'],
-        hasDot: true,
     },
     {
         title: 'Private University',
         subtitle: '250% increase in enrollments',
         image: '/case-studies/PCg7rQvx3EQUl4ncNISDMHw8io.avif',
         tags: ['2.5x Enrollments', 'No increase in budget'],
-        hasDot: false,
     },
     {
         title: 'Aden + Anais',
         subtitle: 'Multi-country campaign rollout for funded startup',
         image: '/case-studies/UYQiJm2rPfGOYdRaYtjkLWBn0s.webp',
         tags: ['2000+ Sales', '37% Reduction in CPA'],
-        hasDot: false,
     },
 ];
 
-function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
-    return (
-        <div className="group relative rounded-[20px] overflow-hidden w-[300px] sm:w-[360px] lg:w-[400px] h-[360px] sm:h-[420px] lg:h-[460px] bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-300 shrink-0">
-            <Image
-                src={study.image}
-                alt={study.title.replace('\n', ' ')}
-                fill
-                className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                sizes="400px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-            <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-end items-center text-center">
-                {study.hasDot && (
-                    <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse shadow-[0_0_12px_rgba(232,85,15,0.8)]" />
-                )}
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-1 leading-tight whitespace-pre-line">
-                    {study.title}
-                </h3>
-                <p className="text-brand-gray text-xs mb-4">
-                    {study.subtitle}
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                    {study.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded-full border border-white/10 bg-black/40 backdrop-blur-sm text-[10px] text-brand-gray-light whitespace-nowrap">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
 export default function FeaturedResults() {
-    const { ref, inView } = useInView();
-
-    // Duplicate for seamless CSS loop
-    const items = [...caseStudies, ...caseStudies, ...caseStudies, ...caseStudies];
-
     return (
-        <section ref={ref} className="py-16 sm:py-20 bg-brand-darker overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                {/* Section Header */}
-                <div className="text-center mb-10 sm:mb-12">
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-brand-gray-dark mb-3">Results</p>
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3">
-                        Results speak for <span className="gradient-text font-display">themselves.</span>
-                    </h2>
-                    <p className="text-brand-gray text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
+        <section className="sec">
+            <div className="wrap">
+                <div className="shead rv">
+                    <div>
+                        <span className="k">— Results —</span>
+                        <h2 className="h-xl">Results speak{' '}<br />for themselves.</h2>
+                    </div>
+                    <p>
                         We&apos;ve worked across a number of industries and have achieved some
                         incredible results with some incredible people and brands.
                     </p>
                 </div>
-            </div>
 
-            {/* Contained Carousel */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                <div className="relative overflow-hidden">
-                    {/* Edge fades */}
-                    <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-brand-darker to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-brand-darker to-transparent z-10 pointer-events-none" />
-
-                    <div className="flex gap-5 animate-scroll-rtl-slow group hover:[animation-play-state:paused]">
-                        {items.map((study, i) => (
-                            <CaseStudyCard key={i} study={study} />
-                        ))}
-                    </div>
+                <div className="csgrid gs">
+                    {caseStudies.map((study, i) => (
+                        <article className="cscard" key={study.title}>
+                            <Image
+                                src={study.image}
+                                alt={study.title}
+                                fill
+                                sizes="(max-width: 760px) 82vw, (max-width: 1100px) 45vw, 330px"
+                            />
+                            <span className="cs-no">CS—0{i + 1}</span>
+                            <div className="cs-body">
+                                <h3>{study.title}</h3>
+                                <p>{study.subtitle}</p>
+                                <div className="cs-chips">
+                                    {study.tags.map((tag) => (
+                                        <span key={tag}>{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </article>
+                    ))}
                 </div>
-            </div>
 
-            {/* Inline CTA */}
-            <div className={`text-center mt-12 sm:mt-16 px-4 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
-                <p className="text-xs uppercase tracking-[0.12em] text-brand-gray-dark mb-3">Want results like these?</p>
-                <a
-                    href="https://cal.com/aureliusmedia/15min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 cta-primary text-white font-semibold rounded-full text-sm"
-                >
-                    Book a Strategy Call
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
+                <div className="rv" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 34 }}>
+                    <span className="mininote">Want results like these?</span>
+                    <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
+                        Book a Strategy Call →
+                    </a>
+                </div>
             </div>
         </section>
     );

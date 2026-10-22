@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const navLinks = [
     { label: 'Home', href: '/' },
@@ -12,127 +14,117 @@ const navLinks = [
     { label: 'Contact', href: '/contact' },
 ];
 
+const CAL_URL = 'https://cal.com/aureliusmedia/15min';
+
+function isActive(pathname: string, href: string) {
+    if (href === '/') return pathname === '/';
+    if (href.startsWith('/#')) return false;
+    return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function Logo() {
+    return (
+        <>
+            <span className="lm">
+                <Image src="/logo.png" alt="" width={68} height={68} sizes="34px" priority />
+            </span>
+            Aurelius Media
+        </>
+    );
+}
+
 export default function Header() {
-    const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
     const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+        document.body.style.overflow = mobileOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileOpen]);
 
     useEffect(() => {
-        if (mobileOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => { document.body.style.overflow = ''; };
+        if (!mobileOpen) return;
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
     }, [mobileOpen]);
 
     return (
         <>
-            <header
-                className={`fixed left-4 right-4 z-50 overflow-hidden transition-all duration-300 glass py-3 ${scrolled ? 'top-4' : 'top-4'}`}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group shrink-0">
-                        <Image
-                            src="/logo.png"
-                            alt="Aurelius Media"
-                            width={52}
-                            height={52}
-                            sizes="52px"
-                            className="rounded-md transition-transform group-hover:scale-105"
-                        />
-                        <span className="whitespace-nowrap text-lg sm:text-xl font-extrabold tracking-wider uppercase text-brand-white">
-                            Aurelius Media
-                        </span>
+            <header className="abar-wrap">
+                <span className="scrollbar" aria-hidden="true" />
+                <div className="abar">
+                    <Link href="/" className="logo" aria-label="Aurelius Media home">
+                        <Logo />
                     </Link>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden lg:flex items-center gap-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="px-3 py-2 text-sm font-medium text-brand-gray hover:text-brand-white transition-colors rounded-lg hover:bg-white/5"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                    <nav aria-label="Main">
+                        {navLinks.map((link) => {
+                            const active = isActive(pathname, link.href);
+                            return (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={active ? 'on' : undefined}
+                                    aria-current={active ? 'page' : undefined}
+                                >
+                                    {link.label}
+                                </Link>
+                            );
+                        })}
                     </nav>
 
-                    {/* CTA + Mobile Toggle */}
-                    <div className="flex items-center gap-3 shrink-0">
-                        <a
-                            href="https://cal.com/aureliusmedia/15min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 cta-primary text-white text-sm font-semibold rounded-full"
-                        >
-                            Book a Strategy Call
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
+                    <div className="tools">
+                        <ThemeToggle />
+                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn sm hide-sm">
+                            Book a Strategy Call →
                         </a>
-
-                        {/* Mobile Menu Button */}
                         <button
-                            onClick={() => setMobileOpen(!mobileOpen)}
-                            className="lg:hidden p-2 text-brand-gray hover:text-brand-white transition-colors"
-                            aria-label="Toggle menu"
+                            type="button"
+                            className="iconbtn menu-btn"
+                            onClick={() => setMobileOpen(true)}
+                            aria-label="Open menu"
+                            aria-expanded={mobileOpen}
                         >
-                            {mobileOpen ? (
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            ) : (
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            )}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                <path strokeLinecap="square" d="M4 7h16M4 12h16M4 17h16" />
+                            </svg>
                         </button>
                     </div>
                 </div>
             </header>
 
-            {/* Mobile Drawer — outside header to avoid stacking context issues */}
             {mobileOpen && (
-                <div className="lg:hidden fixed inset-0 z-[60] bg-[#0B0B0D]/95 backdrop-blur-xl">
-                    {/* Close button */}
-                    <button
-                        onClick={() => setMobileOpen(false)}
-                        className="absolute top-5 right-5 p-2 text-brand-gray hover:text-brand-white transition-colors z-10"
-                        aria-label="Close menu"
-                    >
-                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                    <div className="flex flex-col items-center justify-center h-full gap-6">
-                        {navLinks.map((link) => (
+                <div className="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+                    <div className="dtop">
+                        <Link href="/" className="logo" onClick={() => setMobileOpen(false)}>
+                            <Logo />
+                        </Link>
+                        <div className="tools">
+                            <ThemeToggle />
+                            <button type="button" className="iconbtn" onClick={() => setMobileOpen(false)} aria-label="Close menu">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                    <path strokeLinecap="square" d="M6 6l12 12M18 6L6 18" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <nav aria-label="Mobile">
+                        {navLinks.map((link, i) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="text-2xl font-semibold text-brand-gray hover:text-brand-white transition-colors"
+                                className={isActive(pathname, link.href) ? 'on' : undefined}
                             >
                                 {link.label}
+                                <span>0{i + 1}</span>
                             </Link>
                         ))}
-                        <a
-                            href="https://cal.com/aureliusmedia/15min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => setMobileOpen(false)}
-                            className="mt-4 px-8 py-3 cta-primary text-white font-semibold rounded-[20px]"
-                        >
-                            Book a Strategy Call →
-                        </a>
-                    </div>
+                    </nav>
+                    <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn" onClick={() => setMobileOpen(false)}>
+                        Book a Strategy Call →
+                    </a>
                 </div>
             )}
         </>

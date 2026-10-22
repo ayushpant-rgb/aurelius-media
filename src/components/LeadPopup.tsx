@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { HoneypotField, useSpamGuard } from '@/components/SpamGuard';
+import '@/app/styles/pages.css';
 
 const COOKIE_NAME = 'aurelius_popup_dismissed';
 const COOKIE_DAYS = 7;
@@ -61,10 +62,8 @@ export default function LeadPopup() {
     if (getCookie(COOKIE_NAME)) return;
 
     let shown = false;
-    let timer: ReturnType<typeof setTimeout>;
-
     // Time delay trigger
-    timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!shown) {
         shown = true;
         show();
@@ -141,70 +140,55 @@ export default function LeadPopup() {
 
   if (!visible) return null;
 
-  const inputClass =
-    'w-full px-4 py-3 bg-[#1C1C20] border border-[rgba(255,255,255,0.08)] rounded-xl text-white placeholder:text-[rgba(255,255,255,0.3)] focus:outline-none focus:border-[rgba(232,85,15,0.5)] transition-colors text-sm';
-
   return (
     <>
       {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] animate-fade-in"
-        onClick={dismiss}
-      />
+      <div className="pg-lp-scrim animate-fade-in" onClick={dismiss} />
 
       {/* Popup — center on desktop, bottom sheet on mobile */}
-      <div className="fixed z-[9999] inset-x-0 bottom-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-[440px] sm:w-full animate-fade-in-up">
-        <div className="bg-[#131316] border border-[rgba(255,255,255,0.08)] sm:rounded-[24px] rounded-t-[24px] overflow-hidden relative">
-          {/* Ambient glow */}
-          <div className="absolute -top-[80px] left-1/2 -translate-x-1/2 w-[300px] h-[160px] bg-[radial-gradient(ellipse,rgba(232,85,15,0.12)_0%,transparent_70%)] pointer-events-none" />
-
+      <div className="pg-lp animate-fade-in-up" role="dialog" aria-modal="true" aria-labelledby="lead-popup-title">
+        <div className="paper-card">
           {/* Close button */}
-          <button
-            onClick={dismiss}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] transition-colors text-[rgba(255,255,255,0.4)] hover:text-white z-10"
-            aria-label="Close"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <button onClick={dismiss} className="pg-lp-close" aria-label="Close">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="square" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          <div className="relative p-6 sm:p-8">
-            {submitted ? (
-              <div className="text-center py-6">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[rgba(232,85,15,0.1)] border border-[rgba(232,85,15,0.2)] flex items-center justify-center">
-                  <svg className="w-7 h-7 text-[#FF6B2B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white font-display mb-2">
-                  Application received.
-                </h3>
-                <p className="text-sm text-[rgba(255,255,255,0.5)] leading-relaxed">
-                  We&apos;ll review your details and reach out within 24 hours if there&apos;s a fit.
-                </p>
-              </div>
-            ) : (
-              <>
-                {/* Badge */}
-                <div className="mb-5">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-[#FF6B2B] bg-[rgba(232,85,15,0.08)] border border-[rgba(232,85,15,0.15)] rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B2B] animate-pulse" />
-                    Limited availability
-                  </span>
-                </div>
+          {submitted ? (
+            <div className="pg-lp-done" role="status">
+              <span className="pg-tick" aria-hidden="true">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="square" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <h3 id="lead-popup-title">
+                Application received.
+              </h3>
+              <p>
+                We&apos;ll review your details and reach out within 24 hours if there&apos;s a fit.
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Badge */}
+              <span className="pg-lp-badge">
+                <span className="pulse-dot" aria-hidden="true" />
+                Limited availability
+              </span>
 
-                {/* Headline */}
-                <h2 className="text-[22px] sm:text-[26px] font-display font-extrabold text-white tracking-[-0.03em] leading-[1.15] mb-2">
-                  We take on 3 new clients per quarter.
-                </h2>
-                <p className="text-sm text-[rgba(255,255,255,0.5)] leading-relaxed mb-6">
-                  See if you qualify for a partnership with our team.
-                </p>
+              {/* Headline */}
+              <h2 id="lead-popup-title">
+                We take on 3 new clients per quarter.
+              </h2>
+              <p className="pg-lp-sub">
+                See if you qualify for a partnership with our team.
+              </p>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-3">
-                  <HoneypotField value={website} onChange={setWebsite} />
+              {/* Form */}
+              <form onSubmit={handleSubmit}>
+                <HoneypotField value={website} onChange={setWebsite} />
+                <div className="fld">
                   <input
                     name="name"
                     type="text"
@@ -212,8 +196,10 @@ export default function LeadPopup() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className={inputClass}
+                    aria-label="Your name"
                   />
+                </div>
+                <div className="fld">
                   <input
                     name="email"
                     type="email"
@@ -221,41 +207,40 @@ export default function LeadPopup() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email address"
-                    className={inputClass}
+                    aria-label="Email address"
                   />
+                </div>
+                <div className="fld pg-select">
                   <select
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
-                    className={`${inputClass} appearance-none ${!formData.industry ? 'text-[rgba(255,255,255,0.3)]' : ''}`}
+                    aria-label="Your industry"
+                    className={!formData.industry ? 'pg-empty' : undefined}
                   >
-                    <option value="" className="bg-[#1C1C20]">Your industry...</option>
+                    <option value="">Your industry...</option>
                     {INDUSTRY_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt} className="bg-[#1C1C20] text-white">
+                      <option key={opt} value={opt}>
                         {opt}
                       </option>
                     ))}
                   </select>
+                </div>
 
-                  {error && (
-                    <p className="text-xs text-red-400 text-center">{error}</p>
-                  )}
+                {error && (
+                  <p className="formmsg err" role="alert">{error}</p>
+                )}
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full px-6 py-3.5 cta-primary text-white font-semibold text-sm rounded-[16px] disabled:opacity-50 disabled:cursor-not-allowed mt-1"
-                  >
-                    {loading ? 'Submitting...' : 'See If You Qualify'}
-                  </button>
-                </form>
+                <button type="submit" disabled={loading} className="btn">
+                  {loading ? 'Submitting...' : 'See If You Qualify'}
+                </button>
+              </form>
 
-                <p className="text-[11px] text-[rgba(255,255,255,0.25)] text-center mt-4">
-                  No spam. We&apos;ll only reach out if there&apos;s a genuine fit.
-                </p>
-              </>
-            )}
-          </div>
+              <p className="fnote">
+                No spam. We&apos;ll only reach out if there&apos;s a genuine fit.
+              </p>
+            </>
+          )}
         </div>
       </div>
     </>

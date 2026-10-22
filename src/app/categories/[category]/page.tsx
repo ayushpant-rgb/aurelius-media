@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import CategoryImage from './CategoryImage';
+import { getAllPosts, type BlogPostMeta } from '@/lib/blog';
+import PostCard from '@/components/ui/PostCard';
+import '@/app/styles/blog.css';
 
 const CAL_URL = 'https://cal.com/aureliusmedia/15min';
 
@@ -438,134 +441,87 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     };
 }
 
+// Blog categories whose posts are shown as further reading on each landing
+// page (first match wins the top slots; newest first within a category).
+const relatedBlogCategories: Record<string, string[]> = {
+    'performance-marketing': ['Performance Marketing', 'Google Ads', 'D2C Marketing'],
+    'b2b-marketing': ['Growth Marketing', 'Content Strategy'],
+    'marketing-collaterals': ['Industry Insights', 'Performance Marketing'],
+    'programmatic-seo': ['SEO & Content Strategy', 'AI Marketing'],
+    'web-apps-mvps': ['Vibe Coding & MVPs', 'AI Tools'],
+    'full-funnel-marketing': ['Growth Marketing', 'Content Strategy', 'Marketing Trends'],
+};
+
+function getRelatedPosts(category: string): BlogPostMeta[] {
+    const wanted = relatedBlogCategories[category] || [];
+    const posts = getAllPosts();
+    return wanted.flatMap((c) => posts.filter((p) => p.category === c)).slice(0, 3);
+}
+
+const pad2 = (n: number) => String(n).padStart(2, '0');
+
 export default async function CategoryPage({ params }: CategoryPageProps) {
     const { category } = await params;
     const cat = categories[category];
 
     if (!cat) {
         return (
-            <main className="min-h-screen bg-brand-dark flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold text-brand-white mb-4">Category not found</h1>
-                    <Link href="/services" className="text-brand-accent hover:underline">← Back to Services</Link>
+            <section className="ct-404">
+                <div className="wrap">
+                    <h1 className="fd h-lg">Category not found</h1>
+                    <p style={{ marginTop: 22 }}>
+                        <Link href="/services" className="textlink">← Back to Services</Link>
+                    </p>
                 </div>
-            </main>
+            </section>
         );
     }
 
-    return (
-        <main className="bg-brand-dark text-brand-white">
+    const relatedPosts = getRelatedPosts(category);
 
+    return (
+        <>
             {/* ─── HERO ─── */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute inset-0 hero-glow opacity-50" />
-                <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-                    backgroundSize: '60px 60px',
-                }} />
-                <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-                    <nav className="flex items-center gap-2 text-xs text-brand-gray-dark mb-8">
-                        <Link href="/" className="hover:text-brand-white transition-colors">Home</Link>
-                        <span>/</span>
-                        <Link href="/services" className="hover:text-brand-white transition-colors">Services</Link>
-                        <span>/</span>
-                        <span className="text-brand-gray">{cat.title}</span>
+            <section className="ct-hero gridbg">
+                <div className="wrap">
+                    <nav className="crumb" aria-label="Breadcrumb">
+                        <Link href="/">Home</Link> / <Link href="/services">Services</Link> / <span aria-current="page">{cat.title}</span>
                     </nav>
 
-                    <div className={`grid grid-cols-1 ${cat.heroImage ? 'lg:grid-cols-2' : ''} gap-12 items-center`}>
+                    <div className={`ct-herogrid${cat.heroImage ? ' has-img' : ''}`}>
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-card/50 border border-brand-border-subtle text-[10px] font-semibold text-brand-accent uppercase tracking-widest mb-6">
-                                <span className="w-1.5 h-1.5 bg-brand-accent rounded-full" />
-                                {cat.eyebrow}
-                            </div>
-
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-4 max-w-4xl">
-                                {cat.headline}
-                            </h1>
-                            <p className="text-lg sm:text-xl text-brand-gray-light font-medium mb-4 max-w-3xl">
-                                {cat.subHeadline}
-                            </p>
-                            <p className="text-base text-brand-gray max-w-2xl leading-relaxed mb-10">
-                                {cat.description}
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
-                                    Book a Strategy Call
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            <span className="k">● {cat.eyebrow}</span>
+                            <h1 className="fd h-hero">{cat.headline}</h1>
+                            <p className="ct-sub">{cat.subHeadline}</p>
+                            <p className="lede">{cat.description}</p>
+                            <div className="btnrow">
+                                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn">
+                                    Book a Strategy Call →
                                 </a>
-                                <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover text-brand-white rounded-lg font-semibold transition-all duration-200">
+                                <Link href="/services" className="btn ghost">
                                     All Services
                                 </Link>
                             </div>
                         </div>
 
                         {cat.heroImage && (
-                            <div className="hidden lg:block">
-                                <Image
-                                    src={cat.heroImage}
-                                    alt={cat.title}
-                                    width={600}
-                                    height={400}
-                                    className="w-full h-auto rounded-[20px] object-cover"
-                                    sizes="(max-width: 1024px) 0px, 50vw"
-                                    priority
-                                />
-                            </div>
+                            <CategoryImage
+                                className="ct-heroimg"
+                                src={cat.heroImage}
+                                alt={cat.title}
+                                sizes="(max-width: 1100px) 0px, 520px"
+                                priority
+                            />
                         )}
                     </div>
-                </div>
-            </section>
 
-            {/* ─── STATS BAR ─── */}
-            <section className="bg-brand-darker border-y border-brand-border-subtle py-8">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="flex flex-wrap gap-10 sm:gap-20">
-                        {cat.stats.map((stat) => (
-                            <div key={stat.label}>
-                                <div className="flex items-center gap-2 mb-0.5">
-                                    <svg className="w-3.5 h-3.5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-                                    <span className="text-xl sm:text-2xl font-bold text-brand-white">{stat.value}</span>
-                                </div>
-                                <span className="text-xs text-brand-gray">{stat.label}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ─── WHY THIS MATTERS ─── */}
-            <section className="py-20 sm:py-24 bg-brand-dark">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    {cat.whyImage && (
-                        <div className="flex justify-center mb-12">
-                            <Image
-                                src={cat.whyImage}
-                                alt={cat.whyTitle}
-                                width={400}
-                                height={400}
-                                className="w-full max-w-[320px] h-auto rounded-[20px] object-cover opacity-90"
-                                sizes="320px"
-                            />
-                        </div>
-                    )}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">The Challenge</p>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
-                                {cat.whyTitle}
-                            </h2>
-                            <p className="text-sm text-brand-gray leading-relaxed">
-                                {cat.whyDescription}
-                            </p>
-                        </div>
-                        <div className="space-y-3">
-                            {cat.whyPoints.map((point, i) => (
-                                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-brand-card/30 border border-brand-border-subtle">
-                                    <div className="mt-0.5 w-5 h-5 rounded-full bg-brand-accent/15 flex items-center justify-center shrink-0">
-                                        <span className="text-[10px] font-bold text-brand-accent">{i + 1}</span>
-                                    </div>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{point}</p>
+                    {/* ─── STATS ─── */}
+                    <div className="ct-stats">
+                        <div className="statband gs">
+                            {cat.stats.map((stat) => (
+                                <div className="st" key={stat.label}>
+                                    <b>{stat.value}</b>
+                                    <span className="lb">{stat.label}</span>
                                 </div>
                             ))}
                         </div>
@@ -573,55 +529,84 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 </div>
             </section>
 
-            {/* ─── PROCESS ─── */}
-            <section className="py-20 sm:py-24 bg-brand-darker">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">How We Work</p>
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">{cat.processTitle}</h2>
-                    <p className="text-sm text-brand-gray max-w-xl leading-relaxed mb-12">{cat.processSubtitle}</p>
+            {/* ─── WHY THIS MATTERS ─── */}
+            <section className="sec">
+                <div className="wrap">
+                    <div className="ct-split">
+                        <div className="rv">
+                            <span className="k">— The Challenge —</span>
+                            <h2 className="ct-h2">{cat.whyTitle}</h2>
+                            <p className="lede">{cat.whyDescription}</p>
+                            {cat.whyImage && (
+                                <CategoryImage className="ct-whyimg" src={cat.whyImage} alt={cat.whyTitle} sizes="320px" />
+                            )}
+                        </div>
+                        <ol className="ct-points gs">
+                            {cat.whyPoints.map((point, i) => (
+                                <li key={i}>
+                                    <span className="pn" aria-hidden="true">{pad2(i + 1)}</span>
+                                    <p>{point}</p>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
+            </section>
 
-                    <div className="space-y-4">
+            {/* ─── PROCESS ─── */}
+            <section className="sec">
+                <div className="wrap">
+                    <div className="shead rv">
+                        <div>
+                            <span className="k">— How We Work —</span>
+                            <h2>{cat.processTitle}</h2>
+                        </div>
+                        <p>{cat.processSubtitle}</p>
+                    </div>
+                    <div className="proc ct-proc gs">
                         {cat.process.map((step) => (
-                            <div key={step.step} className="flex items-start gap-5 p-5 sm:p-6 rounded-xl bg-brand-card/20 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200">
-                                <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center shrink-0">
-                                    <span className="text-xs font-bold text-brand-accent">{step.step}</span>
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-semibold text-brand-white mb-1.5">{step.title}</h3>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{step.description}</p>
-                                </div>
+                            <div className="pstep" key={step.step}>
+                                <span className="pn">{step.step}</span>
+                                <h3>{step.title}</h3>
+                                <p>{step.description}</p>
                             </div>
                         ))}
+                        {cat.process.length % 3 !== 0 && (
+                            <div className="pstep ct-pcta">
+                                <span className="m10">Next step</span>
+                                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
+                                    Book a Strategy Call →
+                                </a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
 
             {/* ─── SERVICES INCLUDED ─── */}
-            <section className="py-20 sm:py-24 bg-brand-dark">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">What We Deliver</p>
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-12">
-                        Services under <span className="gradient-text font-display">{cat.title.toLowerCase()}.</span>
-                    </h2>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <section className="sec">
+                <div className="wrap">
+                    <div className="shead rv">
+                        <div>
+                            <span className="k">— What We Deliver —</span>
+                            <h2>
+                                Services under <em className="acc-em">{cat.title.toLowerCase()}.</em>
+                            </h2>
+                        </div>
+                    </div>
+                    <div className="sindex ct-svc gs">
                         {cat.services.map((service, i) => (
-                            <div key={i} className="flex items-start gap-4 p-5 sm:p-6 rounded-xl bg-brand-card/30 border border-brand-border-subtle hover:border-brand-border-hover transition-all duration-200">
-                                <div className="mt-0.5 w-7 h-7 rounded-lg bg-brand-accent/10 flex items-center justify-center shrink-0">
-                                    <span className="text-[11px] font-bold text-brand-accent">{String(i + 1).padStart(2, '0')}</span>
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-semibold mb-1.5">
-                                        {service.slug ? (
-                                            <Link href={`/services/${service.slug}`} className="text-brand-white hover:text-brand-accent-text transition-colors">
-                                                {service.name}
-                                            </Link>
-                                        ) : (
-                                            <span className="text-brand-white">{service.name}</span>
-                                        )}
-                                    </h3>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{service.detail}</p>
-                                </div>
+                            <div key={i} className={`srow${service.slug ? '' : ' ct-static'}`}>
+                                <span className="tag">{pad2(i + 1)}</span>
+                                <h3>
+                                    {service.slug ? (
+                                        <Link href={`/services/${service.slug}`}>{service.name}</Link>
+                                    ) : (
+                                        service.name
+                                    )}
+                                </h3>
+                                <p>{service.detail}</p>
+                                <span className="arr" aria-hidden="true">{service.slug ? '→' : ''}</span>
                             </div>
                         ))}
                     </div>
@@ -629,21 +614,19 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </section>
 
             {/* ─── WHO THIS IS FOR ─── */}
-            <section className="py-20 sm:py-24 bg-brand-darker">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 font-mono">Ideal Fit</p>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{cat.whoTitle}</h2>
-                            <p className="text-sm text-brand-gray leading-relaxed">{cat.whoDescription}</p>
+            <section className="sec">
+                <div className="wrap">
+                    <div className="ct-split">
+                        <div className="rv">
+                            <span className="k">— Ideal Fit —</span>
+                            <h2 className="ct-h2">{cat.whoTitle}</h2>
+                            <p className="lede">{cat.whoDescription}</p>
                         </div>
-                        <div className="space-y-3">
+                        <div className="bullets ct-who gs">
                             {cat.whoList.map((item, i) => (
-                                <div key={i} className="flex items-start gap-3 p-3 rounded-lg">
-                                    <div className="mt-0.5 w-5 h-5 rounded-full bg-brand-accent/15 flex items-center justify-center shrink-0">
-                                        <svg className="w-3 h-3 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                                    </div>
-                                    <p className="text-xs text-brand-gray leading-relaxed">{item}</p>
+                                <div key={i}>
+                                    <span className="ck" aria-hidden="true">✓</span>
+                                    <span>{item}</span>
                                 </div>
                             ))}
                         </div>
@@ -651,22 +634,46 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 </div>
             </section>
 
+            {/* ─── FROM THE BLOG ─── */}
+            {relatedPosts.length > 0 && (
+                <section className="sec">
+                    <div className="wrap">
+                        <div className="shead rv">
+                            <div>
+                                <span className="k">— From the Blog —</span>
+                                <h2>Latest insights.</h2>
+                            </div>
+                            <Link href="/blog" className="btn ghost sm">View All Posts →</Link>
+                        </div>
+                        <div className="pgrid gs">
+                            {relatedPosts.map((post) => (
+                                <PostCard key={post.slug} post={post} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* ─── FAQ ─── */}
-            <section className="py-20 sm:py-24 bg-brand-dark">
-                <div className="max-w-3xl mx-auto px-4 sm:px-6">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gray-dark mb-3 text-center font-mono">FAQ</p>
-                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-10 text-center">
-                        Frequently asked <span className="gradient-text font-display">questions.</span>
-                    </h2>
-                    <div className="space-y-3">
+            <section className="sec">
+                <div className="wrap">
+                    <div className="shead rv">
+                        <div>
+                            <span className="k">— FAQ —</span>
+                            <h2>
+                                Frequently asked <em className="acc-em">questions.</em>
+                            </h2>
+                        </div>
+                    </div>
+                    <div className="faq ct-faq">
                         {cat.faqs.map((faq, i) => (
-                            <details key={i} className="group rounded-xl border border-brand-border-subtle overflow-hidden">
-                                <summary className="flex items-center justify-between p-5 cursor-pointer hover:bg-brand-card/50 transition-colors duration-200 text-sm font-medium text-brand-white list-none">
-                                    {faq.q}
-                                    <svg className="w-4 h-4 text-brand-gray-dark shrink-0 transition-transform duration-200 group-open:rotate-180 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            <details key={i} className="q">
+                                <summary className="qh">
+                                    <span className="ct-q">{faq.q}</span>
+                                    <span className="pm" aria-hidden="true" />
                                 </summary>
-                                <div className="px-5 pb-5">
-                                    <p className="text-xs text-brand-gray leading-relaxed">{faq.a}</p>
+                                <div className="qa">
+                                    <p>{faq.a}</p>
                                 </div>
                             </details>
                         ))}
@@ -675,22 +682,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </section>
 
             {/* ─── FINAL CTA ─── */}
-            <section className="py-20 sm:py-28 bg-brand-darker relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
-                <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">{cat.ctaHeadline}</h2>
-                    <p className="text-brand-gray text-sm sm:text-base mb-8 max-w-lg mx-auto leading-relaxed">{cat.ctaDescription}</p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 cta-primary text-white font-semibold rounded-[20px]">
-                            Book a Strategy Call →
-                        </a>
-                        <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-brand-card border border-brand-border-subtle hover:border-brand-border-hover text-brand-white rounded-lg font-semibold transition-all duration-200">
-                            Explore All Services
-                        </Link>
+            <section className="sec">
+                <div className="wrap">
+                    <div className="ctabox gridbg rv">
+                        <span className="k">— Next Step —</span>
+                        <h2 style={{ marginTop: 18 }}>{cat.ctaHeadline}</h2>
+                        <p>{cat.ctaDescription}</p>
+                        <div className="btnrow">
+                            <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn">
+                                Book a Strategy Call →
+                            </a>
+                            <Link href="/services" className="btn ghost">
+                                Explore All Services
+                            </Link>
+                        </div>
+                        <p className="mininote" style={{ margin: '22px auto 0' }}>No commitment. 100% free consultation.</p>
                     </div>
-                    <p className="mt-5 text-xs text-brand-gray-dark">No commitment. 100% free consultation.</p>
                 </div>
             </section>
-        </main>
+        </>
     );
 }

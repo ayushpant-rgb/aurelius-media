@@ -4,6 +4,7 @@ import { services, getServiceBySlug, getRelatedServices } from '@/data/servicePa
 import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { getAllPosts } from '@/lib/blog';
 import ServicePageClient from './ServicePageClient';
+import RelatedArticles from './RelatedArticles';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -98,7 +99,10 @@ export default async function ServicePage({ params }: Props) {
             slug: post.slug,
             title: post.title,
             excerpt: post.excerpt,
+            date: post.date,
             category: post.category,
+            author: post.author,
+            authorRole: post.authorRole,
             readTime: post.readTime,
             ogImage: post.ogImage,
         }));
@@ -125,7 +129,11 @@ export default async function ServicePage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            <ServicePageClient service={service} relatedServices={related} relatedArticles={relatedArticles} />
+            <ServicePageClient
+                service={service}
+                relatedServices={related}
+                relatedArticles={<RelatedArticles posts={relatedArticles} />}
+            />
         </>
     );
 }
