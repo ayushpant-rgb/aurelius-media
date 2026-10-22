@@ -64,7 +64,6 @@ export default function FeaturedResults() {
                                         fill
                                         sizes="(max-width: 760px) 300px, 360px"
                                     />
-                                    <span className="cs-no">CS—0{(i % caseStudies.length) + 1}</span>
                                     <div className="cs-body">
                                         {clone ? <div className="cs-title">{study.title}</div> : <h3>{study.title}</h3>}
                                         <p>{study.subtitle}</p>

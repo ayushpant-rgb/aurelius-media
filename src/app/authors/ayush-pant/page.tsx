@@ -8,7 +8,7 @@ import '@/app/styles/pages.css';
 const SITE_URL = 'https://www.aureliusmedia.co';
 
 export const metadata: Metadata = {
-    title: 'Ayush Pant — Founder & Performance Marketing Expert | Aurelius Media',
+    title: { absolute: 'Ayush Pant — Founder & Performance Marketing Expert | Aurelius Media' },
     description:
         'Ayush Pant is the Founder of Aurelius Media. 20+ years in digital marketing. Google & Meta certified. $15M+ in ad spend managed across 150+ clients in 25+ countries.',
     openGraph: {

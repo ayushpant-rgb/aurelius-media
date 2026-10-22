@@ -120,7 +120,7 @@
 .ct-points .pn { font-family: var(--fd); font-size: 24px; line-height: 1; color: transparent; -webkit-text-stroke: 1.2px var(--acc); }
 .ct-points p { font-size: 15px; line-height: 1.6; color: var(--soft); }
 .ct-proc .pstep h3 { font-family: var(--fd); font-weight: 400; font-size: 17px; text-transform: uppercase; color: var(--bone); transition: color 0.18s; }
-.ct-proc .pstep:hover h3 { color: #fff; }
+.ct-proc .pstep:hover h3 { color: var(--on-acc); }
 .ct-pcta { background: var(--bg); justify-content: flex-end; }
 .ct-pcta:hover { background: var(--bg); }
 .ct-pcta .btn { align-self: flex-start; }
