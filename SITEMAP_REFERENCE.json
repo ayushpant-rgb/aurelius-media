@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-12",
-  "total_pages": 83,
+  "last_updated": "2026-10-23",
+  "total_pages": 96,
   "architecture_rules": {
     "blog_images": {
       "rule": "ogImage in MDX frontmatter MUST be a relative path starting with /. Never use absolute URLs (https://www.aureliusmedia.co/...) in ogImage frontmatter.",
@@ -166,6 +166,17 @@
         "Added /blog/google-ads-for-real-estate: LocaliQ 2026 real estate search benchmarks, product fit table, intent-tier keyword structure with Keyword Planner volumes and top-of-page bids for the US, UAE, India and UK (pulled 12 Oct 2026 via GoMarble on the Aurelius account, approved by Ayush), negatives and portal brand terms, enhanced conversions for leads and the 15 Jun 2026 Data Manager move, AI Max and Performance Max controls, LSA and Home Listings ads, market rules. Target query 'google ads for real estate'.",
         "Added /blog/real-estate-marketing-trends: ten 2026 trends with evidence and invest/test/watch/skip verdicts for agents vs developers across the US, UK, UAE and India, a regulation table and a section on unsourced industry statistics. Target query 'real estate marketing trends 2026' (Google autocomplete); slug has no year.",
         "All three: Firecrawl research (29 to 51 domains each), independent fact-check pass per post, chalk-style Higgsfield covers based on the EdTech pair, faqs[] mirroring <details>, no em dashes. Live blog posts on origin/main: 42."
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "summary": "Published 12 case study pages at /case-studies/[slug] plus a /case-studies index, rebuilt the homepage results row from the same data, and added a Case Studies grid to matching service pages (book-marketing shows all five book studies).",
+      "changes": [
+        "Added src/data/caseStudies.ts as the single source for case study pages, homepage cards and service-page grids (replaced the unused old data).",
+        "Added /case-studies and /case-studies/[slug] for: illusion-of-i-am-fine, call-to-play-data-to-ai, fill-your-own-cup, karan-bajaj-freedom-manifesto, nidhi-upadhyay-that-night, provoked-magazine, aden-anais, anandi-school, private-university, health-tech-mvp, hello-muslim, public-good-prototype.",
+        "Homepage FeaturedResults now shows all 12 studies as linked cards; marquee length scales with the card count (--cs-n). Provoked card corrected to the Kit-verified $2.35 → $1.17.",
+        "services/[slug]: RelatedCaseStudies server slot under the Results band.",
+        "Sitemap: /case-studies and all 12 study URLs added."
       ]
     }
   ],
@@ -1407,6 +1418,38 @@
         "/blog"
       ],
       "notes": "Published 2025-03-24. Older post — was in blog template sample_urls but lacked a pages entry. Curated list of 9 AI tools tested across PMF, pitch decks, fundraising, ops, and growth."
+    },
+    {
+      "route": "/case-studies",
+      "title": "Case Studies | Aurelius Media",
+      "h1": "The work, and what it moved.",
+      "meta_description": "Case studies from Aurelius Media: book launches past 50,000 copies, a magazine’s cost per subscriber halved, a 16-country D2C launch, admissions for schools and universities, and prototypes that got funded.",
+      "primary_keyword": "marketing agency case studies",
+      "topic_cluster": "Core Operations",
+      "page_type": "static",
+      "status": "complete",
+      "internal_links_to": [
+        "/case-studies/illusion-of-i-am-fine",
+        "/case-studies/call-to-play-data-to-ai",
+        "/case-studies/fill-your-own-cup",
+        "/case-studies/karan-bajaj-freedom-manifesto",
+        "/case-studies/nidhi-upadhyay-that-night",
+        "/case-studies/provoked-magazine",
+        "/case-studies/aden-anais",
+        "/case-studies/anandi-school",
+        "/case-studies/private-university",
+        "/case-studies/health-tech-mvp",
+        "/case-studies/hello-muslim",
+        "/case-studies/public-good-prototype",
+        "https://cal.com/aureliusmedia/15min",
+        "/contact"
+      ],
+      "internal_links_from": [
+        "/",
+        "/case-studies/[slug]",
+        "/services/[slug] (services with matching case studies)"
+      ],
+      "notes": "Index of all case studies in three groups (Book Marketing, Growth & Performance, Product & Prototypes) as Results Ledger rows (.ledger/.lrow) with hover thumbnails. Data: src/data/caseStudies.ts."
     }
   ],
   "topic_clusters": [
@@ -1524,6 +1567,18 @@
         "/blog/real-estate-marketing-trends"
       ],
       "notes": "Blog post template redesigned per Blog Style Tile v1.0: centered header (category pill + read time → title → author photo/name/role + date), 900px-wide 16:9 hero image (20px radius), 680px article body using .blog-article CSS class (Inter 16px/1.75, orange markers/links/blockquotes, code blocks with language headers). Author card, inline CTA, 'Keep reading' related posts grid, newsletter CTA. Blog FAQs use <details>/<summary> HTML styled via globals.css."
+    },
+    {
+      "template_name": "Case Study Dynamic Router",
+      "route_pattern": "/case-studies/[slug]",
+      "data_source": "src/data/caseStudies.ts",
+      "total_pages_generated": 12,
+      "sample_urls": [
+        "/case-studies/illusion-of-i-am-fine",
+        "/case-studies/call-to-play-data-to-ai",
+        "/case-studies/fill-your-own-cup"
+      ],
+      "notes": "Hero (title with accent phrase, summary, 'Platforms used' chips, cover/photo/number panel), stat band, Platforms Used grid (what each platform did), The Brief, What We Did steps, The Outcome, testimonial when one exists, three more case studies (same group first), CTA. BreadcrumbList JSON-LD. The same data feeds the homepage FeaturedResults cards (all 12, each links to its page) and a Case Studies grid on any /services/[slug] page whose slug is in a study's services[]."
     }
   ],
   "reusable_components": [
@@ -1534,6 +1589,17 @@
       "description": "Divider-based FAQ accordion with plus/minus icon animation. Accepts items array of {question, answer}, optional heading/eyebrow props.",
       "used_in": [
         "All /services/[slug] pages"
+      ]
+    },
+    {
+      "name": "CaseStudyCard",
+      "file": "src/components/case-studies/CaseStudyCard.tsx",
+      "type": "server",
+      "description": "Linked case study card (.cscard): photo fill, book cover on a tone panel (.cover), or headline-number card (.type). Optional clone prop for the looping homepage marquee.",
+      "used_in": [
+        "/ (FeaturedResults)",
+        "/case-studies/[slug] (more case studies)",
+        "/services/[slug] (RelatedCaseStudies)"
       ]
     }
   ]

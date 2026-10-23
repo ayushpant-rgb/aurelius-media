@@ -5,6 +5,8 @@ import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } fr
 import { getAllPosts } from '@/lib/blog';
 import ServicePageClient from './ServicePageClient';
 import RelatedArticles from './RelatedArticles';
+import RelatedCaseStudies from './RelatedCaseStudies';
+import { caseStudiesForService } from '@/data/caseStudies';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -133,6 +135,7 @@ export default async function ServicePage({ params }: Props) {
                 service={service}
                 relatedServices={related}
                 relatedArticles={<RelatedArticles posts={relatedArticles} />}
+                relatedCaseStudies={<RelatedCaseStudies studies={caseStudiesForService(service.slug)} />}
             />
         </>
     );
