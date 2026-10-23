@@ -271,11 +271,9 @@ interface Props {
     relatedServices: ServiceData[];
     /** "From the Blog" section, rendered on the server (see RelatedArticles.tsx) */
     relatedArticles?: ReactNode;
-    /** Case studies for this service, rendered on the server (see RelatedCaseStudies.tsx) */
-    relatedCaseStudies?: ReactNode;
 }
 
-export default function ServicePageClient({ service, relatedServices, relatedArticles = null, relatedCaseStudies = null }: Props) {
+export default function ServicePageClient({ service, relatedServices, relatedArticles = null }: Props) {
     const posthog = usePostHog();
     const formId = useId();
 
@@ -745,9 +743,6 @@ export default function ServicePageClient({ service, relatedServices, relatedArt
                     )}
                 </div>
             </section>
-
-            {/* ─── CASE STUDIES (server-rendered slot) ─── */}
-            {relatedCaseStudies}
 
             {/* ─── 11. CLIENT TESTIMONIALS ─── */}
             <section className="sec">

@@ -606,10 +606,10 @@ html.rv-on .statband:not(.in) .st::after { transform: scaleX(0); }
 /* Case-study photo cards (homepage). Text sits on a dark scrim over the photo,
    so it stays ink-on-photo in both themes. */
 /* The row glides right to left like the live site's (about 115px a second:
-   3.25s per 380px slot, so four cards loop in 13s; --cs-n is the card count), pausing on hover. Each card carries
+   one set of four 380px slots in 13s), pausing on hover. Each card carries
    its own right margin so -50% lands exactly on the start of the copy. */
 .csmq { overflow: hidden; padding: 6px 0 16px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
-.cstrk { display: flex; width: max-content; animation: amq calc(var(--cs-n, 4) * 3.25s) linear infinite; }
+.cstrk { display: flex; width: max-content; animation: amq 13s linear infinite; }
 .csmq:hover .cstrk { animation-play-state: paused; }
 .cstrk .cscard { flex: none; width: 360px; margin-right: 20px; }
 .cscard { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--hair2); background: var(--panel); transition: opacity 0.5s, border-color 0.2s, box-shadow 0.2s, transform 0.3s; }
@@ -625,32 +625,9 @@ html.rv-on .statband:not(.in) .st::after { transform: scaleX(0); }
 .cs-chips span + span { background: rgba(236, 231, 218, 0.14); border: 1px solid rgba(236, 231, 218, 0.35); color: #ece7da; }
 @media (max-width: 760px) {
   /* phones: same pace with 300px cards (four 314px slots in 11s) */
-  .cstrk { animation-duration: calc(var(--cs-n, 4) * 2.75s); }
+  .cstrk { animation-duration: 11s; }
   .cstrk .cscard { width: 300px; margin-right: 14px; }
 }
-/* Cards are links to the case study pages */
-a.cscard { display: block; color: inherit; }
-a.cscard:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
-/* Book covers: the cover sits on the book's own tone, above the text */
-.cscard.cover { background: var(--tone, #1c1813); }
-.cscard.cover img { object-fit: contain; padding: 26px 30px 44%; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45)); }
-.cscard.cover:hover img { transform: scale(1.04) translateY(-4px); }
-@media (max-width: 760px) { .cscard.cover img { padding: 18px 30px 60%; } }
-/* No picture: the headline number leads, on a ruled ink panel in both themes */
-.cscard.type { background-color: #1c1813; background-image: linear-gradient(rgba(236, 231, 218, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(236, 231, 218, 0.07) 1px, transparent 1px); background-size: 40px 40px; }
-.cs-type { position: absolute; left: 0; right: 0; top: 0; padding: 26px 22px; display: flex; flex-direction: column; gap: 14px; }
-.cs-type span { font-family: var(--fm); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #a39b88; }
-.cs-type b { font-family: var(--fd); font-weight: 400; font-size: 66px; line-height: 0.95; text-transform: uppercase; color: #ff4400; white-space: nowrap; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: left top; }
-.cs-type b.long { font-size: 52px; }
-.cs-type b.xlong { font-size: 40px; }
-@media (max-width: 760px) { .cs-type b { font-size: 54px; } .cs-type b.long { font-size: 42px; } .cs-type b.xlong { font-size: 32px; } }
-.cscard.type:hover .cs-type b { transform: scale(1.04); }
-.cscard.type::after { background: linear-gradient(to top, rgba(12, 10, 7, 0.9) 0%, rgba(12, 10, 7, 0.5) 34%, rgba(12, 10, 7, 0) 60%); }
-
-/* Static grid of case study cards (service pages) */
-.csgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-@media (max-width: 1100px) { .csgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .csgrid { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) {
   /* no gliding: one copy of the cards in a row that can be swiped */
   .cstrk { animation: none; }

@@ -1,13 +1,40 @@
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import CaseStudyCard from '@/components/case-studies/CaseStudyCard';
-import { homepageCaseStudies } from '@/data/caseStudies';
+import Image from 'next/image';
 
 const CAL_URL = 'https://cal.com/aureliusmedia/15min';
 
-export default function FeaturedResults() {
-    const studies = homepageCaseStudies;
+// Photo case-study cards — the live homepage's layout (photo, title, subtitle,
+// result chips), restyled in the new system. The last three are the live copy.
+const caseStudies = [
+    {
+        // Meta website subscriptions on the subscriber ad sets: $2.28 per
+        // subscriber in Jun–Jul 2026 (previous agency), $1.07 in our first
+        // 30 days (20 Aug–19 Sep), $0.97 on 1–7 Oct. Photo: our 2I ad.
+        title: 'Provoked Magazine',
+        subtitle: 'Cost per subscriber halved within 30 days',
+        image: '/case-studies/provoked-magazine.webp',
+        tags: ['50%+ Lower Cost per Subscriber', '$2.28 → $0.97 per Subscriber'],
+    },
+    {
+        title: 'Stealth Health Tech Startup',
+        subtitle: 'Successful MVP Testing',
+        image: '/case-studies/qblDLWSIdCrrJBd83Cjf6xh6HM.avif',
+        tags: ['84% Response Rate', '300+ Qualified Leads'],
+    },
+    {
+        title: 'Private University',
+        subtitle: '250% increase in enrollments',
+        image: '/case-studies/PCg7rQvx3EQUl4ncNISDMHw8io.avif',
+        tags: ['2.5x Enrollments', 'No increase in budget'],
+    },
+    {
+        title: 'Aden + Anais',
+        subtitle: 'Multi-country campaign rollout for funded startup',
+        image: '/case-studies/UYQiJm2rPfGOYdRaYtjkLWBn0s.webp',
+        tags: ['2000+ Sales', '37% Reduction in CPA'],
+    },
+];
 
+export default function FeaturedResults() {
     return (
         <section className="sec">
             <div className="wrap">
@@ -23,24 +50,40 @@ export default function FeaturedResults() {
                 </div>
 
                 {/* Cards glide right to left at the live site's pace and pause on
-                    hover; each one opens its case study. The second copy makes the
-                    loop seamless; it is hidden from screen readers and the tab order. */}
+                    hover. The second copy makes the loop seamless; it is hidden
+                    from screen readers and its titles are not headings. */}
                 <div className="csmq rv">
-                    <div className="cstrk" style={{ '--cs-n': studies.length } as CSSProperties}>
-                        {[...studies, ...studies].map((study, i) => (
-                            <CaseStudyCard key={i} study={study} clone={i >= studies.length} />
-                        ))}
+                    <div className="cstrk">
+                        {[...caseStudies, ...caseStudies].map((study, i) => {
+                            const clone = i >= caseStudies.length;
+                            return (
+                                <article className="cscard" key={i} aria-hidden={clone || undefined}>
+                                    <Image
+                                        src={study.image}
+                                        alt={clone ? '' : study.title}
+                                        fill
+                                        sizes="(max-width: 760px) 300px, 360px"
+                                    />
+                                    <div className="cs-body">
+                                        {clone ? <div className="cs-title">{study.title}</div> : <h3>{study.title}</h3>}
+                                        <p>{study.subtitle}</p>
+                                        <div className="cs-chips">
+                                            {study.tags.map((tag) => (
+                                                <span key={tag}>{tag}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
                     </div>
                 </div>
 
                 <div className="rv" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 34 }}>
-                    <Link href="/case-studies" className="textlink">All case studies →</Link>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-                        <span className="mininote">Want results like these?</span>
-                        <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
-                            Book a Strategy Call →
-                        </a>
-                    </div>
+                    <span className="mininote">Want results like these?</span>
+                    <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
+                        Book a Strategy Call →
+                    </a>
                 </div>
             </div>
         </section>
