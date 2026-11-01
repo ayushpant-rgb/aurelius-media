@@ -130,6 +130,22 @@ export default function RootLayout({
           <Footer />
           <RevealArm />
         </PostHogProvider>
+        {/* AI chat (SiteAgent). Off unless both env vars are set. lazyOnload waits for the page load and an idle
+            moment, and the widget fetches nothing more until a visitor opens it. */}
+        {process.env.NEXT_PUBLIC_CHAT_WIDGET_SRC && process.env.NEXT_PUBLIC_CHAT_BOT_ID ? (
+          <Script
+            id="ai-chat-widget"
+            src={process.env.NEXT_PUBLIC_CHAT_WIDGET_SRC}
+            strategy="lazyOnload"
+            data-bot={process.env.NEXT_PUBLIC_CHAT_BOT_ID}
+            data-color="#d93a00"
+            data-color-var="--acc-fill"
+            data-font="var(--fm)"
+            data-position="right"
+            data-label="Ask Aurelius"
+            data-shape="square"
+          />
+        ) : null}
       </body>
     </html>
   );
